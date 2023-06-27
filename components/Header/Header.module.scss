@@ -1,0 +1,38 @@
+@use '@/styles/_helpers' as *;
+
+header.header {
+  height: 88px;
+  max-height: 88px;
+}
+
+.wrapper {
+  max-width: 1330px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  a {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.languageSelect {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
