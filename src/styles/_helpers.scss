@@ -3,7 +3,10 @@
 $neutral-white-main: #f8fbff;
 $accent-blue-main: #1473e4;
 
-$background: var(--background);
+$neutral-stroke-grey-main: #2c2f39;
+$neutral-black-hover: #1e212c;
+
+$background: #151823;
 $mainColor: var(--mainColor);
 $textColor: var(--color1);
 
@@ -34,7 +37,7 @@ $mainMono: var(--mainMono);
 }
 
 @mixin mobile {
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 441px) {
     @content;
   }
 }
@@ -46,13 +49,13 @@ $mainMono: var(--mainMono);
 }
 
 @mixin laptop {
-  @media screen and (max-width: 1025px) {
+  @media screen and (max-width: 1200px) {
     @content;
   }
 }
 
 @mixin noMobile {
-  @media screen and (min-width: 426px) {
+  @media screen and (min-width: 440px) {
     @content;
   }
 }

@@ -3,14 +3,39 @@
 header.header {
   height: 88px;
   max-height: 88px;
+
+  @include tablet {
+    height: 72px;
+    max-height: 72px;
+  }
 }
 
 .wrapper {
   max-width: 1330px;
+  width: calc(100vw - 48px);
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  background: $background;
+  z-index: 9;
+}
+
+.logo {
+  @include tablet {
+    display: none;
+  }
+}
+
+.miniLogo {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: relative;
+    z-index: 9;
+  }
 }
 
 .menu {
@@ -26,13 +51,233 @@ header.header {
 }
 
 .nav {
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    left: -24px;
+    top: -100vh;
+    height: 100vh;
+    min-height: 100vh;
+    width: 100vw;
+    max-height: -moz-available;
+    max-height: -webkit-fill-available;
+    max-height: fill-available;
+    background: $background;
+    z-index: 1;
+    transition: top 0.5s ease-in-out;
+
+    &::before {
+      content: '';
+      width: 100vw;
+      height: 72px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: $background;
+      z-index: 2;
+    }
+
+    &.show {
+      top: 0;
+    }
+  }
+}
+
+.navItems {
   display: flex;
   align-items: center;
   gap: 40px;
+
+  @include tablet {
+    padding-top: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    gap: 0;
+  }
+
+  li {
+    @include tablet {
+      width: 100%;
+      padding: 24px 16px;
+      border-bottom: 1px solid $neutral-stroke-grey-main;
+
+      &:first-child {
+        border-top: 1px solid $neutral-stroke-grey-main;
+      }
+    }
+  }
+}
+
+.languageSelectBox {
+  width: 129px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 8px;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+
+  @include tablet {
+    position: relative;
+    z-index: 9;
+  }
+
+  img {
+    transition: transform 0.3s ease-in-out;
+
+    &.rotate {
+      transform: rotate(180deg);
+    }
+  }
+
+  span {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
 }
 
 .languageSelect {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  position: absolute;
+  top: 48px;
+  left: 0px;
+  border-radius: 16px;
+  border: 1px solid $neutral-stroke-grey-main;
+  background: $neutral-black-hover;
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(3px);
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-10px);
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    filter: blur(0px);
+    transform: translateY(0px);
+  }
+
+  @include tablet {
+    left: 16px;
+  }
+}
+
+.languageSelectItem {
+  width: 144px;
+  padding: 16px;
+  border-bottom: 1px solid $neutral-stroke-grey-main;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: padding 0.3s;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    background: $accent-blue-main;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    box-shadow: 0;
+    transition: all 0.3s;
+  }
+
+  &.active {
+    color: $accent-blue-main;
+    padding-left: 36px;
+
+    &::before {
+      width: 8px;
+      height: 8px;
+      box-shadow: 0px 0px 0.7200000286102295px 0px #1473e4,
+        0px 0px 1.440000057220459px 0px #1473e4,
+        0px 0px 5.039999961853027px 0px #1473e4,
+        0px 0px 10.079999923706055px 0px #1473e4,
+        0px 0px 17.280000686645508px 0px #1473e4,
+        0px 0px 30.239999771118164px 0px #1473e4;
+    }
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.burgerButton {
+  display: none;
+  position: relative;
+  width: 20px;
+  height: 12px;
+
+  @include tablet {
+    display: block;
+    z-index: 9;
+  }
+}
+
+.burgerButton span,
+.burgerButton:before,
+.burgerButton:after {
+  content: '';
+  background-color: $neutral-white-main;
+  position: absolute;
+  width: 100%;
+  height: 2.4px;
+  left: 0;
+  transition: transform 0.3s ease-in-out, top 0.3s ease-in-out,
+    bottom 0.3s ease-in-out;
+  border-radius: 4px;
+}
+.burgerButton span {
+  top: 5px;
+}
+
+.burgerButton:before {
+  top: 0px;
+}
+.burgerButton:after {
+  bottom: 0px;
+}
+
+.burgerButton.active:before {
+  transform: rotate(45deg);
+  top: 4.4px;
+}
+.burgerButton.active:after {
+  transform: rotate(-45deg);
+  bottom: 4.9px;
+}
+.burgerButton.active span {
+  transform: scale(0);
+}
+
+.signIn {
+  @include tablet {
+    display: none;
+  }
+}
+
+button.signInMobile {
+  display: none;
+
+  @include tablet {
+    display: block;
+    width: calc(100% - 48px);
+    margin: 24px;
+  }
 }

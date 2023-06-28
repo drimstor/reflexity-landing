@@ -9,6 +9,7 @@ interface iButton {
   onClick?: () => void
   typeSubmit?: boolean
   error?: boolean
+  className?: string
 }
 
 function Button({
@@ -18,12 +19,19 @@ function Button({
   onClick,
   typeSubmit,
   error,
+  className,
 }: iButton) {
   return (
     <button
       onClick={onClick}
       type={typeSubmit ? 'submit' : 'button'}
-      className={clsx(s.button, s[size], s[variant], error && s.error)}
+      className={clsx(
+        s.button,
+        s[size],
+        s[variant],
+        error && s.error,
+        className && className
+      )}
     >
       {children}
     </button>
