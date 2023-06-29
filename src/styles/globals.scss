@@ -8,13 +8,17 @@
 
 html,
 body {
+  overflow: hidden;
   max-width: 100vw;
-  overflow-x: hidden;
+  height: 100vh;
+  max-height: -moz-available;
+  max-height: -webkit-fill-available;
+  max-height: fill-available;
 }
 
 body {
+  background: $background;
   color: $neutral-white-main;
-  overflow: hidden;
   max-width: 100vw;
 }
 
@@ -32,9 +36,4 @@ li {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
-}
-
-.landingPage {
-  background: $background;
-  min-height: 100vh;
 }

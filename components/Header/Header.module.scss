@@ -3,6 +3,12 @@
 header.header {
   height: 88px;
   max-height: 88px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background: $background;
+  z-index: 9;
 
   @include tablet {
     height: 72px;
@@ -17,9 +23,6 @@ header.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  background: $background;
-  z-index: 9;
 }
 
 .logo {

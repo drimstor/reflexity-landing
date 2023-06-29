@@ -1,0 +1,22 @@
+@use '@/styles/_helpers' as *;
+
+.wrapper {
+  overflow-x: hidden;
+}
+
+.circleBox {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.circleImg {
+  transition: all 1s ease-in-out;
+  transform: scale(0.6) rotate(90deg);
+
+  &.active {
+    transform: scale(0.87) rotate(0deg);
+  }
+}
