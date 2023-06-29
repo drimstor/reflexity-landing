@@ -10,7 +10,7 @@ const PageCarousel = () => {
 
   const onPageWheelHandler = (e: WheelEvent<HTMLElement>) => {
     console.log(e.nativeEvent.deltaY)
-    if (e.nativeEvent.deltaY === 125) {
+    if (e.nativeEvent.deltaY > 0) {
       setScreenNumber(1)
     } else {
       setScreenNumber(0)
@@ -21,7 +21,7 @@ const PageCarousel = () => {
     <section
       className={clsx(styles.globalBox, screenNumber === 1 && styles.active)}
       onWheel={onPageWheelHandler}
-    > 
+    >
       <FirstScreen />
       <SecondScreen screenNumber={screenNumber} />
     </section>
