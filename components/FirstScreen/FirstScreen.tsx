@@ -6,7 +6,7 @@ import Button from 'components/UI-kit/Buttons/Button'
 
 const FirstScreen = () => {
   return (
-    <div className={styles.titleBox}>
+    <div className={styles.contentBox}>
       <Image src={logo} width={440} alt='circle' />
       <span>Уникальное платежное решение для вашего бизнеса</span>
       <Button className={styles.connnectBtn} variant='contained' size='medium'>

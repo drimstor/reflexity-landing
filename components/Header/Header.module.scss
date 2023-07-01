@@ -8,7 +8,7 @@ header.header {
   left: 0;
   width: 100vw;
   background: $background;
-  z-index: 9;
+  z-index: 999;
 
   @include tablet {
     height: 72px;

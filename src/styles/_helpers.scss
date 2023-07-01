@@ -62,14 +62,17 @@ $mainMono: var(--mainMono);
 
 //-------------- Extends ---------------//
 
+%fullScreenView {
+  min-height: 100vh;
+  height: 100vh;
+  max-height: -moz-available;
+  max-height: -webkit-fill-available;
+  max-height: fill-available;
+}
+
 %border {
   box-shadow: 0 0 0 1px rgb(0 0 0 / 3%), 0 2px 4px rgb(0 0 0 / 3%),
     0 3px 24px rgb(0 0 0 / 3%);
-}
-
-%border2 {
-  box-shadow: 0 0 3px 1px rgb(0 0 0 / 5%), 0 2px 4px rgb(0 0 0 / 5%),
-    0 3px 4px rgb(0 0 0 / 5%);
 }
 
 %scroll {
@@ -95,7 +98,7 @@ $mainMono: var(--mainMono);
 
 //-------------- Animations ---------------//
 
-@keyframes show {
+@keyframes showBlur {
   0% {
     opacity: 0;
     filter: blur(3px);
@@ -106,23 +109,29 @@ $mainMono: var(--mainMono);
   }
 }
 
-@keyframes showBlur {
+@keyframes hideBlur {
   0% {
-    opacity: 0;
-    filter: blur(10px);
-  }
-  100% {
     opacity: 1;
     filter: blur(0px);
   }
+  100% {
+    opacity: 0;
+    filter: blur(3px);
+  }
 }
 
-@keyframes shadowPulse {
+@keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0.01rem rgba(73, 73, 73, 0.25);
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.17);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.17);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 6px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 6px rgba(204, 169, 44, 0);
   }
   100% {
-    box-shadow: 0 0 0 0.15rem rgba(255, 255, 255, 0.25);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }
 

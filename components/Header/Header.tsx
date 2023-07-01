@@ -9,14 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from 'components/UI-kit/Buttons/Button'
 import useClickOutside from 'hooks/useClickOutside'
-
-const navItems = [
-  { title: 'Почему мы?', link: '#' },
-  { title: 'Как это работает?', link: '#' },
-  { title: 'О компании', link: '#' },
-  { title: 'Связаться', link: '#' },
-]
-const languages = ['RUS', 'ENG']
+import { languages, navItems } from './constants'
 
 const Header = () => {
   const languageSelectRef = useRef(null)
