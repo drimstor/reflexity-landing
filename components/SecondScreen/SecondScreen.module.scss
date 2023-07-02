@@ -5,6 +5,7 @@
   z-index: 9;
   opacity: 0;
   animation: hideBlur 0.5s ease-in-out forwards;
+  @extend %fullScreenView;
 
   &.active {
     animation: showBlur 0.5s ease-in-out 0.6s forwards;
@@ -74,7 +75,7 @@
     content: '';
     position: absolute;
     right: 50%;
-    top: 50%;
+    top: 47%;
     height: 1px;
     width: 0%;
     background: linear-gradient(
@@ -89,7 +90,7 @@
     content: '';
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 47%;
     height: 1px;
     width: 0%;
     background: linear-gradient(

@@ -4,7 +4,7 @@ import s from './Button.module.scss'
 
 interface iButton {
   children: ReactNode
-  variant: 'outlined' | 'contained'
+  variant: 'outlined' | 'contained' | 'large'
   size: 'medium' | 'small'
   onClick?: () => void
   typeSubmit?: boolean

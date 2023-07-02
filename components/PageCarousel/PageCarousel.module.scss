@@ -7,7 +7,16 @@
   transition: transform 1.3s ease-in-out;
   transform: translateY(0%);
 
-  &.active {
+  &.screen1 {
     transform: translateY(calc(-100vh - 50px));
+  }
+
+  &.screen2_1,
+  &.screen2_2,
+  &.screen2_3,
+  &.screen2_4,
+  &.screen2_5,
+  &.screen2_6 {
+    transform: translateY(calc(-200vh - 120px));
   }
 }

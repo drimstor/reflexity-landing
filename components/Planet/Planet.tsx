@@ -5,20 +5,20 @@ import mainCircle from '../../public/mainCircle.svg'
 import clsx from 'clsx'
 
 interface PlanetProps {
-  screenNumber: number
+  screenNumber: string
 }
 
 const Planet = ({ screenNumber }: PlanetProps) => {
   return (
     <div className={styles.circleBox}>
       <div
-        className={clsx(styles.shadowBox, screenNumber === 1 && styles.active)}
+        className={clsx(
+          styles.shadowBox,
+          styles['screen' + screenNumber],
+          screenNumber.includes('2_') && styles.noShadow
+        )}
       >
-        <Image
-          className={clsx(styles.circleImg)}
-          src={mainCircle}
-          alt='circle'
-        />
+        <Image src={mainCircle} alt='circle' />
         <div className={clsx(styles.shadow)} />
       </div>
     </div>

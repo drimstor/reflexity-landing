@@ -16,8 +16,38 @@
   transform: translateY(55vh) scale(0.6) rotate(90deg);
   position: relative;
 
-  &.active {
+  &.screen1 {
     transform: translateY(0) scale(0.9) rotate(0deg);
+  }
+
+  &.screen2_1 {
+    transform: translateY(-81vh) translateX(52vh) scale(1.6) rotate(0deg);
+  }
+
+  &.screen2_2 {
+    transform: translateY(-43vh) translateX(-87.5vh) scale(1.8) rotate(0deg);
+  }
+
+  &.screen2_3 {
+    transform: translateY(59.4vh) translateX(75.4vh) scale(1.8) rotate(32deg);
+  }
+
+  &.screen2_4 {
+    transform: translateY(39vh) translateX(-120.6vh) scale(2) rotate(82deg);
+  }
+
+  &.screen2_5 {
+    transform: translateY(-141.5vh) translateX(-35.5vh) scale(1.8) rotate(45deg);
+  }
+
+  &.screen2_6 {
+    transform: translateY(-117.4vh) translateX(-35.5vh) scale(1.8) rotate(45deg);
+  }
+
+  &.noShadow .shadow {
+    opacity: 0.55;
+    width: 120%;
+    height: 120%;
   }
 }
 
@@ -30,7 +60,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-}
-
-.circleImg {
+  transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out,
+    height 0.5s ease-in-out;
 }

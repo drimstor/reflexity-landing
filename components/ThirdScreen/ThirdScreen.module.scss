@@ -1,0 +1,145 @@
+@use '@/styles/_helpers' as *;
+
+.contentBox {
+  position: relative;
+  z-index: 9;
+  opacity: 0;
+  animation: hideBlur 0.5s ease-in-out forwards;
+  @extend %fullScreenView;
+
+  &.active {
+    animation: showBlur 0.5s ease-in-out 0.6s forwards;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 56px;
+    margin-bottom: 56px;
+    background: radial-gradient($background 50%, transparent 80%);
+    border-radius: 50%;
+    padding: 25px;
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+.textBox {
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% - 90px), calc(-50% - 85px));
+  position: fixed;
+  max-width: 680px;
+  min-width: 680px;
+  min-height: 252px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: radial-gradient(#151823f6 60%, transparent 70%);
+  padding: 50px;
+  transition: all 1s ease-in-out;
+
+  button {
+    bottom: -40px;
+    position: absolute;
+    margin-top: 36px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &.screen2_2 {
+    transform: translate(calc(-19% - 52px), calc(-30% - 50px));
+  }
+
+  &.screen2_3 {
+    transform: translate(calc(-62% - 52px), calc(-80% - 50px));
+  }
+
+  &.screen2_4 {
+    transform: translate(calc(-22% - 52px), calc(-80% - 50px));
+  }
+
+  &.screen2_5 {
+    transform: translate(calc(-60% - 52px), calc(-60% - 37px));
+  }
+
+  &.hide {
+    li {
+      opacity: 0.4;
+      filter: blur(4px);
+    }
+
+    h3 {
+      opacity: 0.4;
+      filter: blur(4px);
+    }
+
+    .circle {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(-15px);
+    }
+
+    button {
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+
+  &.reverse {
+    .circle img {
+      left: auto;
+      top: -95px;
+      right: -165px;
+    }
+
+    h3 {
+      width: 100%;
+    }
+
+    li {
+      width: 100%;
+    }
+  }
+
+  h3 {
+    opacity: 1;
+    filter: blur(0px);
+    text-align: right;
+    width: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+    transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out,
+      filter 0.5s ease-in-out;
+    white-space: nowrap;
+  }
+
+  li {
+    opacity: 1;
+    filter: blur(0px);
+    text-align: right;
+    width: 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out,
+      filter 0.5s ease-in-out;
+    white-space: nowrap;
+  }
+}
+
+.circle {
+  position: relative;
+  margin: -8px 0;
+  opacity: 1;
+  filter: blur(0px);
+  transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+
+  img {
+    position: absolute;
+    left: -165px;
+    top: -75px;
+  }
+}
