@@ -9,6 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include tablet {
+    transform: translate(-50%, -34%);
+  }
 }
 
 .shadowBox {
@@ -21,23 +25,23 @@
   }
 
   &.screen2_1 {
-    transform: translateY(-81vh) translateX(52vh) scale(1.6) rotate(0deg);
+    transform: translateY(-44%) translateX(28%) scale(1.6) rotate(0deg);
   }
 
   &.screen2_2 {
-    transform: translateY(-43vh) translateX(-87.5vh) scale(1.8) rotate(0deg);
+    transform: translateY(-37%) translateX(-61%) scale(2) rotate(20deg);
   }
 
   &.screen2_3 {
-    transform: translateY(59.4vh) translateX(75.4vh) scale(1.8) rotate(32deg);
+    transform: translateY(35%) translateX(44.4%) scale(1.8) rotate(32deg);
   }
 
   &.screen2_4 {
-    transform: translateY(39vh) translateX(-120.6vh) scale(2) rotate(82deg);
+    transform: translateY(21%) translateX(-66%) scale(2) rotate(82deg);
   }
 
   &.screen2_5 {
-    transform: translateY(-141.5vh) translateX(-35.5vh) scale(1.8) rotate(45deg);
+    transform: translateY(-72%) translateX(23%) scale(1.8) rotate(49deg);
   }
 
   &.screen2_6 {
@@ -45,7 +49,7 @@
   }
 
   &.noShadow .shadow {
-    opacity: 0.55;
+    opacity: 0.8;
     width: 120%;
     height: 120%;
   }

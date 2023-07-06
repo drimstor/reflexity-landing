@@ -38,7 +38,12 @@
   gap: 16px;
   background: radial-gradient(#151823f6 60%, transparent 70%);
   padding: 50px;
-  transition: all 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out,
+    transform 1s ease-in-out;
+
+  @media screen and (max-height: 768px) {
+    transform: translate(calc(-50% - 90px), calc(-50% - 90px));
+  }
 
   button {
     bottom: -40px;
@@ -48,19 +53,35 @@
   }
 
   &.screen2_2 {
-    transform: translate(calc(-19% - 52px), calc(-30% - 50px));
+    transform: translate(calc(-19% - 52px), calc(-30% - 52px));
+
+    @media screen and (max-height: 769px) and (max-width: 1367px) {
+      transform: translate(calc(-19% - 52px), calc(-30% - 64px));
+    }
   }
 
   &.screen2_3 {
-    transform: translate(calc(-62% - 52px), calc(-80% - 50px));
+    transform: translate(calc(-52% - 55px), calc(-80% + 5px));
+
+    @media screen and (max-height: 769px) and (max-width: 1367px) {
+      transform: translate(calc(-52% - 55px), calc(-80% - 13px));
+    }
   }
 
   &.screen2_4 {
-    transform: translate(calc(-22% - 52px), calc(-80% - 50px));
+    transform: translate(calc(-22% - 64px), calc(-80% - 52px));
+
+    @media screen and (max-height: 865px) and (max-width: 1537px) {
+      transform: translate(calc(-22% - 64px), calc(-80% - 64px));
+    }
   }
 
   &.screen2_5 {
-    transform: translate(calc(-60% - 52px), calc(-60% - 37px));
+    transform: translate(calc(-60% - 42px), calc(-32% - 41px));
+
+    @media screen and (max-height: 901px) and (max-width: 1441px) {
+      transform: translate(calc(-60% - 42px), calc(-32% - 55px));
+    }
   }
 
   &.hide {
