@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './ThirdScreen.module.scss'
-import circle from '../../public/icons/circle-vector.svg'
+import circle from '../../../public/icons/circle-vector.svg'
 import Image from 'next/image'
 import Button from 'components/UI-kit/Buttons/Button'
 import clsx from 'clsx'
@@ -18,11 +18,15 @@ const ThirdScreen = ({ screenNumber, isScrollLock }: ThirdScreenProps) => {
   useEffect(() => {
     setFrameChanged(true)
     const timer = setTimeout(() => setFrameChanged(false), 1000)
-
     const timer2 = setTimeout(
       () => setAnimateItem(animateFramesConfig[screenNumber]),
       500
     )
+
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(timer2)
+    }
   }, [screenNumber])
 
   return (

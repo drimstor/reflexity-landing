@@ -7,7 +7,11 @@
   transition: transform 1.3s ease-in-out;
   transform: translateY(0%);
 
-  &.screen1 {
+  &.screen1,
+  &.screen1_1,
+  &.screen1_2,
+  &.screen1_3,
+  &.screen1_4 {
     transform: translateY(calc(-100vh - 50px));
   }
 
@@ -15,8 +19,11 @@
   &.screen2_2,
   &.screen2_3,
   &.screen2_4,
-  &.screen2_5,
-  &.screen2_6 {
+  &.screen2_5 {
     transform: translateY(calc(-200vh - 120px));
+  }
+
+  &.screen3 {
+    transform: translateY(calc(-300vh - 120px));
   }
 }

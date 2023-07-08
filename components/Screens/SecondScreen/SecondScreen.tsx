@@ -5,48 +5,55 @@ import { blockTextContent } from './constants'
 import clsx from 'clsx'
 
 interface SecondScreenProps {
-  isActiveScreen: boolean
+  screenNumber: string
 }
 
-const SecondScreen = ({ isActiveScreen }: SecondScreenProps) => {
+const SecondScreen = ({ screenNumber }: SecondScreenProps) => {
   const [animateBlock, setAnimateBlock] = useState<number[]>([])
 
   useEffect(() => {
-    if (isActiveScreen) {
-      const timer = setTimeout(() => {
+    if (screenNumber === '1') {
+      setTimeout(() => {
         blockTextContent.forEach((item, index) => {
           addAnimateBlock(index)
         })
-        clearTimeout(timer)
       }, 1000)
     } else {
       setAnimateBlock([])
     }
-  }, [isActiveScreen])
+  }, [screenNumber])
 
   const addAnimateBlock = (number: number) => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setAnimateBlock((prev) => [...prev, number])
-      clearTimeout(timer)
     }, 1000 * number)
   }
 
   return (
-    <div className={clsx(styles.contentBox, isActiveScreen && styles.active)}>
+    <div
+      className={clsx(
+        styles.contentBox,
+        (screenNumber.includes('1_') || screenNumber === '1') && styles.active
+      )}
+    >
       <h2>Без чарджбеков, холда и роллинга</h2>
-      <div className={styles.blockBox}>
+      <div className={clsx(styles.blockBox, styles['screen' + screenNumber])}>
         {blockTextContent.map((item, index) => (
           <div
             key={index}
             className={clsx(
               styles.blockItem,
-              animateBlock.includes(index) && styles.active
+              (animateBlock.includes(index) ||
+                screenNumber === `1_${index + 1}`) &&
+                styles.active
             )}
           >
             <div
               className={clsx(
                 styles.icon,
-                animateBlock.includes(3) && styles.active
+                (animateBlock.includes(3) ||
+                  screenNumber === `1_${index + 1}`) &&
+                  styles.active
               )}
             >
               <Image src={item.icon} alt='icon' />

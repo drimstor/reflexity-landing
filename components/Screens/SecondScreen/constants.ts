@@ -1,7 +1,7 @@
-import usersAlt from '../../public/icons/users-alt.svg'
-import tachometerAlt from '../../public/icons/tachometer-fast-alt.svg'
-import moneyAlt from '../../public/icons/money-insert.svg'
-import shieldAlt from '../../public/icons/shield.svg'
+import usersAlt from '../../../public/icons/users-alt.svg'
+import tachometerAlt from '../../../public/icons/tachometer-fast-alt.svg'
+import moneyAlt from '../../../public/icons/money-insert.svg'
+import shieldAlt from '../../../public/icons/shield.svg'
 
 export const blockTextContent = [
   {

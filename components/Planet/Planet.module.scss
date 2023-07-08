@@ -17,11 +17,27 @@
 
 .shadowBox {
   transition: all 1.3s ease-in-out;
-  transform: translateY(55vh) scale(0.6) rotate(90deg);
+  transform: translateY(31%) scale(0.6) rotate(90deg);
   position: relative;
 
-  &.screen1 {
+  @include tablet {
+    transform: translateY(20%) scale(0.6) rotate(90deg);
+  }
+
+  &.screen1,
+  &.screen1_1,
+  &.screen1_2,
+  &.screen1_3,
+  &.screen1_4 {
     transform: translateY(0) scale(0.9) rotate(0deg);
+
+    @include tablet {
+      transform: translateY(-15%) scale(0.7) rotate(0deg);
+    }
+
+    @include mobile {
+      transform: translateY(-15%) scale(0.45) rotate(0deg);
+    }
   }
 
   &.screen2_1 {
@@ -44,8 +60,8 @@
     transform: translateY(-72%) translateX(23%) scale(1.8) rotate(49deg);
   }
 
-  &.screen2_6 {
-    transform: translateY(-117.4vh) translateX(-35.5vh) scale(1.8) rotate(45deg);
+  &.screen3 {
+    transform: translateY(0) scale(0.75) rotate(0deg);
   }
 
   &.noShadow .shadow {

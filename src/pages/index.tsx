@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
-import Header from 'components/Header/Header'
+import Header from 'components/UI-kit/Header/Header'
 import PageCarousel from 'components/PageCarousel/PageCarousel'
 import Button from 'components/UI-kit/Buttons/Button'
 import { useEffect, useState } from 'react'

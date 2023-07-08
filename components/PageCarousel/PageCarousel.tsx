@@ -1,12 +1,14 @@
 import React, { TouchEvent, useEffect, useState, WheelEvent } from 'react'
 import styles from './PageCarousel.module.scss'
-import FirstScreen from 'components/FirstScreen/FirstScreen'
+import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import Planet from 'components/Planet/Planet'
 import clsx from 'clsx'
-import SecondScreen from 'components/SecondScreen/SecondScreen'
-import ThirdScreen from 'components/ThirdScreen/ThirdScreen'
+import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
+import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
 import useDebounce from 'hooks/useDebounce'
 import useDebounceCallback from 'hooks/useDebounceCallback'
+import { scrollNextConfig, scrollPrevConfig } from './constants'
+import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
 
 const PageCarousel = () => {
   // ------------- Desktop ------------ //
@@ -94,72 +96,38 @@ const PageCarousel = () => {
   })
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 767px)').matches
+
     if (!isScrollLock) {
       if (scrollToDirection > 0) {
-        if (screenNumber === '0') {
-          setScreenNumber('1')
-          setTimeout(clearScrollLock, 5700)
-        }
-        if (screenNumber === '1') {
-          setScreenNumber('2_1')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_1') {
-          setScreenNumber('2_2')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_2') {
-          setScreenNumber('2_3')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_3') {
-          setScreenNumber('2_4')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_4') {
-          setScreenNumber('2_5')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_5') {
-          setScreenNumber('2_6')
-          setTimeout(clearScrollLock, 1500)
-        }
+        scrollNextConfig.forEach((config) => {
+          if (screenNumber === config.currentScreenNumber) {
+            if (config.hasOwnProperty('isMobile')) {
+              if (config.isMobile ? isMobile : !isMobile) {
+                setScreenNumber(config.setScreenNumber)
+                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+              }
+            } else {
+              setScreenNumber(config.setScreenNumber)
+              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+            }
+          }
+        })
       }
       if (scrollToDirection < 0) {
-        if (screenNumber === '0') {
-          setTimeout(clearScrollLock, 500)
-        }
-
-        if (screenNumber === '1') {
-          setScreenNumber('0')
-          setTimeout(clearScrollLock, 1300)
-        }
-
-        if (screenNumber === '2_1') {
-          setScreenNumber('1')
-          setTimeout(clearScrollLock, 5700)
-        }
-
-        if (screenNumber === '2_2') {
-          setScreenNumber('2_1')
-          setTimeout(clearScrollLock, 1300)
-        }
-        if (screenNumber === '2_3') {
-          setScreenNumber('2_2')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_4') {
-          setScreenNumber('2_3')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_5') {
-          setScreenNumber('2_4')
-          setTimeout(clearScrollLock, 1500)
-        }
-        if (screenNumber === '2_6') {
-          setScreenNumber('2_5')
-          setTimeout(clearScrollLock, 1500)
-        }
+        scrollPrevConfig.forEach((config) => {
+          if (screenNumber === config.currentScreenNumber) {
+            if (config.hasOwnProperty('isMobile')) {
+              if (config.isMobile ? isMobile : !isMobile) {
+                setScreenNumber(config.setScreenNumber)
+                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+              }
+            } else {
+              setScreenNumber(config.setScreenNumber)
+              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+            }
+          }
+        })
       }
     }
   }, [scrollToDirection])
@@ -175,8 +143,9 @@ const PageCarousel = () => {
         onTouchEnd={onMouseUpHandler}
       >
         <FirstScreen />
-        <SecondScreen isActiveScreen={screenNumber === '1'} />
+        <SecondScreen screenNumber={screenNumber} />
         <ThirdScreen screenNumber={screenNumber} isScrollLock={isScrollLock} />
+        <FourthScreen screenNumber={screenNumber} isScrollLock={isScrollLock} />
       </section>
     </>
   )
