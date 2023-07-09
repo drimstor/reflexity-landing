@@ -64,6 +64,10 @@
     transform: translateY(0) scale(0.75) rotate(0deg);
   }
 
+  &.screen4 {
+    transform: translateY(0) scale(0.75) rotate(0deg);
+  }
+
   &.noShadow .shadow {
     opacity: 0.8;
     width: 120%;

@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 import { ReactNode } from 'react'
 import s from './Button.module.scss'
 
@@ -10,6 +11,8 @@ interface iButton {
   typeSubmit?: boolean
   error?: boolean
   className?: string
+  icon?: string
+  fullWidth?: boolean
 }
 
 function Button({
@@ -20,6 +23,8 @@ function Button({
   typeSubmit,
   error,
   className,
+  icon,
+  fullWidth,
 }: iButton) {
   return (
     <button
@@ -30,9 +35,11 @@ function Button({
         s[size],
         s[variant],
         error && s.error,
+        fullWidth && s.fullWidth,
         className && className
       )}
     >
+      {icon && <Image src={icon} alt='icon' />}
       {children}
     </button>
   )

@@ -1,1 +1,168 @@
 @use '@/styles/_helpers' as *;
+
+.tableBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  padding-top: 0.22em;
+
+  position: relative;
+  z-index: 2;
+  border-radius: 7.271px;
+  border: 1px solid $neutral-stroke-grey-main;
+  background: $neutral-white-background-main;
+  box-shadow: 0px 7.270622730255127px 14.541245460510254px 0px
+    rgba(12, 14, 20, 0.24);
+}
+
+.tableTabs {
+  border-bottom: 1px solid $neutral-stroke-grey-main;
+  height: 1em;
+  padding: 0 0.33em;
+  display: flex;
+  gap: 0.22em;
+  align-items: center;
+  margin-top: -0.22em;
+
+  .tableTab {
+    font-size: 0.22em;
+    font-weight: 400;
+    padding: 0 1em;
+    color: #707e8f;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &.sticker::after {
+      content: '2';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: $accent-blue-main;
+      width: 1.8em;
+      height: 1.8em;
+      font-size: 0.72em;
+      color: $neutral-white-main;
+      font-weight: 400;
+      margin-left: 2px;
+    }
+
+    &.active {
+      color: $neutral-white-main;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        border-radius: 3.636px 3.636px 0px 0px;
+        background: $neutral-white-main;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.tableControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.33em;
+
+  h2 {
+    font-size: 0.22em;
+    line-height: 130%;
+    color: $neutral-white-main;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+
+    span {
+      color: #707e8f;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.22em;
+    padding: 0.18em 0.8em;
+    border-radius: 7.273px;
+    min-height: auto;
+    height: 3em;
+    gap: 0.3em;
+  }
+}
+
+.buttonsBox {
+  display: flex;
+  align-items: center;
+  gap: 0.33em;
+}
+
+.filtersButton {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.22em;
+  line-height: 130%;
+}
+
+.tableBox table {
+  font-size: 0.22em;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+    color: #707e8f;
+    font-weight: 400;
+    padding: 0 1em 0.5em;
+  }
+
+  tr td {
+    height: 4.4em;
+    min-height: 4.4em;
+    padding: 0 1em;
+    border-top: 1px solid $neutral-stroke-grey-main;
+    font-weight: 400;
+    line-height: 140%;
+    max-width: 18em;
+
+    > img {
+      margin-bottom: -0.33em;
+      margin-right: 0.33em;
+    }
+
+    &.isBlueField {
+      color: $accent-blue-main;
+    }
+
+    span {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      border-radius: 4.545px;
+      background: rgba(20, 115, 228, 0.1);
+      font-size: 0.75em;
+      padding: 0.3em 0.8em;
+      color: $accent-blue-main;
+      line-height: 140%;
+
+      &.active {
+        color: #0ec8f1;
+        background: rgba(14, 200, 241, 0.1);
+      }
+    }
+
+    p {
+      color: #707e8f;
+    }
+  }
+}

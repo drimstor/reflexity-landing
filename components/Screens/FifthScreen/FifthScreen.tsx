@@ -1,31 +1,31 @@
 import React from 'react'
-import styles from './FourthScreen.module.scss'
+import styles from './FifthScreen.module.scss'
 import clsx from 'clsx'
 import ExchangerLayout from 'components/Exchanger/ExchangerLayout/ExchangerLayout'
 import ExchangerTable from 'components/Exchanger/ExchangerTable/ExchangerTable'
 import {
-  firstTableControl,
-  firstTableTabs,
   firstTableTD,
   firstTableTH,
+  secondTableControl,
+  secondTableTD,
+  secondTableTH,
 } from 'components/Exchanger/ExchangerLayout/constants'
 
-interface FourthScreenProps {
+interface FifthScreenProps {
   screenNumber: string
 }
 
-const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
+const FifthScreen = ({ screenNumber }: FifthScreenProps) => {
   return (
     <div
-      className={clsx(styles.contentBox, screenNumber === '3' && styles.active)}
+      className={clsx(styles.contentBox, screenNumber === '4' && styles.active)}
     >
       <div className={styles.container}>
         <ExchangerLayout>
           <ExchangerTable
-            tabs={firstTableTabs}
-            control={firstTableControl}
-            thData={firstTableTH}
-            tdData={firstTableTD}
+            control={secondTableControl}
+            thData={secondTableTH}
+            tdData={secondTableTD}
           />
         </ExchangerLayout>
       </div>
@@ -33,4 +33,4 @@ const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
   )
 }
 
-export default FourthScreen
+export default FifthScreen

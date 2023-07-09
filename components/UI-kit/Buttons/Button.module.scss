@@ -16,6 +16,10 @@
   }
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .contained {
   color: $neutral-white-main;
   background: $accent-blue-main;
@@ -27,6 +31,12 @@
   &:active {
     background: #023b7e;
   }
+}
+
+.outlined {
+  color: $neutral-white-main;
+  background: $neutral-white-background-main;
+  border: 1px solid $neutral-stroke-grey-main;
 }
 
 .small {
