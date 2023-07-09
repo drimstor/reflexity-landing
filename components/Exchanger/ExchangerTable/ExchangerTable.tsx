@@ -8,7 +8,7 @@ import filterIcon from '../../../public/icons/filter.svg'
 import Image from 'next/image'
 import arrowUp from '../../../public/icons/arrow-up.svg'
 import arrowDown from '../../../public/icons/arrow-down.svg'
-import { secondTableTD } from '../ExchangerLayout/constants'
+import { firstTableTD, secondTableTD } from '../ExchangerLayout/constants'
 
 interface ExchangerTableProps {
   control: any
@@ -78,9 +78,9 @@ const ExchangerTable = ({
                 <td
                   key={`${item}_${index}`}
                   className={clsx(
-                    (item === '1234 1234 1234 4588' ||
-                      item === '57d6...ed36' ||
-                      item === '+7 (123) 456-45-45') &&
+                    (item === firstTableTD[0][2] ||
+                      item === firstTableTD[0][6] ||
+                      item === firstTableTD[0][7]) &&
                       styles.isBlueField
                   )}
                 >
@@ -116,16 +116,20 @@ const ExchangerTable = ({
                     </span>
                   ) : (
                     <>
-                      {arr.includes(secondTableTD[0][1]) &&
-                        item === '4 000.00 RUB' && (
-                          <Image src={arrowUp} alt='arrow-up' />
-                        )}
-                      {arr.includes(secondTableTD[1][1]) &&
-                        item === '4 000.00 RUB' && (
-                          <Image src={arrowDown} alt='arrow-down' />
+                      {item === secondTableTD[0][2] &&
+                        (arr.includes(secondTableTD[0][1]) ||
+                          arr.includes(secondTableTD[1][1])) && (
+                          <Image
+                            src={
+                              arr.includes(secondTableTD[0][1])
+                                ? arrowUp
+                                : arrowDown
+                            }
+                            alt='arrow'
+                          />
                         )}
                       {item}
-                      {item === '1234 1234 1234 4588' && (
+                      {item === firstTableTD[0][6] && (
                         <>
                           <br />
                           <p>Visa/MasterCard</p>
