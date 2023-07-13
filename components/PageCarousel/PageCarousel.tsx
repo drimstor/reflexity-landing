@@ -10,6 +10,7 @@ import useDebounceCallback from 'hooks/useDebounceCallback'
 import { scrollNextConfig, scrollPrevConfig } from './constants'
 import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
 import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
+import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
 
 const PageCarousel = () => {
   // ------------- Desktop ------------ //
@@ -148,6 +149,7 @@ const PageCarousel = () => {
         <ThirdScreen screenNumber={screenNumber} isScrollLock={isScrollLock} />
         <FourthScreen screenNumber={screenNumber} />
         <FifthScreen screenNumber={screenNumber} />
+        <SixthScreen screenNumber={screenNumber} />
       </section>
     </>
   )

@@ -1,1 +1,148 @@
 @use '@/styles/_helpers' as *;
+
+.globalBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chartBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  border-radius: 7.271px;
+  border: 1px solid $neutral-stroke-grey-main;
+  background: $neutral-white-background-main;
+  box-shadow: 0px 7.270622730255127px 14.541245460510254px 0px
+    rgba(12, 14, 20, 0.24);
+  padding-bottom: 0.22em;
+}
+
+.titleAndSelectBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.2em;
+
+  > h3 {
+    font-size: 0.33em;
+    gap: 0.2em;
+    font-weight: 600;
+    width: fit-content;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.selectBox {
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+
+  > span {
+    font-size: 0.22em;
+    color: var(--neutral-grey-main, #707e8f);
+    line-height: 150%;
+  }
+}
+
+.select {
+  border-radius: 7.402px;
+  border: 0.925px solid var(--neutral-stroke-grey-main, #2c2f39);
+  background: var(--neutral-black-main, #151823);
+  display: flex;
+  gap: 0.8em;
+  align-items: center;
+  padding: 0.17em 0.24em;
+
+  span {
+    font-size: 0.22em;
+    line-height: 150%;
+  }
+}
+
+.selectNav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5em;
+  padding: 0.15em 0;
+
+  span {
+    font-size: 0.22em;
+    line-height: 150%;
+    color: $accent-blue-main;
+    font-weight: 600;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -1.23em;
+      top: 0;
+      width: 0.5px;
+      height: 100%;
+      background: #2c2f39;
+    }
+
+    &:last-child::after {
+      width: 0;
+    }
+  }
+}
+
+.tabsBox {
+  border-bottom: 1px solid $neutral-stroke-grey-main;
+  height: 1em;
+  padding: 0 0.33em;
+  display: flex;
+  gap: 0.22em;
+  align-items: center;
+
+  .tab {
+    font-size: 0.22em;
+    font-weight: 400;
+    padding: 0 1em;
+    color: #707e8f;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &.active {
+      color: $neutral-white-main;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1.5px;
+        border-radius: 3.636px 3.636px 0px 0px;
+        background: $neutral-white-main;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
+.chartTitle {
+  padding: 1.6em;
+  font-size: 0.22em;
+  line-height: 150%;
+  font-weight: 600;
+  color: $neutral-white-main;
+
+  display: flex;
+  align-items: center;
+  gap: 1em;
+
+  span {
+    font-size: 1.53em;
+  }
+}
+
+.chart {
+  padding: 0.11em;
+}

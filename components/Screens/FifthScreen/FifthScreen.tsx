@@ -4,12 +4,11 @@ import clsx from 'clsx'
 import ExchangerLayout from 'components/Exchanger/ExchangerLayout/ExchangerLayout'
 import ExchangerTable from 'components/Exchanger/ExchangerTable/ExchangerTable'
 import {
-  firstTableTD,
-  firstTableTH,
   secondTableControl,
   secondTableTD,
   secondTableTH,
 } from 'components/Exchanger/ExchangerLayout/constants'
+import TableTransferModal from 'components/Modals/TableTransferModal/TableTransferModal'
 
 interface FifthScreenProps {
   screenNumber: string
@@ -28,6 +27,7 @@ const FifthScreen = ({ screenNumber }: FifthScreenProps) => {
             tdData={secondTableTD}
           />
         </ExchangerLayout>
+        <TableTransferModal />
       </div>
     </div>
   )

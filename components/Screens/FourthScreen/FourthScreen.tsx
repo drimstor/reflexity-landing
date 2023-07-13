@@ -9,6 +9,7 @@ import {
   firstTableTD,
   firstTableTH,
 } from 'components/Exchanger/ExchangerLayout/constants'
+import TableRequestModal from 'components/Modals/TableRequestModal/TableRequestModal'
 
 interface FourthScreenProps {
   screenNumber: string
@@ -28,6 +29,7 @@ const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
             tdData={firstTableTD}
           />
         </ExchangerLayout>
+        <TableRequestModal />
       </div>
     </div>
   )

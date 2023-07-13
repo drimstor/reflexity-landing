@@ -1,0 +1,76 @@
+@use '@/styles/_helpers' as *;
+
+.modalBox {
+  position: absolute;
+  top: 52px;
+  right: 32px;
+  z-index: 99;
+  border-radius: 11.455px;
+  border: 0.975px solid $neutral-stroke-grey-main;
+  background: var(--neutral-black-main, #151823);
+  box-shadow: 0px 12px 24px 0px rgba(12, 14, 20, 0.16);
+  padding: 19.498px;
+  width: 270px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4em;
+
+  > span {
+    color: $neutral-white-main;
+    font-size: 0.7em;
+    font-weight: 600;
+    line-height: 133%;
+  }
+}
+
+.inputsWrapper {
+  padding: 0.5em 0;
+  padding-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.inputBox {
+  h3 {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+    font-size: 0.5em;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 0.6em;
+  }
+}
+
+.input {
+  border-radius: 7.01px;
+  border: 0.876px solid var(--neutral-stroke-grey-main, #2c2f39);
+  background: var(--neutral-black-main, #151823);
+  padding: 0.75em 0.9em;
+  color: var(--neutral-grey-main, #707e8f);
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.buttonsBox {
+  display: flex;
+  gap: 0.6em;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.54em;
+    padding: 0.18em 0.8em;
+    border-radius: 7.273px;
+    min-height: auto;
+    height: 3em;
+    gap: 0.3em;
+  }
+}
