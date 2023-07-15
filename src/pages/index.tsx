@@ -19,8 +19,8 @@ export default function Home() {
     setCaptchaIsDone(true)
   }
   const PASSWORD = 'edac624e-11ed-434e-9d83-785d99ee0ec9'
-  // const TEST_SITE_KEY = '6Ld-LCgnAAAAAPbyJRGPBQGXvBvLEEIFJWbPZr2b'
-  const TEST_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+  const TEST_SITE_KEY = '6Ld-LCgnAAAAAPbyJRGPBQGXvBvLEEIFJWbPZr2b'
+  // const TEST_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 
   const onSubmitHandler = (e: any) => {
     e.preventDefault()
