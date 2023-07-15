@@ -20,11 +20,19 @@ const FifthScreen = ({ screenNumber }: FifthScreenProps) => {
       className={clsx(styles.contentBox, screenNumber === '4' && styles.active)}
     >
       <div className={styles.container}>
+        <div className={styles.textBox}>
+          <h3>История баланса</h3>
+          <p>
+            Гарантируем быструю обработку ваших платежей, безопасность
+            транзакций и высокую конвертацию из заявки в успешную оплату
+          </p>
+        </div>
         <ExchangerLayout>
           <ExchangerTable
             control={secondTableControl}
             thData={secondTableTH}
             tdData={secondTableTD}
+            isAnotherTable
           />
         </ExchangerLayout>
         <TableTransferModal />

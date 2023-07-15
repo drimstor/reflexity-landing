@@ -1,0 +1,27 @@
+@use '@/styles/_helpers' as *;
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 150%;
+  }
+
+  input {
+    max-height: 48px;
+    border-radius: 16px;
+    border: 2px solid var(--neutral-stroke-grey-hover, #494b55);
+    background: rgba(248, 251, 255, 0.05);
+    padding: 0.9em 1em;
+    color: $neutral-white-main;
+    font-size: 16px;
+
+    &::placeholder {
+      color: var(--neutral-grey-main, #707e8f);
+    }
+  }
+}

@@ -12,6 +12,7 @@ interface iButton {
   error?: boolean
   className?: string
   icon?: string
+  reverseIcon?: string
   fullWidth?: boolean
 }
 
@@ -24,6 +25,7 @@ function Button({
   error,
   className,
   icon,
+  reverseIcon,
   fullWidth,
 }: iButton) {
   return (
@@ -41,6 +43,7 @@ function Button({
     >
       {icon && <Image src={icon} alt='icon' />}
       {children}
+      {reverseIcon && <Image src={reverseIcon} alt='icon' />}
     </button>
   )
 }

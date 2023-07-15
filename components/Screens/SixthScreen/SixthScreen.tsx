@@ -3,9 +3,10 @@ import styles from './SixthScreen.module.scss'
 import clsx from 'clsx'
 import ExchangerLayout from 'components/Exchanger/ExchangerLayout/ExchangerLayout'
 import ExchangerChart from 'components/Exchanger/ExchangerChart/ExchangerChart'
+import Button from 'components/UI-kit/Buttons/Button'
 
 interface SixthScreenProps {
-  screenNumber: string 
+  screenNumber: string
 }
 
 const SixthScreen = ({ screenNumber }: SixthScreenProps) => {
@@ -17,6 +18,16 @@ const SixthScreen = ({ screenNumber }: SixthScreenProps) => {
         <ExchangerLayout>
           <ExchangerChart />
         </ExchangerLayout>
+        <div className={styles.textBox}>
+          <h3>Статистика</h3>
+          <p>
+            Гарантируем быструю обработку ваших платежей, безопасность
+            транзакций и высокую конвертацию из заявки в успешную оплату
+          </p>
+          <Button variant='contained' size='medium'>
+            Присоединиться
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -4,16 +4,27 @@ import Header from 'components/UI-kit/Header/Header'
 import PageCarousel from 'components/PageCarousel/PageCarousel'
 import Button from 'components/UI-kit/Buttons/Button'
 import { useEffect, useState } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'], weight: ['400', '600'] })
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['300', '400', '600'],
+})
 
 export default function Home() {
   const [isShow, setIsShow] = useState(false)
+  const [captchaIsDone, setCaptchaIsDone] = useState(false)
+
+  function onChange() {
+    setCaptchaIsDone(true)
+  }
   const PASSWORD = 'edac624e-11ed-434e-9d83-785d99ee0ec9'
+  const TEST_SITE_KEY = '6Ld-LCgnAAAAAPbyJRGPBQGXvBvLEEIFJWbPZr2b'
+  // const TEST_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
 
   const onSubmitHandler = (e: any) => {
     e.preventDefault()
-    if (e.target.input.value === PASSWORD) {
+    if (e.target.input.value === PASSWORD && captchaIsDone) {
       setIsShow(true)
       localStorage.setItem('password', e.target.input.value)
     }
@@ -56,6 +67,7 @@ export default function Home() {
             }}
             type='text'
           />
+          <ReCAPTCHA sitekey={TEST_SITE_KEY} onChange={onChange} />
           <Button typeSubmit variant='contained' size='small'>
             Ок
           </Button>

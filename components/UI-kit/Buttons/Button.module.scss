@@ -10,6 +10,10 @@
   line-height: 24px;
   transition: background-color 0.3s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 
   @include mobile {
     width: calc(100% - 32px);

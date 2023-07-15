@@ -11,6 +11,8 @@ import { scrollNextConfig, scrollPrevConfig } from './constants'
 import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
 import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
 import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
+import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
+import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
 
 const PageCarousel = () => {
   // ------------- Desktop ------------ //
@@ -150,6 +152,8 @@ const PageCarousel = () => {
         <FourthScreen screenNumber={screenNumber} />
         <FifthScreen screenNumber={screenNumber} />
         <SixthScreen screenNumber={screenNumber} />
+        <SeventhScreen screenNumber={screenNumber} />
+        <EighthScreen screenNumber={screenNumber} />
       </section>
     </>
   )

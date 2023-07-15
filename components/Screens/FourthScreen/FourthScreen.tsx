@@ -21,8 +21,9 @@ const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
       className={clsx(styles.contentBox, screenNumber === '3' && styles.active)}
     >
       <div className={styles.container}>
-        <ExchangerLayout>
+        <ExchangerLayout isActive={screenNumber === '3'}>
           <ExchangerTable
+            isActive={screenNumber === '3'}
             tabs={firstTableTabs}
             control={firstTableControl}
             thData={firstTableTH}
@@ -30,6 +31,13 @@ const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
           />
         </ExchangerLayout>
         <TableRequestModal />
+        <div className={styles.textBox}>
+          <h3>Покупка USDT</h3>
+          <p>
+            Гарантируем быструю обработку ваших платежей, безопасность
+            транзакций и высокую конвертацию из заявки в успешную оплату
+          </p>
+        </div>
       </div>
     </div>
   )

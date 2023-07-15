@@ -1,0 +1,23 @@
+@use '@/styles/_helpers' as *;
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  height: 100px;
+  background: #1e222f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 120px;
+
+  span {
+    color: var(--neutral-grey-main, #707e8f);
+  }
+
+  ul {
+    display: flex;
+    gap: 24px;
+  }
+}

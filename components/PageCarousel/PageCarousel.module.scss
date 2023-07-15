@@ -24,14 +24,22 @@
   }
 
   &.screen3 {
-    transform: translateY(calc(-300vh - 120px));
+    transform: translateY(calc(-300vh - 190px));
   }
 
   &.screen4 {
-    transform: translateY(calc(-400vh - 120px));
+    transform: translateY(calc(-400vh - 190px));
   }
 
   &.screen5 {
-    transform: translateY(calc(-500vh - 120px));
+    transform: translateY(calc(-500vh - 190px));
+  }
+
+  &.screen6 {
+    transform: translateY(calc(-600vh - 190px));
+  }
+
+  &.screen7 {
+    transform: translateY(calc(-700vh - 190px));
   }
 }

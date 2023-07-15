@@ -15,9 +15,10 @@ import checkIcon from '../../../public/icons/check.svg'
 
 interface ExchangerLayoutProps {
   children: ReactNode
+  isActive?: boolean
 }
 
-const ExchangerLayout = ({ children }: ExchangerLayoutProps) => {
+const ExchangerLayout = ({ children, isActive }: ExchangerLayoutProps) => {
   return (
     <div className={styles.box}>
       <div className={styles.sidebar}>

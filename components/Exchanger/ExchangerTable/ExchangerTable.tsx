@@ -15,6 +15,8 @@ interface ExchangerTableProps {
   tabs?: any
   thData: any
   tdData: any
+  isAnotherTable?: boolean
+  isActive?: boolean
 }
 
 const ExchangerTable = ({
@@ -22,9 +24,13 @@ const ExchangerTable = ({
   control,
   thData,
   tdData,
+  isAnotherTable,
+  isActive,
 }: ExchangerTableProps) => {
   return (
-    <div className={styles.tableBox}>
+    <div
+      className={clsx(styles.tableBox, isAnotherTable && styles.anotherTable)}
+    >
       {tabs && (
         <div className={styles.tableTabs}>
           {tabs.map((tab: any, index: number) => (
