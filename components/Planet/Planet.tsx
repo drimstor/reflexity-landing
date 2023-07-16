@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Planet.module.scss'
 import Image from 'next/image'
 import mainCircle from '../../public/mainCircle.svg'

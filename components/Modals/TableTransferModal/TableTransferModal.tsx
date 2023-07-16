@@ -4,21 +4,14 @@ import styles from './TableTransferModal.module.scss'
 import closeIcon from '../../../public/icons/close.svg'
 import infoIcon from '../../../public/icons/info-circle.svg'
 import Button from 'components/UI-kit/Buttons/Button'
-
-const inputData = [
-  {
-    title: 'Сумма USDT',
-    input: 'Введите сумму USDT',
-  },
-  {
-    title: 'Получатель (ID для переводов)',
-    input: 'Введите ID получателя',
-  },
-]
-
-const TableTransferModal = () => {
+import { inputData } from './constants'
+import clsx from 'clsx'
+interface TableTransferModalProps {
+  isActive?: boolean
+}
+const TableTransferModal = ({ isActive }: TableTransferModalProps) => {
   return (
-    <div className={styles.modalBox}>
+    <div className={clsx(styles.modalBox, isActive && styles.active)}>
       <div className={styles.title}>
         <span>Перевод</span> <Image src={closeIcon} alt='closeIcon' />
       </div>

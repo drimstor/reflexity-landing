@@ -15,8 +15,8 @@ const SixthScreen = ({ screenNumber }: SixthScreenProps) => {
       className={clsx(styles.contentBox, screenNumber === '5' && styles.active)}
     >
       <div className={styles.container}>
-        <ExchangerLayout>
-          <ExchangerChart />
+        <ExchangerLayout isActive={screenNumber === '5'}>
+          <ExchangerChart isActive={screenNumber === '5'} />
         </ExchangerLayout>
         <div className={styles.textBox}>
           <h3>Статистика</h3>

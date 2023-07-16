@@ -61,23 +61,33 @@
   }
 
   &.screen3 {
-    transform: translateY(0) scale(0.75) rotate(0deg);
+    transform: translateY(0) translateX(0) scale(0.75) rotate(0deg);
   }
 
   &.screen4 {
-    transform: translateY(0) scale(0.75) rotate(0deg);
+    transform: translateY(0) translateX(0) scale(0.8) rotate(90deg);
   }
 
   &.screen5 {
-    transform: translateY(0) scale(0.75) rotate(0deg);
+    transform: translateY(0) translateX(0) scale(0.75) rotate(180deg);
   }
 
   &.screen6 {
-    transform: translateY(0) scale(0.75) rotate(0deg);
+    transform: translateY(0) translateX(70vw) scale(0) rotate(0deg);
   }
 
   &.screen7 {
-    transform: translateY(0) translateX(50%) scale(0.6) rotate(0deg);
+    transform: translateY(0) translateX(50%) scale(0.6) rotate(180deg);
+    animation: pulse 60s ease-in-out 1.8s forwards;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: translateY(0) translateX(50%) scale(0.6) rotate(180deg);
+    }
+    100% {
+      transform: translateY(0) translateX(30%) scale(0.4) rotate(150deg);
+    }
   }
 
   &.noShadow .shadow {

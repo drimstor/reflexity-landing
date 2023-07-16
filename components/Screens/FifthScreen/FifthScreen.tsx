@@ -27,15 +27,16 @@ const FifthScreen = ({ screenNumber }: FifthScreenProps) => {
             транзакций и высокую конвертацию из заявки в успешную оплату
           </p>
         </div>
-        <ExchangerLayout>
+        <ExchangerLayout isActive={screenNumber === '4'} isAnotherTable>
           <ExchangerTable
+            isActive={screenNumber === '4'}
             control={secondTableControl}
             thData={secondTableTH}
             tdData={secondTableTD}
             isAnotherTable
           />
         </ExchangerLayout>
-        <TableTransferModal />
+        <TableTransferModal isActive={screenNumber === '4'} />
       </div>
     </div>
   )

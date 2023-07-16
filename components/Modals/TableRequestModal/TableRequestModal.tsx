@@ -10,12 +10,12 @@ import Button from 'components/UI-kit/Buttons/Button'
 import { tableData } from './constants'
 
 interface TableRequestModalProps {
-  // screenNumber: string
+  isActive?: boolean
 }
 
-const TableRequestModal = ({}: TableRequestModalProps) => {
+const TableRequestModal = ({ isActive }: TableRequestModalProps) => {
   return (
-    <div className={styles.modalBox}>
+    <div className={clsx(styles.modalBox, isActive && styles.active)}>
       <div className={styles.title}>
         <span>Заявка №203</span> <Image src={closeIcon} alt='closeIcon' />
       </div>

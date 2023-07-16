@@ -29,7 +29,11 @@ const ExchangerTable = ({
 }: ExchangerTableProps) => {
   return (
     <div
-      className={clsx(styles.tableBox, isAnotherTable && styles.anotherTable)}
+      className={clsx(
+        styles.tableBox,
+        isAnotherTable && styles.anotherTable,
+        isActive && styles.active
+      )}
     >
       {tabs && (
         <div className={styles.tableTabs}>

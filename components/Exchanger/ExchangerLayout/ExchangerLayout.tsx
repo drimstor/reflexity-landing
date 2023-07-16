@@ -16,11 +16,22 @@ import checkIcon from '../../../public/icons/check.svg'
 interface ExchangerLayoutProps {
   children: ReactNode
   isActive?: boolean
+  isAnotherTable?: boolean
 }
 
-const ExchangerLayout = ({ children, isActive }: ExchangerLayoutProps) => {
+const ExchangerLayout = ({
+  children,
+  isActive,
+  isAnotherTable,
+}: ExchangerLayoutProps) => {
   return (
-    <div className={styles.box}>
+    <div
+      className={clsx(
+        styles.box,
+        isActive && styles.active,
+        isAnotherTable && styles.isAnotherTable
+      )}
+    >
       <div className={styles.sidebar}>
         <Image src={miniLogo} alt='logo' />
         <div className={styles.iconsBox}>

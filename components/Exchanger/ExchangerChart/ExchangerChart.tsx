@@ -5,9 +5,13 @@ import Image from 'next/image'
 import clsx from 'clsx'
 import chartImage from '../../../public/chart.svg'
 
-const ExchangerChart = () => {
+interface ExchangerChartProps {
+  isActive?: boolean
+}
+
+const ExchangerChart = ({ isActive }: ExchangerChartProps) => {
   return (
-    <div className={styles.globalBox}>
+    <div className={clsx(styles.globalBox, isActive && styles.active)}>
       <div className={styles.titleAndSelectBox}>
         <h3>Статистика за период</h3>
         <div className={styles.flexWrapper}>

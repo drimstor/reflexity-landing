@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './FourthScreen.module.scss'
 import clsx from 'clsx'
 import ExchangerLayout from 'components/Exchanger/ExchangerLayout/ExchangerLayout'
@@ -16,6 +16,26 @@ interface FourthScreenProps {
 }
 
 const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
+  // const [animateBlock, setAnimateBlock] = useState<number[]>([])
+
+  // useEffect(() => {
+  //   if (screenNumber === '1') {
+  //     setTimeout(() => {
+  //       blockTextContent.forEach((item, index) => {
+  //         addAnimateBlock(index)
+  //       })
+  //     }, 1000)
+  //   } else {
+  //     setAnimateBlock([])
+  //   }
+  // }, [screenNumber])
+
+  // const addAnimateBlock = (number: number) => {
+  //   setTimeout(() => {
+  //     setAnimateBlock((prev) => [...prev, number])
+  //   }, 1000 * number)
+  // }
+
   return (
     <div
       className={clsx(styles.contentBox, screenNumber === '3' && styles.active)}
@@ -30,7 +50,7 @@ const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
             tdData={firstTableTD}
           />
         </ExchangerLayout>
-        <TableRequestModal />
+        <TableRequestModal isActive={screenNumber === '3'} />
         <div className={styles.textBox}>
           <h3>Покупка USDT</h3>
           <p>

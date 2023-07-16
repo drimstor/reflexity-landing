@@ -26,7 +26,9 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
             Наша служба поддержки:
           </Button>
         </div>
-        <ContactModal />
+        <div className={styles.modalBox}>
+          <ContactModal />
+        </div>
       </div>
       <Footer />
     </div>

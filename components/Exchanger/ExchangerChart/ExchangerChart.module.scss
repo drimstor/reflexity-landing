@@ -4,6 +4,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 9;
+
+  opacity: 0;
+  animation: hideTranslate 0.5s ease-in-out forwards;
+
+  &.active {
+    animation: showTranslate 0.5s ease-in-out 2.2s forwards;
+  }
 }
 
 .chartBox {

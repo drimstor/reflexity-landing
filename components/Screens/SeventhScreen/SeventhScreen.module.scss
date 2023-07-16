@@ -4,7 +4,7 @@
   position: relative;
   z-index: 9;
   // opacity: 0;
-  // animation: hideBlur 0.5s ease-in-out forwards;
+  // animation: hide 0.5s ease-in-out forwards;
   @extend %fullScreenView;
 
   display: flex;
@@ -13,7 +13,41 @@
   justify-content: center;
 
   &.active {
-    // animation: showBlur 0.5s ease-in-out 0.6s forwards;
+    .line::after {
+      animation: line 4s ease-out forwards;
+    }
+
+    h2 {
+      animation: showBlur 0.5s ease-in-out 0.5s forwards;
+    }
+
+    .cardBox:nth-child(1)::after,
+    .cardBox:nth-child(1)::before,
+    .cardBox:nth-child(1) .card,
+    .cardBox:nth-child(1) .number {
+      animation: show 0.5s ease-in-out 1.5s forwards;
+    }
+
+    .cardBox:nth-child(2)::after,
+    .cardBox:nth-child(2)::before,
+    .cardBox:nth-child(2) .card,
+    .cardBox:nth-child(2) .number {
+      animation: show 0.5s ease-in-out 2.5s forwards;
+    }
+
+    .cardBox:nth-child(3)::after,
+    .cardBox:nth-child(3)::before,
+    .cardBox:nth-child(3) .card,
+    .cardBox:nth-child(3) .number {
+      animation: show 0.5s ease-in-out 2s forwards;
+    }
+
+    .cardBox:nth-child(4)::after,
+    .cardBox:nth-child(4)::before,
+    .cardBox:nth-child(4) .card,
+    .cardBox:nth-child(4) .number {
+      animation: show 0.5s ease-in-out 3s forwards;
+    }
   }
 
   h2 {
@@ -22,6 +56,8 @@
     font-weight: 600;
     line-height: 56px;
     margin-bottom: 56px;
+    opacity: 0;
+    animation: hideBlur 0.5s ease-in-out forwards;
 
     @include tablet {
       font-size: 32px;
@@ -58,6 +94,8 @@
   z-index: 2;
   width: 477px;
   height: 160px;
+  opacity: 0;
+  animation: hide 0.5s ease-in-out forwards;
 
   h3 {
     font-size: 1.5em;
@@ -90,6 +128,8 @@
       width: 75px;
       height: 75px;
       z-index: 9;
+      opacity: 0;
+      animation: hide 0.5s ease-in-out forwards;
     }
 
     &::after {
@@ -101,6 +141,8 @@
       height: 40px;
       background: rgba(255, 255, 255, 0.633);
       z-index: 5;
+      opacity: 0;
+      animation: hide 0.5s ease-in-out forwards;
     }
   }
   &:nth-child(3),
@@ -117,6 +159,8 @@
       width: 75px;
       height: 75px;
       z-index: 9;
+      opacity: 0;
+      animation: hide 0.5s ease-in-out forwards;
     }
 
     &::after {
@@ -128,6 +172,8 @@
       height: 40px;
       background: rgba(255, 255, 255, 0.633);
       z-index: 5;
+      opacity: 0;
+      animation: hide 0.5s ease-in-out forwards;
     }
   }
 }
@@ -140,13 +186,16 @@
   font-size: 13.5em;
   line-height: 72%;
   z-index: 1;
+  opacity: 0;
+  animation: hide 0.5s ease-in-out forwards;
 }
 
 .line {
   &::after {
     content: '';
     position: absolute;
-    left: -50vh;
+    left: -40vh;
+    left: -100%;
     top: 41.7%;
     height: 1px;
     width: 0%;
@@ -155,12 +204,26 @@
       rgba(255, 255, 255, 0.633) 86.35%,
       rgba(255, 255, 255, 0) 100%
     );
-    transition: opacity 0.3s ease-in-out, width 1s ease-in-out;
+    animation: lineReverse 1.5s ease-out forwards;
+  }
+}
+
+@keyframes line {
+  0% {
+    width: 0%;
   }
 
-  &.active {
-    &::after {
-      width: calc(125vw);
-    }
+  100% {
+    width: calc(100% + 90vw);
+  }
+}
+
+@keyframes lineReverse {
+  0% {
+    width: calc(100% + 90vw);
+  }
+
+  100% {
+    width: 0%;
   }
 }
