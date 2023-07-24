@@ -2,7 +2,7 @@ export const scrollNextConfig = [
   {
     currentScreenNumber: '0',
     setScreenNumber: '1',
-    clearTimeout: 5700,
+    // clearTimeout: 5700,
     isMobile: false,
   },
   {
@@ -109,7 +109,7 @@ export const scrollPrevConfig = [
   {
     currentScreenNumber: '2_1',
     setScreenNumber: '1',
-    clearTimeout: 5700,
+    // clearTimeout: 5700,
     isMobile: false,
   },
   {

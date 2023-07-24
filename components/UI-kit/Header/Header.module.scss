@@ -116,6 +116,53 @@ header.header {
         border-top: 1px solid $neutral-stroke-grey-main;
       }
     }
+
+    a {
+      transition: 0.2s ease-in-out;
+      padding: 16px 0 12px;
+      height: 100%;
+      position: relative;
+
+      &::before {
+        content: '';
+        height: 4px;
+        background: $accent-blue-main;
+        border-radius: 0 8px 8px 0;
+        position: absolute;
+        bottom: 0;
+        z-index: 99;
+        left: 50%;
+        width: 0;
+        transition: 0.2s ease-in-out;
+      }
+
+      &::after {
+        content: '';
+        width: 0;
+        height: 4px;
+        background: $accent-blue-main;
+        border-radius: 8px 0 0 8px;
+        position: absolute;
+        bottom: 0;
+        z-index: 99;
+        right: 50%;
+        transition: 0.2s ease-in-out;
+      }
+    }
+
+    &:hover a,
+    .active {
+      color: $accent-blue-main;
+
+      &::before,
+      &::after {
+        width: 50%;
+      }
+    }
+
+    &:active a {
+      color: #023b7e;
+    }
   }
 }
 

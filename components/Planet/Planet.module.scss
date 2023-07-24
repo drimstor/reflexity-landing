@@ -72,22 +72,9 @@
     transform: translateY(0) translateX(0) scale(0.75) rotate(180deg);
   }
 
-  &.screen6 {
-    transform: translateY(0) translateX(70vw) scale(0) rotate(0deg);
-  }
-
+  &.screen6,
   &.screen7 {
-    transform: translateY(0) translateX(50%) scale(0.6) rotate(180deg);
-    animation: pulse 60s ease-in-out 1.8s forwards;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: translateY(0) translateX(50%) scale(0.6) rotate(180deg);
-    }
-    100% {
-      transform: translateY(0) translateX(30%) scale(0.4) rotate(150deg);
-    }
+    transform: translateY(0) translateX(-70vw) scale(0) rotate(0deg);
   }
 
   &.noShadow .shadow {
@@ -95,6 +82,21 @@
     width: 120%;
     height: 120%;
   }
+}
+
+.lastScreen {
+  transition: all 1.3s ease-in-out;
+  position: relative;
+  transform: translateY(0) translateX(100%) scale(0.6) rotate(180deg);
+}
+
+.lastScreenActive {
+  transform: translateY(0) translateX(50%) scale(0.6) rotate(180deg);
+}
+
+.lastAnimantionActive {
+  transition: all 60s ease-in-out;
+  transform: translateY(0) translateX(30%) scale(0.4) rotate(150deg);
 }
 
 .shadow {

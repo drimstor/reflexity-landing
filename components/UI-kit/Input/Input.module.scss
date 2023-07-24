@@ -19,9 +19,19 @@
     padding: 0.9em 1em;
     color: $neutral-white-main;
     font-size: 16px;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    outline: none;
 
     &::placeholder {
       color: var(--neutral-grey-main, #707e8f);
+    }
+
+    &:hover {
+      background: rgba(248, 251, 255, 0.1);
+    }
+
+    &:focus {
+      border: 2px solid $accent-blue-main;
     }
   }
 }

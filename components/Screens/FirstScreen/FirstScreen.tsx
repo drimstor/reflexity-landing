@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './FirstScreen.module.scss'
-import logo from '../../../public/bitconceLogo.svg'
+import logo from '../../../public/paikinsLogo.svg'
 import Image from 'next/image'
 import Button from 'components/UI-kit/Buttons/Button'
 

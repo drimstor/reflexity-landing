@@ -13,6 +13,8 @@ import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
 import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
 import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
 import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
+import Header from 'components/UI-kit/Header/Header'
+import LastPlanet from 'components/Planet/LastPlanet'
 
 const PageCarousel = () => {
   // ------------- Desktop ------------ //
@@ -30,6 +32,15 @@ const PageCarousel = () => {
       setIsScrollLock(true)
       setScrollToDirection(0)
     }, 100)
+  }
+
+  const scrollToDefiniteScreen = (screen: string) => {
+    setScreenNumber(screen)
+    setTimeout(() => {
+      setIsScrollLock(true)
+      setScrollToDirection(0)
+    }, 100)
+    setTimeout(clearScrollLock, 1000)
   }
 
   const onPageWheelHandler = (e: WheelEvent<HTMLElement>) => {
@@ -109,11 +120,11 @@ const PageCarousel = () => {
             if (config.hasOwnProperty('isMobile')) {
               if (config.isMobile ? isMobile : !isMobile) {
                 setScreenNumber(config.setScreenNumber)
-                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+                setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
               }
             } else {
               setScreenNumber(config.setScreenNumber)
-              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+              setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
             }
           }
         })
@@ -124,11 +135,11 @@ const PageCarousel = () => {
             if (config.hasOwnProperty('isMobile')) {
               if (config.isMobile ? isMobile : !isMobile) {
                 setScreenNumber(config.setScreenNumber)
-                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+                setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
               }
             } else {
               setScreenNumber(config.setScreenNumber)
-              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+              setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
             }
           }
         })
@@ -138,6 +149,10 @@ const PageCarousel = () => {
 
   return (
     <>
+      <Header
+        screenNumber={screenNumber}
+        scrollToScreenCallback={scrollToDefiniteScreen}
+      />
       <Planet screenNumber={screenNumber} />
       <section
         className={clsx(styles.globalBox, styles['screen' + screenNumber])}
@@ -155,6 +170,7 @@ const PageCarousel = () => {
         <SeventhScreen screenNumber={screenNumber} />
         <EighthScreen screenNumber={screenNumber} />
       </section>
+      <LastPlanet screenNumber={screenNumber} />
     </>
   )
 }
