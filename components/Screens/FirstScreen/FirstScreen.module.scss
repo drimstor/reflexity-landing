@@ -8,7 +8,7 @@
   gap: 40px;
   @extend %fullScreenView;
 
-  @include tablet {
+  @include laptop {
     margin-top: 170px;
   }
 

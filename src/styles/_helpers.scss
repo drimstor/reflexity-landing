@@ -56,6 +56,12 @@ $mainMono: var(--mainMono);
   }
 }
 
+@mixin macbook {
+  @media screen and (max-width: 1367px) {
+    @content;
+  }
+}
+
 @mixin noMobile {
   @media screen and (min-width: 440px) {
     @content;

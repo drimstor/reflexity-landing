@@ -51,6 +51,10 @@
   opacity: 0;
   animation: hideBlur 0.5s ease-in-out forwards;
 
+  @include tablet {
+    text-align: center;
+  }
+
   button {
     margin-top: 40px;
     height: 72px;
@@ -63,6 +67,12 @@
   align-items: center;
   justify-content: center;
   gap: 8em;
+  margin: 0 15px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 2em;
+  }
 }
 
 .modalBox {

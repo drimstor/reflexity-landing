@@ -1,6 +1,7 @@
 @use '@/styles/_helpers' as *;
 
 .modalBox {
+  margin: 0 15px;
   position: absolute;
   top: 3.5em;
   left: -1.5em;
@@ -9,13 +10,34 @@
   border: 0.975px solid $neutral-stroke-grey-main;
   background: var(--neutral-black-main, #151823);
   box-shadow: 0px 12px 24px 0px rgba(12, 14, 20, 0.16);
-  padding: 19.498px;
+  padding: 1.2em;
   width: 17em;
   opacity: 0;
   animation: hideTranslate 0.5s ease-in-out forwards;
+  font-size: 16px;
+
+  @include laptop {
+    font-size: 10px;
+  }
+
+  @include tablet {
+    top: 45%;
+    left: -2em;
+  }
+
+  @include mobile {
+    top: 50%;
+    left: 1em;
+    font-size: 8px;
+  }
 
   &.active {
     animation: showTranslate 0.5s ease-in-out 3.1s forwards;
+  }
+
+  img {
+    width: 1.5em;
+    height: 1.5em;
   }
 }
 
@@ -24,6 +46,11 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.4em;
+
+  > img {
+    width: 1em;
+    height: 1em;
+  }
 
   > span {
     color: $neutral-white-main;
@@ -105,10 +132,15 @@
     min-height: auto;
     height: 3em;
     gap: 0.3em;
+    line-height: 120%;
 
     &:last-child {
       border: 0.975px solid var(--additional-red-main, #9c3d3d);
       color: var(--additional-red-main, #9c3d3d);
+    }
+
+    @include mobile {
+      width: fit-content;
     }
   }
 }

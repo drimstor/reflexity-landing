@@ -27,6 +27,11 @@
   box-shadow: 0px 7.270622730255127px 14.541245460510254px 0px
     rgba(12, 14, 20, 0.24);
   padding-bottom: 0.22em;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .titleAndSelectBox {
@@ -69,6 +74,11 @@
   span {
     font-size: 0.22em;
     line-height: 150%;
+  }
+
+  > img {
+    width: 0.3em;
+    height: 0.3em;
   }
 }
 

@@ -10,6 +10,10 @@
   align-items: center;
   justify-content: center;
 
+  @include laptop {
+    transform: translate(-50%, -45%);
+  }
+
   @include tablet {
     transform: translate(-50%, -34%);
   }
@@ -42,6 +46,10 @@
 
   &.screen2_1 {
     transform: translateY(-44%) translateX(28%) scale(1.6) rotate(0deg);
+
+    @include tablet {
+      transform: translateY(-44%) translateX(28%) scale(1.1) rotate(0deg);
+    }
   }
 
   &.screen2_2 {

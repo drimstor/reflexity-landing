@@ -2,8 +2,9 @@ import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss'
 // import logo from '../../../public/bitconceLogo.svg'
-import miniLogo from '../../../public/bitconceMiniLogo.svg'
+// import miniLogo from '../../../public/bitconceMiniLogo.svg'
 import logo from '../../../public/paikinsLogo.svg'
+import miniLogo from '../../../public/paikinsMiniLogo.svg'
 import angleDownIcon from '../../../public/icons/angle-down.svg'
 import globeIcon from '../../../public/icons/globe.svg'
 import Image from 'next/image'
@@ -51,19 +52,19 @@ const Header = ({ screenNumber, scrollToScreenCallback }: iHeader) => {
     }
   }, [screenNumber])
 
+  const clickOnHeaderItem = (link: string) => {
+    setIsShowBurgerMenu(false)
+    scrollToScreenCallback(link)
+  }
+
   return (
     <header className={styles.header}>
       <div className={clsx('wrapper', styles.wrapper)}>
-        <a href=''>
-          <Image className={styles.logo} width={120} src={logo} alt='logo' />
+        <a className={styles.logo} href=''>
+          <Image width={120} src={logo} alt='logo' />
         </a>
-        <a href=''>
-          <Image
-            className={styles.miniLogo}
-            width={48}
-            src={miniLogo}
-            alt='logo'
-          />
+        <a className={styles.miniLogo} href=''>
+          <Image width={48} src={miniLogo} alt='logo' />
         </a>
         <div className={styles.menu}>
           <nav className={clsx(styles.nav, isShowBurgerMenu && styles.show)}>
@@ -75,7 +76,7 @@ const Header = ({ screenNumber, scrollToScreenCallback }: iHeader) => {
                       activeHeaderItem === index && styles.active
                     )}
                     href={'#'}
-                    onClick={() => scrollToScreenCallback(item.link)}
+                    onClick={() => clickOnHeaderItem(item.link)}
                   >
                     {item.title}
                   </Link>

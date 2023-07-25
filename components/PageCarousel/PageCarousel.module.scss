@@ -13,6 +13,14 @@
   &.screen1_3,
   &.screen1_4 {
     transform: translateY(calc(-100vh - 50px));
+
+    @include macbook {
+      transform: translateY(calc(-100vh - 120px));
+    }
+
+    @include laptop {
+      transform: translateY(calc(-100vh - 90px));
+    }
   }
 
   &.screen2_1,
@@ -21,18 +29,34 @@
   &.screen2_4,
   &.screen2_5 {
     transform: translateY(calc(-200vh - 120px));
+
+    @include tablet {
+      transform: translateY(calc(-200vh - 90px));
+    }
   }
 
   &.screen3 {
     transform: translateY(calc(-300vh - 190px));
+
+    @include tablet {
+      transform: translateY(calc(-300vh - 140px));
+    }
   }
 
   &.screen4 {
     transform: translateY(calc(-400vh - 190px));
+
+    @include tablet {
+      transform: translateY(calc(-400vh - 140px));
+    }
   }
 
   &.screen5 {
     transform: translateY(calc(-500vh - 190px));
+
+    @include tablet {
+      transform: translateY(calc(-500vh - 100px));
+    }
   }
 
   &.screen6 {

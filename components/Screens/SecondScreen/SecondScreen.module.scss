@@ -69,12 +69,16 @@
     line-height: 56px;
     margin-bottom: 56px;
 
-    @include tablet {
+    @include macbook {
+      margin-bottom: 26px;
+    }
+
+    @include laptop {
       font-size: 32px;
       line-height: 40px;
     }
 
-    @include mobile {
+    @media screen and (max-width: 766px) {
       max-width: 343px;
       margin: 0 auto 40px;
       overflow: hidden;
@@ -93,11 +97,11 @@
   margin: 0 auto;
   width: fit-content;
 
-  @include tablet {
+  @include laptop {
     grid-template-columns: 360px 360px;
   }
 
-  @include mobile {
+  @media screen and (max-width: 767px) {
     grid-template-columns: 343px;
     grid-template-rows: repeat(4, 100vh);
     height: calc(100vh - 200px);
@@ -136,7 +140,7 @@
     );
     transition: opacity 0.3s ease-in-out, height 1s ease-in-out;
 
-    @include mobile {
+    @media screen and (max-width: 767px) {
       display: none;
     }
   }
@@ -155,7 +159,7 @@
     );
     transition: opacity 0.3s ease-in-out, height 1s ease-in-out;
 
-    @include mobile {
+    @media screen and (max-width: 767px) {
       display: none;
     }
   }
@@ -176,11 +180,11 @@
     );
     transition: opacity 0.3s ease-in-out, width 1s ease-in-out;
 
-    @include tablet {
+    @include laptop {
       top: 49%;
     }
 
-    @include mobile {
+    @media screen and (max-width: 767px) {
       display: none;
     }
   }
@@ -199,11 +203,11 @@
     );
     transition: opacity 0.3s ease-in-out, width 1s ease-in-out;
 
-    @include tablet {
+    @include laptop {
       top: 49%;
     }
 
-    @include mobile {
+    @media screen and (max-width: 767px) {
       display: none;
     }
   }
@@ -223,7 +227,7 @@
     animation: showBlur 0.5s ease-in-out 0.6s forwards;
   }
 
-  @include tablet {
+  @include laptop {
     max-width: 360px;
   }
 
@@ -257,7 +261,7 @@
   &.active {
     animation: pulse 2.3s infinite 3.4s;
 
-    @include mobile {
+    @media screen and (max-width: 767px) {
       animation: pulse 2.3s infinite 1s;
     }
   }
