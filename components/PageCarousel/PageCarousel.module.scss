@@ -14,6 +14,10 @@
   &.screen1_4 {
     transform: translateY(calc(-100vh - 50px));
 
+    @media screen and (max-height: 840px) {
+      transform: translateY(calc(-100vh - 100px));
+    }
+
     @include macbook {
       transform: translateY(calc(-100vh - 120px));
     }

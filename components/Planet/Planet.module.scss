@@ -24,6 +24,10 @@
   transform: translateY(31%) scale(0.6) rotate(90deg);
   position: relative;
 
+  @include macbook {
+    transform: translateY(34%) scale(0.6) rotate(90deg);
+  }
+
   @include tablet {
     transform: translateY(20%) scale(0.6) rotate(90deg);
   }

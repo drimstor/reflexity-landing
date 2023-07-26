@@ -40,7 +40,7 @@ const PageCarousel = () => {
       setIsScrollLock(true)
       setScrollToDirection(0)
     }, 100)
-    setTimeout(clearScrollLock, 1000)
+    setTimeout(clearScrollLock, 1500)
   }
 
   const onPageWheelHandler = (e: WheelEvent<HTMLElement>) => {
@@ -120,11 +120,11 @@ const PageCarousel = () => {
             if (config.hasOwnProperty('isMobile')) {
               if (config.isMobile ? isMobile : !isMobile) {
                 setScreenNumber(config.setScreenNumber)
-                setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
+                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
               }
             } else {
               setScreenNumber(config.setScreenNumber)
-              setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
+              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
             }
           }
         })
@@ -135,11 +135,11 @@ const PageCarousel = () => {
             if (config.hasOwnProperty('isMobile')) {
               if (config.isMobile ? isMobile : !isMobile) {
                 setScreenNumber(config.setScreenNumber)
-                setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
+                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
               }
             } else {
               setScreenNumber(config.setScreenNumber)
-              setTimeout(clearScrollLock, config.clearTimeout ?? 1000)
+              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
             }
           }
         })
