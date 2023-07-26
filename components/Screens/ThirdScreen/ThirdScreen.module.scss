@@ -45,7 +45,11 @@
   transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out,
     transform 1s ease-in-out;
 
-    @media screen and (max-height: 848px) {
+  @media screen and (min-height: 1000px) {
+    transform: translate(calc(-50% - 90px), calc(-50% - 78px));
+  }
+
+  @media screen and (max-height: 848px) {
     transform: translate(calc(-50% - 90px), calc(-50% - 90px));
   }
 
@@ -113,7 +117,7 @@
     .circle {
       opacity: 0;
       filter: blur(4px);
-      transform: translateY(-15px);
+      // transform: translateY(-15px);
     }
 
     button {

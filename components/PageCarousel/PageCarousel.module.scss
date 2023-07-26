@@ -14,6 +14,10 @@
   &.screen1_4 {
     transform: translateY(calc(-100vh - 60px));
 
+    @media screen and (min-height: 1079px) {
+      transform: translateY(calc(-100vh - 0px));
+    }
+
     @media screen and (max-height: 848px) {
       transform: translateY(calc(-100vh - 110px));
     }
