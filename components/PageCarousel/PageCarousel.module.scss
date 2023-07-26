@@ -12,15 +12,15 @@
   &.screen1_2,
   &.screen1_3,
   &.screen1_4 {
-    transform: translateY(calc(-100vh - 70px));
+    transform: translateY(calc(-100vh - 60px));
 
     @media screen and (max-height: 840px) {
-      transform: translateY(calc(-100vh - 100px));
-    }
-
-    @include macbook {
       transform: translateY(calc(-100vh - 120px));
     }
+
+    // @include macbook {
+    //   transform: translateY(calc(-100vh - 120px));
+    // }
 
     @include laptop {
       transform: translateY(calc(-100vh - 90px));
