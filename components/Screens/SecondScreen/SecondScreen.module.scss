@@ -69,7 +69,7 @@
     line-height: 56px;
     margin-bottom: 56px;
 
-    @include macbook {
+    @media screen and (max-height: 840px) {
       margin-bottom: 26px;
     }
 
