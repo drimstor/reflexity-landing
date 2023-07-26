@@ -21,6 +21,10 @@
     @include laptop {
       transform: translateY(calc(-100vh - 90px));
     }
+
+    @include mobile {
+      transform: translateY(calc(-100vh - 50px));
+    }
   }
 
   &.screen2_1,
