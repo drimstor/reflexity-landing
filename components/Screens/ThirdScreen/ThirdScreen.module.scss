@@ -63,15 +63,19 @@
   &.screen2_2 {
     transform: translate(calc(-19% - 52px), calc(-30% - 52px));
 
-    @media screen and (max-height: 769px) and (max-width: 1367px) {
+    @media screen and (max-height: 840px) {
       transform: translate(calc(-19% - 52px), calc(-30% - 64px));
     }
+
+    // @media screen and (max-height: 769px) and (max-width: 1367px) {
+    //   transform: translate(calc(-19% - 52px), calc(-30% - 64px));
+    // }
   }
 
   &.screen2_3 {
     transform: translate(calc(-52% - 55px), calc(-80% + 5px));
 
-    @media screen and (max-height: 769px) and (max-width: 1367px) {
+    @media screen and (max-height: 840px) {
       transform: translate(calc(-52% - 55px), calc(-80% - 13px));
     }
   }
@@ -95,7 +99,7 @@
   &.hide {
     opacity: 0;
     filter: blur(4px);
-    
+
     li {
       opacity: 0;
       filter: blur(4px);
