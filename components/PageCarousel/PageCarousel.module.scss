@@ -12,7 +12,7 @@
   &.screen1_2,
   &.screen1_3,
   &.screen1_4 {
-    transform: translateY(calc(-100vh - 50px));
+    transform: translateY(calc(-100vh - 70px));
 
     @media screen and (max-height: 840px) {
       transform: translateY(calc(-100vh - 100px));
