@@ -4,26 +4,78 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  position: relative;
+  z-index: 1;
 
-  span {
+  button {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 18px;
+    color: #d9d9d9;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    cursor: pointer;
+  }
+
+  img {
+    width: 22px;
+  }
+
+  label {
     font-size: 1em;
     font-weight: 300;
     line-height: 150%;
+    position: absolute;
+    pointer-events: none;
+    left: 18px;
+    top: 12px;
+    transition: 0.2s ease all;
+    color: $neutral-white-main;
+  }
+
+  textarea {
+    border-radius: 16px;
+    border: 2px solid var(--neutral-stroke-grey-hover, #494b55);
+    background: rgba(248, 251, 255, 0.05);
+    padding: 1em 1em 0.3em;
+    color: $neutral-white-main;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    outline: none;
+    resize: none;
+    min-height: 100px;
+    font-family: inherit;
+
+    &:focus,
+    &:valid {
+      ~ label {
+        top: 2px;
+        font-size: 12px;
+        color: #ababaf;
+      }
+      ~ button {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
   }
 
   input {
     max-height: 48px;
+    min-height: 48px;
     border-radius: 16px;
     border: 2px solid var(--neutral-stroke-grey-hover, #494b55);
     background: rgba(248, 251, 255, 0.05);
-    padding: 0.9em 1em;
+    padding: 0.9em 1em 0.3em;
     color: $neutral-white-main;
     font-size: 16px;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
     outline: none;
 
     &::placeholder {
-      color: var(--neutral-grey-main, #707e8f);
+      color: transparent;
     }
 
     &:hover {
@@ -32,6 +84,23 @@
 
     &:focus {
       border: 2px solid $accent-blue-main;
+
+      &::placeholder {
+        // color: var(--neutral-grey-main, #707e8f);
+      }
+    }
+
+    &:focus,
+    &:valid {
+      ~ label {
+        top: 2px;
+        font-size: 12px;
+        color: #ababaf;
+      }
+      ~ button {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 }

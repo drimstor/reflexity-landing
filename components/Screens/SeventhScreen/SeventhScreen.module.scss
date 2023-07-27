@@ -3,14 +3,16 @@
 .contentBox {
   position: relative;
   z-index: 9;
-  // opacity: 0;
-  // animation: hide 0.5s ease-in-out forwards;
   @extend %fullScreenView;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @include tablet {
+    margin-bottom: 150px;
+  }
 
   &.active {
     .line::after {
@@ -66,7 +68,7 @@
 
     @include mobile {
       max-width: 343px;
-      margin: 0 auto 40px;
+      margin: 0 auto 60px;
       overflow: hidden;
       background: radial-gradient(#151823f6 60%, transparent 70%);
       position: relative;
@@ -80,6 +82,17 @@
   grid-template-columns: minmax(295px, 477px) minmax(295px, 477px);
   gap: 5em 9em;
   position: relative;
+  transition: opacity 0.5s ease-in-out;
+
+  @include tablet {
+    grid-template-columns: minmax(295px, 477px);
+    gap: 2em;
+  }
+
+  @media screen and (max-width: 674px) {
+    grid-template-columns: 1fr;
+    gap: 72px;
+  }
 }
 
 .card {
@@ -97,9 +110,21 @@
   opacity: 0;
   animation: hide 0.5s ease-in-out forwards;
 
+  @media screen and (max-width: 674px) {
+    width: calc(100% - 40px);
+    margin: 0 40px;
+    height: auto;
+    padding: 1em;
+  }
+
   h3 {
     font-size: 1.5em;
     margin-bottom: 0.3em;
+
+    @media screen and (max-width: 674px) {
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
   }
 
   p {
@@ -114,9 +139,19 @@
   width: 477px;
   height: 160px;
 
+  @media screen and (max-width: 674px) {
+    width: calc(100% - 40px);
+    margin: 0 40px;
+    height: auto;
+  }
+
   &:nth-child(1),
   &:nth-child(2) {
     margin-left: -2em;
+
+    @include tablet {
+      margin-left: 0;
+    }
 
     &::before {
       content: '';
@@ -130,6 +165,16 @@
       z-index: 9;
       opacity: 0;
       animation: hide 0.5s ease-in-out forwards;
+
+      @include tablet {
+        left: calc(-1.5em - 13px);
+        bottom: calc(50% - 37px);
+      }
+
+      @media screen and (max-width: 674px) {
+        top: calc(-1.5em - 13px);
+        left: calc(50% - 17px);
+      }
     }
 
     &::after {
@@ -139,15 +184,50 @@
       left: 50.1%;
       width: 1px;
       height: 40px;
-      background: rgba(255, 255, 255, 0.633);
+      background: rgba(255, 255, 255, 0.65);
       z-index: 5;
       opacity: 0;
       animation: hide 0.5s ease-in-out forwards;
+
+      @include tablet {
+        left: calc(-5em - 8px);
+        bottom: 50.1%;
+        width: 88px;
+        height: 1px;
+      }
+
+      @media screen and (max-width: 674px) {
+        display: none;
+      }
     }
   }
+
+  @include tablet {
+    &:nth-child(1) {
+      margin-left: -3em;
+
+      @include tablet {
+        &::after {
+          left: calc(-1.5em - 16px);
+          bottom: 50.1%;
+          width: 40px;
+          height: 1px;
+        }
+      }
+
+      @media screen and (max-width: 674px) {
+        margin-left: 0;
+      }
+    }
+  }
+
   &:nth-child(3),
   &:nth-child(4) {
     margin-left: 2em;
+
+    @include tablet {
+      margin-left: 0;
+    }
 
     &::before {
       content: '';
@@ -161,6 +241,16 @@
       z-index: 9;
       opacity: 0;
       animation: hide 0.5s ease-in-out forwards;
+
+      @include tablet {
+        left: calc(-1.5em - 13px);
+        top: calc(50% - 37px);
+      }
+
+      @media screen and (max-width: 674px) {
+        top: calc(-1.5em - 13px);
+        left: calc(50% - 17px);
+      }
     }
 
     &::after {
@@ -170,10 +260,40 @@
       left: 50.1%;
       width: 1px;
       height: 40px;
-      background: rgba(255, 255, 255, 0.633);
+      background: rgba(255, 255, 255, 0.65);
       z-index: 5;
       opacity: 0;
       animation: hide 0.5s ease-in-out forwards;
+
+      @include tablet {
+        left: calc(-5em - 8px);
+        top: 50.1%;
+        width: 88px;
+        height: 1px;
+      }
+
+      @media screen and (max-width: 674px) {
+        display: none;
+      }
+    }
+  }
+
+  @include tablet {
+    &:nth-child(3) {
+      margin-left: -3em;
+
+      @include tablet {
+        &::after {
+          left: calc(-1.5em - 16px);
+          top: 50.1%;
+          width: 40px;
+          height: 1px;
+        }
+      }
+
+      @media screen and (max-width: 674px) {
+        margin-left: 0;
+      }
     }
   }
 }
@@ -188,6 +308,36 @@
   z-index: 1;
   opacity: 0;
   animation: hide 0.5s ease-in-out forwards;
+
+  @media screen and (max-width: 674px) {
+    top: auto;
+    right: -10%;
+    bottom: -45px;
+  }
+}
+
+.mobileLine {
+  display: none;
+
+  @include tablet {
+    display: block;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.65) 19.48%,
+      rgba(255, 255, 255, 0.65) 86.35%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    width: 1px;
+    height: 110%;
+    position: absolute;
+    top: -5%;
+    left: -89px;
+  }
+
+  @media screen and (max-width: 674px) {
+    left: 50%;
+  }
 }
 
 .line {
@@ -201,10 +351,14 @@
     width: 0%;
     background: linear-gradient(
       45deg,
-      rgba(255, 255, 255, 0.633) 86.35%,
+      rgba(255, 255, 255, 0.65) 86.35%,
       rgba(255, 255, 255, 0) 100%
     );
     animation: lineReverse 1.5s ease-out forwards;
+  }
+
+  @include tablet {
+    display: none;
   }
 }
 

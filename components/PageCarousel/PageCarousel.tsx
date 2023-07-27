@@ -15,8 +15,10 @@ import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
 import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
 import Header from 'components/UI-kit/Header/Header'
 import LastPlanet from 'components/Planet/LastPlanet'
+import useMediaQuery from 'hooks/useMediaQuery'
 
 const PageCarousel = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)')
   // ------------- Desktop ------------ //
   const [scrollToDirection, setScrollToDirection] = useState<number>(0)
   const [screenNumber, setScreenNumber] = useState('0')
@@ -44,7 +46,7 @@ const PageCarousel = () => {
   }
 
   const onPageWheelHandler = (e: WheelEvent<HTMLElement>) => {
-    if (!isScrollLock) {
+    if (!isScrollLock && !isMobile) {
       if (e.nativeEvent.deltaY > 0) {
         scrollToNewScreen()
       } else {
@@ -79,25 +81,31 @@ const PageCarousel = () => {
         clientY: currentPositionY,
       })
       setTranslateDirection(startPosition.clientY - currentPositionY >= 0)
-    }
-  }
 
-  const onMouseUpHandler = (e: TouchEvent<HTMLDivElement>) => {
-    setIsDragging(false)
-    if (
-      Math.round(e.changedTouches[0].pageY) !==
-        Math.round(startPosition.clientY) &&
-      Math.round(e.changedTouches[0].pageX) !==
-        Math.round(startPosition.clientX) &&
-      currentPosition.clientX - startPosition.clientX < 50 &&
-      startPosition.clientX - currentPosition.clientX < 50
-    ) {
-      if (translateDirection) {
+      if (startPosition.clientY - currentPositionY >= 0) {
         scrollToNewScreen()
       } else {
         scrollToNewScreen(false)
       }
     }
+  }
+
+  const onMouseUpHandler = (e: TouchEvent<HTMLDivElement>) => {
+    // setIsDragging(false)
+    // if (
+    //   Math.round(e.changedTouches[0].pageY) !==
+    //     Math.round(startPosition.clientY) &&
+    //   Math.round(e.changedTouches[0].pageX) !==
+    //     Math.round(startPosition.clientX) &&
+    //   currentPosition.clientX - startPosition.clientX < 50 &&
+    //   startPosition.clientX - currentPosition.clientX < 50
+    // ) {
+    //   if (translateDirection) {
+    //     scrollToNewScreen()
+    //   } else {
+    //     scrollToNewScreen(false)
+    //   }
+    // }
   }
 
   // const scrollEventHandler = useDebounceCallback(onPageWheelHandler, 2000, true)
@@ -111,8 +119,6 @@ const PageCarousel = () => {
   })
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 767px)').matches
-
     if (!isScrollLock) {
       if (scrollToDirection > 0) {
         scrollNextConfig.forEach((config) => {
@@ -162,12 +168,12 @@ const PageCarousel = () => {
         onTouchEnd={onMouseUpHandler}
       >
         <FirstScreen />
-        <SecondScreen screenNumber={screenNumber} />
+        <SecondScreen screenNumber={screenNumber} isMobile={isMobile} />
         <ThirdScreen screenNumber={screenNumber} isScrollLock={isScrollLock} />
-        <FourthScreen screenNumber={screenNumber} />
-        <FifthScreen screenNumber={screenNumber} />
-        <SixthScreen screenNumber={screenNumber} />
-        <SeventhScreen screenNumber={screenNumber} />
+        <FourthScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <FifthScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <SixthScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <SeventhScreen screenNumber={screenNumber} isMobile={isMobile} />
         <EighthScreen screenNumber={screenNumber} />
       </section>
       <LastPlanet screenNumber={screenNumber} />

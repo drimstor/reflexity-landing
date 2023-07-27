@@ -7,25 +7,25 @@ export const scrollNextConfig = [
   },
   {
     currentScreenNumber: '0',
-    setScreenNumber: '1_1',
+    setScreenNumber: 'start',
     isMobile: true,
   },
-  {
-    currentScreenNumber: '1_1',
-    setScreenNumber: '1_2',
-  },
-  {
-    currentScreenNumber: '1_2',
-    setScreenNumber: '1_3',
-  },
-  {
-    currentScreenNumber: '1_3',
-    setScreenNumber: '1_4',
-  },
-  {
-    currentScreenNumber: '1_4',
-    setScreenNumber: '2_1',
-  },
+  // {
+  //   currentScreenNumber: '1_1',
+  //   setScreenNumber: '1_2',
+  // },
+  // {
+  //   currentScreenNumber: '1_2',
+  //   setScreenNumber: '1_3',
+  // },
+  // {
+  //   currentScreenNumber: '1_3',
+  //   setScreenNumber: '1_4',
+  // },
+  // {
+  //   currentScreenNumber: '1_4',
+  //   setScreenNumber: '2_1',
+  // },
   {
     currentScreenNumber: '1',
     setScreenNumber: '2_1',
@@ -82,35 +82,35 @@ export const scrollPrevConfig = [
   {
     currentScreenNumber: '1',
     setScreenNumber: '0',
-    isMobile: false,
+    // isMobile: false,
   },
-  {
-    currentScreenNumber: '1_1',
-    setScreenNumber: '0',
-    isMobile: true,
-  },
-  {
-    currentScreenNumber: '1_2',
-    setScreenNumber: '1_1',
-  },
-  {
-    currentScreenNumber: '1_3',
-    setScreenNumber: '1_2',
-  },
-  {
-    currentScreenNumber: '1_4',
-    setScreenNumber: '1_3',
-  },
-  {
-    currentScreenNumber: '2_1',
-    setScreenNumber: '1_4',
-    isMobile: true,
-  },
+  // {
+  //   currentScreenNumber: '1_1',
+  //   setScreenNumber: '0',
+  //   isMobile: true,
+  // },
+  // {
+  //   currentScreenNumber: '1_2',
+  //   setScreenNumber: '1_1',
+  // },
+  // {
+  //   currentScreenNumber: '1_3',
+  //   setScreenNumber: '1_2',
+  // },
+  // {
+  //   currentScreenNumber: '1_4',
+  //   setScreenNumber: '1_3',
+  // },
+  // {
+  //   currentScreenNumber: '2_1',
+  //   setScreenNumber: '1_4',
+  //   isMobile: true,
+  // },
   {
     currentScreenNumber: '2_1',
     setScreenNumber: '1',
     // clearTimeout: 5700,
-    isMobile: false,
+    // isMobile: false,
   },
   {
     currentScreenNumber: '2_2',

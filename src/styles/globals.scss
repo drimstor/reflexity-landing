@@ -11,6 +11,10 @@ body {
   overflow: hidden;
   max-width: 100vw;
   @extend %fullScreenView;
+
+  @include tablet {
+    overflow-y: scroll;
+  }
 }
 
 body {

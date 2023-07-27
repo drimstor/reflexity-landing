@@ -9,17 +9,29 @@ import {
   secondTableTH,
 } from 'components/Exchanger/ExchangerLayout/constants'
 import TableTransferModal from 'components/Modals/TableTransferModal/TableTransferModal'
+import { useInView } from 'react-intersection-observer'
 
 interface FifthScreenProps {
   screenNumber: string
+  isMobile: boolean
 }
 
-const FifthScreen = ({ screenNumber }: FifthScreenProps) => {
+const FifthScreen = ({ screenNumber, isMobile }: FifthScreenProps) => {
+  const [ref, inView] = useInView({ triggerOnce: true })
   return (
     <div
-      className={clsx(styles.contentBox, screenNumber === '4' && styles.active)}
+      className={clsx(
+        styles.contentBox,
+        (screenNumber === '4' || inView) && styles.active
+      )}
+      ref={ref}
     >
-      <div className={styles.container}>
+      <div
+        className={clsx(
+          styles.container,
+          !isMobile && screenNumber !== '4' && styles.hide
+        )}
+      >
         <div className={styles.textBox}>
           <h3>История баланса</h3>
           <p>
@@ -27,16 +39,19 @@ const FifthScreen = ({ screenNumber }: FifthScreenProps) => {
             транзакций и высокую конвертацию из заявки в успешную оплату
           </p>
         </div>
-        <ExchangerLayout isActive={screenNumber === '4'} isAnotherTable>
+        <ExchangerLayout
+          isActive={screenNumber === '4' || inView}
+          isAnotherTable
+        >
           <ExchangerTable
-            isActive={screenNumber === '4'}
+            isActive={screenNumber === '4' || inView}
             control={secondTableControl}
             thData={secondTableTH}
             tdData={secondTableTD}
             isAnotherTable
           />
         </ExchangerLayout>
-        <TableTransferModal isActive={screenNumber === '4'} />
+        <TableTransferModal isActive={screenNumber === '4' || inView} />
       </div>
     </div>
   )

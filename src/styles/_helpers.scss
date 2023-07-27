@@ -76,6 +76,11 @@ $mainMono: var(--mainMono);
   max-height: -moz-available;
   max-height: -webkit-fill-available;
   max-height: fill-available;
+
+  @include tablet {
+    height: auto;
+    min-height: auto;
+  }
 }
 
 %border {

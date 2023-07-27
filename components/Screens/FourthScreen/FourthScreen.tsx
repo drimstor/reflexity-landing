@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './FourthScreen.module.scss'
 import clsx from 'clsx'
 import ExchangerLayout from 'components/Exchanger/ExchangerLayout/ExchangerLayout'
@@ -10,47 +10,40 @@ import {
   firstTableTH,
 } from 'components/Exchanger/ExchangerLayout/constants'
 import TableRequestModal from 'components/Modals/TableRequestModal/TableRequestModal'
+import { useInView } from 'react-intersection-observer'
 
 interface FourthScreenProps {
   screenNumber: string
+  isMobile: boolean
 }
 
-const FourthScreen = ({ screenNumber }: FourthScreenProps) => {
-  // const [animateBlock, setAnimateBlock] = useState<number[]>([])
-
-  // useEffect(() => {
-  //   if (screenNumber === '1') {
-  //     setTimeout(() => {
-  //       blockTextContent.forEach((item, index) => {
-  //         addAnimateBlock(index)
-  //       })
-  //     }, 1000)
-  //   } else {
-  //     setAnimateBlock([])
-  //   }
-  // }, [screenNumber])
-
-  // const addAnimateBlock = (number: number) => {
-  //   setTimeout(() => {
-  //     setAnimateBlock((prev) => [...prev, number])
-  //   }, 1000 * number)
-  // }
-
+const FourthScreen = ({ screenNumber, isMobile }: FourthScreenProps) => {
+  const [ref, inView] = useInView({ triggerOnce: true })
   return (
     <div
-      className={clsx(styles.contentBox, screenNumber === '3' && styles.active)}
+      className={clsx(
+        styles.contentBox,
+        screenNumber === '3' && styles.active,
+        inView && styles.active
+      )}
+      ref={ref}
     >
-      <div className={styles.container}>
-        <ExchangerLayout isActive={screenNumber === '3'}>
+      <div
+        className={clsx(
+          styles.container,
+          !isMobile && screenNumber !== '3' && styles.hide
+        )}
+      >
+        <ExchangerLayout isActive={screenNumber === '3' || inView}>
           <ExchangerTable
-            isActive={screenNumber === '3'}
+            isActive={screenNumber === '3' || inView}
             tabs={firstTableTabs}
             control={firstTableControl}
             thData={firstTableTH}
             tdData={firstTableTD}
           />
         </ExchangerLayout>
-        <TableRequestModal isActive={screenNumber === '3'} />
+        <TableRequestModal isActive={screenNumber === '3' || inView} />
         <div className={styles.textBox}>
           <h3>Покупка USDT</h3>
           <p>

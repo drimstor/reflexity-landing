@@ -10,6 +10,10 @@
   align-items: center;
   justify-content: center;
 
+  @include tablet {
+    padding-bottom: 200px;
+  }
+
   &.active {
     .textBox {
       animation: showBlur 0.5s ease-in-out 1.8s forwards;
@@ -48,6 +52,7 @@
 
 .textBox {
   max-width: 477px;
+  margin: 0 16px;
   opacity: 0;
   animation: hideBlur 0.5s ease-in-out forwards;
 
@@ -59,6 +64,18 @@
     margin-top: 40px;
     height: 72px;
     min-height: 72px;
+
+    @include tablet {
+      margin: 40px auto 0 auto;
+    }
+
+    @media screen and (max-width: 616px) {
+      flex-direction: column;
+      padding: 16px;
+      max-height: none;
+      height: auto;
+      width: 100%;
+    }
   }
 }
 
@@ -73,11 +90,19 @@
     flex-direction: column;
     gap: 2em;
   }
+
+  @media screen and (max-width: 616px) {
+    width: 100%;
+  }
 }
 
 .modalBox {
   transform: translateX(calc(100% + 100vh));
   animation: translateReverse 1.5s ease-in-out forwards;
+
+  @media screen and (max-width: 616px) {
+    width: 100%;
+  }
 }
 
 @keyframes translate {

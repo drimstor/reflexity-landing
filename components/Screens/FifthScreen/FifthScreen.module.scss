@@ -11,6 +11,10 @@
   align-items: center;
   justify-content: center;
 
+  @include tablet {
+    margin-bottom: 100px;
+  }
+
   &.active {
     animation: showBlur 0.5s ease-in-out 0.5s forwards;
 
@@ -26,6 +30,12 @@
   gap: 2.6em;
   justify-content: center;
   position: relative;
+  transition: all 0.5s ease-in-out;
+
+  &.hide {
+    opacity: 0;
+    filter: blur(5px);
+  }
 
   @include tablet {
     flex-direction: column;
@@ -65,7 +75,7 @@
       max-width: 557px;
     }
 
-    @include tablet {
+    @include mobile {
       max-width: 300px;
     }
   }

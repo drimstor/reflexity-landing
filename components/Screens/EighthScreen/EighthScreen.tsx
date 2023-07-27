@@ -5,15 +5,21 @@ import Button from 'components/UI-kit/Buttons/Button'
 import telegramIcon from '../../../public/icons/telegram.svg'
 import ContactModal from 'components/Modals/ContactModal/ContactModal'
 import Footer from 'components/UI-kit/Footer/Footer'
+import { useInView } from 'react-intersection-observer'
 
 interface EighthScreenProps {
   screenNumber: string
 }
 
 const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
+  const [ref, inView] = useInView({ triggerOnce: true })
   return (
     <div
-      className={clsx(styles.contentBox, screenNumber === '7' && styles.active)}
+      ref={ref}
+      className={clsx(
+        styles.contentBox,
+        (screenNumber === '7' || inView) && styles.active
+      )}
     >
       <div className={styles.flexWrapper}>
         <div className={styles.textBox}>

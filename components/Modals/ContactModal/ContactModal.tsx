@@ -14,6 +14,7 @@ const ContactModal = () => {
             key={key}
             title={input.title}
             placeholder={input.placeholder}
+            isTextArea={key === 3}
           />
         ))}
         <Button variant='contained' size='medium' fullWidth>

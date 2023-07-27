@@ -6,25 +6,42 @@ import clsx from 'clsx'
 
 interface SecondScreenProps {
   screenNumber: string
+  isMobile: boolean
 }
 
-const SecondScreen = ({ screenNumber }: SecondScreenProps) => {
+const SecondScreen = ({ screenNumber, isMobile }: SecondScreenProps) => {
+  const [isActive, setIsActive] = useState(false)
+
+  useEffect(() => {
+    if (screenNumber === '1') {
+      setIsActive(true)
+    }
+  }, [screenNumber])
+
   return (
     <div
       className={clsx(
         styles.contentBox,
-        (screenNumber.includes('1_') || screenNumber === '1') && styles.active
+        isActive && styles.active,
+        screenNumber === 'start' && styles.mobileActive
       )}
     >
-      <h2>Без чарджбеков, холда и роллинга</h2>
-      <div className={clsx(styles.blockBox, styles['screen' + screenNumber])}>
+      <h2 className={clsx(!isMobile && screenNumber !== '1' && styles.hide)}>
+        Без чарджбеков, холда и роллинга
+      </h2>
+      <div
+        className={clsx(
+          styles.blockBox,
+          styles['screen' + screenNumber],
+          !isMobile && screenNumber !== '1' && styles.hide
+        )}
+      >
         {blockTextContent.map((item, index) => (
           <div key={index} className={clsx(styles.blockItem)}>
             <div
               className={clsx(
                 styles.icon,
-                (screenNumber.includes('1_') || screenNumber === '1') &&
-                  styles.active
+                (screenNumber === 'start' || isActive) && styles.active
               )}
             >
               <Image src={item.icon} alt='icon' />
