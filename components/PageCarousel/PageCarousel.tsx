@@ -138,15 +138,18 @@ const PageCarousel = () => {
       if (scrollToDirection < 0) {
         scrollPrevConfig.forEach((config) => {
           if (screenNumber === config.currentScreenNumber) {
-            if (config.hasOwnProperty('isMobile')) {
-              if (config.isMobile ? isMobile : !isMobile) {
-                setScreenNumber(config.setScreenNumber)
-                setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
-              }
-            } else {
-              setScreenNumber(config.setScreenNumber)
-              setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
-            }
+            //   if (config.hasOwnProperty('isMobile')) {
+            //     if (config.isMobile ? isMobile : !isMobile) {
+            //       setScreenNumber(config.setScreenNumber)
+            //       setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+            //     }
+            //   } else {
+            //     setScreenNumber(config.setScreenNumber)
+            //     setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
+            //   }
+
+            setScreenNumber(config.setScreenNumber)
+            setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
           }
         })
       }
