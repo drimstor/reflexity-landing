@@ -46,13 +46,15 @@ export default function Home() {
           onSubmit={onSubmitHandler}
           className={inter.className}
           style={{
-            position: 'absolute',
-            left: '39%',
-            top: '40%',
+            position: 'fixed',
+            left: '50%',
+            top: '50%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             gap: '16px',
+            zIndex: '9999',
+            transform: 'translate(-50%,-50%)',
           }}
         >
           <h2>Введите пароль:</h2>

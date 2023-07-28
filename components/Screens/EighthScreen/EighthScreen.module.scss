@@ -12,6 +12,7 @@
 
   @include tablet {
     padding-bottom: 200px;
+    min-height: fit-content;
   }
 
   &.active {
@@ -43,7 +44,7 @@
       max-width: 343px;
       margin: 0 auto 40px;
       overflow: hidden;
-      background: radial-gradient(#151823f6 60%, transparent 70%);
+      // background: radial-gradient(#151823f6 60%, transparent 70%);
       position: relative;
       z-index: 1;
     }

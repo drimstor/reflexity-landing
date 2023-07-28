@@ -16,6 +16,7 @@
 
   @include tablet {
     transform: translate(-50%, -34%);
+    position: absolute;
   }
 }
 
@@ -29,7 +30,11 @@
   }
 
   @include tablet {
-    transform: translateY(20%) scale(0.6) rotate(90deg);
+    transform: translateY(45%) scale(1) rotate(0deg);
+  }
+
+  @include mobile {
+    transform: translateY(50%) scale(1) rotate(0deg);
   }
 
   &.screen1,

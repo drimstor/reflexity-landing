@@ -1,3 +1,5 @@
+export type contentType = { title: string; value: string; index: number }[]
+
 export const cardsContent = [
   {
     title: 'Запрос на подключение',

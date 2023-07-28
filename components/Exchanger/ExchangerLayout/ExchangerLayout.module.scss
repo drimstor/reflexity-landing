@@ -173,6 +173,10 @@
 
     img {
       margin-left: -0.5em;
+
+      @include mobile {
+        margin-top: -0.3em;
+      }
     }
   }
 
@@ -182,6 +186,12 @@
     display: flex;
     padding: 0.3em 1.8em;
     font-weight: 400;
+  }
+
+  @include mobile {
+    span {
+      line-height: 150%;
+    }
   }
 }
 

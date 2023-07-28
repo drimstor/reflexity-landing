@@ -2,13 +2,22 @@ import React, { useEffect, useState } from 'react'
 import styles from './Planet.module.scss'
 import Image from 'next/image'
 import mainCircle from '../../public/mainCircle.svg'
+import mobileCircle from '../../public/mobilePlanet1.svg'
 import clsx from 'clsx'
+import useMediaQuery from 'hooks/useMediaQuery'
 
 interface PlanetProps {
   screenNumber: string
+  isMobile: boolean
 }
 
-const Planet = ({ screenNumber }: PlanetProps) => {
+const Planet = ({ screenNumber, isMobile }: PlanetProps) => {
+  const [content, setContent] = useState<any>(null)
+
+  useEffect(() => {
+    setContent(isMobile ? mobileCircle : mainCircle)
+  }, [])
+
   return (
     <div className={styles.circleBox}>
       <div
@@ -18,7 +27,7 @@ const Planet = ({ screenNumber }: PlanetProps) => {
           screenNumber.includes('2_') && styles.noShadow
         )}
       >
-        <Image src={mainCircle} alt='circle' />
+        {content && <Image src={content} alt='circle' />}
         <div className={clsx(styles.shadow)} />
       </div>
     </div>

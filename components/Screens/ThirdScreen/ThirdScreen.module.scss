@@ -11,6 +11,9 @@
     animation: showBlur 0.5s ease-in-out 0.6s forwards;
   }
 
+  @include tablet {
+    min-height: fit-content;
+  }
 
   h2 {
     text-align: center;
@@ -26,6 +29,7 @@
 
     @include tablet {
       font-size: 32px;
+      background: transparent;
     }
   }
 }
@@ -45,6 +49,10 @@
   padding: 50px;
   transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out,
     transform 1s ease-in-out;
+
+  @include tablet {
+    display: none;
+  }
 
   @media screen and (min-height: 1000px) {
     transform: translate(calc(-50% - 90px), calc(-50% - 78px));
@@ -101,29 +109,31 @@
     }
   }
 
-  &.hide {
-    opacity: 0;
-    filter: blur(4px);
-
-    li {
+  @media screen and (min-width: 769px) {
+    &.hide {
       opacity: 0;
       filter: blur(4px);
-    }
 
-    h3 {
-      opacity: 0;
-      filter: blur(4px);
-    }
+      li {
+        opacity: 0;
+        filter: blur(4px);
+      }
 
-    .circle {
-      opacity: 0;
-      filter: blur(4px);
-      // transform: translateY(-15px);
-    }
+      h3 {
+        opacity: 0;
+        filter: blur(4px);
+      }
 
-    button {
-      opacity: 0;
-      filter: blur(4px);
+      .circle {
+        opacity: 0;
+        filter: blur(4px);
+        // transform: translateY(-15px);
+      }
+
+      button {
+        opacity: 0;
+        filter: blur(4px);
+      }
     }
   }
 
@@ -190,5 +200,71 @@
     position: absolute;
     left: -165px;
     top: -75px;
+  }
+}
+
+.mobileBox {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    max-width: 480px;
+    margin: 10px auto 160px auto;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 110%;
+      width: 1px;
+      left: -20px;
+      top: -5%;
+      background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 19.48%,
+        rgba(255, 255, 255, 1) 86.35%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
+
+  @media screen and (max-width: 554px) {
+    max-width: 370px;
+  }
+
+  @include mobile {
+    margin: 20px 16px 160px 48px;
+  }
+}
+
+.mobileItem {
+  span {
+    line-height: 120%;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: block;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -36px;
+      left: -46px;
+      background-image: url(../../../public/icons/small-shadow-circle.svg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 75px;
+      height: 75px;
+      z-index: 9;
+    }
+  }
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
   }
 }

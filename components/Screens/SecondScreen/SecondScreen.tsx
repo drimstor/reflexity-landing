@@ -26,14 +26,14 @@ const SecondScreen = ({ screenNumber, isMobile }: SecondScreenProps) => {
         screenNumber === 'start' && styles.mobileActive
       )}
     >
-      <h2 className={clsx(!isMobile && screenNumber !== '1' && styles.hide)}>
+      <h2 className={clsx(screenNumber !== '1' && styles.hide)}>
         Без чарджбеков, холда и роллинга
       </h2>
       <div
         className={clsx(
           styles.blockBox,
           styles['screen' + screenNumber],
-          !isMobile && screenNumber !== '1' && styles.hide
+          screenNumber !== '1' && styles.hide
         )}
       >
         {blockTextContent.map((item, index) => (

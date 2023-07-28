@@ -4,36 +4,41 @@ import circle from '../../../public/icons/circle-vector.svg'
 import Image from 'next/image'
 import Button from 'components/UI-kit/Buttons/Button'
 import clsx from 'clsx'
-import { animateFramesConfig } from './constants'
+import { animateFramesConfig, thirdScreenValues } from './constants'
+import { useInView } from 'react-intersection-observer'
 
 interface ThirdScreenProps {
   screenNumber: string
-  isScrollLock: boolean
+  isMobile: boolean
 }
 
-const ThirdScreen = ({ screenNumber, isScrollLock }: ThirdScreenProps) => {
+const ThirdScreen = ({ screenNumber, isMobile }: ThirdScreenProps) => {
   const [frameChanged, setFrameChanged] = useState(false)
   const [animateItem, setAnimateItem] = useState(animateFramesConfig['2_1'])
+  const [ref, inView] = useInView({ triggerOnce: true })
 
   useEffect(() => {
-    setFrameChanged(true)
-    const timer = setTimeout(() => setFrameChanged(false), 1000)
-    const timer2 = setTimeout(
-      () => setAnimateItem(animateFramesConfig[screenNumber]),
-      500
-    )
+    if (!isMobile) {
+      setFrameChanged(true)
+      const timer = setTimeout(() => setFrameChanged(false), 1000)
+      const timer2 = setTimeout(
+        () => setAnimateItem(animateFramesConfig[screenNumber]),
+        500
+      )
 
-    return () => {
-      clearTimeout(timer)
-      clearTimeout(timer2)
+      return () => {
+        clearTimeout(timer)
+        clearTimeout(timer2)
+      }
     }
   }, [screenNumber])
 
   return (
     <div
+      ref={ref}
       className={clsx(
         styles.contentBox,
-        screenNumber.includes('2_') && styles.active
+        (screenNumber.includes('2_') || (isMobile && inView)) && styles.active
       )}
     >
       <h2>Почему мы</h2>
@@ -62,6 +67,15 @@ const ThirdScreen = ({ screenNumber, isScrollLock }: ThirdScreenProps) => {
           )}
         </div>
       )}
+
+      <div className={clsx(styles.mobileBox)}>
+        {thirdScreenValues.map((item, index) => (
+          <div className={styles.mobileItem} key={index}>
+            <span>{item.title}</span>
+            <p>{item.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

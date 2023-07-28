@@ -13,6 +13,7 @@
 
   @include tablet {
     margin-bottom: 100px;
+    min-height: fit-content;
   }
 
   &.active {
@@ -32,9 +33,11 @@
   position: relative;
   transition: all 0.5s ease-in-out;
 
-  &.hide {
-    opacity: 0;
-    filter: blur(5px);
+  @media screen and (min-width: 769px) {
+    &.hide {
+      opacity: 0;
+      filter: blur(5px);
+    }
   }
 
   @include tablet {

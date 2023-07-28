@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './SeventhScreen.module.scss'
 import clsx from 'clsx'
-import { cardsContent, mobileCardsContent } from './constants'
-import useMediaQuery from 'hooks/useMediaQuery'
+import { cardsContent, contentType, mobileCardsContent } from './constants'
 import { useInView } from 'react-intersection-observer'
 
 interface SeventhScreenProps {
@@ -12,7 +11,12 @@ interface SeventhScreenProps {
 
 const SeventhScreen = ({ screenNumber, isMobile }: SeventhScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true })
-  const content = isMobile ? mobileCardsContent : cardsContent
+  const [content, setContent] = useState<contentType>([])
+
+  useEffect(() => {
+    setContent(isMobile ? mobileCardsContent : cardsContent)
+  }, [])
+
   return (
     <div
       ref={ref}

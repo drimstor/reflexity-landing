@@ -19,6 +19,7 @@ import useMediaQuery from 'hooks/useMediaQuery'
 
 const PageCarousel = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+
   // ------------- Desktop ------------ //
   const [scrollToDirection, setScrollToDirection] = useState<number>(0)
   const [screenNumber, setScreenNumber] = useState('0')
@@ -147,7 +148,6 @@ const PageCarousel = () => {
             //     setScreenNumber(config.setScreenNumber)
             //     setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
             //   }
-
             setScreenNumber(config.setScreenNumber)
             setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
           }
@@ -162,7 +162,7 @@ const PageCarousel = () => {
         screenNumber={screenNumber}
         scrollToScreenCallback={scrollToDefiniteScreen}
       />
-      <Planet screenNumber={screenNumber} />
+      <Planet screenNumber={screenNumber} isMobile={isMobile} />
       <section
         className={clsx(styles.globalBox, styles['screen' + screenNumber])}
         onWheel={onPageWheelHandler}
@@ -172,7 +172,7 @@ const PageCarousel = () => {
       >
         <FirstScreen />
         <SecondScreen screenNumber={screenNumber} isMobile={isMobile} />
-        <ThirdScreen screenNumber={screenNumber} isScrollLock={isScrollLock} />
+        <ThirdScreen screenNumber={screenNumber} isMobile={isMobile} />
         <FourthScreen screenNumber={screenNumber} isMobile={isMobile} />
         <FifthScreen screenNumber={screenNumber} isMobile={isMobile} />
         <SixthScreen screenNumber={screenNumber} isMobile={isMobile} />
