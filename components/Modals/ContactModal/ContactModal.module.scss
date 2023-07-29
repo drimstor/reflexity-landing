@@ -21,10 +21,6 @@
     border-right: 0;
   }
 
-  @include tablet {
-    width: 580px;
-  }
-
   @include mobile {
     padding: 24px 16px;
   }

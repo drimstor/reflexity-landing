@@ -22,10 +22,6 @@
       transform: translateY(calc(-100vh + 30px));
     }
 
-    @media screen and (max-height: 848px) {
-      transform: translateY(calc(-100vh - 110px));
-    }
-
     @include macbook {
       transform: translateY(calc(-100vh + 45px));
     }
