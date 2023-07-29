@@ -25,6 +25,22 @@
   }
 }
 
+.mobilePlanet {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: -100px;
+    left: -10%;
+    transform: rotate(-45deg);
+  }
+
+  @include mobile {
+    left: -30%;
+  }
+}
+
 .container {
   display: flex;
   align-items: center;

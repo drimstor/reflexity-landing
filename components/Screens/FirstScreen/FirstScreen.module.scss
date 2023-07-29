@@ -19,6 +19,8 @@
   @include mobile {
     margin-top: 130px;
     margin-bottom: 200px;
+    min-height: fit-content;
+    height: 100%;
   }
 
   span {

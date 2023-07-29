@@ -1,8 +1,6 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss'
-// import logo from '../../../public/bitconceLogo.svg'
-// import miniLogo from '../../../public/bitconceMiniLogo.svg'
 import logo from '../../../public/paikinsLogo.svg'
 import miniLogo from '../../../public/paikinsMiniLogo.svg'
 import angleDownIcon from '../../../public/icons/angle-down.svg'
@@ -14,11 +12,16 @@ import useClickOutside from 'hooks/useClickOutside'
 import { languages, navItems } from './constants'
 
 interface iHeader {
-  scrollToScreenCallback: any
+  onScrollToScreenCallback: any
   screenNumber: string
+  isMobile: boolean
 }
 
-const Header = ({ screenNumber, scrollToScreenCallback }: iHeader) => {
+const Header = ({
+  screenNumber,
+  onScrollToScreenCallback,
+  isMobile,
+}: iHeader) => {
   const languageSelectRef = useRef(null)
   const languageSelectBoxRef = useRef(null)
   const [isShowLanguageSelect, setIsShowLanguageSelect] = useState(false)
@@ -52,9 +55,24 @@ const Header = ({ screenNumber, scrollToScreenCallback }: iHeader) => {
     }
   }, [screenNumber])
 
-  const clickOnHeaderItem = (link: string) => {
+  const getTopCoords = (elem: any) => {
+    let box = elem.getBoundingClientRect()
+    return box.top + document.querySelector('body')?.scrollTop
+  }
+
+  const clickOnHeaderItem = (screen: string, link: string) => {
     setIsShowBurgerMenu(false)
-    scrollToScreenCallback(link)
+
+    if (!isMobile) {
+      onScrollToScreenCallback(screen)
+    } else {
+      onScrollToScreenCallback('start')
+      document.querySelector('body')?.scrollTo({
+        top: getTopCoords(document.getElementById(link)) - 80,
+        left: 0,
+        behavior: 'smooth',
+      })
+    }
   }
 
   return (
@@ -70,13 +88,15 @@ const Header = ({ screenNumber, scrollToScreenCallback }: iHeader) => {
           <nav className={clsx(styles.nav, isShowBurgerMenu && styles.show)}>
             <ul className={styles.navItems}>
               {navItems.map((item, index) => (
-                <li key={index}>
+                <li
+                  key={index}
+                  onClick={() => clickOnHeaderItem(item.screen, item.link)}
+                >
                   <Link
                     className={clsx(
                       activeHeaderItem === index && styles.active
                     )}
                     href={'#'}
-                    onClick={() => clickOnHeaderItem(item.link)}
                   >
                     {item.title}
                   </Link>

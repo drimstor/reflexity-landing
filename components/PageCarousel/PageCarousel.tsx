@@ -1,4 +1,10 @@
-import React, { TouchEvent, useEffect, useState, WheelEvent } from 'react'
+import React, {
+  TouchEvent,
+  useEffect,
+  useRef,
+  useState,
+  WheelEvent,
+} from 'react'
 import styles from './PageCarousel.module.scss'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import Planet from 'components/Planet/Planet'
@@ -37,7 +43,7 @@ const PageCarousel = () => {
     }, 100)
   }
 
-  const scrollToDefiniteScreen = (screen: string) => {
+  const onScrollToScreenCallback = (screen: string) => {
     setScreenNumber(screen)
     setTimeout(() => {
       setIsScrollLock(true)
@@ -113,11 +119,11 @@ const PageCarousel = () => {
 
   // const scrollLock = useDebounce(scrollToDirection, 1300)
 
-  console.log({
-    isScrollLock,
-    scrollToDirection,
-    screenNumber,
-  })
+  // console.log({
+  //   isScrollLock,
+  //   scrollToDirection,
+  //   screenNumber,
+  // })
 
   useEffect(() => {
     if (!isScrollLock) {
@@ -160,7 +166,8 @@ const PageCarousel = () => {
     <>
       <Header
         screenNumber={screenNumber}
-        scrollToScreenCallback={scrollToDefiniteScreen}
+        isMobile={isMobile}
+        onScrollToScreenCallback={onScrollToScreenCallback}
       />
       <Planet screenNumber={screenNumber} isMobile={isMobile} />
       <section

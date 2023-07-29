@@ -1,7 +1,7 @@
 export const navItems = [
-  { title: 'Почему мы?', link: '2_1' },
-  { title: 'О компании', link: '3' },
-  { title: 'Как это работает?', link: '6' },
-  { title: 'Связаться', link: '7' },
+  { title: 'Почему мы?', link: 'whyAreWe', screen: '2_1' },
+  { title: 'О компании', link: 'about', screen: '3' },
+  { title: 'Как это работает?', link: 'howItWork', screen: '6' },
+  { title: 'Связаться', link: 'contact', screen: '7' },
 ]
 export const languages = ['RUS', 'ENG']

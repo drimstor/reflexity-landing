@@ -6,6 +6,7 @@ import Button from 'components/UI-kit/Buttons/Button'
 import clsx from 'clsx'
 import { animateFramesConfig, thirdScreenValues } from './constants'
 import { useInView } from 'react-intersection-observer'
+import mobileCircle from '../../../public/mobilePlanet.svg'
 
 interface ThirdScreenProps {
   screenNumber: string
@@ -36,11 +37,13 @@ const ThirdScreen = ({ screenNumber, isMobile }: ThirdScreenProps) => {
   return (
     <div
       ref={ref}
+      id='whyAreWe'
       className={clsx(
         styles.contentBox,
         (screenNumber.includes('2_') || (isMobile && inView)) && styles.active
       )}
     >
+      <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
       <h2>Почему мы</h2>
       {animateItem && (
         <div

@@ -51,6 +51,22 @@
   }
 }
 
+.mobilePlanet {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: -120px;
+    left: -10%;
+    transform: rotate(-45deg);
+  }
+
+  @include mobile {
+    left: -30%;
+  }
+}
+
 .textBox {
   max-width: 477px;
   margin: 0 16px;

@@ -6,6 +6,8 @@ import telegramIcon from '../../../public/icons/telegram.svg'
 import ContactModal from 'components/Modals/ContactModal/ContactModal'
 import Footer from 'components/UI-kit/Footer/Footer'
 import { useInView } from 'react-intersection-observer'
+import mobileCircle from '../../../public/mobilePlanet.svg'
+import Image from 'next/image'
 
 interface EighthScreenProps {
   screenNumber: string
@@ -15,12 +17,14 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true })
   return (
     <div
+      id='contact'
       ref={ref}
       className={clsx(
         styles.contentBox,
         (screenNumber === '7' || inView) && styles.active
       )}
     >
+      <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
       <div className={styles.flexWrapper}>
         <div className={styles.textBox}>
           <h2>Свяжитесь с нами</h2>

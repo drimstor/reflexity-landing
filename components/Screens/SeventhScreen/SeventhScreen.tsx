@@ -3,6 +3,8 @@ import styles from './SeventhScreen.module.scss'
 import clsx from 'clsx'
 import { cardsContent, contentType, mobileCardsContent } from './constants'
 import { useInView } from 'react-intersection-observer'
+import mobileCircle from '../../../public/mobilePlanet.svg'
+import Image from 'next/image'
 
 interface SeventhScreenProps {
   screenNumber: string
@@ -20,11 +22,13 @@ const SeventhScreen = ({ screenNumber, isMobile }: SeventhScreenProps) => {
   return (
     <div
       ref={ref}
+      id='howItWork'
       className={clsx(
         styles.contentBox,
         (screenNumber === '6' || inView) && styles.active
       )}
     >
+      <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
       <h2 className={clsx(!isMobile && screenNumber !== '6' && styles.hide)}>
         Как это работает
       </h2>

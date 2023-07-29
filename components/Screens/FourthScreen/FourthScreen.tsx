@@ -11,6 +11,8 @@ import {
 } from 'components/Exchanger/ExchangerLayout/constants'
 import TableRequestModal from 'components/Modals/TableRequestModal/TableRequestModal'
 import { useInView } from 'react-intersection-observer'
+import mobileCircle from '../../../public/mobilePlanet.svg'
+import Image from 'next/image'
 
 interface FourthScreenProps {
   screenNumber: string
@@ -26,8 +28,10 @@ const FourthScreen = ({ screenNumber, isMobile }: FourthScreenProps) => {
         screenNumber === '3' && styles.active,
         inView && styles.active
       )}
+      id='about'
       ref={ref}
     >
+      <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
       <div
         className={clsx(
           styles.container,
