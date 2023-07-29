@@ -11,7 +11,7 @@
   justify-content: center;
 
   @include laptop {
-    transform: translate(-50%, -45%);
+    // transform: translate(-50%, -45%);
   }
 
   @include tablet {
@@ -104,7 +104,7 @@
 .lastScreen {
   transition: all 1.3s ease-in-out;
   position: relative;
-  transform: translateY(0) translateX(150%) scale(0.6) rotate(180deg);
+  transform: translateY(0) translateX(150%) scale(0.6) rotate(00deg);
 }
 
 .lastScreenActive {

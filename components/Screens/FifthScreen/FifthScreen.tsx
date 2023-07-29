@@ -17,7 +17,7 @@ interface FifthScreenProps {
 }
 
 const FifthScreen = ({ screenNumber, isMobile }: FifthScreenProps) => {
-  const [ref, inView] = useInView({ triggerOnce: true })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   return (
     <div
       className={clsx(

@@ -12,10 +12,14 @@
   &.screen1_2,
   &.screen1_3,
   &.screen1_4 {
-    transform: translateY(calc(-100vh - 60px));
+    transform: translateY(calc(-100vh - 0px));
 
     @media screen and (min-height: 1079px) {
       transform: translateY(calc(-100vh - 0px));
+    }
+
+    @media screen and (max-height: 865px) {
+      transform: translateY(calc(-100vh + 30px));
     }
 
     @media screen and (max-height: 848px) {
@@ -23,7 +27,7 @@
     }
 
     @include macbook {
-      transform: translateY(calc(-100vh - 120px));
+      transform: translateY(calc(-100vh + 45px));
     }
 
     @include laptop {
@@ -40,7 +44,7 @@
   &.screen2_3,
   &.screen2_4,
   &.screen2_5 {
-    transform: translateY(calc(-200vh - 120px));
+    transform: translateY(calc(-200vh + 80px));
 
     @include tablet {
       transform: translateY(calc(-200vh - 90px));
@@ -48,7 +52,7 @@
   }
 
   &.screen3 {
-    transform: translateY(calc(-300vh - 190px));
+    transform: translateY(calc(-300vh + 0px));
 
     @include tablet {
       transform: translateY(calc(-300vh - 140px));
@@ -56,7 +60,7 @@
   }
 
   &.screen4 {
-    transform: translateY(calc(-400vh - 190px));
+    transform: translateY(calc(-400vh - 0px));
 
     @include tablet {
       transform: translateY(calc(-400vh - 140px));
@@ -64,7 +68,7 @@
   }
 
   &.screen5 {
-    transform: translateY(calc(-500vh - 190px));
+    transform: translateY(calc(-500vh - 0px));
 
     @include tablet {
       transform: translateY(calc(-500vh - 100px));
@@ -72,10 +76,10 @@
   }
 
   &.screen6 {
-    transform: translateY(calc(-600vh - 190px));
+    transform: translateY(calc(-600vh - 0px));
   }
 
   &.screen7 {
-    transform: translateY(calc(-700vh - 210px));
+    transform: translateY(calc(-700vh - 10px));
   }
 }

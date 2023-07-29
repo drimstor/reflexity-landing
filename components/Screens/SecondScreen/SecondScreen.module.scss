@@ -7,6 +7,10 @@
   transition: all 0.5s ease-in-out;
   @extend %fullScreenView;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   @media screen and (min-width: 769px) {
     animation: hideBlur 0.5s ease-in-out forwards;
   }
@@ -53,34 +57,40 @@
     &.mobileActive {
       animation: showBlur 0.5s ease-in-out forwards;
 
-      .blockItem:nth-child(1) {
-        animation: showBlur 0.5s ease-in-out 0.3s forwards;
-      }
-      .blockItem:nth-child(2) {
-        animation: showBlur 0.5s ease-in-out 0.6s forwards;
-      }
-      .blockItem:nth-child(3) {
-        animation: showBlur 0.5s ease-in-out 0.9s forwards;
-      }
-      .blockItem:nth-child(4) {
-        animation: showBlur 0.5s ease-in-out 1.2s forwards;
+      .mobileActiveItem {
+        animation: showBlur 0.5s ease-in-out forwards;
       }
 
-      .verticalLine {
-        &::before {
-          animation: verticalLine 0.7s ease-in-out 0.6s forwards;
+      @media screen and (min-width: 767px) {
+        .blockItem:nth-child(1) {
+          animation: showBlur 0.5s ease-in-out 0.5s forwards;
         }
-        &::after {
-          animation: verticalLine 0.7s ease-in-out 0.6s forwards;
+        .blockItem:nth-child(2) {
+          animation: showBlur 0.5s ease-in-out 1s forwards;
         }
-      }
+        .blockItem:nth-child(3) {
+          animation: showBlur 0.5s ease-in-out 1.5s forwards;
+        }
+        .blockItem:nth-child(4) {
+          animation: showBlur 0.5s ease-in-out 2s forwards;
+        }
 
-      .horizontalLine {
-        &::before {
-          animation: horizontalLine 0.7s ease-in-out 1.2s forwards;
+        .verticalLine {
+          &::before {
+            animation: verticalLine 0.7s ease-in-out 0.6s forwards;
+          }
+          &::after {
+            animation: verticalLine 0.7s ease-in-out 0.6s forwards;
+          }
         }
-        &::after {
-          animation: horizontalLine 0.7s ease-in-out 1.2s forwards;
+
+        .horizontalLine {
+          &::before {
+            animation: horizontalLine 0.7s ease-in-out 1.2s forwards;
+          }
+          &::after {
+            animation: horizontalLine 0.7s ease-in-out 1.2s forwards;
+          }
         }
       }
     }

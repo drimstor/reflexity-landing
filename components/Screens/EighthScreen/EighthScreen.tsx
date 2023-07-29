@@ -14,14 +14,15 @@ interface EighthScreenProps {
 }
 
 const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
-  const [ref, inView] = useInView({ triggerOnce: true })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   return (
     <div
       id='contact'
       ref={ref}
       className={clsx(
         styles.contentBox,
-        (screenNumber === '7' || inView) && styles.active
+        screenNumber === '7' && styles.active,
+        inView && styles.mobileActive
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />

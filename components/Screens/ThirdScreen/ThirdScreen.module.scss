@@ -13,6 +13,34 @@
 
   @include tablet {
     min-height: fit-content;
+
+    &.mobileActive {
+      animation: showBlur 0.5s ease-in-out 0.3s forwards;
+
+      .mobilePlanet {
+        animation: planetMobile 1s ease-in-out 0.5s forwards;
+      }
+
+      .mobileBox::after {
+        animation: showBlur 1s ease-in-out 1s forwards;
+      }
+
+      .mobileItem:nth-child(1) {
+        animation: showBlur 0.5s ease-in-out 0.6s forwards;
+      }
+      .mobileItem:nth-child(2) {
+        animation: showBlur 0.5s ease-in-out 1.1s forwards;
+      }
+      .mobileItem:nth-child(3) {
+        animation: showBlur 0.5s ease-in-out 1.6s forwards;
+      }
+      .mobileItem:nth-child(4) {
+        animation: showBlur 0.5s ease-in-out 2.1s forwards;
+      }
+      .mobileItem:nth-child(5) {
+        animation: showBlur 0.5s ease-in-out 2.6s forwards;
+      }
+    }
   }
 
   h2 {
@@ -55,16 +83,25 @@
     display: none;
   }
 
+  @media screen and (max-height: 865px) {
+    transform: translate(calc(-50% - 90px), calc(-50% - 90px));
+  }
+
   @media screen and (min-height: 1000px) {
     transform: translate(calc(-50% - 90px), calc(-50% - 78px));
   }
 
-  @media screen and (max-height: 848px) {
-    transform: translate(calc(-50% - 90px), calc(-50% - 90px));
+  @media screen and (min-height: 1200px) {
+    transform: translate(calc(-50% - 90px), calc(-50% - 58px));
+  }
+
+  @media screen and (max-width: 1024px) {
+    position: absolute;
+    transform: translate(-50%, -50%);
   }
 
   @include tablet {
-    transform: translate(calc(-20%), calc(-50% - 90px));
+    // transform: translate(calc(-20%), calc(-50% - 90px));
   }
 
   button {
@@ -77,20 +114,34 @@
   &.screen2_2 {
     transform: translate(calc(-19% - 52px), calc(-30% - 52px));
 
-    @media screen and (max-height: 848px) {
+    @media screen and (max-height: 865px) {
       transform: translate(calc(-19% - 52px), calc(-30% - 64px));
     }
 
-    // @media screen and (max-height: 769px) and (max-width: 1367px) {
-    //   transform: translate(calc(-19% - 52px), calc(-30% - 64px));
-    // }
+    @media screen and (min-height: 1200px) {
+      transform: translate(calc(-19% - 52px), calc(-90% + 120px));
+    }
+
+    @media screen and (max-width: 1024px) {
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
   }
 
   &.screen2_3 {
     transform: translate(calc(-52% - 55px), calc(-80% + 5px));
 
-    @media screen and (max-height: 848px) {
+    @media screen and (max-height: 865px) {
       transform: translate(calc(-52% - 55px), calc(-80% - 13px));
+    }
+
+    @media screen and (min-height: 1200px) {
+      transform: translate(calc(-52% - 55px), calc(-90% + 50px));
+    }
+
+    @media screen and (max-width: 1024px) {
+      position: absolute;
+      transform: translate(-50%, -50%);
     }
   }
 
@@ -100,13 +151,31 @@
     @media screen and (max-height: 865px) and (max-width: 1537px) {
       transform: translate(calc(-22% - 64px), calc(-80% - 64px));
     }
+
+    @media screen and (min-height: 1200px) {
+      transform: translate(calc(-22% - 64px), calc(-90% - 6px));
+    }
+
+    @media screen and (max-width: 1024px) {
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
   }
 
   &.screen2_5 {
     transform: translate(calc(-60% - 42px), calc(-32% - 41px));
 
-    @media screen and (max-height: 901px) and (max-width: 1441px) {
+    @media screen and (max-height: 865px) {
       transform: translate(calc(-60% - 42px), calc(-32% - 55px));
+    }
+
+    @media screen and (min-height: 1200px) {
+      transform: translate(calc(-60% - 42px), calc(-90% + 125px));
+    }
+
+    @media screen and (max-width: 1024px) {
+      position: absolute;
+      transform: translate(-50%, -70%);
     }
   }
 
@@ -197,7 +266,9 @@
     position: absolute;
     top: -60px;
     right: -10%;
-    transform: rotate(45deg);
+    transform: rotate(0deg);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
   }
 
   @include mobile {
@@ -212,6 +283,10 @@
   filter: blur(0px);
   transition: opacity 0.5s ease-in-out, filter 0.5s ease-in-out,
     transform 0.5s ease-in-out;
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 
   img {
     position: absolute;
@@ -245,6 +320,9 @@
         rgba(255, 255, 255, 1) 86.35%,
         rgba(255, 255, 255, 0) 100%
       );
+      z-index: -1;
+      opacity: 0;
+      filter: blur(5px);
     }
   }
 
@@ -258,6 +336,9 @@
 }
 
 .mobileItem {
+  opacity: 0;
+  filter: blur(5px);
+
   span {
     line-height: 120%;
     font-size: 20px;
@@ -283,5 +364,17 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
+  }
+}
+
+@keyframes planetMobile {
+  0% {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(45deg);
   }
 }

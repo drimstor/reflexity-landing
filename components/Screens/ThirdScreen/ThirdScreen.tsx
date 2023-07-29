@@ -16,7 +16,7 @@ interface ThirdScreenProps {
 const ThirdScreen = ({ screenNumber, isMobile }: ThirdScreenProps) => {
   const [frameChanged, setFrameChanged] = useState(false)
   const [animateItem, setAnimateItem] = useState(animateFramesConfig['2_1'])
-  const [ref, inView] = useInView({ triggerOnce: true })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   useEffect(() => {
     if (!isMobile) {
@@ -40,7 +40,8 @@ const ThirdScreen = ({ screenNumber, isMobile }: ThirdScreenProps) => {
       id='whyAreWe'
       className={clsx(
         styles.contentBox,
-        (screenNumber.includes('2_') || (isMobile && inView)) && styles.active
+        screenNumber.includes('2_') && styles.active,
+        inView && styles.mobileActive
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />

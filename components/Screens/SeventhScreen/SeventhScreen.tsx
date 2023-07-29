@@ -12,7 +12,7 @@ interface SeventhScreenProps {
 }
 
 const SeventhScreen = ({ screenNumber, isMobile }: SeventhScreenProps) => {
-  const [ref, inView] = useInView({ triggerOnce: true })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [content, setContent] = useState<contentType>([])
 
   useEffect(() => {
@@ -25,18 +25,14 @@ const SeventhScreen = ({ screenNumber, isMobile }: SeventhScreenProps) => {
       id='howItWork'
       className={clsx(
         styles.contentBox,
-        (screenNumber === '6' || inView) && styles.active
+        screenNumber === '6' && styles.active,
+        inView && styles.mobileActive
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
-      <h2 className={clsx(!isMobile && screenNumber !== '6' && styles.hide)}>
-        Как это работает
-      </h2>
+      <h2>Как это работает</h2>
       <div
-        className={clsx(
-          styles.cardsBox,
-          !isMobile && screenNumber !== '6' && styles.hide
-        )}
+        className={clsx(styles.cardsBox, screenNumber !== '6' && styles.hide)}
       >
         {content.map((card, index) => (
           <div key={index} className={styles.cardBox}>

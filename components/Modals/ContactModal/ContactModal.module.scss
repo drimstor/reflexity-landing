@@ -2,7 +2,6 @@
 
 .modalBox {
   width: 580px;
-
   border-radius: 24px;
   border: 2px solid var(--neutral-stroke-grey-main, #2c2f39);
   // background: lightgray 0% 0% / 100px 100px repeat, rgba(191, 191, 191, 0.05);
@@ -11,11 +10,19 @@
   backdrop-filter: blur(38px);
   padding: 40px;
 
+  @media screen and (max-width: 1065px) {
+    width: 450px;
+  }
+
   @media screen and (max-width: 616px) {
     width: 100%;
     border-radius: 0;
     border-left: 0;
     border-right: 0;
+  }
+
+  @include tablet {
+    width: 580px;
   }
 
   @include mobile {

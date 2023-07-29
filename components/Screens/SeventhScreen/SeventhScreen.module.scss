@@ -15,6 +15,47 @@
     min-height: fit-content;
   }
 
+  &.mobileActive {
+    h2 {
+      animation: showBlur 0.5s ease-in-out forwards;
+    }
+
+    .mobilePlanet {
+      animation: planetMobile 1s ease-in-out 0.5s forwards;
+    }
+    .mobileLine {
+      animation: showBlur 1s ease-in-out 0.5s forwards;
+    }
+
+    .cardBox:nth-child(1)::after,
+    .cardBox:nth-child(1)::before,
+    .cardBox:nth-child(1) .card,
+    .cardBox:nth-child(1) .number {
+      animation: show 0.5s ease-in-out 0.5s forwards;
+    }
+
+    .cardBox:nth-child(2)::after,
+    .cardBox:nth-child(2)::before,
+    .cardBox:nth-child(2) .card,
+    .cardBox:nth-child(2) .number {
+      animation: show 0.5s ease-in-out 1s forwards;
+    }
+
+    .cardBox:nth-child(3)::after,
+    .cardBox:nth-child(3)::before,
+    .cardBox:nth-child(3) .card,
+    .cardBox:nth-child(3) .number {
+      animation: show 0.5s ease-in-out 1.5s forwards;
+    }
+
+    .cardBox:nth-child(4)::after,
+    .cardBox:nth-child(4)::before,
+    .cardBox:nth-child(4) .card,
+    .cardBox:nth-child(4) .number {
+      animation: show 0.5s ease-in-out 2s forwards;
+    }
+  }
+
   &.active {
     .line::after {
       animation: line 4s ease-out forwards;
@@ -85,6 +126,10 @@
   position: relative;
   transition: opacity 0.5s ease-in-out;
 
+  @include laptop {
+    gap: 2em;
+  }
+
   @include tablet {
     grid-template-columns: minmax(295px, 477px);
     gap: 2em;
@@ -104,7 +149,8 @@
     position: absolute;
     top: -100px;
     right: -10%;
-    transform: rotate(45deg);
+    transform: rotate(90deg);
+    opacity: 0;
   }
 
   @include mobile {
@@ -350,6 +396,8 @@
     position: absolute;
     top: -5%;
     left: -89px;
+    opacity: 0;
+    filter: blur(5px);
   }
 
   @media screen and (max-width: 674px) {
@@ -396,5 +444,17 @@
 
   100% {
     width: 0%;
+  }
+}
+
+@keyframes planetMobile {
+  0% {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(45deg);
   }
 }

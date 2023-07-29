@@ -42,7 +42,12 @@ const ExchangerChart = ({ isActive }: ExchangerChartProps) => {
         <div className={styles.chartTitle}>
           <h4>Общая сумма заявок</h4> <span>999 999 999.00</span>
         </div>
-        <Image className={styles.chart} src={chartImage} alt='chartImage' />
+        <Image
+          loading='eager'
+          className={styles.chart}
+          src={chartImage}
+          alt='chartImage'
+        />
       </div>
     </div>
   )

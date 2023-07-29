@@ -178,7 +178,7 @@ const PageCarousel = () => {
         onTouchEnd={onMouseUpHandler}
       >
         <FirstScreen />
-        <SecondScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <SecondScreen screenNumber={screenNumber} />
         <ThirdScreen screenNumber={screenNumber} isMobile={isMobile} />
         <FourthScreen screenNumber={screenNumber} isMobile={isMobile} />
         <FifthScreen screenNumber={screenNumber} isMobile={isMobile} />

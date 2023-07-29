@@ -12,7 +12,7 @@ interface SixthScreenProps {
 }
 
 const SixthScreen = ({ screenNumber, isMobile }: SixthScreenProps) => {
-  const { ref, inView } = useInView({ triggerOnce: true })
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
     <InView triggerOnce>
