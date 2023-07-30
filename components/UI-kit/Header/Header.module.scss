@@ -204,14 +204,14 @@ header.header {
   background: $neutral-black-hover;
   opacity: 0;
   visibility: hidden;
-  filter: blur(3px);
+  // filter: blur(3px);
   transition: all 0.3s ease-in-out;
   transform: translateY(-10px);
 
   &.show {
     opacity: 1;
     visibility: visible;
-    filter: blur(0px);
+    // filter: blur(0px);
     transform: translateY(0px);
   }
 

@@ -114,22 +114,22 @@ $mainMono: var(--mainMono);
 @keyframes showBlur {
   0% {
     opacity: 0;
-    filter: blur(3px);
+    // filter: blur(3px);
   }
   100% {
     opacity: 1;
-    filter: blur(0px);
+    // filter: blur(0px);
   }
 }
 
 @keyframes hideBlur {
   0% {
     opacity: 1;
-    filter: blur(0px);
+    // filter: blur(0px);
   }
   100% {
     opacity: 0;
-    filter: blur(3px);
+    // filter: blur(3px);
   }
 }
 
@@ -193,12 +193,12 @@ $mainMono: var(--mainMono);
 @keyframes showScale {
   0% {
     opacity: 0;
-    filter: blur(3px);
+    // filter: blur(3px);
     transform: scale(0.8);
   }
   100% {
     opacity: 1;
-    filter: blur(0px);
+    // filter: blur(0px);
     transform: scale(1);
   }
 }
@@ -206,12 +206,12 @@ $mainMono: var(--mainMono);
 @keyframes hideScale {
   0% {
     opacity: 1;
-    filter: blur(0px);
+    // filter: blur(0px);
     transform: scale(1);
   }
   100% {
     opacity: 0;
-    filter: blur(3px);
+    // filter: blur(3px);
     transform: scale(0.8);
   }
 }
@@ -219,12 +219,12 @@ $mainMono: var(--mainMono);
 @keyframes showTranslate {
   0% {
     opacity: 0;
-    filter: blur(3px);
+    // filter: blur(3px);
     transform: translateY(22px);
   }
   100% {
     opacity: 1;
-    filter: blur(0px);
+    // filter: blur(0px);
     transform: translateY(0);
   }
 }
@@ -232,12 +232,12 @@ $mainMono: var(--mainMono);
 @keyframes hideTranslate {
   0% {
     opacity: 1;
-    filter: blur(0px);
+    // filter: blur(0px);
     transform: translateY(0);
   }
   100% {
     opacity: 0;
-    filter: blur(3px);
+    // filter: blur(3px);
     transform: translateY(22px);
   }
 }
