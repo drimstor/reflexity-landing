@@ -34,6 +34,12 @@ export default function Home() {
     if (localStorage.getItem('password') === PASSWORD) {
       setIsShow(true)
     }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === 9) {
+        e.preventDefault()
+      }
+    })
   }, [])
 
   return (
