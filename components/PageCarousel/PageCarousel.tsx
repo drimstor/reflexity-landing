@@ -1,18 +1,10 @@
-import React, {
-  TouchEvent,
-  useEffect,
-  useRef,
-  useState,
-  WheelEvent,
-} from 'react'
+import React, { TouchEvent, useEffect, useState, WheelEvent } from 'react'
 import styles from './PageCarousel.module.scss'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import Planet from 'components/Planet/Planet'
 import clsx from 'clsx'
 import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
 import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
-import useDebounce from 'hooks/useDebounce'
-import useDebounceCallback from 'hooks/useDebounceCallback'
 import { scrollNextConfig, scrollPrevConfig } from './constants'
 import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
 import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
@@ -25,7 +17,6 @@ import useMediaQuery from 'hooks/useMediaQuery'
 
 const PageCarousel = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
-
   // ------------- Desktop ------------ //
   const [scrollToDirection, setScrollToDirection] = useState<number>(0)
   const [screenNumber, setScreenNumber] = useState('0')
@@ -65,11 +56,6 @@ const PageCarousel = () => {
   // ------------- Mobile ------------ //
   const [isDragging, setIsDragging] = useState(false)
   const [startPosition, setStartPosition] = useState({ clientX: 0, clientY: 0 })
-  const [currentPosition, setCurrentPosition] = useState({
-    clientX: 0,
-    clientY: 0,
-  })
-  const [translateDirection, setTranslateDirection] = useState(false)
 
   const onMouseDownHandler = (e: TouchEvent<HTMLDivElement>) => {
     setIsDragging(true)
@@ -81,13 +67,7 @@ const PageCarousel = () => {
 
   const onMouseMoveHandler = (e: TouchEvent<HTMLDivElement>) => {
     if (isDragging) {
-      const currentPositionX = e.targetTouches[0].clientX
       const currentPositionY = e.targetTouches[0].clientY
-      setCurrentPosition({
-        clientX: currentPositionX,
-        clientY: currentPositionY,
-      })
-      setTranslateDirection(startPosition.clientY - currentPositionY >= 0)
 
       if (startPosition.clientY - currentPositionY >= 0) {
         scrollToNewScreen()
@@ -96,34 +76,6 @@ const PageCarousel = () => {
       }
     }
   }
-
-  const onMouseUpHandler = (e: TouchEvent<HTMLDivElement>) => {
-    // setIsDragging(false)
-    // if (
-    //   Math.round(e.changedTouches[0].pageY) !==
-    //     Math.round(startPosition.clientY) &&
-    //   Math.round(e.changedTouches[0].pageX) !==
-    //     Math.round(startPosition.clientX) &&
-    //   currentPosition.clientX - startPosition.clientX < 50 &&
-    //   startPosition.clientX - currentPosition.clientX < 50
-    // ) {
-    //   if (translateDirection) {
-    //     scrollToNewScreen()
-    //   } else {
-    //     scrollToNewScreen(false)
-    //   }
-    // }
-  }
-
-  // const scrollEventHandler = useDebounceCallback(onPageWheelHandler, 2000, true)
-
-  // const scrollLock = useDebounce(scrollToDirection, 1300)
-
-  // console.log({
-  //   isScrollLock,
-  //   scrollToDirection,
-  //   screenNumber,
-  // })
 
   useEffect(() => {
     if (!isScrollLock) {
@@ -145,15 +97,6 @@ const PageCarousel = () => {
       if (scrollToDirection < 0) {
         scrollPrevConfig.forEach((config) => {
           if (screenNumber === config.currentScreenNumber) {
-            //   if (config.hasOwnProperty('isMobile')) {
-            //     if (config.isMobile ? isMobile : !isMobile) {
-            //       setScreenNumber(config.setScreenNumber)
-            //       setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
-            //     }
-            //   } else {
-            //     setScreenNumber(config.setScreenNumber)
-            //     setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
-            //   }
             setScreenNumber(config.setScreenNumber)
             setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
           }
@@ -175,7 +118,6 @@ const PageCarousel = () => {
         onWheel={onPageWheelHandler}
         onTouchStart={onMouseDownHandler}
         onTouchMove={onMouseMoveHandler}
-        onTouchEnd={onMouseUpHandler}
       >
         <FirstScreen />
         <SecondScreen screenNumber={screenNumber} />
