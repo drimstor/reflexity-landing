@@ -23,6 +23,14 @@
     height: 100%;
   }
 
+  button {
+    font-size: 20px;
+
+    @include mobile {
+      font-size: 16px;
+    }
+  }
+
   span {
     text-align: center;
     font-size: 32px;
