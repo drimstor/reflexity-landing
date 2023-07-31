@@ -57,7 +57,7 @@ $mainMono: var(--mainMono);
 }
 
 @mixin macbook {
-  @media screen and (max-width: 1367px) {
+  @media screen and (max-height: 769px) {
     @content;
   }
 }
