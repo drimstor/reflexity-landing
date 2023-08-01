@@ -42,14 +42,14 @@ const TableRequestModal = ({ isActive }: TableRequestModalProps) => {
         ))}
       </div>
       <div className={styles.buttonsBox}>
-        <Button variant='outlined' size='small' icon={checkIcon}>
-          Я оплатил
+        <Button variant='outlined' size='small' icon={closeRedIcon}>
+          Отменить заявку
         </Button>
         <Button variant='outlined' size='small' icon={arrowIcon}>
           Отправить на проверку
         </Button>
-        <Button variant='outlined' size='small' icon={closeRedIcon}>
-          Отменить заявку
+        <Button variant='contained' size='small' icon={checkIcon}>
+          Я оплатил
         </Button>
       </div>
     </div>

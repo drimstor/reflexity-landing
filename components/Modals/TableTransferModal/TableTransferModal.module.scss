@@ -106,5 +106,14 @@
     min-height: auto;
     height: 3em;
     gap: 0.3em;
+    width: 50%;
+
+    &:hover {
+      cursor: auto;
+    }
+
+    &:last-child:hover {
+      background: $accent-blue-main;
+    }
   }
 }

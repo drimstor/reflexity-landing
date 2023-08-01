@@ -154,6 +154,10 @@
     min-height: auto;
     height: 3em;
     gap: 0.6em;
+
+    &:hover {
+      cursor: auto;
+    }
   }
 }
 

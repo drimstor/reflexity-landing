@@ -129,6 +129,14 @@
     height: 3em;
     gap: 0.3em;
     white-space: nowrap;
+
+    &:hover {
+      cursor: auto;
+    }
+
+    &:last-child:hover {
+      background: $accent-blue-main;
+    }
   }
 }
 

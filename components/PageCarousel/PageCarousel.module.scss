@@ -76,7 +76,11 @@
   }
 
   &.screen6 {
-    transform: translateY(calc(-600vh - 0px));
+    transform: translateY(calc(-600vh + 40px));
+
+    @media screen and (max-height: 674px) {
+      transform: translateY(calc(-600vh + 60px));
+    }
   }
 
   &.screen7 {

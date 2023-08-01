@@ -109,7 +109,7 @@
 
     span {
       color: var(--neutral-grey-main, #707e8f);
-      font-size: 0.3em;
+      font-size: 0.7em;
       line-height: 130%;
       display: block;
       margin-top: -0.1em;
@@ -133,10 +133,19 @@
     height: 3em;
     gap: 0.3em;
     line-height: 120%;
+    width: 100%;
 
-    &:last-child {
+    &:hover {
+      cursor: auto;
+    }
+
+    &:first-child {
       border: 0.975px solid var(--additional-red-main, #9c3d3d);
       color: var(--additional-red-main, #9c3d3d);
+    }
+
+    &:last-child:hover {
+      background: $accent-blue-main;
     }
 
     @include mobile {
