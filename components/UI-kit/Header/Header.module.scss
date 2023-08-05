@@ -44,7 +44,7 @@ header.header {
 .menu {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 0px;
 
   a {
     font-size: 16px;
@@ -62,18 +62,20 @@ header.header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: absolute;
+    position: fixed;
     left: -24px;
+    left: 0;
     top: -100vh;
-    height: 100vh;
-    min-height: 100vh;
+    // height: 100dvh;
+    // min-height: 100dvh;
+    height: 100%;
     width: 100vw;
     max-height: -moz-available;
     max-height: -webkit-fill-available;
     max-height: fill-available;
     background: $background;
     z-index: 1;
-    transition: top 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
     &::before {
       content: '';
@@ -264,6 +266,15 @@ header.header {
   &:last-child {
     border-bottom: 0;
   }
+}
+
+.burgerBox {
+  width: 50px;
+  height: 50px;
+  margin-right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .burgerButton {

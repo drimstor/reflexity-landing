@@ -25,7 +25,10 @@ body {
   width: 100vw;
   top: 0;
   left: 0;
-  
+
+  &.scrollLock {
+    overflow: hidden !important;
+  }
 }
 
 a {

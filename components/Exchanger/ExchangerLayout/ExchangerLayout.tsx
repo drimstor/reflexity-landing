@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React, { ReactNode } from 'react'
 import styles from './ExchangerLayout.module.scss'
-import miniLogo from '../../../public/bitconceMiniLogo.svg'
+import miniLogo from '../../../public/paikinsMiniLogo.svg'
 import { icons, summaryItems } from './constants'
 import clsx from 'clsx'
 import arrow from '../../../public/icons/arrow-right.svg'

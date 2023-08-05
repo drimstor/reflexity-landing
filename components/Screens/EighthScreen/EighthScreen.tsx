@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './EighthScreen.module.scss'
 import clsx from 'clsx'
 import Button from 'components/UI-kit/Buttons/Button'
-import telegramIcon from '../../../public/icons/telegram.svg'
+import telegram from '../../../public/icons/Telegram_logo.svg'
 import ContactModal from 'components/Modals/ContactModal/ContactModal'
 import Footer from 'components/UI-kit/Footer/Footer'
 import { useInView } from 'react-intersection-observer'
@@ -33,8 +33,10 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
             Подайте заявку и мы вам ответим в течение 1 часа. Для интеграции
             достаточно ознакомить нас с вашим бизнесом, показать ваши ресурсы.
           </p>
-          <Button variant='outlined' size='medium' reverseIcon={telegramIcon}>
+          <Button variant='outlined' size='medium'>
             Наша служба поддержки:
+            <Image src={telegram} alt='telegram' />
+            @paykins
           </Button>
         </div>
         <div className={styles.modalBox}>

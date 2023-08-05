@@ -93,6 +93,10 @@
     height: 72px;
     min-height: 72px;
 
+    img {
+      margin-right: -8px;
+    }
+
     @include tablet {
       margin: 40px auto 0 auto;
     }

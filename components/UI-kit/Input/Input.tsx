@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 import styles from './Input.module.scss'
 
@@ -9,12 +10,8 @@ interface InputProps {
 
 const Input = ({ title, placeholder, isTextArea }: InputProps) => {
   return (
-    <div className={styles.inputBox}>
-      {isTextArea ? (
-        <textarea required  />
-      ) : (
-        <input type='text' placeholder={placeholder} required />
-      )}
+    <div className={clsx(styles.inputBox, isTextArea && styles.textAreaBox)}>
+      {isTextArea ? <textarea required /> : <input type='text' required />}
       <label>{title}</label>
     </div>
   )

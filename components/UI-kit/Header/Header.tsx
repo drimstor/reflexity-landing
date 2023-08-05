@@ -55,6 +55,20 @@ const Header = ({
     }
   }, [screenNumber])
 
+  useEffect(() => {
+    // Add an event listener to disable scrolling when the menu is open
+    if (isShowBurgerMenu) {
+      document.body.classList.add('scrollLock')
+    } else {
+      document.body.classList.remove('scrollLock')
+    }
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.body.classList.remove('scrollLock')
+    }
+  }, [isShowBurgerMenu])
+
   const getTopCoords = (elem: any) => {
     let box = elem.getBoundingClientRect()
     return box.top + document.querySelector('body')?.scrollTop
@@ -145,14 +159,19 @@ const Header = ({
               ))}
             </div>
           </div>
+
           <div
-            className={clsx(
-              styles.burgerButton,
-              isShowBurgerMenu && styles.active
-            )}
+            className={styles.burgerBox}
             onClick={() => setIsShowBurgerMenu(!isShowBurgerMenu)}
           >
-            <span />
+            <div
+              className={clsx(
+                styles.burgerButton,
+                isShowBurgerMenu && styles.active
+              )}
+            >
+              <span />
+            </div>
           </div>
           <Button className={styles.signIn} variant='contained' size='small'>
             Войти в кабинет
