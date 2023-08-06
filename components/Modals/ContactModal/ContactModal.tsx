@@ -12,18 +12,19 @@ const ContactModal = () => {
 
   const onSubmitHandler = (event: any) => {
     event.preventDefault()
-    const site = event.target[0].value
-    const email = event.target[1].value
-    const nickname = event.target[2].value
-    const description = event.target[3].value
-    const date = new Date().toISOString().replace('T', ' ').split('.')[0]
+    const site = String(event.target[0].value)
+    const email = String(event.target[1].value)
+    const nickname = String(event.target[2].value)
+    const description = String(event.target[3].value)
+    const date = String(
+      new Date().toISOString().replace('T', ' ').split('.')[0]
+    )
     handleAddUser({ site, email, nickname, description, date })
   }
 
-  const fetchUsers = async () => {
-    const response = await axios.get('/api/getUsers')
-    console.log(response.data)
-  }
+  // const fetchUsers = async () => {
+  //   const response = await axios.get('/api/getUsers')
+  // }
 
   return (
     <div className={styles.modalBox}>
@@ -40,14 +41,6 @@ const ContactModal = () => {
         ))}
         <Button variant='contained' size='medium' typeSubmit fullWidth>
           Присоединиться
-        </Button>
-        <Button
-          variant='contained'
-          size='medium'
-          onClick={fetchUsers}
-          fullWidth
-        >
-          Показать
         </Button>
       </form>
     </div>

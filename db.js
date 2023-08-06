@@ -20,7 +20,7 @@ const createTable = async () => {
 }
 
 const insertUser = async (user) => {
-  createTable()
+  // createTable()
   // clearTable()
   await knex('users').insert(user)
 }
