@@ -35,8 +35,10 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
           </p>
           <Button variant='outlined' size='medium'>
             Наша служба поддержки:
-            <Image src={telegram} alt='telegram' />
-            @paykins
+            <span>
+              <Image src={telegram} alt='telegram' />
+              @paykins
+            </span>
           </Button>
         </div>
         <div className={styles.modalBox}>

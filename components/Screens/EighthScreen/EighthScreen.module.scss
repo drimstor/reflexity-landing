@@ -93,8 +93,9 @@
     height: 72px;
     min-height: 72px;
 
-    img {
-      margin-right: -8px;
+    span {
+      display: flex;
+      gap: 6px;
     }
 
     @include tablet {

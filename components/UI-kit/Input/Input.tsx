@@ -6,12 +6,17 @@ interface InputProps {
   title: string
   placeholder: string
   isTextArea?: boolean
+  name: number
 }
 
-const Input = ({ title, placeholder, isTextArea }: InputProps) => {
+const Input = ({ title, placeholder, isTextArea, name }: InputProps) => {
   return (
     <div className={clsx(styles.inputBox, isTextArea && styles.textAreaBox)}>
-      {isTextArea ? <textarea required /> : <input type='text' required />}
+      {isTextArea ? (
+        <textarea name={String(name)} required />
+      ) : (
+        <input type='text' name={String(name)} required />
+      )}
       <label>{title}</label>
     </div>
   )
