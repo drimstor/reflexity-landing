@@ -8,17 +8,16 @@ import styles from './ContactModal.module.scss'
 const ContactModal = () => {
   const handleAddUser = async (args: any) => {
     // await axios.post('/api/addUser', args)
-    const telegramBotToken = '6471286629:AAGE74rskDfOtA-ukKd59X6BisBND4W1drk'
-    const apiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`
-    const payload = {
-      chat_id: 558687674,
-      text: `Новая заявка: 
-      
+    const text = `Новая заявка: 
+  
 Сайт - ${args.site}
 Почта - ${args.email}
 Ник в телеграм - ${args.nickname}
-Описание продукта - ${args.description}`,
-    }
+Описание продукта - ${args.description}`
+
+    const telegramBotToken = '6471286629:AAGE74rskDfOtA-ukKd59X6BisBND4W1drk'
+    const apiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`
+    const payload = { chat_id: 558687674, text }
     await axios.post(apiUrl, payload)
   }
 
