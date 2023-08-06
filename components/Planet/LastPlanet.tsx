@@ -10,12 +10,17 @@ interface PlanetProps {
 
 const LastPlanet = ({ screenNumber }: PlanetProps) => {
   const [lastAnimantion, setLastAnimantion] = useState(false)
+  const [transitionOn, setTransitionOn] = useState(false)
 
   useEffect(() => {
     if (screenNumber === '7') {
       setTimeout(() => setLastAnimantion(true), 1300)
     } else {
       setLastAnimantion(false)
+    }
+
+    if (!transitionOn) {
+      setTimeout(() => setTransitionOn(true), 300)
     }
   }, [screenNumber])
 
@@ -25,7 +30,8 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
         className={clsx(
           styles.lastScreen,
           screenNumber === '7' && styles.lastScreenActive,
-          lastAnimantion && styles.lastAnimantionActive
+          lastAnimantion && styles.lastAnimantionActive,
+          transitionOn && styles.transition
         )}
       >
         <Image src={mainCircle} alt='circle' />

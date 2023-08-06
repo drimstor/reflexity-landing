@@ -208,8 +208,11 @@ header.header {
   opacity: 0;
   visibility: hidden;
   // filter: blur(3px);
-  transition: all 0.3s ease-in-out;
   transform: translateY(-10px);
+
+  &.transition {
+    transition: all 0.3s ease-in-out;
+  }
 
   &.show {
     opacity: 1;

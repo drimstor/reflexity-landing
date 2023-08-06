@@ -26,6 +26,7 @@ const Header = ({
   const languageSelectBoxRef = useRef(null)
   const [isShowLanguageSelect, setIsShowLanguageSelect] = useState(false)
   const [currentLanguage, setCurrentLanguage] = useState(0)
+  const [transitionOn, setTransitionOn] = useState(false)
 
   const currentRef = isShowLanguageSelect
     ? languageSelectBoxRef
@@ -56,14 +57,16 @@ const Header = ({
   }, [screenNumber])
 
   useEffect(() => {
-    // Add an event listener to disable scrolling when the menu is open
     if (isShowBurgerMenu) {
       document.body.classList.add('scrollLock')
     } else {
       document.body.classList.remove('scrollLock')
     }
 
-    // Clean up the event listener when the component unmounts
+    if (!transitionOn) {
+      setTimeout(() => setTransitionOn(true), 300)
+    }
+
     return () => {
       document.body.classList.remove('scrollLock')
     }
@@ -126,7 +129,10 @@ const Header = ({
             </Button>
           </nav>
           <div
-            className={styles.languageSelectBox}
+            className={clsx(
+              styles.languageSelectBox,
+              transitionOn && styles.transition
+            )}
             onClick={() => setIsShowLanguageSelect(!isShowLanguageSelect)}
             ref={languageSelectBoxRef}
           >

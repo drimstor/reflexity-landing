@@ -105,9 +105,12 @@
 }
 
 .lastScreen {
-  transition: all 1.3s ease-in-out;
   position: relative;
   transform: translateY(0) translateX(150%) scale(0.6) rotate(00deg);
+
+  &.transition {
+    transition: all 1.3s ease-in-out;
+  }
 }
 
 .lastScreenActive {
