@@ -21,9 +21,12 @@
 }
 
 .shadowBox {
-  transition: all 1.3s ease-in-out;
   transform: translateY(31%) scale(0.6) rotate(90deg);
   position: relative;
+
+  &.transition {
+    transition: all 1.3s ease-in-out;
+  }
 
   @include macbook {
     transform: translateY(34%) scale(0.6) rotate(90deg);

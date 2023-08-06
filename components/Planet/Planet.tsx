@@ -12,9 +12,11 @@ interface PlanetProps {
 
 const Planet = ({ screenNumber, isMobile }: PlanetProps) => {
   const [content, setContent] = useState<any>(null)
+  const [transitionOn, setTransitionOn] = useState(false)
 
   useEffect(() => {
     setContent(isMobile ? mobileCircle : mainCircle)
+    setTimeout(() => setTransitionOn(true), 300)
   }, [])
 
   return (
@@ -23,7 +25,8 @@ const Planet = ({ screenNumber, isMobile }: PlanetProps) => {
         className={clsx(
           styles.shadowBox,
           styles['screen' + screenNumber],
-          screenNumber.includes('2_') && styles.noShadow
+          screenNumber.includes('2_') && styles.noShadow,
+          transitionOn && styles.transition
         )}
       >
         {content && <Image src={content} alt='circle' />}
