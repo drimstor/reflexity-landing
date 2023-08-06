@@ -6,7 +6,7 @@ import { inputsValues } from './constants'
 import styles from './ContactModal.module.scss'
 
 const ContactModal = () => {
-  const handleAddUser = async (args: any) => {
+  const handleSendTelegramMessage = async (args: any) => {
     // await axios.post('/api/addUser', args)
     const text = `Новая заявка: 
   
@@ -27,10 +27,8 @@ const ContactModal = () => {
     const email = String(event.target[1].value)
     const nickname = String(event.target[2].value)
     const description = String(event.target[3].value)
-    const date = String(
-      new Date().toISOString().replace('T', ' ').split('.')[0]
-    )
-    handleAddUser({ site, email, nickname, description, date })
+    const date = new Date().toISOString().replace('T', ' ').split('.')[0]
+    handleSendTelegramMessage({ site, email, nickname, description, date })
   }
 
   // const fetchUsers = async () => {
