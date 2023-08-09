@@ -9,6 +9,7 @@ import Image from 'next/image'
 import arrowUp from '../../../public/icons/arrow-up.svg'
 import arrowDown from '../../../public/icons/arrow-down.svg'
 import { firstTableTD, secondTableTD } from '../ExchangerLayout/constants'
+import useMediaQuery from 'hooks/useMediaQuery'
 
 interface ExchangerTableProps {
   control: any
@@ -27,6 +28,7 @@ const ExchangerTable = ({
   isAnotherTable,
   isActive,
 }: ExchangerTableProps) => {
+  const isMobile = useMediaQuery('(max-width: 426px)')
   return (
     <div
       className={clsx(
@@ -101,8 +103,8 @@ const ExchangerTable = ({
                       {item}
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
-                        width='9'
-                        height='8'
+                        width={isMobile ? '6' : '9'}
+                        height={isMobile ? '5' : '8'}
                         viewBox='0 0 9 8'
                         fill='none'
                       >

@@ -27,16 +27,14 @@ const Header = ({
   const [isShowLanguageSelect, setIsShowLanguageSelect] = useState(false)
   const [currentLanguage, setCurrentLanguage] = useState(0)
   const [transitionOn, setTransitionOn] = useState(false)
+  const [isShowBurgerMenu, setIsShowBurgerMenu] = useState(false)
+  const [activeHeaderItem, setActiveHeaderItem] = useState<null | number>(null)
 
   const currentRef = isShowLanguageSelect
     ? languageSelectBoxRef
     : languageSelectRef
 
   useClickOutside(currentRef, () => setIsShowLanguageSelect(false))
-
-  const [isShowBurgerMenu, setIsShowBurgerMenu] = useState(false)
-
-  const [activeHeaderItem, setActiveHeaderItem] = useState<null | number>(null)
 
   useEffect(() => {
     if (screenNumber.includes('2_')) {
@@ -57,10 +55,22 @@ const Header = ({
   }, [screenNumber])
 
   useEffect(() => {
-    if (isShowBurgerMenu) {
-      document.body.classList.add('scrollLock')
-    } else {
-      document.body.classList.remove('scrollLock')
+    const html = document.querySelector('html')
+
+    if (html) {
+      if (isShowBurgerMenu) {
+        document.body.classList.add('scrollLock')
+        html.classList.add('scrollLock')
+        document.ontouchmove = function (e) {
+          e.preventDefault()
+        }
+      } else {
+        document.body.classList.remove('scrollLock')
+        html.classList.remove('scrollLock')
+        document.ontouchmove = function (e) {
+          return true
+        }
+      }
     }
 
     if (!transitionOn) {
@@ -72,23 +82,11 @@ const Header = ({
     }
   }, [isShowBurgerMenu])
 
-  const getTopCoords = (elem: any) => {
-    let box = elem.getBoundingClientRect()
-    return box.top + document.querySelector('body')?.scrollTop
-  }
-
-  const clickOnHeaderItem = (screen: string, link: string) => {
+  const clickOnHeaderItem = (screen: string) => {
     setIsShowBurgerMenu(false)
 
     if (!isMobile) {
       onScrollToScreenCallback(screen)
-    } else {
-      onScrollToScreenCallback('start')
-      document.querySelector('body')?.scrollTo({
-        top: getTopCoords(document.getElementById(link)) - 80,
-        left: 0,
-        behavior: 'smooth',
-      })
     }
   }
 
@@ -105,15 +103,12 @@ const Header = ({
           <nav className={clsx(styles.nav, isShowBurgerMenu && styles.show)}>
             <ul className={styles.navItems}>
               {navItems.map((item, index) => (
-                <li
-                  key={index}
-                  onClick={() => clickOnHeaderItem(item.screen, item.link)}
-                >
+                <li key={index} onClick={() => clickOnHeaderItem(item.screen)}>
                   <Link
                     className={clsx(
                       activeHeaderItem === index && styles.active
                     )}
-                    href={'#'}
+                    href={isMobile ? `#${item.link}` : '#'}
                   >
                     {item.title}
                   </Link>

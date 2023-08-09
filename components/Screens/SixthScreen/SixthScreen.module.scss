@@ -12,9 +12,8 @@
   justify-content: center;
 
   @include tablet {
-    margin-bottom: 150px;
+    margin-bottom: 50px;
     min-height: fit-content;
-    // padding-top: 200px;
   }
 
   &.active {

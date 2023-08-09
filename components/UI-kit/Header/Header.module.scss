@@ -65,13 +65,11 @@ header.header {
     position: fixed;
     left: -100vw;
     top: 0;
-    // height: 100dvh;
-    // min-height: 100dvh;
     height: 100%;
     width: 100vw;
-    max-height: -moz-available;
-    max-height: -webkit-fill-available;
-    max-height: fill-available;
+    min-height: -moz-available;
+    min-height: fill-available;
+    min-height: -webkit-fill-available;
     background: $background;
     z-index: 1;
     transition: all 0.5s ease-in-out;

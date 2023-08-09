@@ -11,7 +11,8 @@
   justify-content: center;
 
   @include tablet {
-    margin-bottom: 200px;
+    padding-top: 100px;
+    margin-bottom: 100px;
     min-height: fit-content;
   }
 
@@ -147,7 +148,7 @@
   @include tablet {
     display: block;
     position: absolute;
-    top: -100px;
+    top: 00px;
     right: -10%;
     transform: rotate(90deg);
     opacity: 0;

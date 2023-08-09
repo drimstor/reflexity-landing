@@ -178,6 +178,10 @@
     line-height: 140%;
     max-width: 18em;
 
+    @include mobile {
+      font-weight: 300;
+    }
+
     > img {
       margin-bottom: -0.33em;
       margin-right: 0.33em;

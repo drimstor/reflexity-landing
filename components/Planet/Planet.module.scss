@@ -11,12 +11,17 @@
   justify-content: center;
 
   @include laptop {
-    // transform: translate(-50%, -45%);
+    transform: translate(-50%, -45%);
   }
 
   @include tablet {
-    transform: translate(-50%, -43%);
+    transform: translate(-50%, 0%);
+    top: 4%;
     position: absolute;
+  }
+
+  @include mobile {
+    top: 1.3%;
   }
 }
 

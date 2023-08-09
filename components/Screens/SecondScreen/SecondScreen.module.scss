@@ -51,7 +51,6 @@
   }
 
   @include tablet {
-    margin-bottom: 100px;
     min-height: fit-content;
 
     &.mobileActive {

@@ -1,4 +1,10 @@
-import React, { TouchEvent, useEffect, useState, WheelEvent } from 'react'
+import React, {
+  TouchEvent,
+  useEffect,
+  useRef,
+  useState,
+  WheelEvent,
+} from 'react'
 import styles from './PageCarousel.module.scss'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import Planet from 'components/Planet/Planet'
@@ -17,6 +23,7 @@ import useMediaQuery from 'hooks/useMediaQuery'
 
 const PageCarousel = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+  const carouselRef = useRef<HTMLElement>(null)
   // ------------- Desktop ------------ //
   const [scrollToDirection, setScrollToDirection] = useState<number>(0)
   const [screenNumber, setScreenNumber] = useState('0')
@@ -27,11 +34,13 @@ const PageCarousel = () => {
   }
 
   const scrollToNewScreen = (isNext = true) => {
-    setScrollToDirection(isNext ? 1 : -1)
-    setTimeout(() => {
-      setIsScrollLock(true)
-      setScrollToDirection(0)
-    }, 100)
+    if (carouselRef.current?.dataset.scroll === 'enable') {
+      setScrollToDirection(isNext ? 1 : -1)
+      setTimeout(() => {
+        setIsScrollLock(true)
+        setScrollToDirection(0)
+      }, 100)
+    }
   }
 
   const onScrollToScreenCallback = (screen: string) => {
@@ -114,6 +123,9 @@ const PageCarousel = () => {
       />
       <Planet screenNumber={screenNumber} isMobile={isMobile} />
       <section
+        id='carousel'
+        ref={carouselRef}
+        data-scroll={'enable'}
         className={clsx(styles.globalBox, styles['screen' + screenNumber])}
         onWheel={onPageWheelHandler}
         onTouchStart={onMouseDownHandler}

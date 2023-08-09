@@ -43,7 +43,6 @@ const ContactModal = () => {
           <Input
             key={key}
             title={input.title}
-            placeholder={input.placeholder}
             isTextArea={key === 3}
             name={key}
           />

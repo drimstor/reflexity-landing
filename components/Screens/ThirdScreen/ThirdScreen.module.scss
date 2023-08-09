@@ -13,6 +13,7 @@
 
   @include tablet {
     min-height: fit-content;
+    padding-top: 100px;
 
     &.mobileActive {
       animation: showBlur 0.5s ease-in-out 0.3s forwards;
@@ -264,7 +265,7 @@
   @include tablet {
     display: block;
     position: absolute;
-    top: -60px;
+    top: 40px;
     right: -10%;
     transform: rotate(0deg);
     transition: all 0.5s ease-in-out;
