@@ -67,6 +67,12 @@ $mainMono: var(--mainMono);
     @content;
   }
 }
+ 
+@mixin noTablet {
+  @media screen and (min-width: 770px) {
+    @content;
+  }
+}
 
 //-------------- Extends ---------------//
 

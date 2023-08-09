@@ -147,18 +147,20 @@ header.header {
       }
     }
 
-    &:hover a,
-    .active {
-      color: $accent-blue-main;
+    @include noTablet {
+      &:hover a,
+      .active {
+        color: $accent-blue-main;
 
-      &::before,
-      &::after {
-        width: 50%;
+        &::before,
+        &::after {
+          width: 50%;
+        }
       }
-    }
 
-    &:active a {
-      color: #023b7e;
+      &:active a {
+        color: #023b7e;
+      }
     }
   }
 }
