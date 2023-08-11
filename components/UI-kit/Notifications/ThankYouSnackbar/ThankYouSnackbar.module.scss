@@ -26,4 +26,10 @@
     font-weight: 400;
     line-height: 150%;
   }
+
+  @include tablet {
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
