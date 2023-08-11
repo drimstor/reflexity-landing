@@ -27,7 +27,7 @@
 
   form {
     margin-top: 40px;
-    gap: 16px;
+    gap: 18px;
     display: grid;
     grid-template-rows: 52px 52px 100px 64px;
     grid-template-areas:
@@ -39,6 +39,7 @@
     @include tablet {
       display: flex;
       flex-direction: column;
+      gap: 20px;
     }
 
     div:nth-child(1) {

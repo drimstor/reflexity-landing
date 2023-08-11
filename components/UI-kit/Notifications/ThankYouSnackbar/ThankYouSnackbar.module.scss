@@ -1,0 +1,29 @@
+@use '@/styles/_helpers' as *;
+
+.snackbarBox {
+  position: fixed;
+  z-index: 99999;
+  right: -100%;
+  top: 88px;
+  display: flex;
+  max-width: 400px;
+  width: 100%;
+  padding: 16px 24px 16px 16px;
+  gap: 16px;
+  transition: right 0.5s ease-in-out;
+  border-radius: 16px;
+  border: 2px solid var(--additional-green-main, #12d477);
+  background: var(--neutral-black-main, #151823);
+  box-shadow: 0px 16px 32px 0px rgba(12, 14, 20, 0.44);
+  backdrop-filter: blur(22px);
+
+  &.show {
+    right: 56px;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+  }
+}

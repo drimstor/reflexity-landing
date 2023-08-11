@@ -1,9 +1,25 @@
 export const inputsValues = [
-  { title: 'Сайт', placeholder: 'Сайт' },
-  { title: 'Почта', placeholder: 'Ваша почта' },
-  { title: 'Ник в телеграм', placeholder: 'Введите свой ник в телеграм' },
   {
-    title: 'Описание вашего проекта',
-    placeholder: 'Расскажите о вашем проекте',
+    label: 'Сайт',
+    placeholder: 'Сайт',
+    type: 'text',
+    validation: {
+      isLink: true,
+    },
+  },
+  {
+    label: 'Почта',
+    placeholder: 'Почта',
+    type: 'email',
+  },
+  {
+    label: 'Ник в телеграм',
+    placeholder: 'Ник в телеграм',
+    type: 'text',
+  },
+  {
+    label: 'Описание вашего проекта',
+    placeholder: 'Описание вашего проекта',
+    type: 'text',
   },
 ]

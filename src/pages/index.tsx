@@ -81,7 +81,7 @@ export default function Home() {
           </Button>
         </form>
       ) : (
-        <main className={inter.className}>
+        <main id='body' className={inter.className}>
           <PageCarousel />
         </main>
       )}

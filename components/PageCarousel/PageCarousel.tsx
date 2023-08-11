@@ -1,10 +1,3 @@
-import React, {
-  TouchEvent,
-  useEffect,
-  useRef,
-  useState,
-  WheelEvent,
-} from 'react'
 import styles from './PageCarousel.module.scss'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import Planet from 'components/Planet/Planet'
@@ -20,6 +13,13 @@ import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
 import Header from 'components/UI-kit/Header/Header'
 import LastPlanet from 'components/Planet/LastPlanet'
 import useMediaQuery from 'hooks/useMediaQuery'
+import React, {
+  TouchEvent,
+  useEffect,
+  useRef,
+  useState,
+  WheelEvent,
+} from 'react'
 
 const PageCarousel = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
