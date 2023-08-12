@@ -11,9 +11,14 @@ import mobileCircle from '../../../public/mobilePlanet.svg'
 interface ThirdScreenProps {
   screenNumber: string
   isMobile: boolean
+  onScrollToScreenCallback: (screen: string) => void
 }
 
-const ThirdScreen = ({ screenNumber, isMobile }: ThirdScreenProps) => {
+const ThirdScreen = ({
+  screenNumber,
+  isMobile,
+  onScrollToScreenCallback,
+}: ThirdScreenProps) => {
   const [frameChanged, setFrameChanged] = useState(false)
   const [animateItem, setAnimateItem] = useState(animateFramesConfig['2_1'])
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -65,7 +70,11 @@ const ThirdScreen = ({ screenNumber, isMobile }: ThirdScreenProps) => {
             {animateItem.text3 && <li>{animateItem.text3}</li>}
           </ul>
           {animateItem.button && (
-            <Button variant='contained' size='large'>
+            <Button
+              variant='contained'
+              size='large'
+              onClick={() => onScrollToScreenCallback('7')}
+            >
               Присоединиться
             </Button>
           )}

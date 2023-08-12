@@ -44,10 +44,12 @@ const PageCarousel = () => {
   }
 
   const onScrollToScreenCallback = (screen: string) => {
+    document.body.classList.add('noTransition')
     setScreenNumber(screen)
     setTimeout(() => {
       setIsScrollLock(true)
       setScrollToDirection(0)
+      document.body.classList.remove('noTransition')
     }, 100)
     setTimeout(clearScrollLock, 1500)
   }
@@ -131,12 +133,20 @@ const PageCarousel = () => {
         onTouchStart={onMouseDownHandler}
         onTouchMove={onMouseMoveHandler}
       >
-        <FirstScreen />
+        <FirstScreen onScrollToScreenCallback={onScrollToScreenCallback} />
         <SecondScreen screenNumber={screenNumber} />
-        <ThirdScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <ThirdScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          onScrollToScreenCallback={onScrollToScreenCallback}
+        />
         <FourthScreen screenNumber={screenNumber} isMobile={isMobile} />
         <FifthScreen screenNumber={screenNumber} isMobile={isMobile} />
-        <SixthScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <SixthScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          onScrollToScreenCallback={onScrollToScreenCallback}
+        />
         <SeventhScreen screenNumber={screenNumber} isMobile={isMobile} />
         <EighthScreen screenNumber={screenNumber} />
       </section>
