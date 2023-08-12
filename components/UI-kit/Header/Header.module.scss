@@ -330,7 +330,7 @@ header.header {
 
 .signIn {
   @include tablet {
-    display: none;
+    display: none !important;
   }
 }
 

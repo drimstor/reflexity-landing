@@ -2,11 +2,11 @@ import React from 'react'
 import styles from './EighthScreen.module.scss'
 import clsx from 'clsx'
 import Button from 'components/UI-kit/Buttons/Button'
-import telegram from '../../../public/icons/Telegram_logo.svg'
+import telegram from 'public/icons/Telegram_logo.svg'
 import ContactModal from 'components/Modals/ContactModal/ContactModal'
 import Footer from 'components/UI-kit/Footer/Footer'
 import { useInView } from 'react-intersection-observer'
-import mobileCircle from '../../../public/mobilePlanet.svg'
+import mobileCircle from 'public/mobilePlanet.svg'
 import Image from 'next/image'
 
 interface EighthScreenProps {
@@ -30,8 +30,9 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
         <div className={styles.textBox}>
           <h2>Свяжитесь с нами</h2>
           <p>
-            Подайте заявку и мы вам ответим в течение 1 часа. Для интеграции
-            достаточно ознакомить нас с вашим бизнесом, показать ваши ресурсы.
+            Подайте заявку и мы вам ответим в течение 1&#160;часа. Для
+            интеграции достаточно ознакомить нас с вашим бизнесом, показать ваши
+            ресурсы.
           </p>
           <Button variant='outlined' size='medium'>
             Наша служба поддержки:
