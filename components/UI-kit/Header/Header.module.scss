@@ -206,7 +206,6 @@ header.header {
   background: $neutral-black-hover;
   opacity: 0;
   visibility: hidden;
-  // filter: blur(3px);
   transform: translateY(-10px);
 
   &.transition {

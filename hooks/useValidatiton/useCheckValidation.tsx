@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 
 export type validationsList = {
   minLength?: number
@@ -7,13 +7,19 @@ export type validationsList = {
   isEmail?: boolean
   isLink?: boolean
 }
+const setErrorsFields = (state: any, action: { [key: string]: string }) => {
+  return {
+    ...state,
+    ...action,
+  }
+}
 
 const useCheckValidation = (
   value: string,
   validationsList: validationsList,
   isResetField: boolean
 ) => {
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useReducer(setErrorsFields, {
     minLengthError: '',
     maxLengthError: '',
     emptyFieldError: '',
@@ -26,26 +32,22 @@ const useCheckValidation = (
       switch (validation) {
         case 'minLength':
           value.length < validationsList[validation]!
-            ? setErrors((prev) => ({
-                ...prev,
+            ? setErrors({
                 minLengthError: `Минимальная длина - ${validationsList[validation]}`,
-              }))
-            : setErrors((prev) => ({
-                ...prev,
+              })
+            : setErrors({
                 minLengthError: ``,
-              }))
+              })
           break
 
         case 'maxLength':
           value.length > validationsList[validation]!
-            ? setErrors((prev) => ({
-                ...prev,
+            ? setErrors({
                 maxLengthError: `Максимальная длина - ${validationsList[validation]}`,
-              }))
-            : setErrors((prev) => ({
-                ...prev,
+              })
+            : setErrors({
                 maxLengthError: ``,
-              }))
+              })
 
           break
 
@@ -56,15 +58,13 @@ const useCheckValidation = (
               .match(
                 /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9\-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-\/])*)?/
               )
-              ? setErrors((prev) => ({
-                  ...prev,
+              ? setErrors({
                   incorrectLinkError: '',
-                }))
-              : setErrors((prev) => ({
-                  ...prev,
+                })
+              : setErrors({
                   incorrectLinkError:
                     'Введите URL в формате http://www.site.com',
-                }))
+                })
 
             break
           }
@@ -72,14 +72,12 @@ const useCheckValidation = (
         case 'isEmpty':
           if (validationsList[validation]) {
             value
-              ? setErrors((prev) => ({
-                  ...prev,
+              ? setErrors({
                   emptyFieldError: '',
-                }))
-              : setErrors((prev) => ({
-                  ...prev,
+                })
+              : setErrors({
                   emptyFieldError: 'Поле не может быть пустым',
-                }))
+                })
           }
           break
 
@@ -90,14 +88,12 @@ const useCheckValidation = (
               .match(
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
               )
-              ? setErrors((prev) => ({
-                  ...prev,
+              ? setErrors({
                   incorrectEmailError: '',
-                }))
-              : setErrors((prev) => ({
-                  ...prev,
+                })
+              : setErrors({
                   incorrectEmailError: 'Некорректный E-mail',
-                }))
+                })
 
             break
           }
@@ -107,7 +103,7 @@ const useCheckValidation = (
 
   const firstError = Object.values(errors).find((error) => error !== '') ?? ''
 
-  return isResetField ? '' : firstError
+  return isResetField ? '' : String(firstError)
 }
 
 export default useCheckValidation

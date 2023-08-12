@@ -37,8 +37,8 @@ const useValidation = () => {
 
   useEffect(() => {
     if (listErrors) {
-      const errors = Object.values(listErrors).filter((error) => !!error)
-      if (errors.length === 0) {
+      const errors = Object.values(listErrors).find((error) => !!error)
+      if (!errors) {
         setIsNoError(true)
       }
     }
