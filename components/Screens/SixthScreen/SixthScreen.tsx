@@ -9,9 +9,14 @@ import { InView, useInView } from 'react-intersection-observer'
 interface SixthScreenProps {
   screenNumber: string
   isMobile: boolean
+  onScrollToScreenCallback: (screen: string) => void
 }
 
-const SixthScreen = ({ screenNumber, isMobile }: SixthScreenProps) => {
+const SixthScreen = ({
+  screenNumber,
+  isMobile,
+  onScrollToScreenCallback,
+}: SixthScreenProps) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
@@ -45,7 +50,11 @@ const SixthScreen = ({ screenNumber, isMobile }: SixthScreenProps) => {
               Гарантируем быструю обработку ваших платежей, безопасность
               транзакций и высокую конвертацию из заявки в успешную оплату
             </p>
-            <Button variant='contained' size='medium'>
+            <Button
+              variant='contained'
+              size='medium'
+              onClick={() => onScrollToScreenCallback('7')}
+            >
               Присоединиться
             </Button>
           </div>

@@ -21,6 +21,7 @@ export default function FourOhFour() {
         screenNumber={'0'}
         isMobile={false}
         onScrollToScreenCallback={() => console.log('')}
+        isSidePage
       />
 
       <div className={clsx(styles.shadowBox)}>

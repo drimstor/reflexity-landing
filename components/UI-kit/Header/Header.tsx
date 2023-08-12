@@ -10,18 +10,22 @@ import Link from 'next/link'
 import Button from 'components/UI-kit/Buttons/Button'
 import useClickOutside from 'hooks/useClickOutside'
 import { languages, navItems } from './constants'
+import { useRouter } from 'next/router'
 
 interface iHeader {
   onScrollToScreenCallback: any
   screenNumber: string
   isMobile: boolean
+  isSidePage?: boolean
 }
 
 const Header = ({
   screenNumber,
   onScrollToScreenCallback,
   isMobile,
+  isSidePage,
 }: iHeader) => {
+  const router = useRouter()
   const languageSelectRef = useRef(null)
   const languageSelectBoxRef = useRef(null)
   const [isShowLanguageSelect, setIsShowLanguageSelect] = useState(false)
@@ -90,15 +94,19 @@ const Header = ({
     }
   }
 
+  const reloadPage = () => {
+    if (router.pathname !== '/404') location.reload()
+  }
+
   return (
     <header className={styles.header}>
       <div className={clsx('wrapper', styles.wrapper)}>
-        <a className={styles.logo} href=''>
+        <Link className={styles.logo} href='/' onClick={reloadPage}>
           <Image width={120} src={logo} alt='logo' />
-        </a>
-        <a className={styles.miniLogo} href=''>
+        </Link>
+        <Link className={styles.miniLogo} href='/' onClick={reloadPage}>
           <Image width={48} src={miniLogo} alt='logo' />
-        </a>
+        </Link>
         <div className={styles.menu}>
           <nav className={clsx(styles.nav, isShowBurgerMenu && styles.show)}>
             <ul className={styles.navItems}>
@@ -108,7 +116,7 @@ const Header = ({
                     className={clsx(
                       activeHeaderItem === index && styles.active
                     )}
-                    href={isMobile ? `#${item.link}` : '#'}
+                    href={isSidePage ? '/' : isMobile ? `#${item.link}` : '#'}
                   >
                     {item.title}
                   </Link>
