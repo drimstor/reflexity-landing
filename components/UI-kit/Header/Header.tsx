@@ -77,7 +77,7 @@ const Header = ({
       }
     }
 
-    if (!transitionOn) {
+    if (transitionOn === false) {
       setTimeout(() => setTransitionOn(true), 300)
     }
 
@@ -132,10 +132,7 @@ const Header = ({
             </Button>
           </nav>
           <div
-            className={clsx(
-              styles.languageSelectBox,
-              transitionOn && styles.transition
-            )}
+            className={clsx(styles.languageSelectBox)}
             onClick={() => setIsShowLanguageSelect(!isShowLanguageSelect)}
             ref={languageSelectBoxRef}
           >
@@ -150,7 +147,8 @@ const Header = ({
             <div
               className={clsx(
                 styles.languageSelect,
-                isShowLanguageSelect && styles.show
+                isShowLanguageSelect && styles.show,
+                transitionOn && styles.transition
               )}
               ref={languageSelectRef}
             >

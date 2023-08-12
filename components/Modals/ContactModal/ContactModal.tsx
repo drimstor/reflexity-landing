@@ -38,12 +38,6 @@ const ContactModal = () => {
   const [showThankYouSnackbar, setShowThankYouSnackbar] = useState(false)
 
   useEffect(() => {
-    if (showThankYouSnackbar) {
-      setTimeout(() => setShowThankYouSnackbar(false), 5000)
-    }
-  }, [showThankYouSnackbar])
-
-  useEffect(() => {
     if (isNoError) {
       const site = formFields['0']
       const email = formFields['1']
@@ -54,6 +48,12 @@ const ContactModal = () => {
       setShowThankYouSnackbar(true)
     }
   }, [isNoError])
+
+  useEffect(() => {
+    if (showThankYouSnackbar) {
+      setTimeout(() => setShowThankYouSnackbar(false), 5000)
+    }
+  }, [showThankYouSnackbar])
 
   return (
     <>

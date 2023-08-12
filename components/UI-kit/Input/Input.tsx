@@ -13,6 +13,12 @@ interface InputProps {
   required?: boolean
   multiline?: boolean
   disabled?: boolean
+  isCheckError?: boolean
+  checkValidate?: (key: string, error: string, value: string) => void
+  error?: string | boolean
+  name: string
+  helperText?: string
+  isNoError: boolean
   validation?: {
     minLength?: number
     maxLength?: number
@@ -20,12 +26,6 @@ interface InputProps {
     isEmail?: boolean
     isLink?: boolean
   }
-  isCheckError?: boolean
-  checkValidate?: (key: string, error: string, value: string) => void
-  error?: string | boolean
-  name: string
-  helperText?: string
-  isNoError: boolean
 }
 
 const Input = ({
@@ -55,6 +55,12 @@ const Input = ({
     }
   }, [multilineHover])
 
+  const [isFocused, setIsFocused] = useState(false)
+  const onBlurMiddleWare = () => {
+    setIsFocused(false)
+    useValid.onBlur()
+  }
+
   //--------------- Validation ----------------//
 
   const useValid = useInput(initialValue ?? '', {
@@ -75,24 +81,15 @@ const Input = ({
   useEffect(() => {
     if (isNoError) {
       useValid.resetField()
-      if (validation) {
-        validation.isEmpty = false
-      }
     }
   }, [isNoError])
 
   //--------------- Password ----------------//
 
-  const [isShowPassword, setIsShowPassword] = useState(false)
-  const showPasswordHandler = () => {
-    setIsShowPassword(!isShowPassword)
-  }
-
-  const [isFocused, setIsFocused] = useState(false)
-  const onBlurMiddleWare = () => {
-    useValid.onBlur()
-    setIsFocused(false)
-  }
+  // const [isShowPassword, setIsShowPassword] = useState(false)
+  // const showPasswordHandler = () => {
+  //   setIsShowPassword(!isShowPassword)
+  // }
 
   return (
     <div
@@ -100,7 +97,8 @@ const Input = ({
         styles.inputBox,
         multiline && styles.textAreaBox,
         useValid.isOutFocus && !!useValid.validateError && styles.error,
-        isFocused && styles.focused
+        isFocused && styles.focused,
+        !!useValid.inputValue && styles.focusedLabel
       )}
     >
       {multiline ? (
@@ -108,25 +106,24 @@ const Input = ({
           value={useValid.inputValue}
           onChange={useValid.onChange}
           onBlur={onBlurMiddleWare}
-          ref={textArea}
           onFocus={() => setIsFocused(true)}
           name={name}
-          required
+          ref={textArea}
         />
       ) : (
         <input
-          required
           value={useValid.inputValue}
           onChange={useValid.onChange}
-          onFocus={() => setIsFocused(true)}
           onBlur={onBlurMiddleWare}
-          className={clsx(className && className)}
+          onFocus={() => setIsFocused(true)}
           name={name}
-          type={'text'}
+          className={clsx(className && className)}
+          type='text'
         />
       )}
-      <label className={clsx(!!useValid.validateError && styles.error)}>
-        {label}
+      <label>
+        <p>{label}</p>
+        <div className={styles.line} />
       </label>
       {useValid.isOutFocus && useValid.validateError && (
         <span>{useValid.validateError}</span>
