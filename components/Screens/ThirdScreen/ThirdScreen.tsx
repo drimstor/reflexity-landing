@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { animateFramesConfig, thirdScreenValues } from './constants'
 import { useInView } from 'react-intersection-observer'
 import mobileCircle from '../../../public/mobilePlanet.svg'
+import { useRouter } from 'next/router'
 
 interface ThirdScreenProps {
   screenNumber: string
@@ -19,6 +20,7 @@ const ThirdScreen = ({
   isMobile,
   onScrollToScreenCallback,
 }: ThirdScreenProps) => {
+  const router = useRouter()
   const [frameChanged, setFrameChanged] = useState(false)
   const [animateItem, setAnimateItem] = useState(animateFramesConfig['2_1'])
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -38,6 +40,10 @@ const ThirdScreen = ({
       }
     }
   }, [screenNumber])
+
+  const scrollToForm = () => {
+    isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
+  }
 
   return (
     <div
@@ -70,11 +76,7 @@ const ThirdScreen = ({
             {animateItem.text3 && <li>{animateItem.text3}</li>}
           </ul>
           {animateItem.button && (
-            <Button
-              variant='contained'
-              size='large'
-              onClick={() => onScrollToScreenCallback('7')}
-            >
+            <Button variant='contained' size='large' onClick={scrollToForm}>
               Присоединиться
             </Button>
           )}

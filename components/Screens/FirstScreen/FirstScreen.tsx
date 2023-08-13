@@ -3,12 +3,21 @@ import styles from './FirstScreen.module.scss'
 import logo from '../../../public/paikinsLogo.svg'
 import Image from 'next/image'
 import Button from 'components/UI-kit/Buttons/Button'
+import { useRouter } from 'next/router'
 
 interface FirstScreenProps {
   onScrollToScreenCallback: (screen: string) => void
+  isMobile: boolean
 }
 
-const FirstScreen = ({ onScrollToScreenCallback }: FirstScreenProps) => {
+const FirstScreen = ({
+  onScrollToScreenCallback,
+  isMobile,
+}: FirstScreenProps) => {
+  const router = useRouter()
+  const scrollToForm = () => {
+    isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
+  }
   return (
     <div className={styles.contentBox}>
       <Image src={logo} width={440} alt='circle' />
@@ -17,7 +26,7 @@ const FirstScreen = ({ onScrollToScreenCallback }: FirstScreenProps) => {
         className={styles.connnectBtn}
         variant='contained'
         size='medium'
-        onClick={() => onScrollToScreenCallback('7')}
+        onClick={scrollToForm}
       >
         Свяжитесь с нами
       </Button>

@@ -133,7 +133,10 @@ const PageCarousel = () => {
         onTouchStart={onMouseDownHandler}
         onTouchMove={onMouseMoveHandler}
       >
-        <FirstScreen onScrollToScreenCallback={onScrollToScreenCallback} />
+        <FirstScreen
+          onScrollToScreenCallback={onScrollToScreenCallback}
+          isMobile={isMobile}
+        />
         <SecondScreen screenNumber={screenNumber} />
         <ThirdScreen
           screenNumber={screenNumber}

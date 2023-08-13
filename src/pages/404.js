@@ -8,6 +8,7 @@ import mainCircle from 'public/mainCircle.svg'
 import Image from 'next/image'
 import Button from 'components/UI-kit/Buttons/Button'
 import { useRouter } from 'next/router'
+import useMediaQuery from 'hooks/useMediaQuery'
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '600'],
@@ -15,11 +16,12 @@ const inter = Inter({
 
 export default function FourOhFour() {
   const router = useRouter()
+  const isMobile = useMediaQuery('(max-width: 768px)')
   return (
     <main id='body' className={clsx(inter.className, styles.pageBox)}>
       <Header
         screenNumber={'0'}
-        isMobile={false}
+        isMobile={isMobile}
         onScrollToScreenCallback={() => console.log('')}
         isSidePage
       />

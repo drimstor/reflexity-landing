@@ -5,6 +5,7 @@ import ExchangerLayout from 'components/Exchanger/ExchangerLayout/ExchangerLayou
 import ExchangerChart from 'components/Exchanger/ExchangerChart/ExchangerChart'
 import Button from 'components/UI-kit/Buttons/Button'
 import { InView, useInView } from 'react-intersection-observer'
+import { useRouter } from 'next/router'
 
 interface SixthScreenProps {
   screenNumber: string
@@ -18,6 +19,10 @@ const SixthScreen = ({
   onScrollToScreenCallback,
 }: SixthScreenProps) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+  const router = useRouter()
+  const scrollToForm = () => {
+    isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
+  }
 
   return (
     <InView triggerOnce>
@@ -50,11 +55,7 @@ const SixthScreen = ({
               Гарантируем быструю обработку ваших платежей, безопасность
               транзакций и высокую конвертацию из заявки в успешную оплату
             </p>
-            <Button
-              variant='contained'
-              size='medium'
-              onClick={() => onScrollToScreenCallback('7')}
-            >
+            <Button variant='contained' size='medium' onClick={scrollToForm}>
               Присоединиться
             </Button>
           </div>
