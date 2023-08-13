@@ -123,7 +123,10 @@
 }
 
 .lastAnimantionActive {
-  transition: all 60s ease-in-out;
+  &.transition {
+    transition: all 60s ease-in-out;
+  }
+
   transform: translateY(0) translateX(30%) scale(0.4) rotate(150deg);
 }
 

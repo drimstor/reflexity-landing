@@ -41,10 +41,6 @@ const ThirdScreen = ({
     }
   }, [screenNumber])
 
-  const scrollToForm = () => {
-    isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
-  }
-
   return (
     <div
       ref={ref}
@@ -76,7 +72,11 @@ const ThirdScreen = ({
             {animateItem.text3 && <li>{animateItem.text3}</li>}
           </ul>
           {animateItem.button && (
-            <Button variant='contained' size='large' onClick={scrollToForm}>
+            <Button
+              variant='contained'
+              size='large'
+              onClick={() => onScrollToScreenCallback('7')}
+            >
               Присоединиться
             </Button>
           )}

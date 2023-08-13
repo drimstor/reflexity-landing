@@ -43,6 +43,7 @@ const SixthScreen = ({
             className={styles.mobileButton}
             variant='contained'
             size='medium'
+            onClick={() => router.push('#contact')}
           >
             Присоединиться
           </Button>
