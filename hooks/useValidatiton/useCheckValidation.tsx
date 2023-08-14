@@ -63,7 +63,7 @@ const useCheckValidation = (
                 })
               : setErrors({
                   incorrectLinkError:
-                    'Введите URL в формате http://www.site.com',
+                    'Введите сайт',
                 })
 
             break
