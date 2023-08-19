@@ -9,9 +9,14 @@ import Image from 'next/image'
 interface SeventhScreenProps {
   screenNumber: string
   isMobile: boolean
+  isNoAnimation: string[]
 }
 
-const SeventhScreen = ({ screenNumber, isMobile }: SeventhScreenProps) => {
+const SeventhScreen = ({
+  screenNumber,
+  isMobile,
+  isNoAnimation,
+}: SeventhScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [content, setContent] = useState<contentType>([])
 
@@ -26,7 +31,8 @@ const SeventhScreen = ({ screenNumber, isMobile }: SeventhScreenProps) => {
       className={clsx(
         styles.contentBox,
         screenNumber === '6' && styles.active,
-        inView && styles.mobileActive
+        inView && styles.mobileActive,
+        isNoAnimation.includes('6') && styles.isNoAnimation
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />

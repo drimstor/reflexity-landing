@@ -11,15 +11,18 @@ interface SixthScreenProps {
   screenNumber: string
   isMobile: boolean
   onScrollToScreenCallback: (screen: string) => void
+  isNoAnimation: string[]
 }
 
 const SixthScreen = ({
   screenNumber,
   isMobile,
   onScrollToScreenCallback,
+  isNoAnimation,
 }: SixthScreenProps) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   const router = useRouter()
+  const noAnimation = isNoAnimation.includes('3')
   const scrollToForm = () => {
     isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
   }
@@ -30,7 +33,7 @@ const SixthScreen = ({
         ref={ref}
         className={clsx(
           styles.contentBox,
-          (screenNumber === '5' || inView) && styles.active
+          (screenNumber === '5' || inView || noAnimation) && styles.active
         )}
       >
         <div
@@ -47,8 +50,12 @@ const SixthScreen = ({
           >
             Присоединиться
           </Button>
-          <ExchangerLayout isActive={screenNumber === '5' || inView}>
-            <ExchangerChart isActive={screenNumber === '5' || inView} />
+          <ExchangerLayout
+            isActive={screenNumber === '5' || inView || noAnimation}
+          >
+            <ExchangerChart
+              isActive={screenNumber === '5' || inView || noAnimation}
+            />
           </ExchangerLayout>
           <div className={styles.textBox}>
             <h3>Статистика</h3>

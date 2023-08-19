@@ -29,11 +29,12 @@
     margin-top: 40px;
     gap: 18px;
     display: grid;
-    grid-template-rows: 52px 52px 100px 64px;
+    grid-template-rows: 52px 52px 100px auto 64px;
     grid-template-areas:
       'input1 input1'
       'input2 input3'
       'input4 input4'
+      'checkbox checkbox'
       'button button';
 
     @include tablet {
@@ -53,6 +54,9 @@
     }
     div:nth-child(4) {
       grid-area: input4;
+    }
+    div:nth-child(5) {
+      grid-area: checkbox;
     }
     > button {
       grid-area: button;

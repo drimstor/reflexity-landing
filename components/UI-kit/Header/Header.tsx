@@ -71,7 +71,7 @@ const Header = ({
       } else {
         document.body.classList.remove('scrollLock')
         html.classList.remove('scrollLock')
-        document.ontouchmove = function (e) {
+        document.ontouchmove = function () {
           return true
         }
       }
@@ -83,6 +83,7 @@ const Header = ({
 
     return () => {
       document.body.classList.remove('scrollLock')
+      if (html) html.classList.remove('scrollLock')
     }
   }, [isShowBurgerMenu])
 

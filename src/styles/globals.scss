@@ -15,6 +15,10 @@ body {
     overflow-y: scroll;
   }
 
+  &.canScroll {
+    // overflow-y: scroll;
+  }
+
   &.scrollLock {
     overflow-y: hidden !important;
   }
@@ -36,6 +40,13 @@ body {
 
   @include tablet {
     position: relative;
+  }
+
+  &.canScroll {
+    height: 100%;
+    overflow-y: scroll;
+    @extend %scroll;
+    // position: relative;
   }
 }
 

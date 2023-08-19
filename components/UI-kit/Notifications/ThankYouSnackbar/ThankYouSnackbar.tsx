@@ -4,8 +4,9 @@ import check from 'public/icons/greenCheck.svg'
 import Image from 'next/image'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
+import closeRedIcon from 'public/icons/close-red.svg'
 
-const ThankYouSnackbar = () => {
+const ThankYouSnackbar = ({ isReject }: { isReject: string }) => {
   const body = document.getElementById('body')
   const [show, setShow] = useState(false)
 
@@ -16,9 +17,19 @@ const ThankYouSnackbar = () => {
 
   if (body) {
     return createPortal(
-      <div className={clsx(styles.snackbarBox, show && styles.show)}>
-        <Image src={check} alt='check' />
-        <p>Спасибо за обращение. Наши операторы скоро свяжутся с вами.</p>
+      <div
+        className={clsx(
+          styles.snackbarBox,
+          !!isReject && styles.reject,
+          show && styles.show
+        )}
+      >
+        <Image src={!!isReject ? closeRedIcon : check} alt='check' />
+        <p>
+          {!!isReject
+            ? `Ошибка - ${isReject}`
+            : 'Спасибо за обращение. Наши операторы скоро свяжутся с вами.'}{' '}
+        </p>
       </div>,
       body
     )

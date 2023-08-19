@@ -4,7 +4,7 @@ import Planet from 'components/Planet/Planet'
 import clsx from 'clsx'
 import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
 import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
-import { scrollNextConfig, scrollPrevConfig } from './constants'
+import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
 import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
 import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
 import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
@@ -22,6 +22,7 @@ import React, {
 } from 'react'
 
 const PageCarousel = () => {
+  const [disableAnimationScreens, setDisableAnimationScreens] = useState([''])
   const isMobile = useMediaQuery('(max-width: 768px)')
   const carouselRef = useRef<HTMLElement>(null)
   // ------------- Desktop ------------ //
@@ -51,7 +52,16 @@ const PageCarousel = () => {
       setScrollToDirection(0)
       document.body.classList.remove('noTransition')
     }, 100)
-    setTimeout(clearScrollLock, 1500)
+    setTimeout(clearScrollLock, 1000)
+
+    if (!disableAnimationScreens.includes(screen)) {
+      const screenIndex = screensFromNav.indexOf(screen)
+      const array = screensFromNav.slice(
+        0,
+        screen === '2_1' ? screenIndex + 1 : screenIndex
+      )
+      setDisableAnimationScreens(array)
+    }
   }
 
   const onPageWheelHandler = (e: WheelEvent<HTMLElement>) => {
@@ -137,20 +147,36 @@ const PageCarousel = () => {
           onScrollToScreenCallback={onScrollToScreenCallback}
           isMobile={isMobile}
         />
-        <SecondScreen screenNumber={screenNumber} />
+        <SecondScreen
+          screenNumber={screenNumber}
+          isNoAnimation={disableAnimationScreens}
+        />
         <ThirdScreen
           screenNumber={screenNumber}
           isMobile={isMobile}
           onScrollToScreenCallback={onScrollToScreenCallback}
         />
-        <FourthScreen screenNumber={screenNumber} isMobile={isMobile} />
-        <FifthScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <FourthScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+        />
+        <FifthScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+        />
         <SixthScreen
           screenNumber={screenNumber}
           isMobile={isMobile}
           onScrollToScreenCallback={onScrollToScreenCallback}
+          isNoAnimation={disableAnimationScreens}
         />
-        <SeventhScreen screenNumber={screenNumber} isMobile={isMobile} />
+        <SeventhScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+        />
         <EighthScreen screenNumber={screenNumber} />
       </section>
       <LastPlanet screenNumber={screenNumber} />

@@ -6,6 +6,7 @@
   right: -100%;
   top: 88px;
   display: flex;
+  align-items: center;
   max-width: 400px;
   width: 100%;
   padding: 16px 24px 16px 16px;
@@ -19,6 +20,10 @@
 
   &.show {
     right: 56px;
+  }
+
+  &.reject {
+    border-color: #9c3d3d;
   }
 
   p {

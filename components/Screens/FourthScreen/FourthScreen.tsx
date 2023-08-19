@@ -17,16 +17,21 @@ import Image from 'next/image'
 interface FourthScreenProps {
   screenNumber: string
   isMobile: boolean
+  isNoAnimation: string[]
 }
 
-const FourthScreen = ({ screenNumber, isMobile }: FourthScreenProps) => {
+const FourthScreen = ({
+  screenNumber,
+  isMobile,
+  isNoAnimation,
+}: FourthScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const noAnimation = isNoAnimation.includes('3')
   return (
     <div
       className={clsx(
         styles.contentBox,
-        screenNumber === '3' && styles.active,
-        inView && styles.active
+        (screenNumber === '3' || inView || noAnimation) && styles.active
       )}
       id='about'
       ref={ref}
@@ -38,16 +43,20 @@ const FourthScreen = ({ screenNumber, isMobile }: FourthScreenProps) => {
           !isMobile && screenNumber !== '3' && styles.hide
         )}
       >
-        <ExchangerLayout isActive={screenNumber === '3' || inView}>
+        <ExchangerLayout
+          isActive={screenNumber === '3' || inView || noAnimation}
+        >
           <ExchangerTable
-            isActive={screenNumber === '3' || inView}
+            isActive={screenNumber === '3' || inView || noAnimation}
             tabs={firstTableTabs}
             control={firstTableControl}
             thData={firstTableTH}
             tdData={firstTableTD}
           />
         </ExchangerLayout>
-        <TableRequestModal isActive={screenNumber === '3' || inView} />
+        <TableRequestModal
+          isActive={screenNumber === '3' || inView || noAnimation}
+        />
         <div className={styles.textBox}>
           <h3>Покупка USDT</h3>
           <p>

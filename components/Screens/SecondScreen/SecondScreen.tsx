@@ -7,10 +7,12 @@ import { useInView } from 'react-intersection-observer'
 
 interface SecondScreenProps {
   screenNumber: string
+  isNoAnimation: string[]
 }
 
-const SecondScreen = ({ screenNumber }: SecondScreenProps) => {
+const SecondScreen = ({ screenNumber, isNoAnimation }: SecondScreenProps) => {
   const [isActive, setIsActive] = useState(false)
+  const noAnimation = isNoAnimation.includes('2_1')
 
   useEffect(() => {
     if (screenNumber === '1') {
@@ -35,7 +37,8 @@ const SecondScreen = ({ screenNumber }: SecondScreenProps) => {
       className={clsx(
         styles.contentBox,
         isActive && styles.active,
-        screenNumber === 'start' && styles.mobileActive
+        noAnimation && styles.noAnimation,
+        (screenNumber === 'start' || noAnimation) && styles.mobileActive
       )}
     >
       <div className={styles.wrapper}>
@@ -55,13 +58,14 @@ const SecondScreen = ({ screenNumber }: SecondScreenProps) => {
               key={index}
               className={clsx(
                 styles.blockItem,
-                viewData[index].view && styles.mobileActiveItem
+                (viewData[index].view || noAnimation) && styles.mobileActiveItem
               )}
             >
               <div
                 className={clsx(
                   styles.icon,
-                  (screenNumber === 'start' || isActive) && styles.active
+                  (screenNumber === 'start' || isActive || noAnimation) &&
+                    styles.active
                 )}
               >
                 <Image src={item.icon} alt='icon' />

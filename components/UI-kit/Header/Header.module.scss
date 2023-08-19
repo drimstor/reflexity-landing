@@ -108,7 +108,6 @@ header.header {
   li {
     @include tablet {
       width: 100%;
-      padding: 24px 16px;
       border-bottom: 1px solid $neutral-stroke-grey-main;
 
       &:first-child {
@@ -121,6 +120,12 @@ header.header {
       padding: 16px 0 12px;
       height: 100%;
       position: relative;
+
+      @include tablet {
+        padding: 24px 16px;
+        width: 100%;
+        display: inline-block;
+      }
 
       &::before {
         content: '';

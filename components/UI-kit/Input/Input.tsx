@@ -15,7 +15,7 @@ interface InputProps {
   disabled?: boolean
   isCheckError?: boolean
   checkValidate?: (key: string, error: string, value: string) => void
-  error?: string | boolean
+  error?: string | boolean | null
   name: string
   helperText?: string
   isNoError: boolean
@@ -38,6 +38,7 @@ const Input = ({
   checkValidate,
   multiline,
   name,
+  error,
   helperText,
   isNoError,
 }: InputProps) => {
@@ -79,10 +80,10 @@ const Input = ({
   }, [isCheckError])
 
   useEffect(() => {
-    if (isNoError) {
+    if (isNoError && error !== null && !error) {
       useValid.resetField()
     }
-  }, [isNoError])
+  }, [isNoError, error])
 
   //--------------- Password ----------------//
 

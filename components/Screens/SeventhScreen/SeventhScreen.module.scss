@@ -95,6 +95,40 @@
     }
   }
 
+  &.isNoAnimation {
+    .line::after {
+      animation: line 1s ease-out forwards;
+    }
+
+    .cardBox:nth-child(1)::after,
+    .cardBox:nth-child(1)::before,
+    .cardBox:nth-child(1) .card,
+    .cardBox:nth-child(1) .number {
+      animation: show ease-in-out forwards;
+    }
+
+    .cardBox:nth-child(2)::after,
+    .cardBox:nth-child(2)::before,
+    .cardBox:nth-child(2) .card,
+    .cardBox:nth-child(2) .number {
+      animation: show ease-in-out forwards;
+    }
+
+    .cardBox:nth-child(3)::after,
+    .cardBox:nth-child(3)::before,
+    .cardBox:nth-child(3) .card,
+    .cardBox:nth-child(3) .number {
+      animation: show ease-in-out forwards;
+    }
+
+    .cardBox:nth-child(4)::after,
+    .cardBox:nth-child(4)::before,
+    .cardBox:nth-child(4) .card,
+    .cardBox:nth-child(4) .number {
+      animation: show ease-in-out forwards;
+    }
+  }
+
   h2 {
     text-align: center;
     font-size: 48px;
@@ -128,7 +162,7 @@
   transition: opacity 0.5s ease-in-out;
 
   @include laptop {
-    gap: 2em;
+    gap: 5em;
   }
 
   @include tablet {

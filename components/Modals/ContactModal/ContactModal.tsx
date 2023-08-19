@@ -6,15 +6,18 @@ import useValidation from 'hooks/useValidatiton/useValidation'
 import React, { useEffect, useState } from 'react'
 import { inputsValues } from './constants'
 import styles from './ContactModal.module.scss'
+import Checkbox from 'components/UI-kit/Checkbox/Checkbox'
+import Link from 'next/link'
 
 const ContactModal = () => {
+  const [error, setError] = useState<null | string>(null)
+  const [showThankYouSnackbar, setShowThankYouSnackbar] = useState(false)
   const { runCheck, isCheckError, checkValidate, isNoError, formFields } =
     useValidation()
 
   const handleSendTelegramMessage = async (args: any) => {
     // await axios.post('/api/addUser', args)
     const text = `Новая заявка: 
-  
 Сайт - ${args.site}
 Почта - ${args.email}
 Ник в телеграм - ${args.nickname}
@@ -23,7 +26,10 @@ const ContactModal = () => {
     const telegramBotToken = '6471286629:AAGE74rskDfOtA-ukKd59X6BisBND4W1drk'
     const apiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`
     const payload = { chat_id: 558687674, text }
-    await axios.post(apiUrl, payload)
+    await axios
+      .post(apiUrl, payload)
+      .then(() => setError(''))
+      .catch((error) => setError(error.message))
   }
 
   // const fetchUsers = async () => {
@@ -34,8 +40,6 @@ const ContactModal = () => {
     e.preventDefault()
     runCheck()
   }
-
-  const [showThankYouSnackbar, setShowThankYouSnackbar] = useState(false)
 
   useEffect(() => {
     if (isNoError) {
@@ -57,7 +61,7 @@ const ContactModal = () => {
 
   return (
     <>
-      {showThankYouSnackbar && <ThankYouSnackbar />}
+      {showThankYouSnackbar && <ThankYouSnackbar isReject={error ?? ''} />}
       <div className={styles.modalBox}>
         <h3>Подать заявку</h3>
         <form onSubmit={onSubmitHandler}>
@@ -73,8 +77,22 @@ const ContactModal = () => {
               checkValidate={checkValidate}
               name={String(key)}
               isNoError={isNoError}
+              error={error}
             />
           ))}
+          <div className={styles.privacyPoliсy}>
+            <Checkbox
+              title={
+                <>
+                  Я принимаю правила <Link href='#'>пользования сайтом</Link> и
+                  <Link href='/privacy'>
+                    {' '}
+                    политику обработки персональных данных
+                  </Link>
+                </>
+              }
+            />
+          </div>
           <Button variant='contained' size='medium' typeSubmit fullWidth>
             Присоединиться
           </Button>

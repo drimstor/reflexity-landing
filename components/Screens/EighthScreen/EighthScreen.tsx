@@ -8,6 +8,7 @@ import Footer from 'components/UI-kit/Footer/Footer'
 import { useInView } from 'react-intersection-observer'
 import mobileCircle from 'public/mobilePlanet.svg'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 interface EighthScreenProps {
   screenNumber: string
@@ -15,6 +16,8 @@ interface EighthScreenProps {
 
 const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const router = useRouter()
+
   return (
     <div
       id='contact'
@@ -34,7 +37,11 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
             интеграции достаточно ознакомить нас с вашим бизнесом, показать ваши
             ресурсы.
           </p>
-          <Button variant='outlined' size='medium'>
+          <Button
+            variant='outlined'
+            size='medium'
+            onClick={() => window.open('https://t.me/paykins', '_ blank')}
+          >
             Наша служба поддержки:
             <span>
               <Image src={telegram} alt='telegram' />

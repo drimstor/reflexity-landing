@@ -14,15 +14,21 @@ import { useInView } from 'react-intersection-observer'
 interface FifthScreenProps {
   screenNumber: string
   isMobile: boolean
+  isNoAnimation: string[]
 }
 
-const FifthScreen = ({ screenNumber, isMobile }: FifthScreenProps) => {
+const FifthScreen = ({
+  screenNumber,
+  isMobile,
+  isNoAnimation,
+}: FifthScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const noAnimation = isNoAnimation.includes('3')
   return (
     <div
       className={clsx(
         styles.contentBox,
-        (screenNumber === '4' || inView) && styles.active
+        (screenNumber === '4' || inView || noAnimation) && styles.active
       )}
       ref={ref}
     >
@@ -40,18 +46,20 @@ const FifthScreen = ({ screenNumber, isMobile }: FifthScreenProps) => {
           </p>
         </div>
         <ExchangerLayout
-          isActive={screenNumber === '4' || inView}
+          isActive={screenNumber === '4' || inView || noAnimation}
           isAnotherTable
         >
           <ExchangerTable
-            isActive={screenNumber === '4' || inView}
+            isActive={screenNumber === '4' || inView || noAnimation}
             control={secondTableControl}
             thData={secondTableTH}
             tdData={secondTableTD}
             isAnotherTable
           />
         </ExchangerLayout>
-        <TableTransferModal isActive={screenNumber === '4' || inView} />
+        <TableTransferModal
+          isActive={screenNumber === '4' || inView || noAnimation}
+        />
       </div>
     </div>
   )
