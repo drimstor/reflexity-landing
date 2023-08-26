@@ -14,6 +14,7 @@ interface iButton {
   icon?: string
   reverseIcon?: string
   fullWidth?: boolean
+  disabled?: boolean
 }
 
 function Button({
@@ -27,17 +28,20 @@ function Button({
   icon,
   reverseIcon,
   fullWidth,
+  disabled,
 }: iButton) {
   return (
     <button
       onClick={onClick}
       type={typeSubmit ? 'submit' : 'button'}
+      disabled={disabled}
       className={clsx(
         s.button,
         s[size],
         s[variant],
         error && s.error,
         fullWidth && s.fullWidth,
+        disabled && s.disabled,
         className && className
       )}
     >

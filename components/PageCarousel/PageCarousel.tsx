@@ -46,7 +46,7 @@ const PageCarousel = () => {
 
   const onScrollToScreenCallback = (screen: string) => {
     document.body.classList.add('noTransition')
-    setScreenNumber(screen)
+    if (!isMobile) setScreenNumber(screen)
     setTimeout(() => {
       setIsScrollLock(true)
       setScrollToDirection(0)

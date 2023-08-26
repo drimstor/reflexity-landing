@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Footer.module.scss'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
           <a href='#'>Пользовательское соглашение</a>
         </li>
         <li>
-          <a href='#'>Политика конфиденциальности</a>
+          <Link href='/privacy'>Политика конфиденциальности</Link>
         </li>
       </ul>
     </footer>

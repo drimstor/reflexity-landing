@@ -59,7 +59,7 @@ const Input = ({
   const [isFocused, setIsFocused] = useState(false)
   const onBlurMiddleWare = () => {
     setIsFocused(false)
-    useValid.onBlur()
+    // useValid.onBlur()
   }
 
   //--------------- Validation ----------------//

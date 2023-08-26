@@ -4,20 +4,21 @@ import styles from './Checkbox.module.scss'
 
 interface iCheckbox {
   title: ReactNode
+  onChange: (isChecked: boolean) => void
+  isChecked: boolean
 }
 
-const Checkbox: FC<iCheckbox> = ({ title }) => {
-  const [isChecked, setIsChecked] = useState(false)
+const Checkbox: FC<iCheckbox> = ({ title, onChange, isChecked }) => {
   return (
     <label className={styles.label}>
-      <input type='checkbox' onChange={() => setIsChecked(!isChecked)} />
+      <input type='checkbox' onChange={() => onChange(!isChecked)} />
       <svg
         className={clsx(styles.checkbox, isChecked && styles.active)}
         aria-hidden='true'
         viewBox='0 0 15 11'
         fill='none'
-        width='7.5' // Уменьшил ширину на 50%
-        height='5.5' // Уменьшил высоту на 50%
+        width='7.5'
+        height='5.5'
       >
         <path
           d='M1 4.5L5 9L14 1'

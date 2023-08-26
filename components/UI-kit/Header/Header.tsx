@@ -90,13 +90,11 @@ const Header = ({
   const clickOnHeaderItem = (screen: string) => {
     setIsShowBurgerMenu(false)
 
-    if (!isMobile) {
-      onScrollToScreenCallback(screen)
-    }
+    onScrollToScreenCallback(screen)
   }
 
   const reloadPage = () => {
-    if (router.pathname !== '/404') location.reload()
+    if (router.pathname === '/') location.reload()
   }
 
   return (

@@ -8,9 +8,11 @@ import { inputsValues } from './constants'
 import styles from './ContactModal.module.scss'
 import Checkbox from 'components/UI-kit/Checkbox/Checkbox'
 import Link from 'next/link'
+import ButtonLoader from 'components/UI-kit/Loaders/ButtonLoader'
 
 const ContactModal = () => {
   const [error, setError] = useState<null | string>(null)
+  const [isLoading, setIsLoading] = useState(false)
   const [showThankYouSnackbar, setShowThankYouSnackbar] = useState(false)
   const { runCheck, isCheckError, checkValidate, isNoError, formFields } =
     useValidation()
@@ -28,8 +30,11 @@ const ContactModal = () => {
     const payload = { chat_id: 558687674, text }
     await axios
       .post(apiUrl, payload)
-      .then(() => setError(''))
-      .catch((error) => setError(error.message))
+      .then(
+        () => setError(''),
+        (error) => setError(error.message)
+      )
+      .finally(() => setIsLoading(false))
   }
 
   // const fetchUsers = async () => {
@@ -50,6 +55,7 @@ const ContactModal = () => {
       const date = new Date().toISOString().replace('T', ' ').split('.')[0]
       handleSendTelegramMessage({ site, email, nickname, description, date })
       setShowThankYouSnackbar(true)
+      setIsLoading(true)
     }
   }, [isNoError])
 
@@ -58,6 +64,8 @@ const ContactModal = () => {
       setTimeout(() => setShowThankYouSnackbar(false), 5000)
     }
   }, [showThankYouSnackbar])
+
+  const [isChecked, setIsChecked] = useState(false)
 
   return (
     <>
@@ -82,6 +90,8 @@ const ContactModal = () => {
           ))}
           <div className={styles.privacyPoliсy}>
             <Checkbox
+              isChecked={isChecked}
+              onChange={setIsChecked}
               title={
                 <>
                   Я принимаю правила <Link href='#'>пользования сайтом</Link> и
@@ -93,8 +103,14 @@ const ContactModal = () => {
               }
             />
           </div>
-          <Button variant='contained' size='medium' typeSubmit fullWidth>
-            Присоединиться
+          <Button
+            variant='contained'
+            size='medium'
+            typeSubmit
+            fullWidth
+            disabled={!isChecked}
+          >
+            {isLoading ? <ButtonLoader /> : 'Присоединиться'}
           </Button>
         </form>
       </div>
