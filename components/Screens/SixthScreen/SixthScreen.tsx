@@ -51,10 +51,12 @@ const SixthScreen = ({
             Присоединиться
           </Button>
           <ExchangerLayout
-            isActive={screenNumber === '5' || inView || noAnimation}
+            isNoAnimation={noAnimation}
+            isActive={screenNumber === '5' || inView}
           >
             <ExchangerChart
-              isActive={screenNumber === '5' || inView || noAnimation}
+              isNoAnimation={noAnimation}
+              isActive={screenNumber === '5' || inView}
             />
           </ExchangerLayout>
           <div className={styles.textBox}>

@@ -17,19 +17,22 @@ interface ExchangerLayoutProps {
   children: ReactNode
   isActive?: boolean
   isAnotherTable?: boolean
+  isNoAnimation: boolean
 }
 
 const ExchangerLayout = ({
   children,
   isActive,
   isAnotherTable,
+  isNoAnimation,
 }: ExchangerLayoutProps) => {
   return (
     <div
       className={clsx(
         styles.box,
         isActive && styles.active,
-        isAnotherTable && styles.isAnotherTable
+        isAnotherTable && styles.isAnotherTable,
+        isNoAnimation && styles.noAnimation
       )}
     >
       <div className={styles.sidebar}>

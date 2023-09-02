@@ -11,11 +11,21 @@ import { tableData } from './constants'
 
 interface TableRequestModalProps {
   isActive?: boolean
+  isNoAnimation: boolean
 }
 
-const TableRequestModal = ({ isActive }: TableRequestModalProps) => {
+const TableRequestModal = ({
+  isActive,
+  isNoAnimation,
+}: TableRequestModalProps) => {
   return (
-    <div className={clsx(styles.modalBox, isActive && styles.active)}>
+    <div
+      className={clsx(
+        styles.modalBox,
+        isActive && styles.active,
+        isNoAnimation && styles.noAnimation
+      )}
+    >
       <div className={styles.title}>
         <span>Заявка №203</span> <Image src={closeIcon} alt='closeIcon' />
       </div>

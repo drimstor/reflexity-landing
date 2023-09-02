@@ -18,6 +18,7 @@ interface ExchangerTableProps {
   tdData: any
   isAnotherTable?: boolean
   isActive?: boolean
+  isNoAnimation: boolean
 }
 
 const ExchangerTable = ({
@@ -27,6 +28,7 @@ const ExchangerTable = ({
   tdData,
   isAnotherTable,
   isActive,
+  isNoAnimation,
 }: ExchangerTableProps) => {
   const isMobile = useMediaQuery('(max-width: 426px)')
   return (
@@ -34,7 +36,8 @@ const ExchangerTable = ({
       className={clsx(
         styles.tableBox,
         isAnotherTable && styles.anotherTable,
-        isActive && styles.active
+        isActive && styles.active,
+        isNoAnimation && styles.noAnimation
       )}
     >
       {tabs && (

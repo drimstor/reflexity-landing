@@ -35,6 +35,10 @@
     animation: showTranslate 0.5s ease-in-out 3.1s forwards;
   }
 
+  &.noAnimation {
+    animation: showTranslate ease-in-out forwards;
+  }
+
   img {
     width: 1.5em;
     height: 1.5em;

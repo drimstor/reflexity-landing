@@ -7,11 +7,18 @@ import chartImage from '../../../public/chart.svg'
 
 interface ExchangerChartProps {
   isActive?: boolean
+  isNoAnimation: boolean
 }
 
-const ExchangerChart = ({ isActive }: ExchangerChartProps) => {
+const ExchangerChart = ({ isActive, isNoAnimation }: ExchangerChartProps) => {
   return (
-    <div className={clsx(styles.globalBox, isActive && styles.active)}>
+    <div
+      className={clsx(
+        styles.globalBox,
+        isActive && styles.active,
+        isNoAnimation && styles.noAnimation
+      )}
+    >
       <div className={styles.titleAndSelectBox}>
         <h3>Статистика за период</h3>
         <div className={styles.flexWrapper}>

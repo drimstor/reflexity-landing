@@ -48,6 +48,7 @@ const FifthScreen = ({
         <ExchangerLayout
           isActive={screenNumber === '4' || inView || noAnimation}
           isAnotherTable
+          isNoAnimation={noAnimation}
         >
           <ExchangerTable
             isActive={screenNumber === '4' || inView || noAnimation}
@@ -55,10 +56,12 @@ const FifthScreen = ({
             thData={secondTableTH}
             tdData={secondTableTD}
             isAnotherTable
+            isNoAnimation={noAnimation}
           />
         </ExchangerLayout>
         <TableTransferModal
           isActive={screenNumber === '4' || inView || noAnimation}
+          isNoAnimation={noAnimation}
         />
       </div>
     </div>

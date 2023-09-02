@@ -44,10 +44,12 @@ const FourthScreen = ({
         )}
       >
         <ExchangerLayout
-          isActive={screenNumber === '3' || inView || noAnimation}
+          isNoAnimation={noAnimation}
+          isActive={screenNumber === '3' || inView}
         >
           <ExchangerTable
-            isActive={screenNumber === '3' || inView || noAnimation}
+            isNoAnimation={noAnimation}
+            isActive={screenNumber === '3' || inView}
             tabs={firstTableTabs}
             control={firstTableControl}
             thData={firstTableTH}
@@ -55,7 +57,8 @@ const FourthScreen = ({
           />
         </ExchangerLayout>
         <TableRequestModal
-          isActive={screenNumber === '3' || inView || noAnimation}
+          isActive={screenNumber === '3' || inView}
+          isNoAnimation={noAnimation}
         />
         <div className={styles.textBox}>
           <h3>Покупка USDT</h3>

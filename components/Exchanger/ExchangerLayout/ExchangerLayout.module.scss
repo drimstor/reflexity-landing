@@ -60,6 +60,22 @@
       }
     }
   }
+
+  &.noAnimation {
+    animation: showScale ease-in-out forwards;
+
+    .sidebar {
+      animation: showBlur ease-in-out forwards;
+    }
+
+    .layoutHeader {
+      animation: showTranslate ease-in-out forwards;
+    }
+
+    .summaryBox {
+      animation: showTranslate ease-in-out forwards;
+    }
+  }
 }
 
 .title {

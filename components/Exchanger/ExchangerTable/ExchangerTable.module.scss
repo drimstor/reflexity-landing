@@ -26,18 +26,16 @@
     table {
       tr:first-child td {
         animation: selectItem 0.8s ease-in-out 2.7s forwards;
+      }
+    }
+  }
 
-        @keyframes selectItem {
-          0% {
-            background: rgba(255, 255, 255, 0);
-          }
-          50% {
-            background: rgba(255, 255, 255, 0.12);
-          }
-          100% {
-            background: rgba(255, 255, 255, 0);
-          }
-        }
+  &.noAnimation {
+    animation: showTranslate ease-in-out forwards;
+
+    table {
+      tr:first-child td {
+        animation: selectItem ease-in-out forwards;
       }
     }
   }
@@ -212,5 +210,17 @@
     p {
       color: #707e8f;
     }
+  }
+}
+
+@keyframes selectItem {
+  0% {
+    background: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background: rgba(255, 255, 255, 0.12);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0);
   }
 }

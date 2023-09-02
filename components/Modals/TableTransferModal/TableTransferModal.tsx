@@ -6,12 +6,23 @@ import infoIcon from '../../../public/icons/info-circle.svg'
 import Button from 'components/UI-kit/Buttons/Button'
 import { inputData } from './constants'
 import clsx from 'clsx'
+
 interface TableTransferModalProps {
   isActive?: boolean
+  isNoAnimation: boolean
 }
-const TableTransferModal = ({ isActive }: TableTransferModalProps) => {
+const TableTransferModal = ({
+  isActive,
+  isNoAnimation,
+}: TableTransferModalProps) => {
   return (
-    <div className={clsx(styles.modalBox, isActive && styles.active)}>
+    <div
+      className={clsx(
+        styles.modalBox,
+        isActive && styles.active,
+        isNoAnimation && styles.noAnimation
+      )}
+    >
       <div className={styles.title}>
         <span>Перевод</span> <Image src={closeIcon} alt='closeIcon' />
       </div>

@@ -13,6 +13,10 @@
   &.active {
     animation: showTranslate 0.5s ease-in-out 2.2s forwards;
   }
+
+  &.noAnimation {
+    animation: showTranslate ease-in-out forwards;
+  }
 }
 
 .chartBox {
