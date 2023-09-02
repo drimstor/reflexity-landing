@@ -7,23 +7,24 @@ import clsx from 'clsx'
 import { animateFramesConfig, thirdScreenValues } from './constants'
 import { useInView } from 'react-intersection-observer'
 import mobileCircle from '../../../public/mobilePlanet.svg'
-import { useRouter } from 'next/router'
 
 interface ThirdScreenProps {
   screenNumber: string
   isMobile: boolean
   onScrollToScreenCallback: (screen: string) => void
+  isNoAnimation: string[]
 }
 
 const ThirdScreen = ({
   screenNumber,
   isMobile,
   onScrollToScreenCallback,
+  isNoAnimation,
 }: ThirdScreenProps) => {
-  const router = useRouter()
   const [frameChanged, setFrameChanged] = useState(false)
   const [animateItem, setAnimateItem] = useState(animateFramesConfig['2_1'])
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const noAnimation = isNoAnimation.includes('2_1')
 
   useEffect(() => {
     if (!isMobile) {
@@ -48,7 +49,8 @@ const ThirdScreen = ({
       className={clsx(
         styles.contentBox,
         screenNumber.includes('2_') && styles.active,
-        inView && styles.mobileActive
+        inView && styles.mobileActive,
+        noAnimation && styles.noAnimation
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />

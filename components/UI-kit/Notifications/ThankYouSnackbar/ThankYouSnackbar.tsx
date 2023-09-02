@@ -11,7 +11,7 @@ const ThankYouSnackbar = ({ isReject }: { isReject: string }) => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    setShow(true)
+    setTimeout(() => setShow(true), 300)
     setTimeout(() => setShow(false), 4000)
   }, [])
 

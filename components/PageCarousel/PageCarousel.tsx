@@ -155,6 +155,7 @@ const PageCarousel = () => {
           screenNumber={screenNumber}
           isMobile={isMobile}
           onScrollToScreenCallback={onScrollToScreenCallback}
+          isNoAnimation={disableAnimationScreens}
         />
         <FourthScreen
           screenNumber={screenNumber}

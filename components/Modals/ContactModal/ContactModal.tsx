@@ -34,7 +34,10 @@ const ContactModal = () => {
         () => setError(''),
         (error) => setError(error.message)
       )
-      .finally(() => setIsLoading(false))
+      .finally(() => {
+        setIsLoading(false)
+        setShowThankYouSnackbar(true)
+      })
   }
 
   // const fetchUsers = async () => {
@@ -54,7 +57,6 @@ const ContactModal = () => {
       const description = formFields['3']
       const date = new Date().toISOString().replace('T', ' ').split('.')[0]
       handleSendTelegramMessage({ site, email, nickname, description, date })
-      setShowThankYouSnackbar(true)
       setIsLoading(true)
     }
   }, [isNoError])
