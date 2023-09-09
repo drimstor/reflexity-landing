@@ -220,12 +220,7 @@ header.header {
   &.show {
     opacity: 1;
     visibility: visible;
-    // filter: blur(0px);
     transform: translateY(0px);
-  }
-
-  @include tablet {
-    // left: 12px;
   }
 }
 

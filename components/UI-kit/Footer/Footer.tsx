@@ -8,7 +8,7 @@ const Footer = () => {
       <span>All rights reserved Paykins 2023 (c)</span>
       <ul>
         <li>
-          <a href='#'>Пользовательское соглашение</a>
+          <a href='/terms'>Пользовательское соглашение</a>
         </li>
         <li>
           <Link href='/privacy'>Политика конфиденциальности</Link>

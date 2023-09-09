@@ -24,7 +24,8 @@ const SixthScreen = ({
   const router = useRouter()
   const noAnimation = isNoAnimation.includes('3')
   const scrollToForm = () => {
-    isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
+    onScrollToScreenCallback('7')
+    if (isMobile) router.push('#contact')
   }
 
   return (

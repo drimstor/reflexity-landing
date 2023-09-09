@@ -96,7 +96,8 @@ const ContactModal = () => {
               onChange={setIsChecked}
               title={
                 <>
-                  Я принимаю правила <Link href='#'>пользования сайтом</Link> и
+                  Я принимаю правила{' '}
+                  <Link href='/terms'>пользования сайтом</Link> и
                   <Link href='/privacy'>
                     {' '}
                     политику обработки персональных данных

@@ -16,7 +16,8 @@ const FirstScreen = ({
 }: FirstScreenProps) => {
   const router = useRouter()
   const scrollToForm = () => {
-    isMobile ? router.push('#contact') : onScrollToScreenCallback('7')
+    onScrollToScreenCallback('7')
+    if (isMobile) router.push('#contact')
   }
   return (
     <div className={styles.contentBox}>

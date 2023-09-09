@@ -89,7 +89,6 @@ const Header = ({
 
   const clickOnHeaderItem = (screen: string) => {
     setIsShowBurgerMenu(false)
-
     onScrollToScreenCallback(screen)
   }
 

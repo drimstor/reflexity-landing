@@ -13,6 +13,7 @@
     font-size: 48px;
     font-weight: 600;
     line-height: 116.667%;
+    max-width: 835px;
 
     @include tablet {
       font-size: 32px;
@@ -46,19 +47,34 @@
   }
 }
 
+.stickyWrapper {
+  @include tablet {
+    min-height: 32px;
+  }
+}
+
 .stickyBox {
   position: sticky;
   padding-top: 24px;
-  top: 80px;
+  top: 60px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background: $background;
 
   @include tablet {
+    top: 80px;
+    position: sticky;
     flex-direction: row;
     overflow-x: scroll;
     padding-top: 0;
     padding-bottom: 8px;
+  }
+
+  &.stickedMenu {
+    position: fixed;
+    top: 70px;
+    width: calc(100% - 30px);
   }
 
   a {
@@ -96,6 +112,8 @@
 
 .articlesBox {
   max-width: 787px;
+  margin-top: -10px;
+
   > div {
     &::after {
       content: '';
@@ -103,7 +121,7 @@
       width: 100%;
       height: 1px;
       left: 0;
-      bottom: 0;
+      bottom: -10px;
       position: absolute;
     }
     &:last-child {
@@ -116,18 +134,44 @@
 }
 
 .articleBox {
-  padding: 24px 0;
+  padding: 34px 0 14px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &.six {
+    p:nth-of-type(1),
+    p:nth-of-type(3) {
+      font-weight: 600;
+      margin-bottom: -16px;
+    }
+
+    p:nth-of-type(5) {
+      font-weight: 600;
+    }
+  }
 
   h2 {
     color: #f8fbff;
     font-size: 32px;
     font-weight: 600;
     line-height: 125%;
-    margin-bottom: 24px;
 
     @include mobile {
       font-size: 20px;
+    }
+  }
+
+  ul {
+    margin-top: -16px;
+    padding-left: 16px;
+
+    li {
+      list-style: disc;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 150%;
     }
   }
 
@@ -136,5 +180,18 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 150%;
+
+    span {
+      font-weight: 600;
+    }
+
+    a {
+      color: $accent-blue-main;
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        color: #023b7e;
+      }
+    }
   }
 }
