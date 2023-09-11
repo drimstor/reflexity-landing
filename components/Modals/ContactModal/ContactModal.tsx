@@ -97,11 +97,14 @@ const ContactModal = () => {
               title={
                 <>
                   Я принимаю правила{' '}
-                  <Link href='/terms'>пользования сайтом</Link> и
-                  <Link href='/privacy'>
+                  <a target='_blank' href='/terms'>
+                    пользования сайтом
+                  </a>{' '}
+                  и
+                  <a target='_blank' href='/privacy'>
                     {' '}
                     политику обработки персональных данных
-                  </Link>
+                  </a>
                 </>
               }
             />

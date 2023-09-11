@@ -72,7 +72,7 @@ header.header {
     min-height: -webkit-fill-available;
     background: $background;
     z-index: 1;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &::before {
       content: '';

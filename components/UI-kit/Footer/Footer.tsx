@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './Footer.module.scss'
-import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -8,10 +7,14 @@ const Footer = () => {
       <span>All rights reserved Paykins 2023 (c)</span>
       <ul>
         <li>
-          <Link href='/terms'>Пользовательское соглашение</Link>
+          <a target='_blank' href='/terms'>
+            Пользовательское соглашение
+          </a>
         </li>
         <li>
-          <Link href='/privacy'>Политика конфиденциальности</Link>
+          <a target='_blank' href='/privacy'>
+            Политика конфиденциальности
+          </a>
         </li>
       </ul>
     </footer>
