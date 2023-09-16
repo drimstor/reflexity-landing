@@ -22,7 +22,7 @@ const ContactModal = () => {
     const text = `Новая заявка:
 Сайт - ${args.site}
 Почта - ${args.email}
-Ник в телеграм - ${args.nickname}
+Телеграм - ${args.nickname}
 Описание продукта - ${args.description}`
 
     const telegramBotToken = '6471286629:AAGE74rskDfOtA-ukKd59X6BisBND4W1drk'
