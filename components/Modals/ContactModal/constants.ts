@@ -13,8 +13,8 @@ export const inputsValues = [
     type: 'email',
   },
   {
-    label: 'Ник в телеграм',
-    placeholder: 'Ник в телеграм',
+    label: 'Телеграм',
+    placeholder: 'Телеграм',
     type: 'text',
   },
   {

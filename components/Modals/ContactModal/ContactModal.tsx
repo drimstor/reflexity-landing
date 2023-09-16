@@ -19,15 +19,15 @@ const ContactModal = () => {
 
   const handleSendTelegramMessage = async (args: any) => {
     // await axios.post('/api/addUser', args)
-    const text = `Новая заявка: 
-Сайт - ${args.site}
-Почта - ${args.email}
-Ник в телеграм - ${args.nickname}
-Описание продукта - ${args.description}`
+    const text = `Новая заявка:
+  Сайт - ${args.site}
+  Почта - ${args.email}
+  Ник в телеграм - ${args.nickname}
+  Описание продукта - ${args.description}`
 
     const telegramBotToken = '6471286629:AAGE74rskDfOtA-ukKd59X6BisBND4W1drk'
     const apiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`
-    const payload = { chat_id: 558687674, text }
+    const payload = { chat_id: -1001920591192, text }
     await axios
       .post(apiUrl, payload)
       .then(
