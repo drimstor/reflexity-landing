@@ -67,7 +67,7 @@ $mainMono: var(--mainMono);
     @content;
   }
 }
- 
+
 @mixin noTablet {
   @media screen and (min-width: 770px) {
     @content;
@@ -80,8 +80,8 @@ $mainMono: var(--mainMono);
   min-height: 100vh;
   height: 100vh;
   max-height: -moz-available;
-  max-height: -webkit-fill-available;
-  max-height: fill-available;
+  max-height: -webkit-stretch;
+  max-height: stretch;
 
   @include tablet {
     height: 100%;

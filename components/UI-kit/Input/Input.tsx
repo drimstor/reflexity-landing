@@ -42,7 +42,12 @@ const Input = ({
   helperText,
   isNoError,
 }: InputProps) => {
-  const carousel = document.getElementById('carousel')
+  const [carousel, setCarousel] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    setCarousel(document.getElementById('carousel'))
+  }, [])
+
   const textArea = useRef<HTMLTextAreaElement | any>()
   const multilineHover = useHover(textArea)
 

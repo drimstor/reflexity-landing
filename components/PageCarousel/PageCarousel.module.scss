@@ -4,8 +4,9 @@
   position: relative;
   z-index: 99;
   height: 100%;
-  transform: translateY(0%);
+  transform: translateZ(0) translateY(0%);
   transition: transform 1.3s ease-in-out;
+  will-change: transform;
 
   &.screen1,
   &.screen1_1,

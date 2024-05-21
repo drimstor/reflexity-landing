@@ -5,10 +5,11 @@
   position: fixed;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
 
   @include laptop {
     transform: translate(-50%, -45%);
@@ -26,8 +27,9 @@
 }
 
 .shadowBox {
-  transform: translateY(31%) scale(0.6) rotate(90deg);
+  transform: translateZ(0) translateY(31%) scale(0.6) rotate(90deg);
   position: relative;
+  will-change: transform;
 
   &.transition {
     transition: all 1.3s ease-in-out;
@@ -111,7 +113,8 @@
 
 .lastScreen {
   position: relative;
-  transform: translateY(0) translateX(150%) scale(0.6) rotate(00deg);
+  transform: translateZ(0) translateY(0) translateX(150%) scale(0.6)
+    rotate(00deg);
 
   &.transition {
     transition: all 1.3s ease-in-out;
