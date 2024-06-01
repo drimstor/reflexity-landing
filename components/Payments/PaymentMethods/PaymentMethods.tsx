@@ -3,7 +3,6 @@ import PaymentMethodsItem from '../PaymentMethods/PaymentMethodsItem'
 import { listItems } from '../PaymentForm/const/static'
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import Button from 'components/UI-kit/Buttons/Button'
-import { getPaymentData } from '../PaymentForm/helpers/getPaymentData'
 
 export interface StageProps {
   changeStage: (value: string) => void

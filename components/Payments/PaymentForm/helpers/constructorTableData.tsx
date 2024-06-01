@@ -37,7 +37,7 @@ export const constructorTableData = (
         <CopyButton
           visibleText='1234 1234 1234 1234'
           value='1234 1234 1234 1234'
-        />{' '}
+        />
       </div>
     )
 
