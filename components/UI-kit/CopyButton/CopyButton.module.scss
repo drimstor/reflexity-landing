@@ -1,0 +1,37 @@
+@use '@/styles/_helpers' as *;
+
+.globalBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  &:hover {
+    b {
+      color: #023b7e;
+    }
+
+    svg path {
+      fill: #023b7e;
+    }
+  }
+
+  &:active {
+    b {
+      color: $neutral-white-main;
+    }
+
+    svg path {
+      fill: $neutral-white-main;
+    }
+  }
+
+  b {
+    transition: 0.3s ease-in-out;
+    color: $accent-blue-main;
+  }
+
+  svg path {
+    transition: 0.3s ease-in-out;
+  }
+}

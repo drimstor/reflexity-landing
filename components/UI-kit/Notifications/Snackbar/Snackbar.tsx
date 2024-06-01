@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import styles from './ThankYouSnackbar.module.scss'
+import styles from './Snackbar.module.scss'
 import check from 'public/icons/greenCheck.svg'
 import Image from 'next/image'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import closeRedIcon from 'public/icons/close-red.svg'
 
-const ThankYouSnackbar = ({ isReject }: { isReject: string }) => {
+const Snackbar = ({
+  value,
+  isReject,
+}: {
+  value: string
+  isReject?: string
+}) => {
   const body = document.getElementById('body')
   const [show, setShow] = useState(false)
 
@@ -25,11 +31,7 @@ const ThankYouSnackbar = ({ isReject }: { isReject: string }) => {
         )}
       >
         <Image src={!!isReject ? closeRedIcon : check} alt='check' />
-        <p>
-          {!!isReject
-            ? `Ошибка - ${isReject}`
-            : 'Спасибо за обращение. Наши операторы скоро свяжутся с вами.'}{' '}
-        </p>
+        <p>{!!isReject ? `Ошибка - ${isReject}` : value}</p>
       </div>,
       body
     )
@@ -38,4 +40,4 @@ const ThankYouSnackbar = ({ isReject }: { isReject: string }) => {
   return <></>
 }
 
-export default ThankYouSnackbar
+export default Snackbar

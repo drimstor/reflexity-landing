@@ -1,0 +1,19 @@
+@use '@/styles/_helpers' as *;
+
+.globalBox {
+  h2 {
+    margin-bottom: 24px !important;
+
+    @include tablet {
+      margin-bottom: 40px !important;
+    }
+  }
+}
+
+.loaderBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  min-height: 240px;
+}

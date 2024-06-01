@@ -1,0 +1,106 @@
+@use '@/styles/_helpers' as *;
+
+.accordionItemBox {
+  border: 2px solid #2c2f39;
+  border-radius: 16px;
+  background: #1e212c;
+}
+
+.accordionItem {
+  display: grid;
+  grid-template-columns: 48px auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  min-height: 80px;
+  cursor: pointer;
+
+  .iconBox {
+    border: 2px solid #494b55;
+    background: #2c2f39;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > span {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  > img {
+    justify-self: self-end;
+    margin-right: 8px;
+    transition: 0.3s ease-in-out;
+
+    &.rotate {
+      rotate: 180deg;
+    }
+  }
+}
+
+.infoTable {
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 0;
+  margin-bottom: 24px;
+
+  b {
+    text-align: right;
+  }
+}
+
+.accordionBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accordionList {
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+.accordionListItem {
+  padding: 16px 32px;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    content: '';
+    width: calc(100% - 32px);
+    height: 2px;
+    background: #2c2f39;
+  }
+}
+
+.buttonBox {
+  margin-top: 40px;
+
+  > button {
+    border-radius: 12px;
+
+    @include tablet {
+      max-height: 40px;
+    }
+  }
+
+  @include tablet {
+    position: fixed;
+    width: 100%;
+    border-top: 2px solid #2c2f39;
+    padding: 20px 16px;
+    background: #151823;
+    left: 0;
+    bottom: 0;
+  }
+}

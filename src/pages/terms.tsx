@@ -1,4 +1,3 @@
-import { Inter } from '@next/font/google'
 import clsx from 'clsx'
 import Footer from 'components/UI-kit/Footer/Footer'
 import Header from 'components/UI-kit/Header/Header'
@@ -7,10 +6,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from 'src/styles/policy.module.scss'
-const inter = Inter({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['300', '400', '600'],
-})
 
 const navMenu = [
   {
@@ -340,7 +335,7 @@ function Terms() {
   }
 
   return (
-    <main id='body' className={clsx(inter.className, styles.pageBox)}>
+    <main className={clsx(styles.pageBox)}>
       <Head>
         <title>Пользовательское соглашение</title>
       </Head>

@@ -256,12 +256,12 @@ header.header {
     &::before {
       width: 8px;
       height: 8px;
-      box-shadow: 0px 0px 0.7200000286102295px 0px #1473e4,
-        0px 0px 1.440000057220459px 0px #1473e4,
-        0px 0px 5.039999961853027px 0px #1473e4,
-        0px 0px 10.079999923706055px 0px #1473e4,
-        0px 0px 17.280000686645508px 0px #1473e4,
-        0px 0px 30.239999771118164px 0px #1473e4;
+      box-shadow: 0px 0px 0.7200000286102295px 0px $accent-blue-main,
+        0px 0px 1.440000057220459px 0px $accent-blue-main,
+        0px 0px 5.039999961853027px 0px $accent-blue-main,
+        0px 0px 10.079999923706055px 0px $accent-blue-main,
+        0px 0px 17.280000686645508px 0px $accent-blue-main,
+        0px 0px 30.239999771118164px 0px $accent-blue-main;
     }
   }
 

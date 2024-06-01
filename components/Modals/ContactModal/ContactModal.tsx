@@ -1,7 +1,6 @@
 import axios from 'axios'
 import Button from 'components/UI-kit/Buttons/Button'
 import Input from 'components/UI-kit/Input/Input'
-import ThankYouSnackbar from 'components/UI-kit/Notifications/ThankYouSnackbar/ThankYouSnackbar'
 import useValidation from 'hooks/useValidatiton/useValidation'
 import React, { useEffect, useState } from 'react'
 import { inputsValues } from './constants'
@@ -9,11 +8,12 @@ import styles from './ContactModal.module.scss'
 import Checkbox from 'components/UI-kit/Checkbox/Checkbox'
 import Link from 'next/link'
 import ButtonLoader from 'components/UI-kit/Loaders/ButtonLoader'
+import Snackbar from 'components/UI-kit/Notifications/Snackbar/Snackbar'
 
 const ContactModal = () => {
   const [error, setError] = useState<null | string>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const [showThankYouSnackbar, setShowThankYouSnackbar] = useState(false)
+  const [showSnackbar, setShowSnackbar] = useState(false)
   const { runCheck, isCheckError, checkValidate, isNoError, formFields } =
     useValidation()
 
@@ -36,7 +36,7 @@ const ContactModal = () => {
       )
       .finally(() => {
         setIsLoading(false)
-        setShowThankYouSnackbar(true)
+        setShowSnackbar(true)
       })
   }
 
@@ -62,16 +62,21 @@ const ContactModal = () => {
   }, [isNoError])
 
   useEffect(() => {
-    if (showThankYouSnackbar) {
-      setTimeout(() => setShowThankYouSnackbar(false), 5000)
+    if (showSnackbar) {
+      setTimeout(() => setShowSnackbar(false), 5000)
     }
-  }, [showThankYouSnackbar])
+  }, [showSnackbar])
 
   const [isChecked, setIsChecked] = useState(false)
 
   return (
     <>
-      {showThankYouSnackbar && <ThankYouSnackbar isReject={error ?? ''} />}
+      {showSnackbar && (
+        <Snackbar
+          value='Спасибо за обращение. Наши операторы скоро свяжутся с вами.'
+          isReject={error ?? ''}
+        />
+      )}
       <div className={styles.modalBox}>
         <h3>Подать заявку</h3>
         <form onSubmit={onSubmitHandler}>

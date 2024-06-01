@@ -1,0 +1,119 @@
+@use '@/styles/_helpers' as *;
+
+.background {
+  background: $background;
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include tablet {
+    display: block;
+  }
+}
+
+.leftCircles {
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+  top: 7%;
+  left: -18%;
+  rotate: -240deg;
+  width: 47.5em;
+  height: 47.5em;
+
+  .circle1 {
+    top: 0;
+    left: 100px;
+  }
+  .circle2 {
+    top: 0;
+    left: 75px;
+  }
+  .circle3 {
+    top: 0;
+    left: 50px;
+  }
+  .circle4 {
+    top: 0;
+    left: 25px;
+  }
+  .circle5 {
+    left: 0;
+    top: 0;
+  }
+}
+
+.rightCircles {
+  position: absolute;
+  z-index: 1;
+  bottom: -6%;
+  right: -14%;
+
+  .circle1 {
+    right: 0;
+    bottom: 100px;
+  }
+  .circle2 {
+    right: 0;
+    bottom: 75px;
+  }
+  .circle3 {
+    right: 0;
+    bottom: 50px;
+  }
+  .circle4 {
+    right: 0;
+    bottom: 25px;
+  }
+  .circle5 {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.circleBox {
+  position: relative;
+}
+
+.circle1 {
+  position: absolute;
+  width: 37.5em;
+  height: 37.5em;
+  border: 1px solid #1b1e28;
+  border-radius: 50%;
+}
+
+.circle2 {
+  position: absolute;
+  width: 40em;
+  height: 40em;
+  border: 1px solid #20232e;
+  border-radius: 50%;
+}
+
+.circle3 {
+  position: absolute;
+  width: 42.5em;
+  height: 42.5em;
+  border: 1px solid #262933;
+  border-radius: 50%;
+}
+
+.circle4 {
+  position: absolute;
+  width: 45em;
+  height: 45em;
+  border: 1px solid #2c2f39;
+  border-radius: 50%;
+}
+
+.circle5 {
+  position: absolute;
+  width: 47.5em;
+  height: 47.5em;
+  border: 1px solid #383a44;
+  border-radius: 50%;
+}

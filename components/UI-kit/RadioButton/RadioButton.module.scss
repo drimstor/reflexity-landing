@@ -1,0 +1,49 @@
+@use '@/styles/_helpers' as *;
+
+.radioContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+}
+
+.hiddenRadio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.styledRadio {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  transition: all 150ms;
+  position: relative;
+}
+
+.hiddenRadio:checked + .styledRadio {
+  border-color: $accent-blue-main;
+}
+
+.hiddenRadio:checked + .styledRadio:after {
+  content: '';
+  width: 13px;
+  height: 13px;
+  background: $accent-blue-main;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

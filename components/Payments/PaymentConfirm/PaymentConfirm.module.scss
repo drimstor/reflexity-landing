@@ -1,0 +1,114 @@
+@use '@/styles/_helpers' as *;
+
+.globalBox {
+  h2 {
+    margin-bottom: 24px;
+
+    @include tablet {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.titleBox {
+  margin-bottom: 40px;
+
+  @include tablet {
+    margin-bottom: 24px;
+  }
+}
+
+.infoBlock {
+  display: flex;
+  gap: 8px;
+  background: #252833;
+  border-radius: 16px;
+  padding: 16px;
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.tableBox {
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+
+  .tableRow {
+    display: grid;
+    grid-template-columns: auto auto;
+    border-bottom: 2px solid #2c2f39;
+    padding: 16px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  b {
+    text-align: right;
+  }
+}
+
+.buttonsBox {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+
+  > button {
+    border-radius: 12px;
+
+    &:first-child {
+      border: 2px solid var(--additional-red-main, #9c3d3d);
+      color: var(--additional-red-main, #9c3d3d);
+    }
+
+    @include tablet {
+      max-height: 40px;
+    }
+  }
+
+  @include tablet {
+    position: fixed;
+    width: 100%;
+    border-top: 2px solid #2c2f39;
+    padding: 20px 16px;
+    background: #151823;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.qrBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 14px;
+  gap: 8px;
+  border-bottom: 2px solid #2c2f39;
+  margin-bottom: 14px;
+
+  .adressBox {
+    align-self: self-start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.merchantBox {
+  display: flex;
+  align-items: center;
+  justify-self: self-end;
+  width: fit-content;
+  margin-left: auto;
+  gap: 8px;
+}
