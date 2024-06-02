@@ -6,10 +6,12 @@ import PaymentTable from '../PaymentConfirm/PaymentTable'
 import Button from 'components/UI-kit/Buttons/Button'
 import { constructorTableData } from '../PaymentForm/helpers/constructorTableData'
 import useMediaQuery from 'hooks/useMediaQuery'
+import { useRouter } from 'next/router'
 
 const PaymentSuccess = ({ changeStage, paymentMethod }: StageProps) => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const filteredTableData = constructorTableData(paymentMethod, true, isMobile)
+  const router = useRouter()
 
   return (
     <div className={styles.globalBox}>
@@ -23,7 +25,7 @@ const PaymentSuccess = ({ changeStage, paymentMethod }: StageProps) => {
           variant='contained'
           size='small'
           fullWidth
-          onClick={() => changeStage('PaymentMethods')}
+          onClick={() => router.push('/')}
         >
           Вернуться на сайт
         </Button>
