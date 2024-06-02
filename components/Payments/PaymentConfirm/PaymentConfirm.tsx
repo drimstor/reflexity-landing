@@ -8,8 +8,11 @@ import Image from 'next/image'
 import qrIcon from 'public/QR Code.svg'
 import CopyButton from 'components/UI-kit/CopyButton/CopyButton'
 import { constructorTableData } from '../PaymentForm/helpers/constructorTableData'
+import ModalContainer from 'components/Modals/ModalContainer/ModalContainer'
+import { useState } from 'react'
 
 const PaymentConfirm = ({ changeStage, paymentMethod }: StageProps) => {
+  const [isShowModal, setisShowModal] = useState(false)
   const { group } = getPaymentData(paymentMethod)
   const filteredTableData = constructorTableData(paymentMethod)
 
@@ -35,9 +38,9 @@ const PaymentConfirm = ({ changeStage, paymentMethod }: StageProps) => {
       <div className={styles.buttonsBox}>
         <Button
           size='small'
-          variant='outlined'
+          variant='red-outlined'
           fullWidth
-          onClick={() => changeStage('PaymentMethods')}
+          onClick={() => setisShowModal(true)}
         >
           Отменить
         </Button>
@@ -50,6 +53,31 @@ const PaymentConfirm = ({ changeStage, paymentMethod }: StageProps) => {
           Я оплатил
         </Button>
       </div>
+      <ModalContainer
+        isShow={isShowModal}
+        title='Отмена оплаты'
+        value='Вы уверены, что хотите отменить оплату?'
+        buttons={
+          <>
+            <Button
+              size='small'
+              variant='outlined'
+              fullWidth
+              onClick={() => setisShowModal(false)}
+            >
+              Нет
+            </Button>
+            <Button
+              size='small'
+              variant='red-contained'
+              fullWidth
+              onClick={() => changeStage('PaymentMethods')}
+            >
+              Да, уверен
+            </Button>
+          </>
+        }
+      />
     </div>
   )
 }

@@ -30,7 +30,7 @@ const PaymentMethods = ({
 
   return (
     <>
-      <h2>Выберите метод оплаты</h2>
+      <h2>Выберите способ оплаты</h2>
       <div className={styles.infoTable}>
         <span>Номер заявки:</span>
         <b>12345678</b>

@@ -64,14 +64,8 @@
   gap: 16px;
 
   > button {
-    border-radius: 12px;
-
-    &:first-child {
-      border: 2px solid var(--additional-red-main, #9c3d3d);
-      color: var(--additional-red-main, #9c3d3d);
-    }
-
     @include tablet {
+      border-radius: 12px;
       max-height: 40px;
     }
   }

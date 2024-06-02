@@ -52,6 +52,17 @@
   border: 1px solid $neutral-stroke-grey-main;
 }
 
+.red-contained {
+  background: #9c3d3d;
+  color: $neutral-white-main;
+}
+
+.red-outlined {
+  border: 2px solid var(--additional-red-main, #9c3d3d);
+  color: var(--additional-red-main, #9c3d3d);
+  background: #1e212c;
+}
+
 .small {
   max-height: 48px;
   padding: 12px 16px;
