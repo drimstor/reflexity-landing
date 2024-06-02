@@ -50,6 +50,14 @@
   color: $neutral-white-main;
   background: $neutral-white-background-main;
   border: 1px solid $neutral-stroke-grey-main;
+
+  &:hover {
+    background: #252833;
+  }
+
+  &:active {
+    background: #2c2f39;
+  }
 }
 
 .red-contained {
@@ -69,6 +77,14 @@
   border: 2px solid var(--additional-red-main, #9c3d3d);
   color: var(--additional-red-main, #9c3d3d);
   background: #1e212c;
+
+  &:hover {
+    background: #252833;
+  }
+
+  &:active {
+    background: #2c2f39;
+  }
 }
 
 .small {
