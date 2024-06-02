@@ -55,6 +55,14 @@
 .red-contained {
   background: #9c3d3d;
   color: $neutral-white-main;
+
+  &:hover {
+    background: #7a3437;
+  }
+
+  &:active {
+    background: #5d2b30;
+  }
 }
 
 .red-outlined {
