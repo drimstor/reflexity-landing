@@ -133,7 +133,7 @@ const PageCarousel = () => {
         isMobile={isMobile}
         onScrollToScreenCallback={onScrollToScreenCallback}
       />
-      <Planet screenNumber={screenNumber} isMobile={isMobile} />
+      <Planet screenNumber={screenNumber} />
       <section
         id='carousel'
         ref={carouselRef}

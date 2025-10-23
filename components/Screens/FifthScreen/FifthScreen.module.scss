@@ -11,6 +11,8 @@
   align-items: center;
   justify-content: center;
 
+  background: radial-gradient($background 50%, transparent 80%);
+
   @include tablet {
     margin-bottom: 100px;
     min-height: fit-content;

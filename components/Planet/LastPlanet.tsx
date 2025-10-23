@@ -35,7 +35,6 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
           transitionOn && styles.transition
         )}
       >
-        <Image src={mainCircle} alt='circle' />
         <LottieAnimation
           animationPath='/slow-spinner.json'
           loop={true}
@@ -44,7 +43,6 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
           height='100%'
           className={styles.lottieAnimation}
         />
-        <div className={clsx(styles.shadow)} />
       </div>
     </div>
   )

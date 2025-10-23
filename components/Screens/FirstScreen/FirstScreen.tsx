@@ -22,7 +22,7 @@ const FirstScreen = ({
   return (
     <div className={styles.contentBox}>
       <div className={styles.logo}>
-        <Image src={logo} width={50} alt='circle' />
+        <Image src={logo} width={45} alt='logo' />
         Reflexity
       </div>
       <span>Уникальное платежное решение для вашего бизнеса</span>

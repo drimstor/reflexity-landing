@@ -100,11 +100,11 @@ const Header = ({
     <header className={styles.header}>
       <div className={clsx('wrapper', styles.wrapper)}>
         <Link className={styles.logo} href='/' onClick={reloadPage}>
-          <Image width={40} src={logo} alt='logo' />
+          <Image width={30} src={logo} alt='logo' />
           Reflexity
         </Link>
         <Link className={styles.miniLogo} href='/' onClick={reloadPage}>
-          <Image width={38} src={logo} alt='logo' />
+          <Image width={30} src={logo} alt='logo' />
         </Link>
         <div className={styles.menu}>
           <nav className={clsx(styles.nav, isShowBurgerMenu && styles.show)}>
