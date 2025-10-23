@@ -38,12 +38,12 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
           <Button
             variant='outlined'
             size='medium'
-            onClick={() => window.open('https://t.me/paykins', '_ blank')}
+            onClick={() => window.open('https://t.me/reflexity', '_ blank')}
           >
             Наша служба поддержки:
             <span>
               <Image src={telegram} alt='telegram' />
-              @paykins
+              @reflexity
             </span>
           </Button>
         </div>

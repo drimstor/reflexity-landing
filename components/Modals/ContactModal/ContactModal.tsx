@@ -25,9 +25,12 @@ const ContactModal = () => {
 Телеграм - ${args.nickname}
 Описание продукта - ${args.description}`
 
-    const telegramBotToken = '6471286629:AAGE74rskDfOtA-ukKd59X6BisBND4W1drk'
+    const telegramBotToken = '8265187193:AAH5-oIji2WJY92HSbGWY3VPnboNOByyuYM'
+
     const apiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`
-    const payload = { chat_id: -1001920591192, text }
+    // Попробуйте использовать username канала вместо ID
+    // Замените @your_channel_username на реальный username вашего канала
+    const payload = { chat_id: '-1003101579495', text }
     await axios
       .post(apiUrl, payload)
       .then(

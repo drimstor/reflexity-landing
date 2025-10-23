@@ -52,19 +52,29 @@
   }
 
   img {
-    @include tablet {
-      width: 300px;
-      height: 120px;
-    }
+    // @include tablet {
+    //   width: 300px;
+    //   height: 120px;
+    // }
 
-    @include mobile {
-      width: 220px;
-      height: 88px;
-    }
+    // @include mobile {
+    //   width: 220px;
+    //   height: 88px;
+    // }
   }
 }
 
 .connnectBtn {
   position: relative;
   z-index: 99;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 36px;
+  line-height: 48px;
+  color: $neutral-white-main;
+  font-family: 'ZonaPro-Thin';
 }

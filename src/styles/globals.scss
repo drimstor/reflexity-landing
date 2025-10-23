@@ -1,5 +1,30 @@
 @use '@/styles/_helpers' as *;
 
+// ZonaPro Font Faces
+@font-face {
+  font-family: 'ZonaPro';
+  src: url('/fonts/ZonaPro-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZonaPro';
+  src: url('/fonts/ZonaPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ZonaPro';
+  src: url('/fonts/ZonaPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -26,7 +51,10 @@ html.canScroll {
 }
 
 body {
+  font-family: $font-family;
+  // background: url('/dark.png') no-repeat center center fixed;
   background: $background;
+  // background-size: cover;
   color: $neutral-white-main;
   max-width: 100vw;
   position: fixed;

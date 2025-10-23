@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Paykins</title>
+        <title>Reflexity</title>
       </Head>
       <PageCarousel />
     </>

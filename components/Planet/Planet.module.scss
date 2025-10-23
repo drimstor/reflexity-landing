@@ -5,11 +5,15 @@
   position: fixed;
   top: 55%;
   left: 50%;
-  transform: translateZ(0) translate(-50%, -50%);
+  transform: translateZ(0) translate(-50%, -45%);
   display: flex;
   align-items: center;
   justify-content: center;
   will-change: transform;
+
+  img {
+    opacity: 0;
+  }
 
   @include laptop {
     transform: translate(-50%, -45%);
@@ -63,8 +67,15 @@
     }
   }
 
+  &.screen1 {
+    .shadow {
+      width: 110%;
+      height: 110%;
+    }
+  }
+
   &.screen2_1 {
-    transform: translateY(-44%) translateX(28%) scale(1.6) rotate(0deg);
+    transform: translateY(-44%) translateX(28%) scale(1.2) rotate(0deg);
 
     @include tablet {
       transform: translateY(-44%) translateX(28%) scale(1.1) rotate(0deg);
@@ -72,31 +83,40 @@
   }
 
   &.screen2_2 {
-    transform: translateY(-37%) translateX(-61%) scale(2) rotate(20deg);
+    transform: translateY(-37%) translateX(-45%) scale(1.6) rotate(20deg);
   }
 
   &.screen2_3 {
-    transform: translateY(35%) translateX(44.4%) scale(1.8) rotate(32deg);
+    transform: translateY(35%) translateX(44.4%) scale(1.4) rotate(32deg);
   }
 
   &.screen2_4 {
-    transform: translateY(21%) translateX(-66%) scale(2) rotate(82deg);
+    transform: translateY(21%) translateX(-46%) scale(1.6) rotate(82deg);
   }
 
   &.screen2_5 {
-    transform: translateY(-72%) translateX(23%) scale(1.8) rotate(49deg);
+    transform: translateY(-58%) translateX(23%) scale(1.4) rotate(49deg);
   }
 
   &.screen3 {
-    transform: translateY(0) translateX(0) scale(0.75) rotate(0deg);
+    transform: translateY(0) translateX(0) scale(0.85) rotate(0deg);
   }
 
   &.screen4 {
-    transform: translateY(0) translateX(0) scale(0.8) rotate(90deg);
+    transform: translateY(0) translateX(0) scale(0.85) rotate(90deg);
   }
 
   &.screen5 {
-    transform: translateY(0) translateX(0) scale(0.75) rotate(180deg);
+    transform: translateY(0) translateX(0) scale(0.85) rotate(180deg);
+  }
+
+  &.screen3,
+  &.screen4,
+  &.screen5 {
+    .shadow {
+      width: 115%;
+      height: 115%;
+    }
   }
 
   &.screen6,
@@ -119,10 +139,12 @@
   &.transition {
     transition: all 1.3s ease-in-out;
   }
+  will-change: transform;
 }
 
 .lastScreenActive {
   transform: translateY(0) translateX(50%) scale(0.6) rotate(180deg);
+  will-change: transform;
 }
 
 .lastAnimantionActive {
@@ -130,7 +152,8 @@
     transition: all 60s ease-in-out;
   }
 
-  transform: translateY(0) translateX(30%) scale(0.4) rotate(150deg);
+  transform: translateY(0) translateX(30%) scale(0.9) rotate(150deg);
+  will-change: transform;
 }
 
 .shadow {
@@ -144,4 +167,16 @@
   border-radius: 50%;
   transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out,
     height 0.5s ease-in-out;
+  will-change: transform, opacity, width, height;
+  z-index: 2;
+}
+
+.lottieAnimation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
 }

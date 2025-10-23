@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './FirstScreen.module.scss'
-import logo from '../../../public/paikinsLogo.svg'
+import logo from '../../../public/logo.png'
 import Image from 'next/image'
 import Button from 'components/UI-kit/Buttons/Button'
 import { useRouter } from 'next/router'
@@ -21,7 +21,10 @@ const FirstScreen = ({
   }
   return (
     <div className={styles.contentBox}>
-      <Image src={logo} width={440} alt='circle' />
+      <div className={styles.logo}>
+        <Image src={logo} width={50} alt='circle' />
+        Reflexity
+      </div>
       <span>Уникальное платежное решение для вашего бизнеса</span>
       <Button
         className={styles.connnectBtn}

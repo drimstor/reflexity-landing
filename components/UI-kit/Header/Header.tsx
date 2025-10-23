@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss'
-import logo from '../../../public/paikinsLogo.svg'
+import logo from '../../../public/logo.png'
 import miniLogo from '../../../public/paikinsMiniLogo.svg'
 import angleDownIcon from '../../../public/icons/angle-down.svg'
 import globeIcon from '../../../public/icons/globe.svg'
@@ -100,10 +100,11 @@ const Header = ({
     <header className={styles.header}>
       <div className={clsx('wrapper', styles.wrapper)}>
         <Link className={styles.logo} href='/' onClick={reloadPage}>
-          <Image width={120} src={logo} alt='logo' />
+          <Image width={40} src={logo} alt='logo' />
+          Reflexity
         </Link>
         <Link className={styles.miniLogo} href='/' onClick={reloadPage}>
-          <Image width={48} src={miniLogo} alt='logo' />
+          <Image width={38} src={logo} alt='logo' />
         </Link>
         <div className={styles.menu}>
           <nav className={clsx(styles.nav, isShowBurgerMenu && styles.show)}>

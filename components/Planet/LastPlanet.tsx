@@ -3,6 +3,7 @@ import styles from './Planet.module.scss'
 import Image from 'next/image'
 import mainCircle from '../../public/mainCircle.svg'
 import clsx from 'clsx'
+import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimation'
 
 interface PlanetProps {
   screenNumber: string
@@ -35,6 +36,14 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
         )}
       >
         <Image src={mainCircle} alt='circle' />
+        <LottieAnimation
+          animationPath='/slow-spinner.json'
+          loop={true}
+          autoplay={true}
+          width='100%'
+          height='100%'
+          className={styles.lottieAnimation}
+        />
         <div className={clsx(styles.shadow)} />
       </div>
     </div>

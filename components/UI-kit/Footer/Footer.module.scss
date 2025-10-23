@@ -6,11 +6,12 @@
   bottom: -10px;
   width: 100%;
   height: 100px;
-  background: #1e222f;
+  background: #1e212c;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 120px;
+  border-top: 1px solid #2c2f39;
 
   @include laptop {
     bottom: -20px;
