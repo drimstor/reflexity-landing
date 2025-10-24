@@ -1,14 +1,13 @@
 import axios from 'axios'
 import Button from 'components/UI-kit/Buttons/Button'
-import Input from 'components/UI-kit/Input/Input'
-import useValidation from 'hooks/useValidatiton/useValidation'
-import React, { useEffect, useState } from 'react'
-import { inputsValues } from './constants'
-import styles from './ContactModal.module.scss'
 import Checkbox from 'components/UI-kit/Checkbox/Checkbox'
-import Link from 'next/link'
+import Input from 'components/UI-kit/Input/Input'
 import ButtonLoader from 'components/UI-kit/Loaders/ButtonLoader'
 import Snackbar from 'components/UI-kit/Notifications/Snackbar/Snackbar'
+import useValidation from 'hooks/useValidatiton/useValidation'
+import { useEffect, useState } from 'react'
+import { inputsValues } from './constants'
+import styles from './ContactModal.module.scss'
 
 const ContactModal = () => {
   const [error, setError] = useState<null | string>(null)
@@ -18,19 +17,17 @@ const ContactModal = () => {
     useValidation()
 
   const handleSendTelegramMessage = async (args: any) => {
-    // await axios.post('/api/addUser', args)
     const text = `Новая заявка:
 Сайт - ${args.site}
 Почта - ${args.email}
 Телеграм - ${args.nickname}
 Описание продукта - ${args.description}`
 
-    const telegramBotToken = '8265187193:AAH5-oIji2WJY92HSbGWY3VPnboNOByyuYM'
+    const telegramBotToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN
+    const telegramChatId = process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL_ID
 
     const apiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`
-    // Попробуйте использовать username канала вместо ID
-    // Замените @your_channel_username на реальный username вашего канала
-    const payload = { chat_id: '-1003101579495', text }
+    const payload = { chat_id: telegramChatId, text }
     await axios
       .post(apiUrl, payload)
       .then(
