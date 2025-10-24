@@ -73,8 +73,12 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  font-size: 36px;
-  line-height: 48px;
-  color: $neutral-white-main;
-  font-family: 'ZonaPro-Thin';
+
+  h1 {
+    font-size: 36px;
+    line-height: 48px;
+    color: $neutral-white-main;
+    font-family: 'ZonaPro-Thin', 'ZonaPro';
+    font-weight: 300;
+  }
 }

@@ -29,10 +29,14 @@ header.header {
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 24px;
-  line-height: 28px;
-  color: $neutral-white-main;
-  font-family: 'ZonaPro-Thin';
+
+  span {
+    font-size: 24px;
+    color: $neutral-white-main;
+    line-height: 28px;
+    font-family: 'ZonaPro-Thin', 'ZonaPro';
+    font-weight: 300;
+  }
 
   @include tablet {
     display: none;

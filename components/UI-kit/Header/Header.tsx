@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './Header.module.scss'
 import logo from '../../../public/logo.png'
-import miniLogo from '../../../public/paikinsMiniLogo.svg'
 import angleDownIcon from '../../../public/icons/angle-down.svg'
 import globeIcon from '../../../public/icons/globe.svg'
 import Image from 'next/image'
@@ -101,7 +100,7 @@ const Header = ({
       <div className={clsx('wrapper', styles.wrapper)}>
         <Link className={styles.logo} href='/' onClick={reloadPage}>
           <Image width={30} src={logo} alt='logo' />
-          Reflexity
+          <span>Reflexity</span>
         </Link>
         <Link className={styles.miniLogo} href='/' onClick={reloadPage}>
           <Image width={30} src={logo} alt='logo' />

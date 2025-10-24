@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React, { ReactNode } from 'react'
 import styles from './ExchangerLayout.module.scss'
-import miniLogo from '../../../public/paikinsMiniLogo.svg'
+import logo from '../../../public/logo.png'
 import { icons, summaryItems } from './constants'
 import clsx from 'clsx'
 import arrow from '../../../public/icons/arrow-right.svg'
@@ -36,7 +36,7 @@ const ExchangerLayout = ({
       )}
     >
       <div className={styles.sidebar}>
-        <Image src={miniLogo} alt='logo' />
+        <Image width={30} src={logo} alt='logo' />
         <div className={styles.iconsBox}>
           {icons.map((icon, index) => (
             <div key={index}>
