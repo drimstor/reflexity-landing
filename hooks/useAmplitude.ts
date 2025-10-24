@@ -1,9 +1,9 @@
+import { useCallback } from 'react'
+import { amplitudeService } from '../lib/services/amplitude/AmplitudeService'
 import {
-  amplitudeService,
   EventName,
   EventProperties,
-} from '@/lib/services/amplitude'
-import { useCallback } from 'react'
+} from '../lib/services/amplitude/AmplitudeTypes'
 
 // Хук для удобной работы с Amplitude
 export const useAmplitude = () => {
