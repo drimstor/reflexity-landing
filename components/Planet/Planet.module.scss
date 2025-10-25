@@ -17,10 +17,10 @@
 .lastScreen {
   position: relative;
   transform: translate3d(150%, 42%, 0) scale(0.6) rotate(90deg);
+  will-change: transform;
 
   &.transition {
     transition: all 1.3s ease-in-out;
-    will-change: transform;
   }
 
   @include mobile {
@@ -37,7 +37,6 @@
 
   &.transition {
     transition: all 60s ease-in-out;
-    will-change: transform;
   }
 }
 
@@ -49,6 +48,7 @@
   min-height: 100vw;
   transform: translate3d(0, 45%, 0) scale(0.9);
   contain: layout style paint;
+  will-change: transform, opacity;
 
   @include tablet {
     transform: translate3d(0, 70%, 0) scale(1.8);
@@ -60,7 +60,6 @@
 
   &.transition {
     transition: all 1.3s ease-in-out;
-    will-change: transform, opacity;
   }
 
   &.screen1,
@@ -69,54 +68,44 @@
   &.screen1_3,
   &.screen1_4 {
     transform: scale(1.2) rotate(45deg);
-    will-change: transform;
   }
 
   &.screen2_1 {
     transform: translate3d(50%, -45%, 0) scale(2.2);
-    will-change: transform;
   }
 
   &.screen2_2 {
     transform: translate3d(-55%, -35%, 0) scale(2.4);
-    will-change: transform;
   }
 
   &.screen2_3 {
     transform: translate3d(36%, 55%, 0) scale(2);
-    will-change: transform;
   }
 
   &.screen2_4 {
     transform: translate3d(-45%, 45%, 0) scale(2.3);
-    will-change: transform;
   }
 
   &.screen2_5 {
     transform: translate3d(23%, -58%, 0) scale(2);
-    will-change: transform;
   }
 
   &.screen3 {
     transform: scale(1.15);
-    will-change: transform;
   }
 
   &.screen4 {
     transform: scale(1.25) rotate(90deg);
-    will-change: transform;
   }
 
   &.screen5 {
     transform: translate3d(0, 0, 0) scale(1.15) rotate(180deg);
     opacity: 0.4;
-    will-change: transform, opacity;
   }
 
   &.screen6,
   &.screen7 {
     opacity: 0;
     transform: translate3d(-70vw, 0, 0) scale(0) rotate(0deg);
-    will-change: transform, opacity;
   }
 }
