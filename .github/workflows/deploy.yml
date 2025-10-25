@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: production  # Использует Environment variables из Production
+    environment: Production  # Использует Environment variables из Production
     
     steps:
       - name: Checkout code
