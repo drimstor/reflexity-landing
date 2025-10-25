@@ -4,39 +4,42 @@
   position: relative;
   z-index: 99;
   height: 100%;
-  transform: translateZ(0) translateY(0%);
+  transform: translate3d(0, 0, 0);
   transition: transform 1.3s ease-in-out;
   will-change: transform;
+  // Оптимизация: contain без paint, чтобы не блокировать градиенты дочерних элементов
+  contain: layout;
+  // will-change используем только в активном состоянии для экономии памяти
 
   &.screen1,
   &.screen1_1,
   &.screen1_2,
   &.screen1_3,
   &.screen1_4 {
-    transform: translateY(calc(-100vh - 0px));
+    transform: translate3d(0, calc(-100vh - 0px), 0);
 
     @media screen and (min-height: 1079px) {
-      transform: translateY(calc(-100vh - 0px));
+      transform: translate3d(0, calc(-100vh - 0px), 0);
     }
 
     @media screen and (max-height: 865px) {
-      transform: translateY(calc(-100vh + 30px));
+      transform: translate3d(0, calc(-100vh + 30px), 0);
     }
 
     @media screen and (max-height: 790px) {
-      transform: translateY(calc(-100vh + 35px));
+      transform: translate3d(0, calc(-100vh + 35px), 0);
     }
 
     @include macbook {
-      transform: translateY(calc(-100vh + 45px));
+      transform: translate3d(0, calc(-100vh + 45px), 0);
     }
 
     @include laptop {
-      transform: translateY(calc(-100vh - 90px));
+      transform: translate3d(0, calc(-100vh - 90px), 0);
     }
 
     @include mobile {
-      transform: translateY(calc(-100vh - 50px));
+      transform: translate3d(0, calc(-100vh - 50px), 0);
     }
   }
 
@@ -45,46 +48,46 @@
   &.screen2_3,
   &.screen2_4,
   &.screen2_5 {
-    transform: translateY(calc(-200vh + 80px));
+    transform: translate3d(0, calc(-200vh + 80px), 0);
 
     @include tablet {
-      transform: translateY(calc(-200vh - 90px));
+      transform: translate3d(0, calc(-200vh - 90px), 0);
     }
   }
 
   &.screen3 {
-    transform: translateY(calc(-300vh + 0px));
+    transform: translate3d(0, calc(-300vh + 0px), 0);
 
     @include tablet {
-      transform: translateY(calc(-300vh - 140px));
+      transform: translate3d(0, calc(-300vh - 140px), 0);
     }
   }
 
   &.screen4 {
-    transform: translateY(calc(-400vh - 0px));
+    transform: translate3d(0, calc(-400vh - 0px), 0);
 
     @include tablet {
-      transform: translateY(calc(-400vh - 140px));
+      transform: translate3d(0, calc(-400vh - 140px), 0);
     }
   }
 
   &.screen5 {
-    transform: translateY(calc(-500vh - 0px));
+    transform: translate3d(0, calc(-500vh - 0px), 0);
 
     @include tablet {
-      transform: translateY(calc(-500vh - 100px));
+      transform: translate3d(0, calc(-500vh - 100px), 0);
     }
   }
 
   &.screen6 {
-    transform: translateY(calc(-600vh + 40px));
+    transform: translate3d(0, calc(-600vh + 40px), 0);
 
     @media screen and (max-height: 674px) {
-      transform: translateY(calc(-600vh + 60px));
+      transform: translate3d(0, calc(-600vh + 60px), 0);
     }
   }
 
   &.screen7 {
-    transform: translateY(calc(-700vh - 10px));
+    transform: translate3d(0, calc(-700vh), 0);
   }
 }

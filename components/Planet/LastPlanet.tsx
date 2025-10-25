@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import styles from './Planet.module.scss'
-import Image from 'next/image'
-import mainCircle from '../../public/mainCircle.svg'
 import clsx from 'clsx'
 import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimation'
+import { memo, useEffect, useMemo, useState } from 'react'
+import styles from './Planet.module.scss'
 
 interface PlanetProps {
   screenNumber: string
@@ -23,24 +21,28 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
     if (!transitionOn) {
       setTimeout(() => setTransitionOn(true), 300)
     }
-  }, [screenNumber])
+  }, [screenNumber, transitionOn])
+
+  const containerClassName = useMemo(
+    () =>
+      clsx(
+        styles.lastScreen,
+        screenNumber === '7' && styles.lastScreenActive,
+        lastAnimantion && styles.lastAnimantionActive,
+        transitionOn && styles.transition
+      ),
+    [screenNumber, lastAnimantion, transitionOn]
+  )
+
+  if (Number(screenNumber) < 6) {
+    return null
+  }
 
   return (
     <div className={styles.circleBox}>
-      <div
-        className={clsx(
-          styles.lastScreen,
-          screenNumber === '7' && styles.lastScreenActive,
-          lastAnimantion && styles.lastAnimantionActive,
-          transitionOn && styles.transition
-        )}
-      >
+      <div className={containerClassName}>
         <LottieAnimation
           animationPath='/slow-spinner.json'
-          loop={true}
-          autoplay={true}
-          width='100%'
-          height='100%'
           className={styles.lottieAnimation}
         />
       </div>
@@ -48,4 +50,4 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
   )
 }
 
-export default LastPlanet
+export default memo(LastPlanet)
