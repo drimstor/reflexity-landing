@@ -1,25 +1,19 @@
-import styles from './PageCarousel.module.scss'
-import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
-import Planet from 'components/Planet/Planet'
 import clsx from 'clsx'
-import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
-import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
-import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
-import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
-import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
-import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
-import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
-import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
-import Header from 'components/UI-kit/Header/Header'
 import LastPlanet from 'components/Planet/LastPlanet'
+import Planet from 'components/Planet/Planet'
+import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
+import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
+import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
+import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
+import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
+import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
+import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
+import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
+import Header from 'components/UI-kit/Header/Header'
 import useMediaQuery from 'hooks/useMediaQuery'
-import React, {
-  TouchEvent,
-  useEffect,
-  useRef,
-  useState,
-  WheelEvent,
-} from 'react'
+import { TouchEvent, useEffect, useRef, useState, WheelEvent } from 'react'
+import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
+import styles from './PageCarousel.module.scss'
 
 const PageCarousel = () => {
   const [disableAnimationScreens, setDisableAnimationScreens] = useState([''])

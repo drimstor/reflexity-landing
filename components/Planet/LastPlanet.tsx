@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import styles from './Planet.module.scss'
-import Image from 'next/image'
-import mainCircle from '../../public/mainCircle.svg'
 import clsx from 'clsx'
 import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimation'
+import { useEffect, useState } from 'react'
+import styles from './Planet.module.scss'
 
 interface PlanetProps {
   screenNumber: string
@@ -25,6 +23,10 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
     }
   }, [screenNumber])
 
+  if (Number(screenNumber) < 6) {
+    return null
+  }
+
   return (
     <div className={styles.circleBox}>
       <div
@@ -37,10 +39,6 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
       >
         <LottieAnimation
           animationPath='/slow-spinner.json'
-          loop={true}
-          autoplay={true}
-          width='100%'
-          height='100%'
           className={styles.lottieAnimation}
         />
       </div>
