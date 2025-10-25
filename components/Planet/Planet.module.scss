@@ -16,12 +16,11 @@
 
 .lastScreen {
   position: relative;
-  transform: translateZ(0) translateY(42%) translateX(150%) scale(0.6)
-    rotate(90deg);
-  will-change: transform;
+  transform: translate3d(150%, 42%, 0) scale(0.6) rotate(90deg);
 
   &.transition {
     transition: all 1.3s ease-in-out;
+    will-change: transform;
   }
 
   @include mobile {
@@ -30,14 +29,15 @@
 }
 
 .lastScreenActive {
-  transform: translateX(50%) rotate(0deg);
+  transform: translate3d(50%, 0, 0) rotate(0deg);
 }
 
 .lastAnimantionActive {
-  transform: translateY(-20%) translateX(50%) scale(0.8);
+  transform: translate3d(50%, -20%, 0) scale(0.8);
 
   &.transition {
     transition: all 60s ease-in-out;
+    will-change: transform;
   }
 }
 
@@ -47,19 +47,20 @@
   opacity: 0.6;
   min-width: 100vw;
   min-height: 100vw;
-  transform: translateZ(0) translateY(45%) scale(0.9);
-  will-change: transform, opacity;
+  transform: translate3d(0, 45%, 0) scale(0.9);
+  contain: layout style paint;
 
   @include tablet {
-    transform: translateY(70%) scale(1.8);
+    transform: translate3d(0, 70%, 0) scale(1.8);
   }
 
   @include mobile {
-    transform: translateY(90%) scale(1.8);
+    transform: translate3d(0, 90%, 0) scale(1.8);
   }
 
   &.transition {
     transition: all 1.3s ease-in-out;
+    will-change: transform, opacity;
   }
 
   &.screen1,
@@ -68,44 +69,54 @@
   &.screen1_3,
   &.screen1_4 {
     transform: scale(1.2) rotate(45deg);
+    will-change: transform;
   }
 
   &.screen2_1 {
-    transform: translateY(-45%) translateX(50%) scale(2.2);
+    transform: translate3d(50%, -45%, 0) scale(2.2);
+    will-change: transform;
   }
 
   &.screen2_2 {
-    transform: translateY(-35%) translateX(-55%) scale(2.4);
+    transform: translate3d(-55%, -35%, 0) scale(2.4);
+    will-change: transform;
   }
 
   &.screen2_3 {
-    transform: translateY(55%) translateX(36%) scale(2);
+    transform: translate3d(36%, 55%, 0) scale(2);
+    will-change: transform;
   }
 
   &.screen2_4 {
-    transform: translateY(45%) translateX(-45%) scale(2.3);
+    transform: translate3d(-45%, 45%, 0) scale(2.3);
+    will-change: transform;
   }
 
   &.screen2_5 {
-    transform: translateY(-58%) translateX(23%) scale(2);
+    transform: translate3d(23%, -58%, 0) scale(2);
+    will-change: transform;
   }
 
   &.screen3 {
     transform: scale(1.15);
+    will-change: transform;
   }
 
   &.screen4 {
     transform: scale(1.25) rotate(90deg);
+    will-change: transform;
   }
 
   &.screen5 {
-    transform: translateY(0) scale(1.15) rotate(180deg);
+    transform: translate3d(0, 0, 0) scale(1.15) rotate(180deg);
     opacity: 0.4;
+    will-change: transform, opacity;
   }
 
   &.screen6,
   &.screen7 {
     opacity: 0;
-    transform: translateX(-70vw) scale(0) rotate(0deg);
+    transform: translate3d(-70vw, 0, 0) scale(0) rotate(0deg);
+    will-change: transform, opacity;
   }
 }

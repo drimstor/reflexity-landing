@@ -11,7 +11,15 @@ import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
 import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
 import Header from 'components/UI-kit/Header/Header'
 import useMediaQuery from 'hooks/useMediaQuery'
-import { TouchEvent, useEffect, useRef, useState, WheelEvent } from 'react'
+import {
+  TouchEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  WheelEvent,
+} from 'react'
 import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
 import styles from './PageCarousel.module.scss'
 
@@ -24,11 +32,22 @@ const PageCarousel = () => {
   const [screenNumber, setScreenNumber] = useState('0')
   const [isScrollLock, setIsScrollLock] = useState(false)
 
-  const clearScrollLock = () => {
-    setIsScrollLock(false)
-  }
+  // Refs для актуальных значений в useEffect без пересрабатывания
+  const isMobileRef = useRef(isMobile)
+  const screenNumberRef = useRef(screenNumber)
+  const isScrollLockRef = useRef(isScrollLock)
 
-  const scrollToNewScreen = (isNext = true) => {
+  useEffect(() => {
+    isMobileRef.current = isMobile
+    screenNumberRef.current = screenNumber
+    isScrollLockRef.current = isScrollLock
+  }, [isMobile, screenNumber, isScrollLock])
+
+  const clearScrollLock = useCallback(() => {
+    setIsScrollLock(false)
+  }, [])
+
+  const scrollToNewScreen = useCallback((isNext = true) => {
     if (carouselRef.current?.dataset.scroll === 'enable') {
       setScrollToDirection(isNext ? 1 : -1)
       setTimeout(() => {
@@ -36,69 +55,87 @@ const PageCarousel = () => {
         setScrollToDirection(0)
       }, 100)
     }
-  }
+  }, [])
 
-  const onScrollToScreenCallback = (screen: string) => {
-    document.body.classList.add('noTransition')
-    if (!isMobile) setScreenNumber(screen)
-    setTimeout(() => {
-      setIsScrollLock(true)
-      setScrollToDirection(0)
-      document.body.classList.remove('noTransition')
-    }, 100)
-    setTimeout(clearScrollLock, 1000)
+  const onScrollToScreenCallback = useCallback(
+    (screen: string) => {
+      document.body.classList.add('noTransition')
+      if (!isMobile) setScreenNumber(screen)
+      setTimeout(() => {
+        setIsScrollLock(true)
+        setScrollToDirection(0)
+        document.body.classList.remove('noTransition')
+      }, 100)
+      setTimeout(clearScrollLock, 1000)
 
-    if (!disableAnimationScreens.includes(screen)) {
-      const screenIndex = screensFromNav.indexOf(screen)
-      const array = screensFromNav.slice(
-        0,
-        screen === '2_1' ? screenIndex + 1 : screenIndex
-      )
-      setDisableAnimationScreens(array)
-    }
-  }
+      setDisableAnimationScreens((prev) => {
+        if (!prev.includes(screen)) {
+          const screenIndex = screensFromNav.indexOf(screen)
+          const array = screensFromNav.slice(
+            0,
+            screen === '2_1' ? screenIndex + 1 : screenIndex
+          )
+          return array
+        }
+        return prev
+      })
+    },
+    [isMobile, clearScrollLock]
+  )
 
-  const onPageWheelHandler = (e: WheelEvent<HTMLElement>) => {
-    if (!isScrollLock && !isMobile) {
-      if (e.nativeEvent.deltaY > 0) {
-        scrollToNewScreen()
-      } else {
-        scrollToNewScreen(false)
+  const onPageWheelHandler = useCallback(
+    (e: WheelEvent<HTMLElement>) => {
+      if (!isScrollLock && !isMobile) {
+        if (e.nativeEvent.deltaY > 0) {
+          scrollToNewScreen()
+        } else {
+          scrollToNewScreen(false)
+        }
       }
-    }
-  }
+    },
+    [isScrollLock, isMobile, scrollToNewScreen]
+  )
 
   // ------------- Mobile ------------ //
   const [isDragging, setIsDragging] = useState(false)
-  const [startPosition, setStartPosition] = useState({ clientX: 0, clientY: 0 })
+  const startPositionRef = useRef({ clientX: 0, clientY: 0 })
 
-  const onMouseDownHandler = (e: TouchEvent<HTMLDivElement>) => {
+  const onMouseDownHandler = useCallback((e: TouchEvent<HTMLDivElement>) => {
     setIsDragging(true)
-    setStartPosition({
+    startPositionRef.current = {
       clientX: e.targetTouches[0].clientX,
       clientY: e.targetTouches[0].clientY,
-    })
-  }
-
-  const onMouseMoveHandler = (e: TouchEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      const currentPositionY = e.targetTouches[0].clientY
-
-      if (startPosition.clientY - currentPositionY >= 0) {
-        scrollToNewScreen()
-      } else {
-        scrollToNewScreen(false)
-      }
     }
-  }
+  }, [])
+
+  const onMouseMoveHandler = useCallback(
+    (e: TouchEvent<HTMLDivElement>) => {
+      if (isDragging) {
+        const currentPositionY = e.targetTouches[0].clientY
+
+        if (startPositionRef.current.clientY - currentPositionY >= 0) {
+          scrollToNewScreen()
+        } else {
+          scrollToNewScreen(false)
+        }
+      }
+    },
+    [isDragging, scrollToNewScreen]
+  )
+
+  const onTouchEndHandler = useCallback(() => {
+    setIsDragging(false)
+  }, [])
 
   useEffect(() => {
-    if (!isScrollLock) {
+    if (!isScrollLockRef.current) {
       if (scrollToDirection > 0) {
         scrollNextConfig.forEach((config) => {
-          if (screenNumber === config.currentScreenNumber) {
+          if (screenNumberRef.current === config.currentScreenNumber) {
             if (config.hasOwnProperty('isMobile')) {
-              if (config.isMobile ? isMobile : !isMobile) {
+              if (
+                config.isMobile ? isMobileRef.current : !isMobileRef.current
+              ) {
                 setScreenNumber(config.setScreenNumber)
                 setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
               }
@@ -111,14 +148,19 @@ const PageCarousel = () => {
       }
       if (scrollToDirection < 0) {
         scrollPrevConfig.forEach((config) => {
-          if (screenNumber === config.currentScreenNumber) {
+          if (screenNumberRef.current === config.currentScreenNumber) {
             setScreenNumber(config.setScreenNumber)
             setTimeout(clearScrollLock, config.clearTimeout ?? 1500)
           }
         })
       }
     }
-  }, [scrollToDirection])
+  }, [scrollToDirection, clearScrollLock])
+
+  const carouselClassName = useMemo(
+    () => clsx(styles.globalBox, styles['screen' + screenNumber]),
+    [screenNumber]
+  )
 
   return (
     <>
@@ -132,10 +174,11 @@ const PageCarousel = () => {
         id='carousel'
         ref={carouselRef}
         data-scroll={'enable'}
-        className={clsx(styles.globalBox, styles['screen' + screenNumber])}
+        className={carouselClassName}
         onWheel={onPageWheelHandler}
         onTouchStart={onMouseDownHandler}
         onTouchMove={onMouseMoveHandler}
+        onTouchEnd={onTouchEndHandler}
       >
         <FirstScreen
           onScrollToScreenCallback={onScrollToScreenCallback}

@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimation'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import styles from './Planet.module.scss'
 
 interface PlanetProps {
@@ -14,18 +14,24 @@ const Planet = ({ screenNumber }: PlanetProps) => {
     setTimeout(() => setTransitionOn(true), 300)
   }, [])
 
+  const animationClassName = useMemo(
+    () =>
+      clsx(
+        styles.lottieAnimation,
+        styles['screen' + screenNumber],
+        transitionOn && styles.transition
+      ),
+    [screenNumber, transitionOn]
+  )
+
   return (
     <div className={styles.circleBox}>
       <LottieAnimation
         animationPath='/slow-spinner.json'
-        className={clsx(
-          styles.lottieAnimation,
-          styles['screen' + screenNumber],
-          transitionOn && styles.transition
-        )}
+        className={animationClassName}
       />
     </div>
   )
 }
 
-export default Planet
+export default memo(Planet)

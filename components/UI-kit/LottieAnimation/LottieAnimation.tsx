@@ -1,12 +1,10 @@
 import lottie, { AnimationItem, RendererType } from 'lottie-web'
-import { useEffect, useRef } from 'react'
+import { memo, useEffect, useRef } from 'react'
 
 type Props = {
   animationPath: string
   loop?: boolean
   autoplay?: boolean
-  width?: number | string
-  height?: number | string
   className?: string
   // Настройки оптимизации
   renderer?: RendererType // 'svg' | 'canvas' | 'html'
@@ -15,12 +13,10 @@ type Props = {
   speed?: number // скорость анимации (1 = нормальная, 0.5 = медленнее, 2 = быстрее)
 }
 
-export const LottieAnimation: React.FC<Props> = ({
+const LottieAnimationComponent: React.FC<Props> = ({
   animationPath,
   loop = true,
   autoplay = true,
-  width = 300,
-  height = 300,
   className,
   renderer = 'svg',
   quality = 'high',
@@ -32,15 +28,22 @@ export const LottieAnimation: React.FC<Props> = ({
   useEffect(() => {
     if (!containerRef.current) return
 
-    // Настройки рендерера в зависимости от quality
+    // Настройки рендерера для оптимизации
     const rendererSettings: Record<string, any> = {
       preserveAspectRatio: 'xMidYMid meet',
       progressiveLoad: true, // загрузка по частям
       hideOnTransparent: true,
+      // Оптимизация для SVG - улучшенная область фильтрации
+      filterSize: {
+        width: '200%',
+        height: '200%',
+        x: '-50%',
+        y: '-50%',
+      },
     }
 
     if (renderer === 'canvas') {
-      rendererSettings.clearCanvas = quality === 'low' // очищать canvas для экономии памяти
+      rendererSettings.clearCanvas = quality === 'low'
     }
 
     const instance = lottie.loadAnimation({
@@ -59,7 +62,8 @@ export const LottieAnimation: React.FC<Props> = ({
       instance.setSpeed(speed)
     }
 
-    // Отключаем subframe для лучшей производительности на слабых устройствах
+    // Настройки для плавности
+    // Для high quality оставляем subframe включенным для более плавной анимации
     if (quality === 'low' || quality === 'medium') {
       instance.setSubframe(false)
     }
@@ -72,3 +76,5 @@ export const LottieAnimation: React.FC<Props> = ({
 
   return <div ref={containerRef} className={className} />
 }
+
+export const LottieAnimation = memo(LottieAnimationComponent)
