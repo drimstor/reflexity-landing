@@ -6,7 +6,7 @@
   // Оптимизации для слабых устройств применяются через глобальный класс внутри
   :global(.lottie-svg-low-quality) {
     // Уменьшаем качество рендеринга для экономии ресурсов
-    shape-rendering: optimizeSpeed;
+    // shape-rendering: optimizeSpeed;
     // Отключаем сглаживание текста
     text-rendering: optimizeSpeed;
     // Упрощаем интерполяцию изображений
