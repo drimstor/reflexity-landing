@@ -34,15 +34,23 @@ const getDevicePerformance = () => {
   const deviceMemory = (navigator as any).deviceMemory || 8 // GB
 
   // Определяем производительность на основе метрик
+  // if (
+  //   cores <= 2 ||
+  //   deviceMemory <= 2 ||
+  //   effectiveType === 'slow-2g' ||
+  //   effectiveType === '2g'
+  // ) {
+  //   return 'low'
+  // } else if (cores <= 4 || deviceMemory < 8 || effectiveType === '3g') {
+  //   return 'medium'
+  // }
+
   if (
-    cores <= 2 ||
-    deviceMemory <= 2 ||
-    effectiveType === 'slow-2g' ||
-    effectiveType === '2g'
+    cores < 4 ||
+    deviceMemory < 8 ||
+    ['slow-2g', '2g', '3g'].includes(effectiveType)
   ) {
     return 'low'
-  } else if (cores <= 4 || deviceMemory < 8 || effectiveType === '3g') {
-    return 'medium'
   }
 
   return 'high'
