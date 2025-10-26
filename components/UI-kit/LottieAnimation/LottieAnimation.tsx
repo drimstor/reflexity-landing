@@ -36,12 +36,12 @@ const getDevicePerformance = () => {
   // Определяем производительность на основе метрик
   if (
     cores <= 2 ||
-    deviceMemory <= 4 ||
+    deviceMemory <= 2 ||
     effectiveType === 'slow-2g' ||
     effectiveType === '2g'
   ) {
     return 'low'
-  } else if (cores <= 4 || deviceMemory <= 8 || effectiveType === '3g') {
+  } else if (cores <= 4 || deviceMemory < 8 || effectiveType === '3g') {
     return 'medium'
   }
 
@@ -56,16 +56,21 @@ const LottieAnimationComponent: React.FC<Props> = ({
   renderer = 'svg',
   quality,
   pauseOnHidden = true,
-  speed = 0.6,
+  speed = 0.4,
   disableAnimationSpeed = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<AnimationItem | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
-  const [isVisible, setIsVisible] = useState(autoplay)
 
   // Автоопределение качества на основе производительности устройства
   const effectiveQuality = quality || getDevicePerformance()
+
+  // Для устройств с низкой производительностью отключаем autoplay
+  const effectiveAutoplay =
+    autoplay && !(effectiveQuality === 'low' || disableAnimationSpeed)
+
+  const [isVisible, setIsVisible] = useState(effectiveAutoplay)
 
   useEffect(() => {
     const container = containerRef.current
@@ -100,7 +105,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
       container,
       renderer,
       loop,
-      autoplay: autoplay && isVisible,
+      autoplay: effectiveAutoplay && isVisible,
       path: animationPath,
       rendererSettings,
     })
@@ -110,10 +115,8 @@ const LottieAnimationComponent: React.FC<Props> = ({
     // Настройка скорости в зависимости от производительности
     let effectiveSpeed = speed
 
-    // Если включена опция отключения на слабых устройствах - ставим скорость 0
-    if (effectiveQuality === 'low' || disableAnimationSpeed) {
-      effectiveSpeed = 0
-    } else if (effectiveQuality === 'medium') {
+    // Для устройств средней производительности замедляем
+    if (effectiveQuality === 'medium') {
       effectiveSpeed = speed * 0.5
     }
 
@@ -132,7 +135,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               setIsVisible(true)
-              if (animationRef.current && autoplay) {
+              if (animationRef.current && effectiveAutoplay) {
                 animationRef.current.play()
               }
             } else {
@@ -165,7 +168,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
   }, [
     animationPath,
     loop,
-    autoplay,
+    effectiveAutoplay,
     renderer,
     effectiveQuality,
     speed,
