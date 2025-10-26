@@ -46,8 +46,8 @@ const getDevicePerformance = () => {
   // }
 
   if (
-    cores < 4 ||
-    deviceMemory < 8 ||
+    cores <= 4 ||
+    deviceMemory <= 8 ||
     ['slow-2g', '2g', '3g'].includes(effectiveType)
   ) {
     return 'low'
