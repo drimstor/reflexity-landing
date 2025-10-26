@@ -88,11 +88,11 @@ import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimati
 ```tsx
 <LottieAnimation
   animationPath="/animation.json"
-  disableOnLowEnd={true} // анимация не будет загружаться на слабых устройствах
+  disableAnimationSpeed={true} // анимация не будет загружаться на слабых устройствах
 />
 ```
 
-**Рекомендация:** Используйте `disableOnLowEnd={true}` для декоративных анимаций, чтобы максимально разгрузить слабые устройства.
+**Рекомендация:** Используйте `disableAnimationSpeed={true}` для декоративных анимаций, чтобы максимально разгрузить слабые устройства.
 
 ### Отключение автоматической паузы
 

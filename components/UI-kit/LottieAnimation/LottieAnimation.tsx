@@ -13,7 +13,7 @@ type Props = {
   quality?: 'high' | 'medium' | 'low' // влияет на rendererSettings
   pauseOnHidden?: boolean // останавливать анимацию когда не видна
   speed?: number // скорость анимации (1 = нормальная, 0.5 = медленнее, 2 = быстрее)
-  disableOnLowEnd?: boolean // полностью отключить анимацию на слабых устройствах
+  disableAnimationSpeed?: boolean // полностью отключить анимацию на слабых устройствах
 }
 
 // Определение производительности устройства
@@ -36,12 +36,12 @@ const getDevicePerformance = () => {
   // Определяем производительность на основе метрик
   if (
     cores <= 2 ||
-    deviceMemory <= 2 ||
+    deviceMemory <= 4 ||
     effectiveType === 'slow-2g' ||
     effectiveType === '2g'
   ) {
     return 'low'
-  } else if (cores <= 4 || deviceMemory <= 4 || effectiveType === '3g') {
+  } else if (cores <= 4 || deviceMemory <= 8 || effectiveType === '3g') {
     return 'medium'
   }
 
@@ -57,7 +57,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
   quality,
   pauseOnHidden = true,
   speed = 0.6,
-  disableOnLowEnd = false,
+  disableAnimationSpeed = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<AnimationItem | null>(null)
@@ -111,12 +111,10 @@ const LottieAnimationComponent: React.FC<Props> = ({
     let effectiveSpeed = speed
 
     // Если включена опция отключения на слабых устройствах - ставим скорость 0
-    if (disableOnLowEnd && effectiveQuality === 'low') {
+    if (effectiveQuality === 'low' || disableAnimationSpeed) {
       effectiveSpeed = 0
-    } else if (effectiveQuality === 'low') {
-      effectiveSpeed = speed * 0.4
     } else if (effectiveQuality === 'medium') {
-      effectiveSpeed = speed * 0.6
+      effectiveSpeed = speed * 0.5
     }
 
     instance.setSpeed(effectiveSpeed)
@@ -173,7 +171,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
     speed,
     pauseOnHidden,
     isVisible,
-    disableOnLowEnd,
+    disableAnimationSpeed,
   ])
 
   return (
