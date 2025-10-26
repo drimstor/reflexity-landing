@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
@@ -35,7 +35,7 @@ export default function Document() {
           name='twitter:description'
           content='Your Personal AI Life Manager'
         />
-        <meta name='twitter:image' content='/twitter-banner.png' />
+        <meta name='twitter:image' content='/social-banner.png' />
         <meta name='twitter:image:width' content='1200' />
         <meta name='twitter:image:height' content='675' />
         {/* Дополнительные метаданные */}
