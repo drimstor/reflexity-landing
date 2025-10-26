@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimation'
 import { memo, useEffect, useMemo, useState } from 'react'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import styles from './Planet.module.scss'
 
 interface PlanetProps {
@@ -9,6 +10,7 @@ interface PlanetProps {
 
 const Planet = ({ screenNumber }: PlanetProps) => {
   const [transitionOn, setTransitionOn] = useState(false)
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   useEffect(() => {
     setTimeout(() => setTransitionOn(true), 300)
@@ -29,7 +31,8 @@ const Planet = ({ screenNumber }: PlanetProps) => {
       <LottieAnimation
         animationPath='/slow-spinner.json'
         className={animationClassName}
-        disableOnLowEnd={true}
+        pauseOnHidden={!isMobile}
+        // disableAnimationSpeed
       />
     </div>
   )

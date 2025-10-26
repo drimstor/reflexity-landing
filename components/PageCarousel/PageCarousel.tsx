@@ -227,7 +227,7 @@ const PageCarousel = () => {
         />
         <EighthScreen screenNumber={screenNumber} />
       </section>
-      {isLastScreen && <LastPlanet screenNumber={screenNumber} />}
+      {isLastScreen && !isMobile && <LastPlanet screenNumber={screenNumber} />}
     </>
   )
 }
