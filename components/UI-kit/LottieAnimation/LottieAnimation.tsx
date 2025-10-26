@@ -30,6 +30,10 @@ const getDevicePerformance = () => {
     (navigator as any).webkitConnection
   const effectiveType = connection?.effectiveType || '4g'
 
+  const isMobile =
+    (navigator as any).userAgentData?.mobile ||
+    navigator.userAgent.includes('Mobile')
+
   // Проверяем память устройства (если доступно)
   const deviceMemory = (navigator as any).deviceMemory || 8 // GB
 
@@ -44,6 +48,10 @@ const getDevicePerformance = () => {
   // } else if (cores <= 4 || deviceMemory < 8 || effectiveType === '3g') {
   //   return 'medium'
   // }
+
+  if (isMobile) {
+    return 'high'
+  }
 
   if (
     cores <= 4 ||
