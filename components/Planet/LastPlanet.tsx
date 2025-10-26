@@ -34,10 +34,6 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
     [screenNumber, lastAnimantion, transitionOn]
   )
 
-  if (Number(screenNumber) < 6) {
-    return null
-  }
-
   return (
     <div className={styles.circleBox}>
       <div className={containerClassName}>

@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import LastPlanet from 'components/Planet/LastPlanet'
 import Planet from 'components/Planet/Planet'
 import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
 import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
@@ -11,6 +10,7 @@ import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
 import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
 import Header from 'components/UI-kit/Header/Header'
 import useMediaQuery from 'hooks/useMediaQuery'
+import dynamic from 'next/dynamic'
 import {
   TouchEvent,
   useCallback,
@@ -22,6 +22,11 @@ import {
 } from 'react'
 import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
 import styles from './PageCarousel.module.scss'
+
+// Ленивая загрузка LastPlanet - загружается только когда screenNumber >= 6
+const LastPlanet = dynamic(() => import('components/Planet/LastPlanet'), {
+  ssr: false, // отключаем SSR для анимации
+})
 
 const PageCarousel = () => {
   const [disableAnimationScreens, setDisableAnimationScreens] = useState([''])
@@ -36,6 +41,11 @@ const PageCarousel = () => {
   const isMobileRef = useRef(isMobile)
   const screenNumberRef = useRef(screenNumber)
   const isScrollLockRef = useRef(isScrollLock)
+
+  const isLastScreen = useMemo(
+    () => ['6', '7'].includes(screenNumber),
+    [screenNumber]
+  )
 
   useEffect(() => {
     isMobileRef.current = isMobile
@@ -217,7 +227,7 @@ const PageCarousel = () => {
         />
         <EighthScreen screenNumber={screenNumber} />
       </section>
-      <LastPlanet screenNumber={screenNumber} />
+      {isLastScreen && <LastPlanet screenNumber={screenNumber} />}
     </>
   )
 }

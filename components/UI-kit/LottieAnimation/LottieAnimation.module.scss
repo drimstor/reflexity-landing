@@ -1,0 +1,44 @@
+// Локальный класс-обертка для Lottie контейнера
+.lottieContainer {
+  // Базовые стили контейнера (если нужны)
+  position: relative;
+
+  // Оптимизации для слабых устройств применяются через глобальный класс внутри
+  :global(.lottie-svg-low-quality) {
+    // Уменьшаем качество рендеринга для экономии ресурсов
+    shape-rendering: optimizeSpeed;
+    // Отключаем сглаживание текста
+    text-rendering: optimizeSpeed;
+    // Упрощаем интерполяцию изображений
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+
+    // Используем GPU для ускорения
+    transform: translateZ(0);
+    will-change: auto; // не используем will-change на слабых устройствах
+
+    // Отключаем сглаживание
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+
+    // Вложенные стили для SVG элементов
+    svg {
+      // Оптимизация векторной графики
+      shape-rendering: crispEdges;
+
+      // Отключаем тени и фильтры на слабых устройствах
+      filter: none !important;
+
+      // Упрощаем композитинг
+      isolation: auto;
+    }
+
+    path,
+    g {
+      // Оптимизация путей
+      vector-effect: non-scaling-stroke;
+    }
+  }
+}
