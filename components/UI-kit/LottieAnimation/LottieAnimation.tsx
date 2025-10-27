@@ -77,7 +77,6 @@ const LottieAnimationComponent: React.FC<Props> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<AnimationItem | null>(null)
-  const observerRef = useRef<IntersectionObserver | null>(null)
 
   // Автоопределение качества на основе производительности устройства
   const effectiveQuality = quality || getDevicePerformance()
@@ -144,40 +143,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
       instance.setSubframe(false)
     }
 
-    // Intersection Observer для паузы анимации когда не видна
-    if (pauseOnHidden && typeof IntersectionObserver !== 'undefined') {
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setIsVisible(true)
-              if (animationRef.current && effectiveAutoplay) {
-                animationRef.current.play()
-              }
-            } else {
-              setIsVisible(false)
-              if (animationRef.current) {
-                animationRef.current.pause()
-              }
-            }
-          })
-        },
-        {
-          threshold: 0.1, // Запускаем когда видно 10% элемента
-          rootMargin: '50px', // Предзагрузка за 50px до появления
-        }
-      )
-
-      if (container) {
-        observerRef.current.observe(container)
-      }
-    }
-
     return () => {
-      if (observerRef.current && container) {
-        observerRef.current.unobserve(container)
-        observerRef.current.disconnect()
-      }
       instance.destroy()
       animationRef.current = null
     }
