@@ -18,6 +18,7 @@
 
   @include tablet {
     margin-bottom: 300px;
+    padding-top: 170px;
   }
 
   @include mobile {
@@ -63,6 +64,11 @@
     color: $neutral-white-main;
     font-family: 'ZonaPro';
     font-weight: 400;
+
+    @include tablet {
+      font-size: 32px;
+      line-height: 40px;
+    }
   }
 
   span {
@@ -81,8 +87,8 @@
     color: #ffffffb3;
 
     @include tablet {
-      font-size: 24px;
-      line-height: 32px;
+      font-size: 18px;
+      line-height: 24px;
       max-width: 390px;
     }
 
