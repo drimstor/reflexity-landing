@@ -11,7 +11,6 @@ type Props = {
   // Настройки оптимизации
   renderer?: RendererType // 'svg' | 'canvas' | 'html'
   quality?: 'high' | 'medium' | 'low' // влияет на rendererSettings
-  pauseOnHidden?: boolean // останавливать анимацию когда не видна
   speed?: number // скорость анимации (1 = нормальная, 0.5 = медленнее, 2 = быстрее)
   disableAnimationSpeed?: boolean // полностью отключить анимацию на слабых устройствах
 }
@@ -53,13 +52,13 @@ const getDevicePerformance = () => {
     return 'high'
   }
 
-  if (
-    cores <= 4 ||
-    deviceMemory <= 8 ||
-    ['slow-2g', '2g', '3g'].includes(effectiveType)
-  ) {
-    return 'low'
-  }
+  // if (
+  //   cores <= 4 ||
+  //   deviceMemory <= 8 ||
+  //   ['slow-2g', '2g', '3g'].includes(effectiveType)
+  // ) {
+  //   return 'low'
+  // }
 
   return 'high'
 }
@@ -71,7 +70,6 @@ const LottieAnimationComponent: React.FC<Props> = ({
   className,
   renderer = 'svg',
   quality,
-  pauseOnHidden = true,
   speed = 0.4,
   disableAnimationSpeed = false,
 }) => {
@@ -154,7 +152,6 @@ const LottieAnimationComponent: React.FC<Props> = ({
     renderer,
     effectiveQuality,
     speed,
-    pauseOnHidden,
     isVisible,
     disableAnimationSpeed,
   ])

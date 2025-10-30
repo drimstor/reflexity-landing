@@ -11,7 +11,7 @@ export default function Document() {
         />
         <meta
           name='keywords'
-          content='Reflexity, AI, Life Manager, Цифровые продукты, Цифровое развитие'
+          content='Reflexity, AI, Life Manager, journaling, mindfulness, self-growth'
         />
         <meta name='author' content='Reflexity Team' />
 

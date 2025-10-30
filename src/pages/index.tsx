@@ -1,14 +1,11 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
 import PageCarousel from 'components/PageCarousel/PageCarousel'
-import Button from 'components/UI-kit/Buttons/Button'
-import { useEffect, useState } from 'react'
+import Head from 'next/head'
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Reflexity</title>
+        <title>Reflexity | AI Life Manager</title>
       </Head>
       <PageCarousel />
     </>

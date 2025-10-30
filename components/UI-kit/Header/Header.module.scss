@@ -7,8 +7,9 @@ header.header {
   top: 0;
   left: 0;
   width: 100vw;
-  background: $background;
   z-index: 999;
+  background: transparent;
+  backdrop-filter: blur(10px);
 
   @include tablet {
     height: 72px;
@@ -191,8 +192,8 @@ header.header {
   gap: 8px;
   position: relative;
   user-select: none;
-  cursor: pointer;
   margin-left: 24px;
+  cursor: url('/cursor-pointer.svg') 0 0, pointer;
 
   @include tablet {
     position: relative;
@@ -244,8 +245,8 @@ header.header {
   font-weight: 600;
   line-height: 24px;
   position: relative;
-  cursor: pointer;
   transition: padding 0.3s;
+  cursor: url('/cursor-pointer.svg') 0 0, pointer;
 
   &::before {
     content: '';

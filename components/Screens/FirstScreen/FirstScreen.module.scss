@@ -1,12 +1,16 @@
 @use '@/styles/_helpers' as *;
 
 .contentBox {
-  padding-top: 200px;
+  padding-top: 250px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 40px;
+  gap: 24px;
   @extend %fullScreenView;
+  max-width: 830px;
+  margin: 0 auto;
+
+  text-align: center;
+  align-items: center;
 
   @include laptop {
     padding-top: 170px;
@@ -31,12 +35,50 @@
     }
   }
 
-  span {
-    text-align: center;
-    font-size: 32px;
+  .buttonsContainer {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+
+    a {
+      &:not(:last-child) {
+        margin-top: 1px;
+      }
+
+      transition: opacity 0.2s ease-in-out, scale 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &:active {
+        scale: 0.97;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 46px;
+    line-height: 56px;
+    color: $neutral-white-main;
+    font-family: 'ZonaPro';
     font-weight: 400;
-    line-height: 40px;
-    max-width: 586px;
+  }
+
+  span {
+    color: $accent-blue-main;
+    font-family: 'ZonaPro';
+    font-weight: 400;
+  }
+
+  > p {
+    font-family: 'ZonaPro-Thin', 'ZonaPro';
+    font-weight: 300;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    font-weight: 400;
+    color: #ffffffb3;
 
     @include tablet {
       font-size: 24px;
@@ -50,18 +92,15 @@
       max-width: 340px;
     }
   }
+}
 
-  img {
-    // @include tablet {
-    //   width: 300px;
-    //   height: 120px;
-    // }
-
-    // @include mobile {
-    //   width: 220px;
-    //   height: 88px;
-    // }
-  }
+.screenshot {
+  object-fit: cover;
+  position: absolute;
+  right: -75px;
+  top: 40px;
+  z-index: 9;
+  scale: 0.7;
 }
 
 .connnectBtn {
