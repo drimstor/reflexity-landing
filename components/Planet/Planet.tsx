@@ -31,7 +31,6 @@ const Planet = ({ screenNumber }: PlanetProps) => {
       <LottieAnimation
         animationPath='/slow-spinner.json'
         className={animationClassName}
-        pauseOnHidden={!isMobile}
         // disableAnimationSpeed
       />
     </div>
