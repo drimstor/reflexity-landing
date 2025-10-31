@@ -37,8 +37,6 @@ const PageCarousel = () => {
   const [screenNumber, setScreenNumber] = useState('0')
   const [isScrollLock, setIsScrollLock] = useState(false)
 
-  console.log({ isScrollLock })
-
   // Refs для актуальных значений в useEffect без пересрабатывания
   const isMobileRef = useRef(isMobile)
   const screenNumberRef = useRef(screenNumber)
