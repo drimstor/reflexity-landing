@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import lottie, { AnimationItem, RendererType } from 'lottie-web'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef } from 'react'
 import styles from './LottieAnimation.module.scss'
 
 type Props = {
@@ -37,6 +37,10 @@ const getDevicePerformance = () => {
   // Проверяем память устройства (если доступно)
   const deviceMemory = (navigator as any).deviceMemory || 8 // GB
 
+  if (isMobile) {
+    return 'high'
+  }
+
   // Определяем производительность на основе метрик
   if (
     cores <= 2 ||
@@ -49,18 +53,6 @@ const getDevicePerformance = () => {
     return 'medium'
   }
 
-  if (isMobile) {
-    return 'high'
-  }
-
-  // if (
-  //   cores <= 4 ||
-  //   deviceMemory <= 8 ||
-  //   ['slow-2g', '2g', '3g'].includes(effectiveType)
-  // ) {
-  //   return 'low'
-  // }
-
   return 'high'
 }
 
@@ -72,7 +64,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
   pause = false,
   renderer = 'svg',
   quality,
-  speed = 0.4,
+  speed = 0.15,
   disableAnimationSpeed = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -84,8 +76,6 @@ const LottieAnimationComponent: React.FC<Props> = ({
   // Для устройств с низкой производительностью отключаем autoplay
   const effectiveAutoplay =
     autoplay && !(effectiveQuality === 'low' || disableAnimationSpeed)
-
-  const [isVisible, setIsVisible] = useState(effectiveAutoplay)
 
   useEffect(() => {
     const container = containerRef.current
@@ -103,7 +93,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
       container,
       renderer,
       loop,
-      autoplay: effectiveAutoplay && isVisible,
+      autoplay: effectiveAutoplay,
       path: animationPath,
       rendererSettings,
     })
@@ -137,7 +127,6 @@ const LottieAnimationComponent: React.FC<Props> = ({
     renderer,
     effectiveQuality,
     speed,
-    isVisible,
     disableAnimationSpeed,
   ])
 
