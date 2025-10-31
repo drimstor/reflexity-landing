@@ -6,9 +6,10 @@ import styles from './Planet.module.scss'
 
 interface PlanetProps {
   screenNumber: string
+  isPause?: boolean
 }
 
-const Planet = ({ screenNumber }: PlanetProps) => {
+const Planet = ({ screenNumber, isPause }: PlanetProps) => {
   const [transitionOn, setTransitionOn] = useState(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
@@ -31,6 +32,7 @@ const Planet = ({ screenNumber }: PlanetProps) => {
       <div className={animationClassName}>
         <LottieAnimation
           animationPath='/slow-spinner.json'
+          pause={isPause}
           // disableAnimationSpeed
         />
       </div>

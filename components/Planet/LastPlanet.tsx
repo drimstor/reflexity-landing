@@ -5,9 +5,10 @@ import styles from './Planet.module.scss'
 
 interface PlanetProps {
   screenNumber: string
+  isPause?: boolean
 }
 
-const LastPlanet = ({ screenNumber }: PlanetProps) => {
+const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
   const [lastAnimantion, setLastAnimantion] = useState(false)
   const [transitionOn, setTransitionOn] = useState(false)
 
@@ -40,6 +41,7 @@ const LastPlanet = ({ screenNumber }: PlanetProps) => {
         <LottieAnimation
           animationPath='/slow-spinner.json'
           className={styles.lottieAnimation}
+          pause={isPause}
         />
       </div>
     </div>

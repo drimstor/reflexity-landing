@@ -8,6 +8,7 @@ type Props = {
   loop?: boolean
   autoplay?: boolean
   className?: string
+  pause?: boolean // приостанавливает анимацию при true, возобновляет при false
   // Настройки оптимизации
   renderer?: RendererType // 'svg' | 'canvas' | 'html'
   quality?: 'high' | 'medium' | 'low' // влияет на rendererSettings
@@ -68,6 +69,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
   loop = true,
   autoplay = true,
   className,
+  pause = false,
   renderer = 'svg',
   quality,
   speed = 0.4,
@@ -138,6 +140,17 @@ const LottieAnimationComponent: React.FC<Props> = ({
     isVisible,
     disableAnimationSpeed,
   ])
+
+  // Управление паузой/возобновлением анимации
+  useEffect(() => {
+    if (!animationRef.current) return
+
+    if (pause) {
+      animationRef.current.pause()
+    } else {
+      animationRef.current.play()
+    }
+  }, [pause])
 
   return (
     <div

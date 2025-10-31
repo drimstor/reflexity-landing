@@ -37,6 +37,8 @@ const PageCarousel = () => {
   const [screenNumber, setScreenNumber] = useState('0')
   const [isScrollLock, setIsScrollLock] = useState(false)
 
+  console.log({ isScrollLock })
+
   // Refs для актуальных значений в useEffect без пересрабатывания
   const isMobileRef = useRef(isMobile)
   const screenNumberRef = useRef(screenNumber)
@@ -179,7 +181,7 @@ const PageCarousel = () => {
         isMobile={isMobile}
         onScrollToScreenCallback={onScrollToScreenCallback}
       />
-      <Planet screenNumber={screenNumber} />
+      <Planet screenNumber={screenNumber} isPause={isScrollLock} />
       <section
         id='carousel'
         ref={carouselRef}
@@ -227,7 +229,9 @@ const PageCarousel = () => {
         />
         <EighthScreen screenNumber={screenNumber} />
       </section>
-      {isLastScreen && !isMobile && <LastPlanet screenNumber={screenNumber} />}
+      {isLastScreen && !isMobile && (
+        <LastPlanet screenNumber={screenNumber} isPause={isScrollLock} />
+      )}
     </>
   )
 }
