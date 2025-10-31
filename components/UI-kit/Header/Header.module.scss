@@ -8,7 +8,7 @@ header.header {
   left: 0;
   width: 100vw;
   z-index: 999;
-  background: transparent;
+  background: #18182227;
   backdrop-filter: blur(10px);
 
   @include tablet {
@@ -35,7 +35,6 @@ header.header {
     font-size: 24px;
     color: $neutral-white-main;
     line-height: 28px;
-    font-family: 'ZonaPro-Thin', 'ZonaPro';
     font-weight: 300;
   }
 
@@ -78,11 +77,8 @@ header.header {
     position: fixed;
     left: -100vw;
     top: 0;
-    height: 100%;
+    height: 100dvh;
     width: 100vw;
-    min-height: -moz-available;
-    min-height: stretch;
-    min-height: -webkit-stretch;
     background: $background;
     z-index: 1;
     transition: all 0.2s ease-in-out;
@@ -94,7 +90,6 @@ header.header {
       position: fixed;
       top: 0;
       left: 0;
-      background: $background;
       z-index: 2;
     }
 

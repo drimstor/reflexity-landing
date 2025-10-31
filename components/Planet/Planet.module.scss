@@ -8,9 +8,13 @@
   transform: translate(-50%, -50%);
 
   @include tablet {
-    transform: translate(-50%, 80%);
+    transform: translate(-50%, 50%);
     top: 0%;
     position: absolute;
+  }
+
+  @include mobile {
+    transform: translate(-50%, 80%);
   }
 }
 

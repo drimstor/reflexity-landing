@@ -4,7 +4,7 @@
   padding-top: 250px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
   @extend %fullScreenView;
   max-width: 830px;
   margin: 0 auto;
@@ -17,23 +17,15 @@
   }
 
   @include tablet {
-    margin-bottom: 300px;
-    padding-top: 170px;
+    margin-bottom: 500px;
+    padding-top: 140px;
+    gap: 24px;
   }
 
   @include mobile {
-    padding-top: 150px;
-    margin-bottom: 260px;
+    margin-bottom: 300px;
     min-height: fit-content;
     height: 100%;
-  }
-
-  button {
-    font-size: 20px;
-
-    @include mobile {
-      font-size: 16px;
-    }
   }
 
   .buttonsContainer {
@@ -59,11 +51,11 @@
   }
 
   h1 {
-    font-size: 46px;
-    line-height: 56px;
+    font-size: 54px;
+    line-height: 64px;
     color: $neutral-white-main;
-    font-family: 'ZonaPro';
     font-weight: 400;
+    padding: 0 16px;
 
     @include tablet {
       font-size: 32px;
@@ -73,18 +65,17 @@
 
   span {
     color: $accent-blue-main;
-    font-family: 'ZonaPro';
     font-weight: 400;
   }
 
   > p {
-    font-family: 'ZonaPro-Thin', 'ZonaPro';
     font-weight: 300;
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;
     font-weight: 400;
     color: #ffffffb3;
+    padding: 0 16px;
 
     @include tablet {
       font-size: 18px;
@@ -93,10 +84,25 @@
     }
 
     @include mobile {
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
-      max-width: 340px;
     }
+  }
+}
+
+.chipBtn {
+  gap: 10px;
+  border-radius: 28px;
+  font-weight: 400;
+  padding: 8px 20px;
+  width: fit-content !important;
+  border: 1px solid rgba(255, 255, 255, 0.177);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 0 15px rgba(255, 255, 255, 0.08), 0 0 2px rgba(255, 255, 255, 0.1);
+
+  img {
+    filter: invert(1);
+    margin-left: -2px;
   }
 }
 
@@ -112,18 +118,4 @@
 .connnectBtn {
   position: relative;
   z-index: 99;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  h1 {
-    font-size: 36px;
-    line-height: 48px;
-    color: $neutral-white-main;
-    font-family: 'ZonaPro-Thin', 'ZonaPro';
-    font-weight: 300;
-  }
 }

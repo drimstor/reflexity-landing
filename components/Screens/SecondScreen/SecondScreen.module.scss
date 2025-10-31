@@ -88,6 +88,7 @@
   }
 
   @include tablet {
+    margin-bottom: 300px;
     min-height: fit-content;
 
     &.mobileActive {
@@ -130,6 +131,10 @@
         }
       }
     }
+  }
+
+  @include mobile {
+    margin-bottom: 10px;
   }
 
   h2 {

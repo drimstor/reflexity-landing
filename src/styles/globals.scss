@@ -6,7 +6,7 @@
   src: url('/fonts/ZonaPro-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -14,7 +14,7 @@
   src: url('/fonts/ZonaPro-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -22,7 +22,7 @@
   src: url('/fonts/ZonaPro-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 * {

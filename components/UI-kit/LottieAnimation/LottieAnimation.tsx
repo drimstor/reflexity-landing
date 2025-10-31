@@ -104,7 +104,6 @@ const LottieAnimationComponent: React.FC<Props> = ({
         x: effectiveQuality === 'high' ? '-50%' : '-25%',
         y: effectiveQuality === 'high' ? '-50%' : '-25%',
       }
-
       rendererSettings.className = 'lottie-svg-low-quality'
     }
 

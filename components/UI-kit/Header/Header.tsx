@@ -1,15 +1,15 @@
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
-import styles from './Header.module.scss'
-import logo from '../../../public/logo.png'
-import angleDownIcon from '../../../public/icons/angle-down.svg'
-import globeIcon from '../../../public/icons/globe.svg'
-import Image from 'next/image'
-import Link from 'next/link'
 import Button from 'components/UI-kit/Buttons/Button'
 import useClickOutside from 'hooks/useClickOutside'
-import { languages, navItems } from './constants'
+import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useRef, useState } from 'react'
+import angleDownIcon from '../../../public/icons/angle-down.svg'
+import globeIcon from '../../../public/icons/globe.svg'
+import logo from '../../../public/logo.png'
+import { languages, navItems } from './constants'
+import styles from './Header.module.scss'
 
 interface iHeader {
   onScrollToScreenCallback: any
