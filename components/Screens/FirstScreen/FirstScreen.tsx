@@ -32,14 +32,14 @@ const FirstScreen = ({
   )
   const descriptionEn = (
     <>
-      Journal your thoughts, set goals, find patterns — and watch as{' '}
-      <span>Reflexity</span> builds a map of your inner world.
+      Journal your thoughts, set goals — and watch as <span>Reflexity</span>{' '}
+      builds a map of your inner world.
     </>
   )
   const descriptionRu = (
     <>
-      Записывайте мысли, ставьте цели, находите закономерности — и наблюдайте,
-      как <span>Reflexity</span> строит карту вашего внутреннего мира.
+      Записывайте мысли, ставьте цели — и наблюдайте, как <span>Reflexity</span>{' '}
+      строит карту вашего внутреннего мира.
     </>
   )
   return (

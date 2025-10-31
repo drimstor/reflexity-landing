@@ -28,11 +28,12 @@ const Planet = ({ screenNumber }: PlanetProps) => {
 
   return (
     <div className={styles.circleBox}>
-      <LottieAnimation
-        animationPath='/slow-spinner.json'
-        className={animationClassName}
-        // disableAnimationSpeed
-      />
+      <div className={animationClassName}>
+        <LottieAnimation
+          animationPath='/slow-spinner.json'
+          // disableAnimationSpeed
+        />
+      </div>
     </div>
   )
 }

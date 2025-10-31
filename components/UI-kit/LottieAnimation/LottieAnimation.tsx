@@ -92,25 +92,9 @@ const LottieAnimationComponent: React.FC<Props> = ({
     // Настройки рендерера для оптимизации
     const rendererSettings: Record<string, any> = {
       preserveAspectRatio: 'xMidYMid meet',
-      progressiveLoad: true, // загрузка по частям
+      progressiveLoad: true,
       hideOnTransparent: true,
-    }
-
-    // Оптимизация для SVG рендерера
-    if (renderer === 'svg') {
-      rendererSettings.filterSize = {
-        width: effectiveQuality === 'high' ? '200%' : '150%',
-        height: effectiveQuality === 'high' ? '200%' : '150%',
-        x: effectiveQuality === 'high' ? '-50%' : '-25%',
-        y: effectiveQuality === 'high' ? '-50%' : '-25%',
-      }
-      rendererSettings.className = 'lottie-svg-low-quality'
-    }
-
-    if (renderer === 'canvas') {
-      rendererSettings.clearCanvas = effectiveQuality !== 'high'
-      rendererSettings.context = container
-      rendererSettings.preserveAspectRatio = 'xMidYMid meet'
+      className: 'lottie-svg-low-quality',
     }
 
     const instance = lottie.loadAnimation({
