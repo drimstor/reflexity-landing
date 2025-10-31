@@ -1,7 +1,7 @@
 @use '@/styles/_helpers' as *;
 
 .contentBox {
-  padding-top: 250px;
+  padding-top: 210px;
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -69,12 +69,10 @@
   }
 
   > p {
-    font-weight: 300;
     font-size: 20px;
-    font-weight: 400;
     line-height: 32px;
-    font-weight: 400;
-    color: #ffffffb3;
+    font-weight: 300;
+    color: #ffffffbe;
     padding: 0 16px;
 
     @include tablet {

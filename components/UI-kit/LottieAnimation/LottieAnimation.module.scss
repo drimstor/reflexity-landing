@@ -17,7 +17,6 @@
 
     // Используем GPU для ускорения
     transform: translateZ(0);
-    will-change: auto; // не используем will-change на слабых устройствах
 
     // Отключаем сглаживание
     -webkit-font-smoothing: none;

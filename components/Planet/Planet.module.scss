@@ -21,7 +21,6 @@
 .lastScreen {
   position: relative;
   transform: translate3d(150%, 42%, 0) scale(0.6) rotate(90deg);
-  will-change: transform;
 
   &.transition {
     transition: transform 1.3s ease-in-out;
@@ -52,7 +51,6 @@
   min-height: 100vw;
   transform: translate3d(0, 45%, 0) scale(0.9);
   contain: layout style paint;
-  will-change: transform, opacity;
 
   @include tablet {
     transform: translate3d(0, 70%, 0) scale(1.8);
