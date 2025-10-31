@@ -64,7 +64,7 @@ const LottieAnimationComponent: React.FC<Props> = ({
   pause = false,
   renderer = 'svg',
   quality,
-  speed = 0.15,
+  speed = 0.2,
   disableAnimationSpeed = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)

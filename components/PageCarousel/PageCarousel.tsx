@@ -179,7 +179,7 @@ const PageCarousel = () => {
         isMobile={isMobile}
         onScrollToScreenCallback={onScrollToScreenCallback}
       />
-      <Planet screenNumber={screenNumber} isPause={isScrollLock} />
+      <Planet screenNumber={screenNumber} isPause={!isMobile && isScrollLock} />
       <section
         id='carousel'
         ref={carouselRef}
@@ -228,7 +228,10 @@ const PageCarousel = () => {
         <EighthScreen screenNumber={screenNumber} />
       </section>
       {isLastScreen && !isMobile && (
-        <LastPlanet screenNumber={screenNumber} isPause={isScrollLock} />
+        <LastPlanet
+          screenNumber={screenNumber}
+          isPause={!isMobile && isScrollLock}
+        />
       )}
     </>
   )
