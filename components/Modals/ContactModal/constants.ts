@@ -1,11 +1,8 @@
 export const inputsValues = [
   {
-    label: 'Сайт',
-    placeholder: 'Сайт',
+    label: 'Ваше имя',
+    placeholder: 'Ваше имя',
     type: 'text',
-    validation: {
-      isLink: true,
-    },
   },
   {
     label: 'Почта',
@@ -18,8 +15,8 @@ export const inputsValues = [
     type: 'text',
   },
   {
-    label: 'Описание вашего проекта',
-    placeholder: 'Описание вашего проекта',
+    label: 'Ваше сообщение',
+    placeholder: 'Ваше сообщение',
     type: 'text',
   },
 ]

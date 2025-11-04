@@ -1,9 +1,9 @@
 @use '@/styles/_helpers' as *;
 
 .footer {
-  position: absolute;
+  position: fixed;
   left: 0;
-  bottom: -10px;
+  bottom: 0;
   width: 100%;
   height: 100px;
   background: #1e212c;
@@ -12,21 +12,15 @@
   justify-content: space-between;
   padding: 0 120px;
   border-top: 1px solid #2c2f39;
-
-  @include laptop {
-    bottom: -20px;
-  }
+  z-index: 9999;
 
   @include tablet {
     align-items: flex-start;
     flex-direction: column;
-    padding: 24px;
-  }
-
-  @include mobile {
     padding: 24px 16px;
-    height: 160px;
+    height: 180px;
     bottom: 0;
+    position: absolute;
   }
 
   span {
@@ -37,7 +31,7 @@
     display: flex;
     gap: 24px;
 
-    @include mobile {
+    @include tablet {
       margin-top: 24px;
       flex-direction: column;
       gap: 16px;
@@ -52,7 +46,7 @@
       }
 
       &:active {
-        color: #023b7e;
+        color: #baa7f6b7;
       }
     }
   }

@@ -17,11 +17,11 @@ const ContactModal = () => {
     useValidation()
 
   const handleSendTelegramMessage = async (args: any) => {
-    const text = `Новая заявка:
-Сайт - ${args.site}
+    const text = `Новое обращение через форму обратной связи:
+Имя - ${args.name}
 Почта - ${args.email}
-Телеграм - ${args.nickname}
-Описание продукта - ${args.description}`
+Телеграм - ${args.telegram}
+Сообщение - ${args.message}`
 
     const telegramBotToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN
     const telegramChatId = process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL_ID
@@ -51,12 +51,12 @@ const ContactModal = () => {
 
   useEffect(() => {
     if (isNoError) {
-      const site = formFields['0']
+      const name = formFields['0']
       const email = formFields['1']
-      const nickname = formFields['2']
-      const description = formFields['3']
+      const telegram = formFields['2']
+      const message = formFields['3']
       const date = new Date().toISOString().replace('T', ' ').split('.')[0]
-      handleSendTelegramMessage({ site, email, nickname, description, date })
+      handleSendTelegramMessage({ name, email, telegram, message, date })
       setIsLoading(true)
     }
   }, [isNoError])
@@ -78,7 +78,7 @@ const ContactModal = () => {
         />
       )}
       <div className={styles.modalBox}>
-        <h3>Подать заявку</h3>
+        <h3>Обратная связь</h3>
         <form onSubmit={onSubmitHandler}>
           {inputsValues.map((input, key) => (
             <Input
@@ -87,7 +87,7 @@ const ContactModal = () => {
               label={input.label}
               placeholder={input.placeholder}
               type={input.type}
-              validation={input.validation}
+              // validation={input.validation}
               isCheckError={isCheckError}
               checkValidate={checkValidate}
               name={String(key)}
@@ -121,7 +121,7 @@ const ContactModal = () => {
             fullWidth
             disabled={!isChecked}
           >
-            {isLoading ? <ButtonLoader /> : 'Присоединиться'}
+            {isLoading ? <ButtonLoader /> : 'Отправить'}
           </Button>
         </form>
       </div>

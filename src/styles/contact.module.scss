@@ -1,0 +1,25 @@
+@use '@/styles/_helpers' as *;
+
+.pageBox {
+  margin-top: -50px;
+
+  @include tablet {
+    margin-top: 75px;
+  }
+
+  :global {
+    #lastPlanet {
+      z-index: initial;
+
+      @include tablet {
+        display: none;
+      }
+    }
+
+    #contact {
+      @include tablet {
+        padding-bottom: 280px;
+      }
+    }
+  }
+}

@@ -36,7 +36,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
   )
 
   return (
-    <div className={styles.circleBox}>
+    <div className={styles.circleBox} id='lastPlanet'>
       <div className={containerClassName}>
         <LottieAnimation
           animationPath='/slow-spinner.json'

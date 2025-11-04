@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Footer.module.scss'
 
 const Footer = () => {
@@ -6,6 +5,11 @@ const Footer = () => {
     <footer className={styles.footer}>
       <span>All rights reserved Reflexity 2023 (c)</span>
       <ul>
+        <li>
+          <a target='_blank' href='/contact'>
+            Обратная связь
+          </a>
+        </li>
         <li>
           <a target='_blank' href='/terms'>
             Пользовательское соглашение

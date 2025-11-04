@@ -67,8 +67,8 @@
     position: sticky;
     flex-direction: row;
     overflow-x: scroll;
-    padding-top: 0;
-    padding-bottom: 8px;
+    padding-top: 10px;
+    padding-bottom: 12px;
   }
 
   &.stickedMenu {
@@ -95,7 +95,7 @@
     }
 
     &:hover {
-      color: #023b7e;
+      color: #baa7f6b7;
     }
   }
 }
@@ -139,6 +139,9 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
 
   &.six {
     p:nth-of-type(1),
@@ -164,7 +167,8 @@
   }
 
   ul {
-    margin-top: -16px;
+    margin-top: -8px;
+    margin-bottom: 8px;
     padding-left: 16px;
 
     li {
@@ -175,7 +179,7 @@
     }
   }
 
-  p {
+  div {
     color: #f8fbff;
     font-size: 16px;
     font-weight: 400;
@@ -190,7 +194,7 @@
       transition: 0.2s ease-in-out;
 
       &:hover {
-        color: #023b7e;
+        color: #baa7f6b7;
       }
     }
   }

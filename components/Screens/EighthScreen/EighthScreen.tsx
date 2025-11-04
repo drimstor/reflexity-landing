@@ -1,13 +1,11 @@
-import React from 'react'
-import styles from './EighthScreen.module.scss'
 import clsx from 'clsx'
-import Button from 'components/UI-kit/Buttons/Button'
-import telegram from 'public/icons/Telegram_logo.svg'
 import ContactModal from 'components/Modals/ContactModal/ContactModal'
+import Button from 'components/UI-kit/Buttons/Button'
 import Footer from 'components/UI-kit/Footer/Footer'
-import { useInView } from 'react-intersection-observer'
-import mobileCircle from 'public/mobilePlanet.svg'
 import Image from 'next/image'
+import mobileCircle from 'public/mobilePlanet.svg'
+import { useInView } from 'react-intersection-observer'
+import styles from './EighthScreen.module.scss'
 
 interface EighthScreenProps {
   screenNumber: string
@@ -31,20 +29,18 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
         <div className={styles.textBox}>
           <h2>Свяжитесь с нами</h2>
           <p>
-            Подайте заявку и мы вам ответим в течение 1&#160;часа. Для
-            интеграции достаточно ознакомить нас с вашим бизнесом, показать ваши
-            ресурсы.
+            Оставьте обратную связь, и мы ответим вам в ближайшее время. Мы
+            будем рады услышать ваше мнение и ответить на ваши вопросы.
           </p>
           <Button
             variant='outlined'
             size='medium'
-            onClick={() => window.open('https://t.me/reflexity', '_ blank')}
+            onClick={() =>
+              window.open('mailto:reflexity.business@gmail.com', '_ blank')
+            }
           >
-            Наша служба поддержки:
-            <span>
-              <Image src={telegram} alt='telegram' />
-              @reflexity
-            </span>
+            Наша почта:
+            <span>reflexity.business@gmail.com</span>
           </Button>
         </div>
         <div className={styles.modalBox}>
