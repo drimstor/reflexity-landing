@@ -17,7 +17,14 @@
 
   @include tablet {
     padding: 24px;
-    max-width: 100%;
+    max-width: none;
+    // Ширина карточки = ширина экрана минус padding контейнера (24px слева + 24px справа)
+    // Добавляем небольшую ширину, чтобы карточка полностью перекрывала видимую область
+    min-width: calc(100vw - 48px);
+    width: calc(100vw - 48px);
+    flex-shrink: 0;
+    // Убеждаемся, что карточка занимает всю видимую область
+    box-sizing: border-box;
   }
 }
 
@@ -25,6 +32,12 @@
   border: 2px solid #8a7eb6;
   padding: 35px 30px;
   scale: 1.07;
+
+  @include tablet {
+    padding: 30px;
+    padding-top: 26px;
+    scale: 1.02;
+  }
 }
 
 .popularBadge {

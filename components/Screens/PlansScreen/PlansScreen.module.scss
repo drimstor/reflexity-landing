@@ -13,8 +13,9 @@
   padding: 80px 24px;
 
   @include tablet {
-    padding: 60px 16px;
+    padding: 60px 0px;
     min-height: fit-content;
+    margin-bottom: 80px;
   }
 }
 
@@ -53,6 +54,11 @@
   margin: 0 auto;
   // opacity: 0;
   // animation: hideBlur 0.5s ease-in-out forwards;
+
+  @include tablet {
+    max-width: 100%;
+    padding: 0;
+  }
 }
 
 .header {
@@ -133,10 +139,43 @@
   position: relative;
 
   @include tablet {
-    flex-direction: column;
-    gap: 20px;
-    max-width: 480px;
-    margin: 0 auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start; // Убираем центрирование на мобильных
+    align-items: flex-start; // Выравнивание по верху
+    gap: 0; // Убираем gap, чтобы карточки перекрывали видимую область
+    max-width: none;
+    margin: 0;
+    padding-left: 24px; // Добавляем padding слева для первой карточки
+    padding-right: 24px; // Добавляем padding справа для возможности прокрутки до конца
+    overflow: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px; // Добавляем padding для snap-эффекта
+    scroll-behavior: smooth; // Плавная прокрутка
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: initial;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Стили для оберток карточек
+    > div {
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      scroll-snap-stop: always; // Останавливаемся на каждой карточке
+      margin-right: 20px; // Добавляем отступ между карточками через margin
+
+      &:last-child {
+        margin-right: 0; // Убираем margin у последней карточки
+      }
+    }
   }
 }
 
@@ -150,6 +189,12 @@
   z-index: 1;
   opacity: 0.25;
   animation: lottiePulse 20s ease-in-out infinite;
+
+  @include tablet {
+    top: 16%;
+    width: 150%;
+    height: 150%;
+  }
 }
 
 @keyframes lottiePulse {
@@ -162,4 +207,28 @@
   100% {
     scale: 1;
   }
+}
+
+.indicators {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 24px;
+  }
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.indicatorActive {
+  background: $accent-blue-main;
 }
