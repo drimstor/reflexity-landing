@@ -78,6 +78,7 @@
       font-size: 18px;
       line-height: 24px;
       max-width: 390px;
+      margin: 0 auto;
     }
   }
 
@@ -96,7 +97,6 @@
     @include tablet {
       font-size: 32px;
       line-height: 40px;
-      max-width: 343px;
     }
 
     @include mobile {
