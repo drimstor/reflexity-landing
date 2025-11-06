@@ -19,6 +19,7 @@ import {
   useState,
   WheelEvent,
 } from 'react'
+import PlansScreen from '../Screens/PlansScreen/PlansScreen'
 import StartTodayScreen from '../Screens/StartTodayScreen/StartTodayScreen'
 import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
 import styles from './PageCarousel.module.scss'
@@ -43,7 +44,7 @@ const PageCarousel = () => {
   const isScrollLockRef = useRef(isScrollLock)
 
   const isLastScreen = useMemo(
-    () => ['6', '7'].includes(screenNumber),
+    () => ['6', '7', '8'].includes(screenNumber),
     [screenNumber]
   )
 
@@ -220,10 +221,14 @@ const PageCarousel = () => {
           onScrollToScreenCallback={onScrollToScreenCallback}
           isNoAnimation={disableAnimationScreens}
         />
-        <SeventhScreen
+        <SeventhScreen // Why Reflexity?
           screenNumber={screenNumber}
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
+        />
+        <PlansScreen
+          screenNumber={screenNumber}
+          onScrollToScreenCallback={onScrollToScreenCallback}
         />
         <StartTodayScreen screenNumber={screenNumber} />
       </section>

@@ -1,0 +1,214 @@
+@use '@/styles/_helpers' as *;
+
+.card {
+  position: relative;
+  border-radius: 22px;
+  padding: 30px;
+  padding-top: 26px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  z-index: 9;
+  background: rgba(163, 163, 163, 0.05);
+  backdrop-filter: blur(28px);
+  border: 1px solid #2c2f39;
+  scale: 0.92;
+
+  @include tablet {
+    padding: 24px;
+    max-width: 100%;
+  }
+}
+
+.proCard {
+  border: 2px solid #8a7eb6;
+  padding: 35px 30px;
+  scale: 1.07;
+}
+
+.popularBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $accent-blue-main;
+  color: $neutral-black-hover;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  color: $neutral-white-main;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+.priceSection {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.price {
+  font-size: 42px;
+  font-weight: 700;
+  color: $neutral-white-main;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+
+  @include tablet {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
+
+.pricePeriod {
+  font-size: 14px;
+  font-weight: 300;
+  color: #ffffffbe;
+
+  @include tablet {
+    font-size: 12px;
+  }
+}
+
+.originalPrice {
+  font-size: 20px;
+  font-weight: 400;
+  color: #c7c7c9;
+  text-decoration: line-through;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+.actionButton {
+  margin-top: 2px;
+  margin-bottom: 4px;
+  gap: 10px;
+  border-radius: 28px;
+  font-weight: 400;
+  padding: 8px 20px;
+  width: fit-content !important;
+  border: 1px solid rgba(255, 255, 255, 0.177);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 0 15px rgba(255, 255, 255, 0.08), 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.featuresSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid #2c2f39;
+  padding-top: 18px;
+}
+
+.featuresTitle {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: $neutral-white-main;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+.featuresIntro {
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffffbe;
+  align-self: flex-start;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 22px;
+  color: #ffffffbe;
+
+  @include tablet {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.featureIconPro {
+  background: $accent-blue-main;
+}
+
+.checkmark {
+  color: #1f1f28;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cross {
+  color: #1f1f28;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.featureText {
+  // flex: 1;
+  line-height: 24px;
+  color: #ffffffbe;
+}
+
+.discount {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #41424b;
+  border: 1px solid #52525d;
+}

@@ -13,7 +13,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
   const [transitionOn, setTransitionOn] = useState(false)
 
   useEffect(() => {
-    if (screenNumber === '7') {
+    if (screenNumber === '8') {
       setTimeout(() => setLastAnimantion(true), 1300)
     } else {
       setLastAnimantion(false)
@@ -28,7 +28,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
     () =>
       clsx(
         styles.lastScreen,
-        screenNumber === '7' && styles.lastScreenActive,
+        screenNumber === '8' && styles.lastScreenActive,
         lastAnimantion && styles.lastAnimantionActive,
         transitionOn && styles.transition
       ),

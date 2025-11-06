@@ -105,7 +105,8 @@
   }
 
   &.screen6,
-  &.screen7 {
+  &.screen7,
+  &.screen8 {
     opacity: 0;
     transform: translate3d(-70vw, 0, 0) scale(0) rotate(0deg);
   }

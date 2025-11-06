@@ -1,0 +1,54 @@
+@use '@/styles/_helpers' as *;
+
+.toggleContainer {
+  display: flex;
+  gap: 0;
+  background: $neutral-white-background-main;
+  border-radius: 12px;
+  padding: 4px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.toggleOption {
+  position: relative;
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: $neutral-white-main;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: $font-family;
+  white-space: nowrap;
+
+  @include tablet {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    background: $neutral-stroke-grey-main;
+    color: $neutral-white-main;
+  }
+}
+
+.discount {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-top: 2px;
+
+  @include tablet {
+    font-size: 11px;
+  }
+}
+

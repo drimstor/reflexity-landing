@@ -19,20 +19,22 @@
 
   &.active {
     .textBox {
-      animation: showBlur 0.5s ease-in-out 1.8s forwards;
+      animation: showBlur 1s ease-in-out 0.7s forwards;
     }
     .modalBox {
       animation: translate 1s ease-in-out forwards;
     }
   }
 
-  &.mobileActive {
-    .textBox {
-      animation: showBlur 0.5s ease-in-out forwards;
-    }
+  @include tablet {
+    &.mobileActive {
+      .textBox {
+        animation: showBlur 0.5s ease-in-out forwards;
+      }
 
-    .mobilePlanet {
-      animation: planetMobile 1s ease-in-out 0.5s forwards;
+      .mobilePlanet {
+        animation: planetMobile 1s ease-in-out 0.5s forwards;
+      }
     }
   }
 }
@@ -56,6 +58,7 @@
 
 .textBox {
   margin: 0 16px;
+  margin-top: -100px;
   opacity: 0;
   animation: hideBlur 0.5s ease-in-out forwards;
 
@@ -106,27 +109,6 @@
 
   @include tablet {
     text-align: center;
-  }
-}
-
-.flexWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 15px;
-  margin-top: -100px;
-
-  @media screen and (max-width: 1093px) {
-    gap: 2em;
-  }
-
-  @include tablet {
-    flex-direction: column;
-    gap: 2em;
-  }
-
-  @media screen and (max-width: 616px) {
-    width: 100%;
   }
 }
 

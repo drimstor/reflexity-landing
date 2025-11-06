@@ -19,49 +19,47 @@ const StartTodayScreen = ({ screenNumber }: StartTodayScreenProps) => {
       ref={ref}
       className={clsx(
         styles.contentBox,
-        screenNumber === '7' && styles.active,
+        screenNumber === '8' && styles.active,
         inView && styles.mobileActive
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
-      <div className={styles.flexWrapper}>
-        <div className={styles.textBox}>
-          <Image width={100} src={logo} alt='logo' />
-          <h2>
-            Начните с <span>Reflexity</span> сегодня
-          </h2>
-          <p>
-            Попробуйте бесплатно в течение 7 дней и почувствуйте, <br />
-            как ясность становится ближе
-          </p>
-          <div className={styles.buttonsContainer}>
-            <a
-              href='https://apps.apple.com/app/id6749893609'
-              target='_blank'
+      <div className={styles.textBox}>
+        <Image width={100} src={logo} alt='logo' />
+        <h2>
+          Начните с <span>Reflexity</span> сегодня
+        </h2>
+        <p>
+          Попробуйте бесплатно в течение 7 дней и почувствуйте, <br />
+          как ясность становится ближе
+        </p>
+        <div className={styles.buttonsContainer}>
+          <a
+            href='https://apps.apple.com/app/id6749893609'
+            target='_blank'
+            draggable={false}
+          >
+            <Image
+              src='/Download_on_the_App_Store.svg'
+              alt='app-store'
+              width={142}
+              height={46}
               draggable={false}
-            >
-              <Image
-                src='/Download_on_the_App_Store.svg'
-                alt='app-store'
-                width={142}
-                height={46}
-                draggable={false}
-              />
-            </a>
-            <a
-              href='https://play.google.com/store/apps/details?id=com.reflexity.app'
-              target='_blank'
+            />
+          </a>
+          <a
+            href='https://play.google.com/store/apps/details?id=com.reflexity.app'
+            target='_blank'
+            draggable={false}
+          >
+            <Image
+              src='/Google_Play_Store_badge.svg'
+              alt='google-play'
+              width={154}
+              height={48}
               draggable={false}
-            >
-              <Image
-                src='/Google_Play_Store_badge.svg'
-                alt='google-play'
-                width={154}
-                height={48}
-                draggable={false}
-              />
-            </a>
-          </div>
+            />
+          </a>
         </div>
       </div>
       <Footer />
