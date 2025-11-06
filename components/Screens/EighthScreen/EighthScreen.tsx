@@ -4,7 +4,9 @@ import Button from 'components/UI-kit/Buttons/Button'
 import Footer from 'components/UI-kit/Footer/Footer'
 import Image from 'next/image'
 import mobileCircle from 'public/mobilePlanet.svg'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import Snackbar from '../../UI-kit/Notifications/Snackbar/Snackbar'
 import styles from './EighthScreen.module.scss'
 
 interface EighthScreenProps {
@@ -13,42 +15,55 @@ interface EighthScreenProps {
 
 const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [showSnackbar, setShowSnackbar] = useState(false)
+
+  const onClickHandler = () => {
+    navigator.clipboard.writeText('reflexity.business@gmail.com')
+    setShowSnackbar(true)
+  }
+
+  useEffect(() => {
+    if (showSnackbar) {
+      setTimeout(() => setShowSnackbar(false), 5000)
+    }
+  }, [showSnackbar])
 
   return (
-    <div
-      id='contact'
-      ref={ref}
-      className={clsx(
-        styles.contentBox,
-        screenNumber === '7' && styles.active,
-        inView && styles.mobileActive
-      )}
-    >
-      <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
-      <div className={styles.flexWrapper}>
-        <div className={styles.textBox}>
-          <h2>Свяжитесь с нами</h2>
-          <p>
-            Оставьте обратную связь, и мы ответим вам в ближайшее время. Мы
-            будем рады услышать ваше мнение и ответить на ваши вопросы.
-          </p>
-          <Button
-            variant='outlined'
-            size='medium'
-            onClick={() =>
-              window.open('mailto:reflexity.business@gmail.com', '_ blank')
-            }
-          >
-            Наша почта:
-            <span>reflexity.business@gmail.com</span>
-          </Button>
+    <>
+      {showSnackbar && <Snackbar value='Скопировано' />}
+      <div
+        id='contact'
+        ref={ref}
+        className={clsx(
+          styles.contentBox,
+          screenNumber === '7' && styles.active,
+          inView && styles.mobileActive
+        )}
+      >
+        <Image
+          className={styles.mobilePlanet}
+          src={mobileCircle}
+          alt='circle'
+        />
+        <div className={styles.flexWrapper}>
+          <div className={styles.textBox}>
+            <h2>Свяжитесь с нами</h2>
+            <p>
+              Оставьте обратную связь, и мы ответим вам в ближайшее время. Мы
+              будем рады услышать ваше мнение и ответить на ваши вопросы.
+            </p>
+            <Button variant='outlined' size='medium' onClick={onClickHandler}>
+              Наша почта:
+              <span>reflexity.business@gmail.com</span>
+            </Button>
+          </div>
+          <div className={styles.modalBox}>
+            <ContactModal />
+          </div>
         </div>
-        <div className={styles.modalBox}>
-          <ContactModal />
-        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   )
 }
 

@@ -37,6 +37,10 @@
       gap: 16px;
     }
 
+    li {
+      display: flex;
+    }
+
     a {
       transition: color 0.3s;
       text-decoration: underline;

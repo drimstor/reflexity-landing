@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import styles from './SeventhScreen.module.scss'
 import clsx from 'clsx'
-import { cardsContent, contentType, mobileCardsContent } from './constants'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import mobileCircle from '../../../public/mobilePlanet.svg'
-import Image from 'next/image'
+import { cardsContent, contentType, mobileCardsContent } from './constants'
+import styles from './SeventhScreen.module.scss'
 
 interface SeventhScreenProps {
   screenNumber: string
@@ -22,7 +22,7 @@ const SeventhScreen = ({
 
   useEffect(() => {
     setContent(isMobile ? mobileCardsContent : cardsContent)
-  }, [])
+  }, [isMobile])
 
   return (
     <div
@@ -36,7 +36,7 @@ const SeventhScreen = ({
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
-      <h2>Как это работает</h2>
+      <h2>Почему Reflexity?</h2>
       <div
         className={clsx(styles.cardsBox, screenNumber !== '6' && styles.hide)}
       >

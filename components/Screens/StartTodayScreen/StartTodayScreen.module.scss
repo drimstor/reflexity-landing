@@ -1,0 +1,170 @@
+@use '@/styles/_helpers' as *;
+
+.contentBox {
+  position: relative;
+  z-index: 9;
+  @extend %fullScreenView;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  @include tablet {
+    padding-top: 200px;
+    padding-bottom: 280px;
+    min-height: fit-content;
+  }
+
+  &.active {
+    .textBox {
+      animation: showBlur 0.5s ease-in-out 1.8s forwards;
+    }
+    .modalBox {
+      animation: translate 1s ease-in-out forwards;
+    }
+  }
+
+  &.mobileActive {
+    .textBox {
+      animation: showBlur 0.5s ease-in-out forwards;
+    }
+
+    .mobilePlanet {
+      animation: planetMobile 1s ease-in-out 0.5s forwards;
+    }
+  }
+}
+
+.mobilePlanet {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: -10%;
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+
+  @include mobile {
+    left: -30%;
+  }
+}
+
+.textBox {
+  margin: 0 16px;
+  opacity: 0;
+  animation: hideBlur 0.5s ease-in-out forwards;
+
+  > img {
+    margin-bottom: 24px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 300;
+    color: #ffffffbe;
+    padding: 0 16px;
+
+    @include tablet {
+      font-size: 18px;
+      line-height: 24px;
+      max-width: 390px;
+    }
+  }
+
+  h2 {
+    font-size: 54px;
+    line-height: 64px;
+    color: $neutral-white-main;
+    font-weight: 400;
+    padding: 0 16px;
+    margin-bottom: 24px;
+
+    span {
+      color: $accent-blue-main;
+    }
+
+    @include tablet {
+      font-size: 32px;
+      line-height: 40px;
+      max-width: 343px;
+    }
+
+    @include mobile {
+      margin: 0 auto 40px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  @include tablet {
+    text-align: center;
+  }
+}
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  margin-top: -100px;
+
+  @media screen and (max-width: 1093px) {
+    gap: 2em;
+  }
+
+  @include tablet {
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  @media screen and (max-width: 616px) {
+    width: 100%;
+  }
+}
+
+.buttonsContainer {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+@keyframes translate {
+  0% {
+    transform: translateX(calc(100% + 100vh));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes translateReverse {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(100% + 100vh));
+  }
+}
+
+@keyframes planetMobile {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(-45deg);
+  }
+}

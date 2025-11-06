@@ -4,6 +4,7 @@
   position: relative;
   z-index: 9;
   @extend %fullScreenView;
+  // margin-top: -50px;
 
   display: flex;
   flex-direction: column;
@@ -11,8 +12,9 @@
   justify-content: center;
 
   @include tablet {
+    // margin-top: 0;
     padding-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 160px;
     min-height: fit-content;
   }
 
@@ -55,6 +57,20 @@
     .cardBox:nth-child(4) .number {
       animation: show 0.5s ease-in-out 2s forwards;
     }
+
+    .cardBox:nth-child(5)::after,
+    .cardBox:nth-child(5)::before,
+    .cardBox:nth-child(5) .card,
+    .cardBox:nth-child(5) .number {
+      animation: show 0.5s ease-in-out 2.5s forwards;
+    }
+
+    .cardBox:nth-child(6)::after,
+    .cardBox:nth-child(6)::before,
+    .cardBox:nth-child(6) .card,
+    .cardBox:nth-child(6) .number {
+      animation: show 0.5s ease-in-out 3s forwards;
+    }
   }
 
   &.active {
@@ -70,28 +86,42 @@
     .cardBox:nth-child(1)::before,
     .cardBox:nth-child(1) .card,
     .cardBox:nth-child(1) .number {
-      animation: show 0.5s ease-in-out 1.5s forwards;
-    }
-
-    .cardBox:nth-child(2)::after,
-    .cardBox:nth-child(2)::before,
-    .cardBox:nth-child(2) .card,
-    .cardBox:nth-child(2) .number {
-      animation: show 0.5s ease-in-out 2.5s forwards;
-    }
-
-    .cardBox:nth-child(3)::after,
-    .cardBox:nth-child(3)::before,
-    .cardBox:nth-child(3) .card,
-    .cardBox:nth-child(3) .number {
-      animation: show 0.5s ease-in-out 2s forwards;
+      animation: show 0.5s ease-in-out 1s forwards;
     }
 
     .cardBox:nth-child(4)::after,
     .cardBox:nth-child(4)::before,
     .cardBox:nth-child(4) .card,
     .cardBox:nth-child(4) .number {
-      animation: show 0.5s ease-in-out 3s forwards;
+      animation: show 0.5s ease-in-out 1.25s forwards;
+    }
+
+    .cardBox:nth-child(2)::after,
+    .cardBox:nth-child(2)::before,
+    .cardBox:nth-child(2) .card,
+    .cardBox:nth-child(2) .number {
+      animation: show 0.5s ease-in-out 1.75s forwards;
+    }
+
+    .cardBox:nth-child(5)::after,
+    .cardBox:nth-child(5)::before,
+    .cardBox:nth-child(5) .card,
+    .cardBox:nth-child(5) .number {
+      animation: show 0.5s ease-in-out 2s forwards;
+    }
+
+    .cardBox:nth-child(3)::after,
+    .cardBox:nth-child(3)::before,
+    .cardBox:nth-child(3) .card,
+    .cardBox:nth-child(3) .number {
+      animation: show 0.5s ease-in-out 2.5s forwards;
+    }
+
+    .cardBox:nth-child(6)::after,
+    .cardBox:nth-child(6)::before,
+    .cardBox:nth-child(6) .card,
+    .cardBox:nth-child(6) .number {
+      animation: show 0.5s ease-in-out 2.75s forwards;
     }
   }
 
@@ -127,9 +157,24 @@
     .cardBox:nth-child(4) .number {
       animation: show ease-in-out forwards;
     }
+
+    .cardBox:nth-child(5)::after,
+    .cardBox:nth-child(5)::before,
+    .cardBox:nth-child(5) .card,
+    .cardBox:nth-child(5) .number {
+      animation: show ease-in-out forwards;
+    }
+
+    .cardBox:nth-child(6)::after,
+    .cardBox:nth-child(6)::before,
+    .cardBox:nth-child(6) .card,
+    .cardBox:nth-child(6) .number {
+      animation: show ease-in-out forwards;
+    }
   }
 
   h2 {
+    margin-top: -70px;
     text-align: center;
     font-size: 48px;
     font-weight: 600;
@@ -139,6 +184,7 @@
     animation: hideBlur 0.5s ease-in-out forwards;
 
     @include tablet {
+      margin-top: 0;
       font-size: 32px;
       line-height: 40px;
     }
@@ -156,13 +202,21 @@
 
 .cardsBox {
   display: grid;
-  grid-template-columns: minmax(295px, 477px) minmax(295px, 477px);
-  gap: 5em 9em;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 5em 3em;
   position: relative;
   transition: opacity 0.5s ease-in-out;
+  max-width: 1600px;
+  margin: 0 auto;
 
   @include laptop {
-    gap: 5em;
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    gap: 4em 2.5em;
+  }
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 4em 2em;
   }
 
   @include tablet {
@@ -172,7 +226,7 @@
 
   @media screen and (max-width: 674px) {
     grid-template-columns: 1fr;
-    gap: 72px;
+    gap: 52px;
   }
 }
 
@@ -204,16 +258,22 @@
   background: rgba(255, 255, 255, 0.05);
   position: relative;
   z-index: 2;
-  width: 477px;
-  height: 160px;
+  width: 100%;
+  max-width: 325px;
+  height: 140px;
   opacity: 0;
   animation: hide 0.5s ease-in-out forwards;
+
+  @include laptop {
+    max-width: 100%;
+  }
 
   @media screen and (max-width: 674px) {
     width: calc(100% - 40px);
     margin: 0 40px;
     height: auto;
     padding: 1em;
+    max-width: none;
   }
 
   h3 {
@@ -235,18 +295,29 @@
 
 .cardBox {
   position: relative;
-  width: 477px;
-  height: 160px;
+  width: 100%;
+  max-width: 325px;
+  height: 140px;
+  margin: 0 auto;
+
+  @include laptop {
+    max-width: 100%;
+  }
 
   @media screen and (max-width: 674px) {
     width: calc(100% - 40px);
     margin: 0 40px;
     height: auto;
+    max-width: none;
   }
 
+  // Первая строка (1, 2, 3) - линии идут вниз
   &:nth-child(1),
-  &:nth-child(2) {
-    margin-left: -2em;
+  &:nth-child(2),
+  &:nth-child(3) {
+    @include noTablet {
+      margin-left: -3em;
+    }
 
     @include tablet {
       margin-left: 0;
@@ -279,7 +350,7 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: calc(-1.5em - 16px);
+      bottom: calc(-1.5em - 20px);
       left: 50.1%;
       width: 1px;
       height: 40px;
@@ -301,28 +372,13 @@
     }
   }
 
-  @include tablet {
-    &:nth-child(1) {
-      margin-left: -3em;
-
-      @include tablet {
-        &::after {
-          left: calc(-1.5em - 16px);
-          bottom: 50.1%;
-          width: 40px;
-          height: 1px;
-        }
-      }
-
-      @media screen and (max-width: 674px) {
-        margin-left: 0;
-      }
+  // Вторая строка (4, 5, 6) - линии идут вверх
+  &:nth-child(4),
+  &:nth-child(5),
+  &:nth-child(6) {
+    @include noTablet {
+      margin-left: 3em;
     }
-  }
-
-  &:nth-child(3),
-  &:nth-child(4) {
-    margin-left: 2em;
 
     @include tablet {
       margin-left: 0;
@@ -331,7 +387,7 @@
     &::before {
       content: '';
       position: absolute;
-      top: calc(-1.5em - 13px);
+      top: calc(-1.5em - 12px);
       left: calc(50% - 37px);
       background-image: url(../../../public/icons/shadow-circle.svg);
       background-size: contain;
@@ -340,7 +396,6 @@
       z-index: 9;
       opacity: 0;
       animation: hide 0.5s ease-in-out forwards;
-
       @include tablet {
         left: calc(-1.5em - 13px);
         top: calc(50% - 37px);
@@ -355,7 +410,7 @@
     &::after {
       content: '';
       position: absolute;
-      top: calc(-1.5em - 15px);
+      top: calc(-1.5em - 12px);
       left: 50.1%;
       width: 1px;
       height: 40px;
@@ -378,8 +433,25 @@
   }
 
   @include tablet {
+    &:nth-child(1) {
+      margin-left: -5em;
+
+      @include tablet {
+        &::after {
+          left: calc(-1.5em - 16px);
+          bottom: 50.1%;
+          width: 40px;
+          height: 1px;
+        }
+      }
+
+      @media screen and (max-width: 674px) {
+        margin-left: 0;
+      }
+    }
+
     &:nth-child(3) {
-      margin-left: -3em;
+      margin-left: -5em;
 
       @include tablet {
         &::after {

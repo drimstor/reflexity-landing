@@ -69,8 +69,9 @@
   }
 
   > p {
+    font-weight: 300;
     font-size: 20px;
-    line-height: 32px;
+    line-height: 30px;
     font-weight: 300;
     color: #ffffffbe;
     padding: 0 16px;
@@ -79,11 +80,6 @@
       font-size: 18px;
       line-height: 24px;
       max-width: 390px;
-    }
-
-    @include mobile {
-      font-size: 18px;
-      line-height: 24px;
     }
   }
 }

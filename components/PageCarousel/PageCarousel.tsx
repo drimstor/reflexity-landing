@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import Planet from 'components/Planet/Planet'
-import EighthScreen from 'components/Screens/EighthScreen/EighthScreen'
 import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
@@ -20,6 +19,7 @@ import {
   useState,
   WheelEvent,
 } from 'react'
+import StartTodayScreen from '../Screens/StartTodayScreen/StartTodayScreen'
 import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
 import styles from './PageCarousel.module.scss'
 
@@ -225,13 +225,10 @@ const PageCarousel = () => {
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
         />
-        <EighthScreen screenNumber={screenNumber} />
+        <StartTodayScreen screenNumber={screenNumber} />
       </section>
       {isLastScreen && !isMobile && (
-        <LastPlanet
-          screenNumber={screenNumber}
-          isPause={!isMobile && isScrollLock}
-        />
+        <LastPlanet screenNumber={screenNumber} isPause={isScrollLock} />
       )}
     </>
   )
