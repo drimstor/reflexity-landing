@@ -41,7 +41,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
         <LottieAnimation
           animationPath='/slow-spinner.json'
           className={styles.lottieAnimation}
-          pause={isPause}
+          pause={isPause || screenNumber !== '8'}
         />
       </div>
     </div>

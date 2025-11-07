@@ -43,8 +43,13 @@ const PageCarousel = () => {
   const screenNumberRef = useRef(screenNumber)
   const isScrollLockRef = useRef(isScrollLock)
 
-  const isLastScreen = useMemo(
+  const isScreenWithPlanet = useMemo(
     () => ['6', '7', '8'].includes(screenNumber),
+    [screenNumber]
+  )
+
+  const isLastScreen = useMemo(
+    () => ['7', '8'].includes(screenNumber),
     [screenNumber]
   )
 
@@ -180,7 +185,10 @@ const PageCarousel = () => {
         isMobile={isMobile}
         onScrollToScreenCallback={onScrollToScreenCallback}
       />
-      <Planet screenNumber={screenNumber} isPause={!isMobile && isScrollLock} />
+      <Planet
+        screenNumber={screenNumber}
+        isPause={(!isMobile && isScrollLock) || isScreenWithPlanet}
+      />
       <section
         id='carousel'
         ref={carouselRef}
@@ -221,13 +229,13 @@ const PageCarousel = () => {
           onScrollToScreenCallback={onScrollToScreenCallback}
           isNoAnimation={disableAnimationScreens}
         />
-        <SeventhScreen // Why Reflexity?
+        <SeventhScreen // Why Reflexity?  6 screen
           screenNumber={screenNumber}
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
         />
-        <PlansScreen screenNumber={screenNumber} />
-        <StartTodayScreen screenNumber={screenNumber} />
+        <PlansScreen screenNumber={screenNumber} /> {/* 7 screen */}
+        <StartTodayScreen screenNumber={screenNumber} /> {/* 8 screen */}
       </section>
       {isLastScreen && !isMobile && (
         <LastPlanet screenNumber={screenNumber} isPause={isScrollLock} />

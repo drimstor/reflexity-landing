@@ -18,7 +18,7 @@ export interface PlanPrice {
 }
 
 export interface PlanConfig {
-  id: 'free' | 'pro' | 'unlimited'
+  id: 'free' | 'pro' | 'yearlyPro'
   title: string
   subtitle: string
   description: string
@@ -90,7 +90,7 @@ export const PLAN_FEATURES: PlanFeature[] = [
 ]
 
 // Конфигурация планов
-export const PLANS_CONFIG: Record<'free' | 'pro' | 'unlimited', PlanConfig> = {
+export const PLANS_CONFIG: Record<'free' | 'pro' | 'yearlyPro', PlanConfig> = {
   free: {
     id: 'free',
     title: 'Basic Plan',
@@ -115,11 +115,11 @@ export const PLANS_CONFIG: Record<'free' | 'pro' | 'unlimited', PlanConfig> = {
     isPopular: true,
     freeTrialText: '7-дневный бесплатный период',
   },
-  unlimited: {
-    id: 'unlimited',
-    title: 'Unlimited Plan',
+  yearlyPro: {
+    id: 'yearlyPro',
+    title: 'Yearly Pro Plan',
     subtitle: '',
-    description: 'Безграничные возможности на 1 год:',
+    description: 'Выгода 30% при оплате за 1 год:',
     price: {
       monthly: 6.99,
       yearly: 83.99,

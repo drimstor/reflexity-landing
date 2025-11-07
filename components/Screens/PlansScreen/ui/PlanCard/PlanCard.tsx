@@ -10,7 +10,7 @@ interface PlanCardProps {
 }
 
 const PlanCard = ({ plan, billingPeriod, onButtonClick }: PlanCardProps) => {
-  const isPro = ['pro', 'unlimited'].includes(plan.id)
+  const isPro = ['pro', 'yearlyPro'].includes(plan.id)
   const price =
     billingPeriod === 'monthly'
       ? plan.price.monthly

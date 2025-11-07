@@ -30,7 +30,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
     if (isMobile) {
       // На мобильных устройствах скроллим до конца страницы
       window.scrollTo({
-        top: document.body.scrollHeight,
+        top: document.body.scrollHeight - 980,
         behavior: 'smooth',
       })
     } else {
@@ -129,7 +129,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
               </SwiperSlide>
               <SwiperSlide>
                 <PlanCard
-                  plan={PLANS_CONFIG.unlimited}
+                  plan={PLANS_CONFIG.yearlyPro}
                   billingPeriod='yearly'
                   onButtonClick={handleButtonClick}
                 />
@@ -148,7 +148,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
                 onButtonClick={handleButtonClick}
               />
               <PlanCard
-                plan={PLANS_CONFIG.unlimited}
+                plan={PLANS_CONFIG.yearlyPro}
                 billingPeriod='yearly'
                 onButtonClick={handleButtonClick}
               />
