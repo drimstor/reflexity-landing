@@ -135,10 +135,10 @@
 .iphoneBorder {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: 99%;
   object-fit: contain;
   pointer-events: none;
-  filter: brightness(0.5); // делает картинку темнее через фильтр
+  filter: brightness(0.5);
 }
 
 .video {
@@ -147,8 +147,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  // width: 89%;
-  // height: 100%;
   display: block;
   overflow: hidden;
   border-radius: 20px;
