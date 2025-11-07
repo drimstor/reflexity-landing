@@ -204,8 +204,8 @@ const FeaturesPreview = memo(
                 playsInline
                 autoPlay={isMobile && (isShow || inView)}
                 poster={videoPoster}
-                width={videoWidth}
-                height={videoHeight}
+                width={278.13}
+                height={640}
                 preload={isActive || isMobile ? 'auto' : 'metadata'}
                 ref={videoRef}
               >
