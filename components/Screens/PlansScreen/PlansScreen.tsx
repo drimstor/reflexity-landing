@@ -23,6 +23,7 @@ const PlansScreen = ({
   const cardsContainerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const lastScrollLeftRef = useRef<number>(0)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleButtonClick = () => {
@@ -47,40 +48,59 @@ const PlansScreen = ({
   }
 
   const handleScroll = () => {
-    if (cardsContainerRef.current && cardRefs.current.length > 0) {
-      const container = cardsContainerRef.current
-      const currentScrollLeft = container.scrollLeft
-
-      // Игнорируем событие, если scrollLeft не изменился (вертикальный скролл)
-      if (currentScrollLeft === lastScrollLeftRef.current) {
-        return
-      }
-
-      // Обновляем последнее значение scrollLeft
-      lastScrollLeftRef.current = currentScrollLeft
-
-      const containerRect = container.getBoundingClientRect()
-      const containerCenter = containerRect.left + containerRect.width / 2
-
-      // Находим карточку, которая ближе всего к центру контейнера
-      let closestIndex = 0
-      let minDistance = Infinity
-
-      cardRefs.current.forEach((card, index) => {
-        if (card) {
-          const cardRect = card.getBoundingClientRect()
-          const cardCenter = cardRect.left + cardRect.width / 2
-          const distance = Math.abs(containerCenter - cardCenter)
-
-          if (distance < minDistance) {
-            minDistance = distance
-            closestIndex = index
-          }
-        }
-      })
-
-      setCurrentSlide(closestIndex)
+    // Очищаем предыдущий таймаут
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current)
     }
+
+    // Используем requestAnimationFrame для более плавной обработки
+    scrollTimeoutRef.current = setTimeout(() => {
+      if (cardsContainerRef.current && cardRefs.current.length > 0) {
+        const container = cardsContainerRef.current
+        const currentScrollLeft = container.scrollLeft
+
+        // Игнорируем событие, если scrollLeft не изменился (вертикальный скролл)
+        if (Math.abs(currentScrollLeft - lastScrollLeftRef.current) < 1) {
+          return
+        }
+
+        // Обновляем последнее значение scrollLeft
+        lastScrollLeftRef.current = currentScrollLeft
+
+        // Вычисляем текущий слайд на основе scrollLeft и позиций карточек
+        // Используем scrollLeft напрямую, чтобы не зависеть от вертикального скролла страницы
+        const containerWidth = container.clientWidth
+        const containerCenter = containerWidth / 2
+        const scrollOffset = currentScrollLeft
+
+        let closestIndex = 0
+        let minDistance = Infinity
+
+        cardRefs.current.forEach((card, index) => {
+          if (card) {
+            // Вычисляем позицию карточки относительно контейнера через offsetLeft
+            // Это не зависит от вертикального скролла страницы
+            const cardLeft = card.offsetLeft
+            const cardWidth = card.offsetWidth
+            const cardCenter = cardLeft + cardWidth / 2
+
+            // Позиция центра карточки относительно видимой области контейнера
+            const cardCenterRelativeToViewport = cardCenter - scrollOffset
+
+            const distance = Math.abs(
+              containerCenter - cardCenterRelativeToViewport
+            )
+
+            if (distance < minDistance) {
+              minDistance = distance
+              closestIndex = index
+            }
+          }
+        })
+
+        setCurrentSlide(closestIndex)
+      }
+    }, 10) // Небольшая задержка для debounce
   }
 
   // Инициализация при монтировании и при изменении inView
@@ -110,7 +130,12 @@ const PlansScreen = ({
     }
 
     window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
   }, [])
 
   return (
