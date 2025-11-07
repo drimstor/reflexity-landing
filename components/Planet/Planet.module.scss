@@ -93,20 +93,28 @@
   }
 
   &.screen3 {
-    transform: scale(1.15);
+    transform: scale(1.15) rotate(-45deg);
   }
 
   &.screen4 {
-    transform: scale(1.25) rotate(90deg);
+    transform: scale(1.25) rotate(0deg);
   }
 
   &.screen5 {
-    transform: translate3d(0, 0, 0) scale(1.15) rotate(180deg);
+    transform: scale(1.15) rotate(45deg);
   }
 
-  &.screen6,
-  &.screen7,
-  &.screen8 {
+  &.screen6 {
+    transform: scale(1.25) rotate(90deg);
+  }
+
+  &.screen7 {
+    transform: translate3d(0, 0, 0) scale(1.15) rotate(135deg);
+  }
+
+  &.screen8,
+  &.screen9,
+  &.screen10 {
     opacity: 0;
     transform: translate3d(-70vw, 0, 0) scale(0) rotate(0deg);
   }

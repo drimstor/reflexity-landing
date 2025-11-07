@@ -1,0 +1,197 @@
+@use '@/styles/_helpers' as *;
+
+.contentBox {
+  position: relative;
+  z-index: 9;
+  opacity: 0;
+  animation: hideBlur 0.5s ease-in-out forwards;
+  @extend %fullScreenView;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient($background 50%, transparent 80%);
+
+  @include tablet {
+    padding-top: 100px;
+    margin-bottom: 35px;
+    min-height: fit-content;
+  }
+
+  &.active {
+    animation: showBlur 0.5s ease-in-out 0.5s forwards;
+
+    .textBox {
+      animation: showBlur 0.5s ease-in-out 0.5s forwards;
+    }
+
+    .mobilePlanet {
+      animation: planetMobile 1s ease-in-out 0.5s forwards;
+    }
+
+    .mobilePlanetReverse {
+      animation: planetMobileReverse 1s ease-in-out 0.5s forwards;
+    }
+  }
+}
+
+.mobilePlanet {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: -10%;
+    transform: rotate(-45deg);
+  }
+
+  @include mobile {
+    left: -30%;
+  }
+}
+
+.mobilePlanetReverse {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: 40px;
+    right: -10%;
+    transform: rotate(0deg);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+  }
+
+  @include mobile {
+    right: -30%;
+  }
+}
+
+@keyframes planetMobile {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes planetMobileReverse {
+  0% {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  justify-content: center;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+
+  @media screen and (min-width: 769px) {
+    &.hide {
+      opacity: 0;
+      // filter: blur(5px);
+    }
+  }
+
+  @include tablet {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+
+  &.reverseLayout {
+    flex-direction: row-reverse;
+
+    @include tablet {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+.videoWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.iphoneBorder {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: brightness(0.5); // делает картинку темнее через фильтр
+}
+
+.video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 89%;
+  height: 100%;
+  border-radius: 50px;
+}
+
+.textBox {
+  opacity: 0;
+  animation: hideBlur 0.5s ease-in-out forwards;
+
+  @include tablet {
+    max-width: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h3 {
+    line-height: 125%;
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: 0.75em;
+
+    @include tablet {
+      text-align: center;
+      font-size: 1.5em;
+    }
+  }
+
+  p {
+    line-height: 150%;
+    font-size: 19px;
+    font-weight: 300;
+    max-width: 497px;
+    color: $neutral-white-secondary;
+
+    @include tablet {
+      text-align: center;
+      max-width: 557px;
+      margin-bottom: 2.3em;
+    }
+
+    @include mobile {
+      max-width: 300px;
+    }
+  }
+}

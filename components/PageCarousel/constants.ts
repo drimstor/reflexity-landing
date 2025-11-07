@@ -51,11 +51,15 @@ export const scrollNextConfig = [
   },
   {
     currentScreenNumber: '7',
-    setScreenNumber: '7',
+    setScreenNumber: '8',
   },
   {
-    currentScreenNumber: '7',
-    setScreenNumber: '8',
+    currentScreenNumber: '8',
+    setScreenNumber: '9',
+  },
+  {
+    currentScreenNumber: '9',
+    setScreenNumber: '10',
     clearTimeout: 500,
   },
 ]
@@ -113,6 +117,14 @@ export const scrollPrevConfig = [
   {
     currentScreenNumber: '8',
     setScreenNumber: '7',
+  },
+  {
+    currentScreenNumber: '9',
+    setScreenNumber: '8',
+  },
+  {
+    currentScreenNumber: '10',
+    setScreenNumber: '9',
   },
 ]
 

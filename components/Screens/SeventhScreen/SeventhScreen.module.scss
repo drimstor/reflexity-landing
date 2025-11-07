@@ -291,7 +291,7 @@
 
     @include tablet {
       font-weight: 400;
-      color: #ffffffbe;
+      color: $neutral-white-secondary;
     }
   }
 }

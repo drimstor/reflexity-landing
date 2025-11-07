@@ -92,4 +92,12 @@
   &.screen8 {
     transform: translate3d(0, calc(-800vh), 0);
   }
+
+  &.screen9 {
+    transform: translate3d(0, calc(-900vh), 0);
+  }
+
+  &.screen10 {
+    transform: translate3d(0, calc(-1000vh), 0);
+  }
 }

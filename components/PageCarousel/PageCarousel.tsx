@@ -1,11 +1,8 @@
 import clsx from 'clsx'
 import Planet from 'components/Planet/Planet'
-import FifthScreen from 'components/Screens/FifthScreen/FifthScreen'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
-import FourthScreen from 'components/Screens/FourthScreen/FourthScreen'
 import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
 import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
-import SixthScreen from 'components/Screens/SixthScreen/SixthScreen'
 import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
 import Header from 'components/UI-kit/Header/Header'
 import useMediaQuery from 'hooks/useMediaQuery'
@@ -19,6 +16,7 @@ import {
   useState,
   WheelEvent,
 } from 'react'
+import FeaturesPreview from '../Screens/FeaturesPreview/FeaturesPreview'
 import PlansScreen from '../Screens/PlansScreen/PlansScreen'
 import StartTodayScreen from '../Screens/StartTodayScreen/StartTodayScreen'
 import { screensFromNav, scrollNextConfig, scrollPrevConfig } from './constants'
@@ -44,12 +42,12 @@ const PageCarousel = () => {
   const isScrollLockRef = useRef(isScrollLock)
 
   const isScreenWithPlanet = useMemo(
-    () => ['6', '7', '8'].includes(screenNumber),
+    () => ['8', '9', '10'].includes(screenNumber),
     [screenNumber]
   )
 
   const isLastScreen = useMemo(
-    () => ['7', '8'].includes(screenNumber),
+    () => ['9', '10'].includes(screenNumber),
     [screenNumber]
   )
 
@@ -213,29 +211,81 @@ const PageCarousel = () => {
           onScrollToScreenCallback={onScrollToScreenCallback}
           isNoAnimation={disableAnimationScreens}
         />
-        <FourthScreen
+        <FeaturesPreview
           screenNumber={screenNumber}
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
+          targetScreenNumber='3'
+          videoSrc='/assets/SimulatorJournal.webm'
+          videoPoster='/assets/SimulatorJournalPoster.png'
+          title='Reflexity - это не просто дневник'
+          text='Это интеллектуальная система саморефлексии, которая анализирует твои записи, эмоции и действия, чтобы показать, что действительно влияет на твою жизнь'
         />
-        <FifthScreen
+        <FeaturesPreview
           screenNumber={screenNumber}
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
+          targetScreenNumber='4'
+          videoSrc='/assets/SimulatorOverview.webm'
+          videoPoster='/assets/SimulatorOverviewPoster.png'
+          title='Визуализация сфер жизни'
+          reverseLayout
+          text='Каждая запись, цель или эмоция становится частью твоей когнитивной карты — живой модели твоей личности. Чем больше пишете — тем точнее Reflexity понимает вас.'
         />
-        <SixthScreen
+        <FeaturesPreview
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+          targetScreenNumber='5'
+          videoSrc='/assets/SimulatorChat.webm'
+          videoPoster='/assets/SimulatorChatPoster.png'
+          title='Чаты и ассистент'
+          text='Вся магия начинается когда приложение достаточно познакомится с вами. Это не просто “чат с ботом”, а системный интеллект, который обучается на ваших данных и адаптируется под вас, ищет самый комфортный и эффективный подход, так же есть ручная конфигурация ассистента.'
+        />
+        <FeaturesPreview
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+          targetScreenNumber='6'
+          videoSrc='/assets/SimulatorGoal.webm'
+          videoPoster='/assets/SimulatorGoalPoster.png'
+          title='Создавайте цели'
+          reverseLayout
+          text='Reflexity поможет определить цели с индивидуальным подходом и сгенерирует пошаговый план для достижения этой цели, с учетом ваших потребностей и обстоятельств. '
+        />
+        <FeaturesPreview
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+          targetScreenNumber='7'
+          videoSrc='/assets/SimulatorSummary.webm'
+          videoPoster='/assets/SimulatorSummaryPoster.png'
+          title='Подводите итоги'
+          text='Вы так же можете сформировать саммари, для подведения итогов за определенный период или для анализа определенной темы с возможностью кастомных инструкций.'
+        />
+        {/* <FourthScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+        /> */}
+        {/* <FifthScreen
+          screenNumber={screenNumber}
+          isMobile={isMobile}
+          isNoAnimation={disableAnimationScreens}
+        /> */}
+        {/* <SixthScreen
           screenNumber={screenNumber}
           isMobile={isMobile}
           onScrollToScreenCallback={onScrollToScreenCallback}
           isNoAnimation={disableAnimationScreens}
-        />
-        <SeventhScreen // Why Reflexity?  6 screen
+        /> */}
+        <SeventhScreen // Why Reflexity?  8 screen
           screenNumber={screenNumber}
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
         />
-        <PlansScreen screenNumber={screenNumber} /> {/* 7 screen */}
-        <StartTodayScreen screenNumber={screenNumber} /> {/* 8 screen */}
+        <PlansScreen screenNumber={screenNumber} /> {/* 9 screen */}
+        <StartTodayScreen screenNumber={screenNumber} /> {/* 10 screen */}
       </section>
       {isLastScreen && !isMobile && (
         <LastPlanet screenNumber={screenNumber} isPause={isScrollLock} />

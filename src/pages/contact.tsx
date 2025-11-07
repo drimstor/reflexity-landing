@@ -23,7 +23,7 @@ function Contact() {
       <div className={styles.pageBox}>
         <EighthScreen screenNumber={'7'} />
       </div>
-      <LastPlanet screenNumber={'8'} isPause={!isMobile} />
+      <LastPlanet screenNumber={'10'} isPause={!isMobile} />
     </main>
   )
 }

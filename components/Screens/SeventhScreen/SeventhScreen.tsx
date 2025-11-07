@@ -30,15 +30,15 @@ const SeventhScreen = ({
       id='howItWork'
       className={clsx(
         styles.contentBox,
-        screenNumber === '6' && styles.active,
+        screenNumber === '8' && styles.active,
         inView && styles.mobileActive,
-        isNoAnimation.includes('6') && styles.isNoAnimation
+        isNoAnimation.includes('8') && styles.isNoAnimation
       )}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
       <h2>Почему Reflexity?</h2>
       <div
-        className={clsx(styles.cardsBox, screenNumber !== '6' && styles.hide)}
+        className={clsx(styles.cardsBox, screenNumber !== '8' && styles.hide)}
       >
         {content.map((card, index) => (
           <div key={index} className={styles.cardBox}>

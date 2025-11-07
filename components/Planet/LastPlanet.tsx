@@ -13,7 +13,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
   const [transitionOn, setTransitionOn] = useState(false)
 
   useEffect(() => {
-    if (screenNumber === '8') {
+    if (screenNumber === '10') {
       setTimeout(() => setLastAnimantion(true), 1300)
     } else {
       setLastAnimantion(false)
@@ -28,7 +28,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
     () =>
       clsx(
         styles.lastScreen,
-        screenNumber === '8' && styles.lastScreenActive,
+        screenNumber === '10' && styles.lastScreenActive,
         lastAnimantion && styles.lastAnimantionActive,
         transitionOn && styles.transition
       ),
@@ -41,7 +41,7 @@ const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
         <LottieAnimation
           animationPath='/slow-spinner.json'
           className={styles.lottieAnimation}
-          pause={isPause || screenNumber !== '8'}
+          pause={isPause || screenNumber !== '10'}
         />
       </div>
     </div>
