@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import mobileCircle from 'public/mobilePlanet.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
@@ -18,8 +18,13 @@ interface PlansScreenProps {
 
 const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(1)
+  const [mounted, setMounted] = useState(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleButtonClick = () => {
     if (isMobile) {
@@ -67,11 +72,24 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
         </div>
 
         <div className={styles.cardsContainer}>
-          <div className={styles.lottieContainer}>
-            <LottieAnimation animationPath='/slow-spinner.json' />
-          </div>
+          {mounted && isMobile ? (
+            <Image
+              src='/static-circle.svg'
+              alt='planet'
+              width={500}
+              height={500}
+              className={styles.staticCircle}
+            />
+          ) : (
+            <div className={styles.lottieContainer}>
+              <LottieAnimation
+                animationPath='/slow-spinner.json'
+                pause={screenNumber !== '7'}
+              />
+            </div>
+          )}
 
-          {isMobile ? (
+          {mounted && isMobile ? (
             <Swiper
               onSlideChange={handleSlideChange}
               modules={[]}
@@ -93,6 +111,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
               simulateTouch={true}
               allowSlideNext={true}
               allowSlidePrev={true}
+              initialSlide={1}
             >
               <SwiperSlide>
                 <PlanCard
@@ -137,17 +156,19 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
           )}
         </div>
 
-        <div className={styles.indicators}>
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              className={clsx(
-                styles.indicator,
-                currentSlide === index && styles.indicatorActive
-              )}
-            />
-          ))}
-        </div>
+        {mounted && isMobile && (
+          <div className={styles.indicators}>
+            {[0, 1, 2].map((index) => (
+              <div
+                key={index}
+                className={clsx(
+                  styles.indicator,
+                  currentSlide === index && styles.indicatorActive
+                )}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
