@@ -22,6 +22,7 @@ const PlansScreen = ({
   const [currentSlide, setCurrentSlide] = useState(0)
   const cardsContainerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const lastScrollLeftRef = useRef<number>(0)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleButtonClick = () => {
@@ -48,6 +49,16 @@ const PlansScreen = ({
   const handleScroll = () => {
     if (cardsContainerRef.current && cardRefs.current.length > 0) {
       const container = cardsContainerRef.current
+      const currentScrollLeft = container.scrollLeft
+
+      // Игнорируем событие, если scrollLeft не изменился (вертикальный скролл)
+      if (currentScrollLeft === lastScrollLeftRef.current) {
+        return
+      }
+
+      // Обновляем последнее значение scrollLeft
+      lastScrollLeftRef.current = currentScrollLeft
+
       const containerRect = container.getBoundingClientRect()
       const containerCenter = containerRect.left + containerRect.width / 2
 
@@ -79,6 +90,7 @@ const PlansScreen = ({
       if (cardsContainerRef.current) {
         // Устанавливаем начальную позицию на первую карточку
         cardsContainerRef.current.scrollLeft = 0
+        lastScrollLeftRef.current = 0
         setCurrentSlide(0)
       }
     }, 100)
@@ -92,6 +104,7 @@ const PlansScreen = ({
       if (cardsContainerRef.current) {
         // При изменении размера окна сбрасываем позицию на первую карточку
         cardsContainerRef.current.scrollLeft = 0
+        lastScrollLeftRef.current = 0
         setCurrentSlide(0)
       }
     }

@@ -288,6 +288,11 @@
     max-width: 429px;
     line-height: 150%;
     font-weight: 300;
+
+    @include tablet {
+      font-weight: 400;
+      color: #ffffffbe;
+    }
   }
 }
 
