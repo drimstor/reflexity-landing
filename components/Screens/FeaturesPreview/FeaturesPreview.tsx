@@ -192,7 +192,7 @@ const FeaturesPreview = memo(
               className={styles.iphoneBorder}
               src={iphoneBorderSrc}
               alt='iPhone frame'
-              width={312}
+              width={310}
               height={640}
               {...(isActive ? { priority: true } : { loading: 'lazy' })}
             />
