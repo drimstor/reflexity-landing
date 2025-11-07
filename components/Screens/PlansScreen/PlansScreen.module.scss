@@ -141,41 +141,34 @@
   @include tablet {
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-start; // Убираем центрирование на мобильных
-    align-items: flex-start; // Выравнивание по верху
-    gap: 0; // Убираем gap, чтобы карточки перекрывали видимую область
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
     max-width: none;
     margin: 0;
-    padding-left: 24px; // Добавляем padding слева для первой карточки
-    padding-right: 24px; // Добавляем padding справа для возможности прокрутки до конца
-    overflow: hidden;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 24px; // Добавляем padding для snap-эффекта
-    scroll-behavior: smooth; // Плавная прокрутка
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
+    padding-left: 24px;
+    padding-right: 24px;
     padding-top: 20px;
     padding-bottom: 20px;
     position: initial;
+  }
+}
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+.swiper {
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
 
-    // Стили для оберток карточек
-    > div {
-      flex-shrink: 0;
-      scroll-snap-align: center;
-      scroll-snap-stop: always; // Останавливаемся на каждой карточке
-      margin-right: 20px; // Добавляем отступ между карточками через margin
+  @include tablet {
+    overflow: visible;
+  }
 
-      &:last-child {
-        margin-right: 0; // Убираем margin у последней карточки
-      }
-    }
+  :global(.swiper-slide) {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: auto;
+    height: auto;
   }
 }
 

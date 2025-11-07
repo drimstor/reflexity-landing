@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import Button from 'components/UI-kit/Buttons/Button'
-import { BillingPeriod, PlanConfig } from '../../const/plansConfig'
+import { PlanConfig } from '../../const/plansConfig'
 import styles from './PlanCard.module.scss'
 
 interface PlanCardProps {
   plan: PlanConfig
-  billingPeriod: BillingPeriod
+  billingPeriod: string
   onButtonClick: () => void
 }
 

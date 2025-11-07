@@ -1,8 +1,11 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import mobileCircle from 'public/mobilePlanet.svg'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import type { Swiper as SwiperType } from 'swiper'
+import 'swiper/css'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import useMediaQuery from '../../../hooks/useMediaQuery'
 import { LottieAnimation } from '../../UI-kit/LottieAnimation/LottieAnimation'
 import { PLANS_CONFIG } from './const/plansConfig'
@@ -11,19 +14,11 @@ import PlanCard from './ui/PlanCard/PlanCard'
 
 interface PlansScreenProps {
   screenNumber: string
-  onScrollToScreenCallback?: (screen: string) => void
 }
 
-const PlansScreen = ({
-  screenNumber,
-  onScrollToScreenCallback,
-}: PlansScreenProps) => {
+const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [currentSlide, setCurrentSlide] = useState(0)
-  const cardsContainerRef = useRef<HTMLDivElement>(null)
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
-  const lastScrollLeftRef = useRef<number>(0)
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const isMobile = useMediaQuery('(max-width: 768px)')
 
   const handleButtonClick = () => {
@@ -47,96 +42,9 @@ const PlansScreen = ({
     }
   }
 
-  const handleScroll = () => {
-    // Очищаем предыдущий таймаут
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current)
-    }
-
-    // Используем requestAnimationFrame для более плавной обработки
-    scrollTimeoutRef.current = setTimeout(() => {
-      if (cardsContainerRef.current && cardRefs.current.length > 0) {
-        const container = cardsContainerRef.current
-        const currentScrollLeft = container.scrollLeft
-
-        // Игнорируем событие, если scrollLeft не изменился (вертикальный скролл)
-        if (Math.abs(currentScrollLeft - lastScrollLeftRef.current) < 1) {
-          return
-        }
-
-        // Обновляем последнее значение scrollLeft
-        lastScrollLeftRef.current = currentScrollLeft
-
-        // Вычисляем текущий слайд на основе scrollLeft и позиций карточек
-        // Используем scrollLeft напрямую, чтобы не зависеть от вертикального скролла страницы
-        const containerWidth = container.clientWidth
-        const containerCenter = containerWidth / 2
-        const scrollOffset = currentScrollLeft
-
-        let closestIndex = 0
-        let minDistance = Infinity
-
-        cardRefs.current.forEach((card, index) => {
-          if (card) {
-            // Вычисляем позицию карточки относительно контейнера через offsetLeft
-            // Это не зависит от вертикального скролла страницы
-            const cardLeft = card.offsetLeft
-            const cardWidth = card.offsetWidth
-            const cardCenter = cardLeft + cardWidth / 2
-
-            // Позиция центра карточки относительно видимой области контейнера
-            const cardCenterRelativeToViewport = cardCenter - scrollOffset
-
-            const distance = Math.abs(
-              containerCenter - cardCenterRelativeToViewport
-            )
-
-            if (distance < minDistance) {
-              minDistance = distance
-              closestIndex = index
-            }
-          }
-        })
-
-        setCurrentSlide(closestIndex)
-      }
-    }, 10) // Небольшая задержка для debounce
+  const handleSlideChange = (swiper: SwiperType) => {
+    setCurrentSlide(swiper.activeIndex)
   }
-
-  // Инициализация при монтировании и при изменении inView
-  useEffect(() => {
-    // Небольшая задержка для того, чтобы DOM успел отрендериться
-    const timer = setTimeout(() => {
-      if (cardsContainerRef.current) {
-        // Устанавливаем начальную позицию на первую карточку
-        cardsContainerRef.current.scrollLeft = 0
-        lastScrollLeftRef.current = 0
-        setCurrentSlide(0)
-      }
-    }, 100)
-
-    return () => clearTimeout(timer)
-  }, [inView])
-
-  // Дополнительная проверка при изменении размера окна
-  useEffect(() => {
-    const handleResize = () => {
-      if (cardsContainerRef.current) {
-        // При изменении размера окна сбрасываем позицию на первую карточку
-        cardsContainerRef.current.scrollLeft = 0
-        lastScrollLeftRef.current = 0
-        setCurrentSlide(0)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
-    }
-  }, [])
 
   return (
     <div
@@ -158,48 +66,75 @@ const PlansScreen = ({
           </p>
         </div>
 
-        <div
-          ref={cardsContainerRef}
-          className={styles.cardsContainer}
-          onScroll={handleScroll}
-        >
+        <div className={styles.cardsContainer}>
           <div className={styles.lottieContainer}>
             <LottieAnimation animationPath='/slow-spinner.json' />
           </div>
 
-          <div
-            ref={(el) => {
-              cardRefs.current[0] = el
-            }}
-          >
-            <PlanCard
-              plan={PLANS_CONFIG.free}
-              billingPeriod='monthly'
-              onButtonClick={handleButtonClick}
-            />
-          </div>
-          <div
-            ref={(el) => {
-              cardRefs.current[1] = el
-            }}
-          >
-            <PlanCard
-              plan={PLANS_CONFIG.pro}
-              billingPeriod='monthly'
-              onButtonClick={handleButtonClick}
-            />
-          </div>
-          <div
-            ref={(el) => {
-              cardRefs.current[2] = el
-            }}
-          >
-            <PlanCard
-              plan={PLANS_CONFIG.unlimited}
-              billingPeriod='yearly'
-              onButtonClick={handleButtonClick}
-            />
-          </div>
+          {isMobile ? (
+            <Swiper
+              onSlideChange={handleSlideChange}
+              modules={[]}
+              spaceBetween={20}
+              slidesPerView={1}
+              centeredSlides={true}
+              className={styles.swiper}
+              allowTouchMove={true}
+              touchEventsTarget='container'
+              touchStartPreventDefault={false}
+              touchMoveStopPropagation={false}
+              preventInteractionOnTransition={true}
+              resistance={true}
+              resistanceRatio={0.85}
+              threshold={10}
+              longSwipesRatio={0.5}
+              followFinger={true}
+              direction='horizontal'
+              simulateTouch={true}
+              allowSlideNext={true}
+              allowSlidePrev={true}
+            >
+              <SwiperSlide>
+                <PlanCard
+                  plan={PLANS_CONFIG.free}
+                  billingPeriod='monthly'
+                  onButtonClick={handleButtonClick}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <PlanCard
+                  plan={PLANS_CONFIG.pro}
+                  billingPeriod='monthly'
+                  onButtonClick={handleButtonClick}
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <PlanCard
+                  plan={PLANS_CONFIG.unlimited}
+                  billingPeriod='yearly'
+                  onButtonClick={handleButtonClick}
+                />
+              </SwiperSlide>
+            </Swiper>
+          ) : (
+            <>
+              <PlanCard
+                plan={PLANS_CONFIG.free}
+                billingPeriod='monthly'
+                onButtonClick={handleButtonClick}
+              />
+              <PlanCard
+                plan={PLANS_CONFIG.pro}
+                billingPeriod='monthly'
+                onButtonClick={handleButtonClick}
+              />
+              <PlanCard
+                plan={PLANS_CONFIG.unlimited}
+                billingPeriod='yearly'
+                onButtonClick={handleButtonClick}
+              />
+            </>
+          )}
         </div>
 
         <div className={styles.indicators}>

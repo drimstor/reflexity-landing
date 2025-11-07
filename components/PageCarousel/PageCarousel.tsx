@@ -226,10 +226,7 @@ const PageCarousel = () => {
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
         />
-        <PlansScreen
-          screenNumber={screenNumber}
-          onScrollToScreenCallback={onScrollToScreenCallback}
-        />
+        <PlansScreen screenNumber={screenNumber} />
         <StartTodayScreen screenNumber={screenNumber} />
       </section>
       {isLastScreen && !isMobile && (
