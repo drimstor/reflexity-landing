@@ -56,11 +56,11 @@ export const scrollNextConfig = [
   {
     currentScreenNumber: '8',
     setScreenNumber: '9',
+    clearTimeout: 1500,
   },
   {
     currentScreenNumber: '9',
     setScreenNumber: '10',
-    clearTimeout: 500,
   },
 ]
 
