@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Image, { StaticImageData } from 'next/image'
-import { memo, useEffect, useMemo, useRef } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import mobileCircle from '../../../public/mobilePlanet.svg'
 import styles from './FeaturesPreview.module.scss'
@@ -96,6 +96,27 @@ const FeaturesPreview = memo(
     const playTimeoutRef = useRef<NodeJS.Timeout | null>(null)
     const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+    // Функция для запуска видео
+    const playVideo = useCallback(() => {
+      const video = videoRef.current
+      if (!video) return
+
+      // Ждем, пока видео будет готово к воспроизведению
+      const attemptPlay = () => {
+        if (video.readyState >= 2) {
+          // HAVE_CURRENT_DATA или выше
+          video.play().catch(() => {
+            // Игнорируем ошибки автовоспроизведения
+          })
+        } else {
+          // Ждем события canplay
+          video.addEventListener('canplay', attemptPlay, { once: true })
+        }
+      }
+
+      attemptPlay()
+    }, [])
+
     // Оптимизированное управление видео
     useEffect(() => {
       const video = videoRef.current
@@ -111,12 +132,13 @@ const FeaturesPreview = memo(
         pauseTimeoutRef.current = null
       }
 
-      if (isActive) {
+      // На мобильных устройствах запускаем видео, если экран виден
+      const shouldPlay = isActive || (isMobile && (isShow || inView))
+
+      if (shouldPlay) {
         // Небольшая задержка для плавного перехода
         playTimeoutRef.current = setTimeout(() => {
-          video.play().catch(() => {
-            // Игнорируем ошибки автовоспроизведения
-          })
+          playVideo()
         }, 100)
       } else {
         // Пауза с задержкой для плавности
@@ -134,7 +156,7 @@ const FeaturesPreview = memo(
           clearTimeout(pauseTimeoutRef.current)
         }
       }
-    }, [isActive, shouldRenderVideo])
+    }, [isActive, shouldRenderVideo, isMobile, isShow, inView, playVideo])
 
     // Мемоизация классов для оптимизации
     const mobilePlanetClassName = useMemo(
@@ -180,10 +202,11 @@ const FeaturesPreview = memo(
                 loop
                 muted
                 playsInline
+                autoPlay={isMobile && (isShow || inView)}
                 poster={videoPoster}
                 width={videoWidth}
                 height={videoHeight}
-                preload={isActive ? 'auto' : 'metadata'}
+                preload={isActive || isMobile ? 'auto' : 'metadata'}
                 ref={videoRef}
               >
                 <source src={videoSrc} type='video/webm' />

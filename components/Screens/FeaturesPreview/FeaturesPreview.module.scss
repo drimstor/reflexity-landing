@@ -139,6 +139,8 @@
   object-fit: contain;
   pointer-events: none;
   filter: brightness(0.5); // делает картинку темнее через фильтр
+  overflow: hidden;
+  border-radius: 50px;
 }
 
 .video {
@@ -150,6 +152,7 @@
   width: 89%;
   height: 100%;
   border-radius: 50px;
+  display: block;
 }
 
 .textBox {
