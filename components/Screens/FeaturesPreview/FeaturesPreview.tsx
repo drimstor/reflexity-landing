@@ -192,7 +192,7 @@ const FeaturesPreview = memo(
               className={styles.iphoneBorder}
               src={iphoneBorderSrc}
               alt='iPhone frame'
-              width={360}
+              width={312}
               height={640}
               {...(isActive ? { priority: true } : { loading: 'lazy' })}
             />
@@ -204,8 +204,8 @@ const FeaturesPreview = memo(
                 playsInline
                 autoPlay={isMobile && (isShow || inView)}
                 poster={videoPoster}
-                width={278.13}
-                height={640}
+                width={278}
+                height={601}
                 preload={isActive || isMobile ? 'auto' : 'metadata'}
                 ref={videoRef}
               >
