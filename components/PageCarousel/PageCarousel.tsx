@@ -176,6 +176,50 @@ const PageCarousel = () => {
     [screenNumber]
   )
 
+  // Мемоизация конфигураций для FeaturesPreview компонентов
+  const featuresPreviewConfigs = useMemo(
+    () => [
+      {
+        targetScreenNumber: '3',
+        videoSrc: '/assets/SimulatorJournal.webm',
+        videoPoster: '/assets/SimulatorJournalPoster.png',
+        title: 'Reflexity - это не просто дневник',
+        text: 'Это интеллектуальная система саморефлексии, которая анализирует твои записи, эмоции и действия, чтобы показать, что действительно влияет на твою жизнь',
+      },
+      {
+        targetScreenNumber: '4',
+        videoSrc: '/assets/SimulatorOverview.webm',
+        videoPoster: '/assets/SimulatorOverviewPoster.png',
+        title: 'Визуализация сфер жизни',
+        reverseLayout: true,
+        text: 'Каждая запись, цель или эмоция становится частью твоей когнитивной карты — живой модели твоей личности. Чем больше пишете — тем точнее Reflexity понимает вас.',
+      },
+      {
+        targetScreenNumber: '5',
+        videoSrc: '/assets/SimulatorChat.webm',
+        videoPoster: '/assets/SimulatorChatPoster.png',
+        title: 'Чаты и ассистент',
+        text: 'Вся магия начинается когда приложение достаточно познакомится с вами. Это не просто "чат с ботом", а системный интеллект, который обучается на ваших данных и адаптируется под вас, ищет самый комфортный и эффективный подход, так же есть ручная конфигурация ассистента.',
+      },
+      {
+        targetScreenNumber: '6',
+        videoSrc: '/assets/SimulatorGoal.webm',
+        videoPoster: '/assets/SimulatorGoalPoster.png',
+        title: 'Создавайте цели',
+        reverseLayout: true,
+        text: 'Reflexity поможет определить цели с индивидуальным подходом и сгенерирует пошаговый план для достижения этой цели, с учетом ваших потребностей и обстоятельств. ',
+      },
+      {
+        targetScreenNumber: '7',
+        videoSrc: '/assets/SimulatorSummary.webm',
+        videoPoster: '/assets/SimulatorSummaryPoster.png',
+        title: 'Подводите итоги',
+        text: 'Вы так же можете сформировать саммари, для подведения итогов за определенный период или для анализа определенной темы с возможностью кастомных инструкций.',
+      },
+    ],
+    []
+  )
+
   return (
     <>
       <Header
@@ -211,75 +255,21 @@ const PageCarousel = () => {
           onScrollToScreenCallback={onScrollToScreenCallback}
           isNoAnimation={disableAnimationScreens}
         />
-        <FeaturesPreview
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-          targetScreenNumber='3'
-          videoSrc='/assets/SimulatorJournal.webm'
-          videoPoster='/assets/SimulatorJournalPoster.png'
-          title='Reflexity - это не просто дневник'
-          text='Это интеллектуальная система саморефлексии, которая анализирует твои записи, эмоции и действия, чтобы показать, что действительно влияет на твою жизнь'
-        />
-        <FeaturesPreview
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-          targetScreenNumber='4'
-          videoSrc='/assets/SimulatorOverview.webm'
-          videoPoster='/assets/SimulatorOverviewPoster.png'
-          title='Визуализация сфер жизни'
-          reverseLayout
-          text='Каждая запись, цель или эмоция становится частью твоей когнитивной карты — живой модели твоей личности. Чем больше пишете — тем точнее Reflexity понимает вас.'
-        />
-        <FeaturesPreview
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-          targetScreenNumber='5'
-          videoSrc='/assets/SimulatorChat.webm'
-          videoPoster='/assets/SimulatorChatPoster.png'
-          title='Чаты и ассистент'
-          text='Вся магия начинается когда приложение достаточно познакомится с вами. Это не просто “чат с ботом”, а системный интеллект, который обучается на ваших данных и адаптируется под вас, ищет самый комфортный и эффективный подход, так же есть ручная конфигурация ассистента.'
-        />
-        <FeaturesPreview
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-          targetScreenNumber='6'
-          videoSrc='/assets/SimulatorGoal.webm'
-          videoPoster='/assets/SimulatorGoalPoster.png'
-          title='Создавайте цели'
-          reverseLayout
-          text='Reflexity поможет определить цели с индивидуальным подходом и сгенерирует пошаговый план для достижения этой цели, с учетом ваших потребностей и обстоятельств. '
-        />
-        <FeaturesPreview
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-          targetScreenNumber='7'
-          videoSrc='/assets/SimulatorSummary.webm'
-          videoPoster='/assets/SimulatorSummaryPoster.png'
-          title='Подводите итоги'
-          text='Вы так же можете сформировать саммари, для подведения итогов за определенный период или для анализа определенной темы с возможностью кастомных инструкций.'
-        />
-        {/* <FourthScreen
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-        /> */}
-        {/* <FifthScreen
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          isNoAnimation={disableAnimationScreens}
-        /> */}
-        {/* <SixthScreen
-          screenNumber={screenNumber}
-          isMobile={isMobile}
-          onScrollToScreenCallback={onScrollToScreenCallback}
-          isNoAnimation={disableAnimationScreens}
-        /> */}
-        <SeventhScreen // Why Reflexity?  8 screen
+        {featuresPreviewConfigs.map((config) => (
+          <FeaturesPreview
+            key={config.targetScreenNumber}
+            screenNumber={screenNumber}
+            isMobile={isMobile}
+            isNoAnimation={disableAnimationScreens}
+            targetScreenNumber={config.targetScreenNumber}
+            videoSrc={config.videoSrc}
+            videoPoster={config.videoPoster}
+            title={config.title}
+            text={config.text}
+            reverseLayout={config.reverseLayout}
+          />
+        ))}
+        <SeventhScreen
           screenNumber={screenNumber}
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}

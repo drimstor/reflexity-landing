@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Image, { StaticImageData } from 'next/image'
-import { useEffect, useRef } from 'react'
+import { memo, useEffect, useMemo, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import mobileCircle from '../../../public/mobilePlanet.svg'
 import styles from './FeaturesPreview.module.scss'
@@ -22,93 +22,185 @@ interface FeaturesPreviewProps {
   videoHeight?: number
 }
 
-const FeaturesPreview = ({
-  screenNumber,
-  isMobile,
-  isNoAnimation,
-  videoSrc,
-  videoPoster,
-  title,
-  text,
-  reverseLayout = false,
-  targetScreenNumber,
-  sectionId = 'about',
-  mobilePlanetSrc = mobileCircle,
-  iphoneBorderSrc = '/assets/iphoneBorderNew.png',
-  videoWidth = 1032,
-  videoHeight = 2064,
-}: FeaturesPreviewProps) => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
-  const activeScreenNumber = targetScreenNumber || screenNumber
-  const noAnimation = isNoAnimation.includes(activeScreenNumber)
-  const isShow = screenNumber === activeScreenNumber || inView || noAnimation
-  const isActive = screenNumber === activeScreenNumber
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    if (isActive) {
-      video.play().catch(() => {})
-    } else {
-      setTimeout(() => {
-        video.pause()
-        video.currentTime = 0
-      }, 1000)
-    }
-  }, [isActive])
-
+// Функция сравнения для оптимизации ре-рендеров
+const areEqual = (
+  prevProps: FeaturesPreviewProps,
+  nextProps: FeaturesPreviewProps
+) => {
+  // Сравниваем только критичные пропсы
   return (
-    <div
-      className={clsx(styles.contentBox, isShow && styles.active)}
-      id={sectionId}
-      ref={ref}
-    >
-      <Image
-        className={clsx(
-          reverseLayout ? styles.mobilePlanetReverse : styles.mobilePlanet
-        )}
-        src={mobilePlanetSrc}
-        alt='circle'
-      />
-      <div
-        className={clsx(
+    prevProps.screenNumber === nextProps.screenNumber &&
+    prevProps.isMobile === nextProps.isMobile &&
+    prevProps.targetScreenNumber === nextProps.targetScreenNumber &&
+    prevProps.videoSrc === nextProps.videoSrc &&
+    prevProps.videoPoster === nextProps.videoPoster &&
+    prevProps.title === nextProps.title &&
+    prevProps.text === nextProps.text &&
+    prevProps.reverseLayout === nextProps.reverseLayout &&
+    // Для isNoAnimation сравниваем длину и содержимое
+    prevProps.isNoAnimation.length === nextProps.isNoAnimation.length &&
+    prevProps.isNoAnimation.every(
+      (screen, index) => screen === nextProps.isNoAnimation[index]
+    )
+  )
+}
+
+const FeaturesPreview = memo(
+  ({
+    screenNumber,
+    isMobile,
+    isNoAnimation,
+    videoSrc,
+    videoPoster,
+    title,
+    text,
+    reverseLayout = false,
+    targetScreenNumber,
+    sectionId = 'about',
+    mobilePlanetSrc = mobileCircle,
+    iphoneBorderSrc = '/assets/iphoneBorderNew.png',
+    videoWidth = 1032,
+    videoHeight = 2064,
+  }: FeaturesPreviewProps) => {
+    const [ref, inView] = useInView({
+      triggerOnce: true,
+      threshold: 0.1,
+      rootMargin: '50px', // Начинаем загрузку немного раньше
+    })
+
+    // Мемоизация вычисляемых значений
+    const activeScreenNumber = useMemo(
+      () => targetScreenNumber || screenNumber,
+      [targetScreenNumber, screenNumber]
+    )
+
+    const noAnimation = useMemo(
+      () => isNoAnimation.includes(activeScreenNumber),
+      [isNoAnimation, activeScreenNumber]
+    )
+
+    const isShow = useMemo(
+      () => screenNumber === activeScreenNumber || inView || noAnimation,
+      [screenNumber, activeScreenNumber, inView, noAnimation]
+    )
+
+    const isActive = useMemo(
+      () => screenNumber === activeScreenNumber,
+      [screenNumber, activeScreenNumber]
+    )
+
+    // Рендерить видео только если экран был показан хотя бы раз
+    const shouldRenderVideo = useMemo(() => isShow || inView, [isShow, inView])
+
+    const videoRef = useRef<HTMLVideoElement>(null)
+    const playTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+    // Оптимизированное управление видео
+    useEffect(() => {
+      const video = videoRef.current
+      if (!video || !shouldRenderVideo) return
+
+      // Очистка предыдущих таймеров
+      if (playTimeoutRef.current) {
+        clearTimeout(playTimeoutRef.current)
+        playTimeoutRef.current = null
+      }
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current)
+        pauseTimeoutRef.current = null
+      }
+
+      if (isActive) {
+        // Небольшая задержка для плавного перехода
+        playTimeoutRef.current = setTimeout(() => {
+          video.play().catch(() => {
+            // Игнорируем ошибки автовоспроизведения
+          })
+        }, 100)
+      } else {
+        // Пауза с задержкой для плавности
+        pauseTimeoutRef.current = setTimeout(() => {
+          video.pause()
+          video.currentTime = 0
+        }, 800)
+      }
+
+      return () => {
+        if (playTimeoutRef.current) {
+          clearTimeout(playTimeoutRef.current)
+        }
+        if (pauseTimeoutRef.current) {
+          clearTimeout(pauseTimeoutRef.current)
+        }
+      }
+    }, [isActive, shouldRenderVideo])
+
+    // Мемоизация классов для оптимизации
+    const mobilePlanetClassName = useMemo(
+      () => (reverseLayout ? styles.mobilePlanetReverse : styles.mobilePlanet),
+      [reverseLayout]
+    )
+
+    const containerClassName = useMemo(
+      () =>
+        clsx(
           styles.container,
           !isMobile && screenNumber !== activeScreenNumber && styles.hide,
           reverseLayout && styles.reverseLayout
-        )}
+        ),
+      [isMobile, screenNumber, activeScreenNumber, reverseLayout]
+    )
+
+    return (
+      <div
+        className={clsx(styles.contentBox, isShow && styles.active)}
+        id={sectionId}
+        ref={ref}
       >
-        <div className={styles.videoWrapper}>
-          <Image
-            className={styles.iphoneBorder}
-            src={iphoneBorderSrc}
-            alt='iPhone frame'
-            width={360}
-            height={640}
-            priority
-          />
-          <video
-            className={styles.video}
-            loop
-            muted
-            playsInline
-            poster={videoPoster}
-            width={videoWidth}
-            height={videoHeight}
-            preload={isActive ? 'auto' : 'none'}
-            ref={videoRef}
-          >
-            <source src={videoSrc} type='video/webm' />
-          </video>
-        </div>
-        <div className={styles.textBox}>
-          <h3>{title}</h3>
-          <p>{text}</p>
+        <Image
+          className={mobilePlanetClassName}
+          src={mobilePlanetSrc}
+          alt='circle'
+          {...(isActive ? { priority: true } : { loading: 'lazy' })}
+        />
+        <div className={containerClassName}>
+          <div className={styles.videoWrapper}>
+            <Image
+              className={styles.iphoneBorder}
+              src={iphoneBorderSrc}
+              alt='iPhone frame'
+              width={360}
+              height={640}
+              {...(isActive ? { priority: true } : { loading: 'lazy' })}
+            />
+            {shouldRenderVideo && (
+              <video
+                className={styles.video}
+                loop
+                muted
+                playsInline
+                poster={videoPoster}
+                width={videoWidth}
+                height={videoHeight}
+                preload={isActive ? 'auto' : 'metadata'}
+                ref={videoRef}
+              >
+                <source src={videoSrc} type='video/webm' />
+              </video>
+            )}
+          </div>
+          <div className={styles.textBox}>
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  },
+  areEqual
+)
+
+FeaturesPreview.displayName = 'FeaturesPreview'
 
 export default FeaturesPreview
