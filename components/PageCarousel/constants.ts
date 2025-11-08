@@ -87,5 +87,4 @@ export const scrollPrevConfig = [
     setScreenNumber: '8',
   },
 ]
-
 export const screensFromNav = ['2', '3', '6', '7']

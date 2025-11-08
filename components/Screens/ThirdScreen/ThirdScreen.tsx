@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import styles from './ThirdScreen.module.scss'
-import circle from '../../../public/icons/circle-vector.svg'
-import Image from 'next/image'
-import Button from 'components/UI-kit/Buttons/Button'
 import clsx from 'clsx'
-import { animateFramesConfig, thirdScreenValues } from './constants'
+import Button from 'components/UI-kit/Buttons/Button'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import circle from '../../../public/icons/circle-vector.svg'
 import mobileCircle from '../../../public/mobilePlanet.svg'
+import { animateFramesConfig, thirdScreenValues } from './constants'
+import styles from './ThirdScreen.module.scss'
 
 interface ThirdScreenProps {
   screenNumber: string

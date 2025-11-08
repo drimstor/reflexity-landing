@@ -117,10 +117,7 @@ const PageCarousel = () => {
       setDisableAnimationScreens((prev) => {
         if (!prev.includes(screen)) {
           const screenIndex = screensFromNav.indexOf(screen)
-          const array = screensFromNav.slice(
-            0,
-            screen === '2_1' ? screenIndex + 1 : screenIndex
-          )
+          const array = screensFromNav.slice(0, screenIndex)
           return array
         }
         return prev

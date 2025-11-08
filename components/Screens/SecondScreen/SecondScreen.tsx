@@ -12,7 +12,7 @@ interface SecondScreenProps {
 
 const SecondScreen = ({ screenNumber, isNoAnimation }: SecondScreenProps) => {
   const [isActive, setIsActive] = useState(false)
-  const noAnimation = isNoAnimation.includes('2_1')
+  const noAnimation = isNoAnimation.includes('2')
 
   useEffect(() => {
     if (screenNumber === '1') {
