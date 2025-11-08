@@ -6,11 +6,10 @@
   opacity: 0;
   transition: all 0.5s ease-in-out;
   @extend %fullScreenView;
-
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: radial-gradient($background 50%, transparent 80%);
 
   @media screen and (min-width: 769px) {
@@ -19,392 +18,198 @@
 
   &.active {
     animation: showBlur 0.5s ease-in-out 0.6s forwards;
-
-    .blockItem:nth-child(1) {
-      animation: showBlur 0.5s ease-in-out 1.2s forwards;
-    }
-    .blockItem:nth-child(2) {
-      animation: showBlur 0.5s ease-in-out 1.8s forwards;
-    }
-    .blockItem:nth-child(3) {
-      animation: showBlur 0.5s ease-in-out 2.4s forwards;
-    }
-    .blockItem:nth-child(4) {
-      animation: showBlur 0.5s ease-in-out 3s forwards;
-    }
-
-    .verticalLine {
-      &::before {
-        animation: verticalLine 0.7s ease-in-out 1.5s forwards;
-      }
-      &::after {
-        animation: verticalLine 0.7s ease-in-out 1.5s forwards;
-      }
-    }
-
-    .horizontalLine {
-      &::before {
-        animation: horizontalLine 0.7s ease-in-out 2.4s forwards;
-      }
-      &::after {
-        animation: horizontalLine 0.7s ease-in-out 2.4s forwards;
-      }
-    }
   }
 
   &.noAnimation {
     animation: showBlur ease-in-out forwards;
+  }
 
-    .blockItem:nth-child(1) {
-      animation: showBlur ease-in-out forwards;
+  &.mobileActive {
+    @include tablet {
+      animation: showBlur 0.5s ease-in-out forwards;
     }
-    .blockItem:nth-child(2) {
-      animation: showBlur ease-in-out forwards;
-    }
-    .blockItem:nth-child(3) {
-      animation: showBlur ease-in-out forwards;
-    }
-    .blockItem:nth-child(4) {
-      animation: showBlur ease-in-out forwards;
-    }
+  }
 
-    .verticalLine {
-      &::before {
-        animation: verticalLine ease-in-out forwards;
-      }
-      &::after {
-        animation: verticalLine ease-in-out forwards;
-      }
-    }
-
-    .horizontalLine {
-      &::before {
-        animation: horizontalLine ease-in-out forwards;
-      }
-      &::after {
-        animation: horizontalLine ease-in-out forwards;
-      }
+  // Затемнение болей при появлении центральных фраз
+  &.showCentralPhrases {
+    .painElement {
+      opacity: 0.5;
     }
   }
 
   @include tablet {
     margin-bottom: 300px;
     min-height: fit-content;
-
-    &.mobileActive {
-      animation: showBlur 0.5s ease-in-out forwards;
-
-      .mobileActiveItem {
-        animation: showBlur 0.5s ease-in-out forwards;
-      }
-
-      @media screen and (min-width: 767px) {
-        .blockItem:nth-child(1) {
-          animation: showBlur 0.5s ease-in-out 0.5s forwards;
-        }
-        .blockItem:nth-child(2) {
-          animation: showBlur 0.5s ease-in-out 1s forwards;
-        }
-        .blockItem:nth-child(3) {
-          animation: showBlur 0.5s ease-in-out 1.5s forwards;
-        }
-        .blockItem:nth-child(4) {
-          animation: showBlur 0.5s ease-in-out 2s forwards;
-        }
-
-        .verticalLine {
-          &::before {
-            animation: verticalLine 0.7s ease-in-out 0.6s forwards;
-          }
-          &::after {
-            animation: verticalLine 0.7s ease-in-out 0.6s forwards;
-          }
-        }
-
-        .horizontalLine {
-          &::before {
-            animation: horizontalLine 0.7s ease-in-out 1.2s forwards;
-          }
-          &::after {
-            animation: horizontalLine 0.7s ease-in-out 1.2s forwards;
-          }
-        }
-      }
-    }
   }
 
   @include mobile {
     margin-bottom: 10px;
   }
-
-  h2 {
-    text-align: center;
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 56px;
-    margin-bottom: 56px;
-    transition: all 0.5s ease-in-out;
-
-    @media screen and (min-width: 769px) {
-      &.hide {
-        opacity: 0;
-        // filter: blur(5px);
-      }
-    }
-
-    @media screen and (max-height: 840px) {
-      margin-bottom: 26px;
-    }
-
-    @include laptop {
-      font-size: 32px;
-      line-height: 40px;
-    }
-
-    @include tablet {
-      background: radial-gradient(#181822f6 60%, transparent 70%);
-    }
-
-    @media screen and (max-width: 766px) {
-      max-width: 343px;
-      margin: 0 auto 40px;
-      overflow: hidden;
-      background: transparent;
-      position: relative;
-      z-index: 1;
-    }
-  }
 }
 
-.blockBox {
+.wrapper {
   position: relative;
-  display: grid;
-  grid-template-columns: 570px 570px;
-  gap: 8px 0;
-  margin: 0 auto;
-  width: fit-content;
-  transition: all 0.5s ease-in-out;
-
-  @media screen and (min-width: 769px) {
-    &.hide {
-      opacity: 0;
-      // filter: blur(5px);
-    }
-  }
-
-  @include laptop {
-    grid-template-columns: 360px 360px;
-  }
-
-  @media screen and (max-width: 767px) {
-    grid-template-columns: 343px;
-    transition: transform 1s ease-in-out;
-    gap: 16px;
-  }
-}
-
-.verticalLine {
-  &::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    height: 0%;
-    width: 1px;
-    background: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.2) 19.48%
-    );
-    transition: opacity 0.3s ease-in-out, height 1s ease-in-out;
-
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    height: 0%;
-    width: 1px;
-    background: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.2) 86.35%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transition: opacity 0.3s ease-in-out, height 1s ease-in-out;
-
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
-  }
-}
-
-.horizontalLine {
-  &::before {
-    content: '';
-    position: absolute;
-    right: 50%;
-    top: 47%;
-    height: 1px;
-    width: 0%;
-    background: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.2) 19.48%
-    );
-    transition: opacity 0.3s ease-in-out, width 1s ease-in-out;
-
-    @include laptop {
-      top: 49%;
-    }
-
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 47%;
-    height: 1px;
-    width: 0%;
-    background: linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.2) 86.35%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transition: opacity 0.3s ease-in-out, width 1s ease-in-out;
-
-    @include laptop {
-      top: 49%;
-    }
-
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
-  }
-}
-
-.blockItem {
-  max-width: 570px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  opacity: 0;
-  animation: hideBlur 0.5s ease-in-out forwards;
-  position: relative;
-
-  &.active {
-    animation: showBlur 0.5s ease-in-out 0.6s forwards;
-  }
-
-  @include laptop {
-    max-width: 360px;
-  }
-
-  @media screen and (max-width: 767px) {
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      background: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.2) 19.48%,
-        rgba(255, 255, 255, 0.2) 86.35%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      width: 100%;
-      height: 1px;
-    }
-
-    &:nth-child(4)::before {
-      display: none;
-    }
-  }
-
-  span {
-    color: $neutral-white-main;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 32px;
-  }
-  p {
-    text-align: center;
-    color: $neutral-white-main;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-}
-
-.icon {
-  box-shadow: 0px 8px 16px 0px rgba(12, 14, 21, 0.3);
-  position: relative;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(170deg, #ffffff32 60%, transparent 100%);
-  border-radius: 50%;
+  width: 100%;
+  max-width: 1100px;
+  height: calc(100vh - 88px); // Высота viewport минус хедер
+  min-height: calc(100vh - 88px);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible; // Позволяем элементам выходить за границы
 
-  > img {
-    width: 36px;
-    height: 35px;
+  @include tablet {
+    height: calc(100vh - 72px);
+    min-height: calc(100vh - 72px);
+    max-width: 100%;
   }
+}
 
-  &.active {
-    animation: pulse 2.3s infinite 3.4s;
+// Элементы болей
+.painElement {
+  position: absolute;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: $neutral-white-main;
+  white-space: nowrap;
+  pointer-events: none;
 
-    @media screen and (max-width: 767px) {
-      animation: pulse 2.3s infinite 1s;
+  transition: opacity 0.5s ease-in-out, transform 0.4s ease-out;
+
+  background: rgba(163, 163, 163, 0.05);
+  backdrop-filter: blur(28px);
+  border: 1px solid #2c2f39;
+
+  &.text {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+
+    @include laptop {
+      font-size: 16px;
+      padding: 10px 16px;
+    }
+
+    @include tablet {
+      font-size: 14px;
+      padding: 8px 14px;
+    }
+
+    @include mobile {
+      font-size: 12px;
+      padding: 6px 12px;
     }
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    left: 1px;
-    top: 1px;
-    background: rgb(32, 36, 46);
-    border-radius: 50%;
+  &.emoji {
+    font-size: 32px;
+    padding: 8px 12px;
+    background: transparent; // Убираем темный фон
+
+    @include laptop {
+      font-size: 28px;
+      padding: 6px 10px;
+    }
+
+    @include tablet {
+      font-size: 24px;
+      padding: 6px 10px;
+    }
+
+    @include mobile {
+      font-size: 20px;
+      padding: 4px 8px;
+    }
   }
 
-  img {
-    position: relative;
-    z-index: 1;
+  &.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: appearFromNowhere 1s ease-out forwards; // Увеличена длительность анимации
+  }
+
+  // Для мобилки: позиционирование по краям
+  @include tablet {
+    &.text {
+      max-width: 150px;
+      white-space: normal;
+      text-align: center;
+    }
   }
 }
 
-@keyframes verticalLine {
-  0% {
-    height: 0;
-  }
+// Центральные фразы
+.centralPhrases {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  z-index: 10;
+  text-align: center;
 
-  100% {
-    height: 50%;
+  @include tablet {
+    gap: 16px;
+    max-width: 85%;
   }
 }
 
-@keyframes horizontalLine {
-  0% {
-    width: 0;
+.centralPhrase {
+  opacity: 0;
+  transform: translateY(20px);
+  color: $neutral-white-main;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40px;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  @include laptop {
+    font-size: 28px;
+    line-height: 36px;
   }
 
+  @include tablet {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  @include mobile {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: appearCentralPhrase 0.8s ease-out forwards;
+  }
+}
+
+// Анимация появления элементов - плавное появление из 0 в 1
+@keyframes appearFromNowhere {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
   100% {
-    width: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+// Анимация появления центральных фраз
+@keyframes appearCentralPhrase {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
