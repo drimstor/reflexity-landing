@@ -11,26 +11,10 @@ export const scrollNextConfig = [
   },
   {
     currentScreenNumber: '1',
-    setScreenNumber: '2_1',
+    setScreenNumber: '2',
   },
   {
-    currentScreenNumber: '2_1',
-    setScreenNumber: '2_2',
-  },
-  {
-    currentScreenNumber: '2_2',
-    setScreenNumber: '2_3',
-  },
-  {
-    currentScreenNumber: '2_3',
-    setScreenNumber: '2_4',
-  },
-  {
-    currentScreenNumber: '2_4',
-    setScreenNumber: '2_5',
-  },
-  {
-    currentScreenNumber: '2_5',
+    currentScreenNumber: '2',
     setScreenNumber: '3',
   },
   {
@@ -58,10 +42,6 @@ export const scrollNextConfig = [
     setScreenNumber: '9',
     clearTimeout: 1500,
   },
-  {
-    currentScreenNumber: '9',
-    setScreenNumber: '10',
-  },
 ]
 
 export const scrollPrevConfig = [
@@ -75,28 +55,12 @@ export const scrollPrevConfig = [
     setScreenNumber: '0',
   },
   {
-    currentScreenNumber: '2_1',
+    currentScreenNumber: '2',
     setScreenNumber: '1',
   },
   {
-    currentScreenNumber: '2_2',
-    setScreenNumber: '2_1',
-  },
-  {
-    currentScreenNumber: '2_3',
-    setScreenNumber: '2_2',
-  },
-  {
-    currentScreenNumber: '2_4',
-    setScreenNumber: '2_3',
-  },
-  {
-    currentScreenNumber: '2_5',
-    setScreenNumber: '2_4',
-  },
-  {
     currentScreenNumber: '3',
-    setScreenNumber: '2_5',
+    setScreenNumber: '2',
   },
   {
     currentScreenNumber: '4',
@@ -122,10 +86,6 @@ export const scrollPrevConfig = [
     currentScreenNumber: '9',
     setScreenNumber: '8',
   },
-  {
-    currentScreenNumber: '10',
-    setScreenNumber: '9',
-  },
 ]
 
-export const screensFromNav = ['2_1', '3', '6', '7']
+export const screensFromNav = ['2', '3', '6', '7']

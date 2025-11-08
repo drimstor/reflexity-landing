@@ -6,83 +6,30 @@
   height: 100%;
   transform: translate3d(0, 0, 0);
   transition: transform 1.3s ease-in-out;
-  // Оптимизация: contain без paint, чтобы не блокировать градиенты дочерних элементов
   contain: layout;
 
-  &.screen1,
-  &.screen1_1,
-  &.screen1_2,
-  &.screen1_3,
-  &.screen1_4 {
+  &.screen1 {
     transform: translate3d(0, calc(-100vh - 0px), 0);
-
-    @media screen and (min-height: 1079px) {
-      transform: translate3d(0, calc(-100vh - 0px), 0);
-    }
-
-    @media screen and (max-height: 865px) {
-      transform: translate3d(0, calc(-100vh + 30px), 0);
-    }
-
-    @media screen and (max-height: 790px) {
-      transform: translate3d(0, calc(-100vh + 35px), 0);
-    }
-
-    @include macbook {
-      transform: translate3d(0, calc(-100vh + 45px), 0);
-    }
-
-    @include laptop {
-      transform: translate3d(0, calc(-100vh - 90px), 0);
-    }
-
-    @include mobile {
-      transform: translate3d(0, calc(-100vh - 50px), 0);
-    }
   }
 
-  &.screen2_1,
-  &.screen2_2,
-  &.screen2_3,
-  &.screen2_4,
-  &.screen2_5 {
-    transform: translate3d(0, calc(-200vh + 80px), 0);
-
-    @include tablet {
-      transform: translate3d(0, calc(-200vh - 90px), 0);
-    }
+  &.screen2 {
+    transform: translate3d(0, calc(-200vh + 0px), 0);
   }
 
   &.screen3 {
     transform: translate3d(0, calc(-300vh + 0px), 0);
-
-    @include tablet {
-      transform: translate3d(0, calc(-300vh - 140px), 0);
-    }
   }
 
   &.screen4 {
     transform: translate3d(0, calc(-400vh - 0px), 0);
-
-    @include tablet {
-      transform: translate3d(0, calc(-400vh - 140px), 0);
-    }
   }
 
   &.screen5 {
     transform: translate3d(0, calc(-500vh - 0px), 0);
-
-    @include tablet {
-      transform: translate3d(0, calc(-500vh - 100px), 0);
-    }
   }
 
   &.screen6 {
-    transform: translate3d(0, calc(-600vh + 40px), 0);
-
-    @media screen and (max-height: 674px) {
-      transform: translate3d(0, calc(-600vh + 60px), 0);
-    }
+    transform: translate3d(0, calc(-600vh + 0px), 0);
   }
 
   &.screen7 {
@@ -95,9 +42,5 @@
 
   &.screen9 {
     transform: translate3d(0, calc(-900vh), 0);
-  }
-
-  &.screen10 {
-    transform: translate3d(0, calc(-1000vh), 0);
   }
 }

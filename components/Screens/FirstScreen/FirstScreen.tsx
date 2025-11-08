@@ -1,23 +1,8 @@
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import Button from '../../UI-kit/Buttons/Button'
 import styles from './FirstScreen.module.scss'
 
-interface FirstScreenProps {
-  onScrollToScreenCallback: (screen: string) => void
-  isMobile: boolean
-}
-
-const FirstScreen = ({
-  onScrollToScreenCallback,
-  isMobile,
-}: FirstScreenProps) => {
-  const router = useRouter()
-  const scrollToForm = () => {
-    onScrollToScreenCallback('7')
-    if (isMobile) router.push('#contact')
-  }
-
+const FirstScreen = () => {
   const lang = 'ru'
 
   const titleEn = (
@@ -60,13 +45,6 @@ const FirstScreen = ({
       </Button>
       <h1>{lang === 'ru' ? titleRu : titleEn}</h1>
       <p>{lang === 'ru' ? descriptionRu : descriptionEn}</p>
-      {/* <Image
-          className={styles.screenshot}
-          src='/Screenshot.png'
-          alt='screenshot'
-          width={480}
-          height={1000}
-        /> */}
       <div className={styles.buttonsContainer}>
         <a
           href='https://apps.apple.com/app/id6749893609'

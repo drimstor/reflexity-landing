@@ -64,57 +64,33 @@
     transition: all 1.3s ease-in-out;
   }
 
-  &.screen1,
-  &.screen1_1,
-  &.screen1_2,
-  &.screen1_3,
-  &.screen1_4 {
+  &.screen1 {
     transform: scale(1.2) rotate(45deg);
   }
 
-  &.screen2_1 {
-    transform: translate3d(45%, -37%, 0) scale(2.2);
-  }
-
-  &.screen2_2 {
-    transform: translate3d(-55%, -46%, 0) scale(2.4);
-  }
-
-  &.screen2_3 {
-    transform: translate3d(36%, 50%, 0) scale(2);
-  }
-
-  &.screen2_4 {
-    transform: translate3d(-55%, 29%, 0) scale(2.4);
-  }
-
-  &.screen2_5 {
-    transform: translate3d(25%, -54%, 0) scale(2);
-  }
-
-  &.screen3 {
+  &.screen2 {
     transform: scale(1.15) rotate(-45deg);
   }
 
-  &.screen4 {
+  &.screen3 {
     transform: scale(1.25) rotate(0deg);
   }
 
-  &.screen5 {
+  &.screen4 {
     transform: scale(1.15) rotate(45deg);
   }
 
-  &.screen6 {
+  &.screen5 {
     transform: scale(1.25) rotate(90deg);
   }
 
-  &.screen7 {
+  &.screen6 {
     transform: translate3d(0, 0, 0) scale(1.15) rotate(135deg);
   }
 
+  &.screen7,
   &.screen8,
-  &.screen9,
-  &.screen10 {
+  &.screen9 {
     opacity: 0;
     transform: translate3d(-70vw, 0, 0) scale(0) rotate(0deg);
   }

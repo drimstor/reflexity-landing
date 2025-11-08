@@ -19,7 +19,7 @@ const StartTodayScreen = ({ screenNumber }: StartTodayScreenProps) => {
       ref={ref}
       className={clsx(
         styles.contentBox,
-        screenNumber === '10' && styles.active,
+        screenNumber === '9' && styles.active,
         inView && styles.mobileActive
       )}
     >

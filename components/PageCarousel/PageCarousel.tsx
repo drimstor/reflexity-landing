@@ -3,7 +3,6 @@ import Planet from 'components/Planet/Planet'
 import FirstScreen from 'components/Screens/FirstScreen/FirstScreen'
 import SecondScreen from 'components/Screens/SecondScreen/SecondScreen'
 import SeventhScreen from 'components/Screens/SeventhScreen/SeventhScreen'
-import ThirdScreen from 'components/Screens/ThirdScreen/ThirdScreen'
 import Header from 'components/UI-kit/Header/Header'
 import useMediaQuery from 'hooks/useMediaQuery'
 import dynamic from 'next/dynamic'
@@ -42,12 +41,12 @@ const PageCarousel = () => {
   const isScrollLockRef = useRef(isScrollLock)
 
   const isScreenWithPlanet = useMemo(
-    () => ['8', '9', '10'].includes(screenNumber),
+    () => ['7', '8', '9'].includes(screenNumber),
     [screenNumber]
   )
 
   const isLastScreen = useMemo(
-    () => ['9', '10'].includes(screenNumber),
+    () => ['8', '9'].includes(screenNumber),
     [screenNumber]
   )
 
@@ -61,15 +60,48 @@ const PageCarousel = () => {
     setIsScrollLock(false)
   }, [])
 
-  const scrollToNewScreen = useCallback((isNext = true) => {
-    if (carouselRef.current?.dataset.scroll === 'enable') {
-      setScrollToDirection(isNext ? 1 : -1)
-      setTimeout(() => {
-        setIsScrollLock(true)
-        setScrollToDirection(0)
-      }, 100)
-    }
+  // Проверка, можем ли скроллить дальше
+  const canScrollNext = useCallback(() => {
+    const currentScreen = screenNumberRef.current
+    return scrollNextConfig.some((config) => {
+      if (config.currentScreenNumber === currentScreen) {
+        if (config.hasOwnProperty('isMobile')) {
+          return config.isMobile ? isMobileRef.current : !isMobileRef.current
+        }
+        return true
+      }
+      return false
+    })
   }, [])
+
+  // Проверка, можем ли скроллить назад
+  const canScrollPrev = useCallback(() => {
+    const currentScreen = screenNumberRef.current
+    return scrollPrevConfig.some(
+      (config) => config.currentScreenNumber === currentScreen
+    )
+  }, [])
+
+  const scrollToNewScreen = useCallback(
+    (isNext = true) => {
+      if (carouselRef.current?.dataset.scroll === 'enable') {
+        // Проверяем границы перед скроллом
+        if (isNext && !canScrollNext()) {
+          return // Не можем скроллить дальше
+        }
+        if (!isNext && !canScrollPrev()) {
+          return // Не можем скроллить назад
+        }
+
+        setScrollToDirection(isNext ? 1 : -1)
+        setTimeout(() => {
+          setIsScrollLock(true)
+          setScrollToDirection(0)
+        }, 100)
+      }
+    },
+    [canScrollNext, canScrollPrev]
+  )
 
   const onScrollToScreenCallback = useCallback(
     (screen: string) => {
@@ -180,14 +212,14 @@ const PageCarousel = () => {
   const featuresPreviewConfigs = useMemo(
     () => [
       {
-        targetScreenNumber: '3',
+        targetScreenNumber: '2',
         videoSrc: '/assets/SimulatorJournal.webm',
         videoPoster: '/assets/SimulatorJournalPoster.png',
         title: 'Reflexity - это не просто дневник',
         text: 'Это интеллектуальная система саморефлексии, которая анализирует твои записи, эмоции и действия, чтобы показать, что действительно влияет на твою жизнь',
       },
       {
-        targetScreenNumber: '4',
+        targetScreenNumber: '3',
         videoSrc: '/assets/SimulatorOverview.webm',
         videoPoster: '/assets/SimulatorOverviewPoster.png',
         title: 'Визуализация сфер жизни',
@@ -195,14 +227,14 @@ const PageCarousel = () => {
         text: 'Каждая запись, цель или эмоция становится частью твоей когнитивной карты — живой модели твоей личности. Чем больше пишете — тем точнее Reflexity понимает вас.',
       },
       {
-        targetScreenNumber: '5',
+        targetScreenNumber: '4',
         videoSrc: '/assets/SimulatorChat.webm',
         videoPoster: '/assets/SimulatorChatPoster.png',
         title: 'Чаты и ассистент',
         text: 'Вся магия начинается когда приложение достаточно познакомится с вами. Это не просто "чат с ботом", а системный интеллект, который обучается на ваших данных и адаптируется под вас, ищет самый комфортный и эффективный подход, так же есть ручная конфигурация ассистента.',
       },
       {
-        targetScreenNumber: '6',
+        targetScreenNumber: '5',
         videoSrc: '/assets/SimulatorGoal.webm',
         videoPoster: '/assets/SimulatorGoalPoster.png',
         title: 'Создавайте цели',
@@ -210,7 +242,7 @@ const PageCarousel = () => {
         text: 'Reflexity поможет определить цели с индивидуальным подходом и сгенерирует пошаговый план для достижения этой цели, с учетом ваших потребностей и обстоятельств. ',
       },
       {
-        targetScreenNumber: '7',
+        targetScreenNumber: '6',
         videoSrc: '/assets/SimulatorSummary.webm',
         videoPoster: '/assets/SimulatorSummaryPoster.png',
         title: 'Подводите итоги',
@@ -241,20 +273,17 @@ const PageCarousel = () => {
         onTouchMove={onMouseMoveHandler}
         onTouchEnd={onTouchEndHandler}
       >
-        <FirstScreen
-          onScrollToScreenCallback={onScrollToScreenCallback}
-          isMobile={isMobile}
-        />
+        <FirstScreen />
         <SecondScreen
           screenNumber={screenNumber}
           isNoAnimation={disableAnimationScreens}
         />
-        <ThirdScreen
+        {/* <ThirdScreen
           screenNumber={screenNumber}
           isMobile={isMobile}
           onScrollToScreenCallback={onScrollToScreenCallback}
           isNoAnimation={disableAnimationScreens}
-        />
+        /> */}
         {featuresPreviewConfigs.map((config) => (
           <FeaturesPreview
             key={config.targetScreenNumber}
@@ -274,8 +303,8 @@ const PageCarousel = () => {
           isMobile={isMobile}
           isNoAnimation={disableAnimationScreens}
         />
-        <PlansScreen screenNumber={screenNumber} /> {/* 9 screen */}
-        <StartTodayScreen screenNumber={screenNumber} /> {/* 10 screen */}
+        <PlansScreen screenNumber={screenNumber} /> {/* 8 screen */}
+        <StartTodayScreen screenNumber={screenNumber} /> {/* 9 screen */}
       </section>
       {isLastScreen && !isMobile && (
         <LastPlanet screenNumber={screenNumber} isPause={isScrollLock} />

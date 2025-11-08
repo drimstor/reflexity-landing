@@ -57,7 +57,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
       ref={ref}
       className={clsx(
         styles.contentBox,
-        screenNumber === '9' && styles.active,
+        screenNumber === '8' && styles.active,
         inView && styles.mobileActive
       )}
     >
@@ -84,7 +84,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
             <div className={styles.lottieContainer}>
               <LottieAnimation
                 animationPath='/slow-spinner.json'
-                pause={screenNumber !== '9'}
+                pause={screenNumber !== '8'}
               />
             </div>
           )}

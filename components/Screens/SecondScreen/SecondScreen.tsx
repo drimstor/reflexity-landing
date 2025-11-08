@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import styles from './SecondScreen.module.scss'
-import Image from 'next/image'
-import { blockTextContent } from './constants'
 import clsx from 'clsx'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { blockTextContent } from './constants'
+import styles from './SecondScreen.module.scss'
 
 interface SecondScreenProps {
   screenNumber: string
