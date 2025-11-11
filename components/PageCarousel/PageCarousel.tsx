@@ -203,7 +203,12 @@ const PageCarousel = () => {
         <div ref={(el) => registerScreenRef('9', el)} data-screen='9'>
           <StartTodayScreen viewedScreens={viewedScreens} />
         </div>
-        {!isMobile && <LastPlanet viewedScreens={viewedScreens} />}
+        {!isMobile && (
+          <LastPlanet
+            viewedScreens={viewedScreens}
+            screenNumber={screenNumber}
+          />
+        )}
       </section>
       <Footer />
     </>
