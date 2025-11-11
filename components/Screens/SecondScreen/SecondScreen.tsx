@@ -100,7 +100,7 @@ const SecondScreen = ({
     if (typeof window === 'undefined') return
 
     const headerHeight = isMobile ? 72 : 88
-    const containerWidth = isMobile ? window.innerWidth : 1100
+    const containerWidth = isMobile ? window.innerWidth : 1000
     const containerHeight = window.innerHeight - headerHeight
     const calculatedPositions = calculatePositions(
       painElements.length,
