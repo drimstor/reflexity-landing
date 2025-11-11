@@ -1,10 +1,14 @@
 @use '@/styles/_helpers' as *;
 
 .pageBox {
-  margin-top: -50px;
+  position: relative;
+  overflow: hidden;
+  @include customScroll($accent-blue-main, $background);
+  height: 100dvh;
 
   @include tablet {
-    margin-top: 75px;
+    margin-top: 45px;
+    height: 100%;
   }
 
   :global {
@@ -22,4 +26,12 @@
       }
     }
   }
+}
+
+.planetBox {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

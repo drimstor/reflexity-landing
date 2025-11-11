@@ -209,8 +209,8 @@ const PageCarousel = () => {
             screenNumber={screenNumber}
           />
         )}
+        <Footer />
       </section>
-      <Footer />
     </>
   )
 }
