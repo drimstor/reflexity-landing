@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import ContactModal from 'components/Modals/ContactModal/ContactModal'
 import Button from 'components/UI-kit/Buttons/Button'
-import Footer from 'components/UI-kit/Footer/Footer'
 import Image from 'next/image'
 import mobileCircle from 'public/mobilePlanet.svg'
 import { useEffect, useState } from 'react'
@@ -61,7 +60,6 @@ const EighthScreen = ({ screenNumber }: EighthScreenProps) => {
             <ContactModal />
           </div>
         </div>
-        <Footer />
       </div>
     </>
   )
