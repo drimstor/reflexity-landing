@@ -19,17 +19,14 @@
 
   &.active {
     .textBox {
-      animation: showBlur 1s ease-in-out 0.7s forwards;
-    }
-    .modalBox {
-      animation: translate 1s ease-in-out forwards;
+      animation: show 1s ease-in-out 0.3s forwards;
     }
   }
 
   @include tablet {
     &.mobileActive {
       .textBox {
-        animation: showBlur 0.5s ease-in-out forwards;
+        animation: show 0.5s ease-in-out forwards;
       }
 
       .mobilePlanet {
@@ -58,9 +55,8 @@
 
 .textBox {
   margin: 0 16px;
-  margin-top: -100px;
+  margin-top: -50px;
   opacity: 0;
-  animation: hideBlur 0.5s ease-in-out forwards;
 
   > img {
     margin-bottom: 24px;
@@ -117,16 +113,6 @@
   display: flex;
   gap: 16px;
   justify-content: center;
-}
-
-@keyframes translate {
-  0% {
-    transform: translateX(calc(100% + 100vh));
-  }
-
-  100% {
-    transform: translateX(0);
-  }
 }
 
 @keyframes translateReverse {

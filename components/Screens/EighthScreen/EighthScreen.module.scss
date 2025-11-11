@@ -18,7 +18,7 @@
 
   &.active {
     .textBox {
-      animation: showBlur 0.5s ease-in-out 1.8s forwards;
+      animation: show 0.5s ease-in-out 1.8s forwards;
     }
     .modalBox {
       animation: translate 1s ease-in-out forwards;
@@ -27,7 +27,7 @@
 
   &.mobileActive {
     .textBox {
-      animation: showBlur 0.5s ease-in-out forwards;
+      animation: show 0.5s ease-in-out forwards;
     }
 
     .mobilePlanet {
@@ -83,7 +83,7 @@
   max-width: 477px;
   margin: 0 16px;
   opacity: 0;
-  animation: hideBlur 0.5s ease-in-out forwards;
+  animation: hide 0.5s ease-in-out forwards;
 
   @include tablet {
     text-align: center;

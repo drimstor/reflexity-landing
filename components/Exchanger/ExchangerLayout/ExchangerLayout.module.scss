@@ -31,7 +31,7 @@
     animation: showScale 0.5s ease-in-out 1s forwards;
 
     .sidebar {
-      animation: showBlur 0.5s ease-in-out 1.3s forwards;
+      animation: show 0.5s ease-in-out 1.3s forwards;
     }
 
     .layoutHeader {
@@ -65,7 +65,7 @@
     animation: showScale ease-in-out forwards;
 
     .sidebar {
-      animation: showBlur ease-in-out forwards;
+      animation: show ease-in-out forwards;
     }
 
     .layoutHeader {
@@ -220,7 +220,7 @@
   z-index: 2;
   width: 1em;
   min-height: 14em;
-  animation: hideBlur 0.5s ease-in-out forwards;
+  animation: hide 0.5s ease-in-out forwards;
   opacity: 0;
 
   border-right: 0.767px solid $neutral-stroke-grey-main;

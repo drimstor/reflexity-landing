@@ -14,9 +14,10 @@ import PlanCard from './ui/PlanCard/PlanCard'
 
 interface PlansScreenProps {
   screenNumber: string
+  viewedScreens: Set<string>
 }
 
-const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
+const PlansScreen = ({ screenNumber, viewedScreens }: PlansScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [currentSlide, setCurrentSlide] = useState(1)
   const [mounted, setMounted] = useState(false)
@@ -55,11 +56,7 @@ const PlansScreen = ({ screenNumber }: PlansScreenProps) => {
     <div
       id='plans'
       ref={ref}
-      className={clsx(
-        styles.contentBox,
-        screenNumber === '8' && styles.active,
-        inView && styles.mobileActive
-      )}
+      className={clsx(styles.contentBox, inView && styles.mobileActive)}
     >
       <Image className={styles.mobilePlanet} src={mobileCircle} alt='circle' />
       <div className={styles.container}>

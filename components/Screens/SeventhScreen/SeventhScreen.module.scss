@@ -9,6 +9,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+
+  padding-top: 150px;
+  margin-bottom: 50px;
 
   @include tablet {
     padding-top: 100px;
@@ -18,14 +22,14 @@
 
   &.mobileActive {
     h2 {
-      animation: showBlur 0.5s ease-in-out forwards;
+      animation: show 0.5s ease-in-out forwards;
     }
 
     .mobilePlanet {
       animation: planetMobile 1s ease-in-out 0.5s forwards;
     }
     .mobileLine {
-      animation: showBlur 1s ease-in-out 0.5s forwards;
+      animation: show 1s ease-in-out 0.5s forwards;
     }
 
     .cardBox:nth-child(1)::after,
@@ -72,12 +76,14 @@
   }
 
   &.active {
+    animation: show 0.5s ease-in-out 0.5s forwards;
+
     .line::after {
       animation: line 4s ease-out forwards;
     }
 
     h2 {
-      animation: showBlur 0.5s ease-in-out 0.5s forwards;
+      animation: show 0.5s ease-in-out 0.5s forwards;
     }
 
     .cardBox:nth-child(1)::after,
@@ -179,7 +185,6 @@
     line-height: 56px;
     margin-bottom: 56px;
     opacity: 0;
-    animation: hideBlur 0.5s ease-in-out forwards;
 
     @include tablet {
       margin-top: 0;
@@ -203,7 +208,6 @@
   grid-template-columns: repeat(3, minmax(280px, 1fr));
   gap: 5em 2em;
   position: relative;
-  transition: opacity 0.5s ease-in-out;
   max-width: 1600px;
   margin: 0 auto;
 
@@ -260,7 +264,6 @@
   max-width: 325px;
   height: 140px;
   opacity: 0;
-  animation: hide 0.5s ease-in-out forwards;
 
   @include laptop {
     max-width: 100%;

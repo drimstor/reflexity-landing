@@ -2,13 +2,14 @@ import clsx from 'clsx'
 import Image, { StaticImageData } from 'next/image'
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
+import useMediaQuery from '../../../hooks/useMediaQuery'
 import mobileCircle from '../../../public/mobilePlanet.svg'
 import styles from './FeaturesPreview.module.scss'
 
 interface FeaturesPreviewProps {
   screenNumber: string
-  isMobile: boolean
   isNoAnimation: string[]
+  viewedScreens: Set<string>
   videoSrc: string
   videoPoster: string
   title: string
@@ -22,34 +23,11 @@ interface FeaturesPreviewProps {
   videoHeight?: number
 }
 
-// Функция сравнения для оптимизации ре-рендеров
-const areEqual = (
-  prevProps: FeaturesPreviewProps,
-  nextProps: FeaturesPreviewProps
-) => {
-  // Сравниваем только критичные пропсы
-  return (
-    prevProps.screenNumber === nextProps.screenNumber &&
-    prevProps.isMobile === nextProps.isMobile &&
-    prevProps.targetScreenNumber === nextProps.targetScreenNumber &&
-    prevProps.videoSrc === nextProps.videoSrc &&
-    prevProps.videoPoster === nextProps.videoPoster &&
-    prevProps.title === nextProps.title &&
-    prevProps.text === nextProps.text &&
-    prevProps.reverseLayout === nextProps.reverseLayout &&
-    // Для isNoAnimation сравниваем длину и содержимое
-    prevProps.isNoAnimation.length === nextProps.isNoAnimation.length &&
-    prevProps.isNoAnimation.every(
-      (screen, index) => screen === nextProps.isNoAnimation[index]
-    )
-  )
-}
-
 const FeaturesPreview = memo(
   ({
     screenNumber,
-    isMobile,
     isNoAnimation,
+    viewedScreens,
     videoSrc,
     videoPoster,
     title,
@@ -62,35 +40,29 @@ const FeaturesPreview = memo(
     videoWidth = 1032,
     videoHeight = 2064,
   }: FeaturesPreviewProps) => {
+    const isMobile = useMediaQuery('(max-width: 768px)')
+
     const [ref, inView] = useInView({
       triggerOnce: true,
       threshold: 0.1,
       rootMargin: '50px', // Начинаем загрузку немного раньше
     })
 
-    // Мемоизация вычисляемых значений
-    const activeScreenNumber = useMemo(
-      () => targetScreenNumber || screenNumber,
-      [targetScreenNumber, screenNumber]
-    )
-
-    const noAnimation = useMemo(
-      () => isNoAnimation.includes(activeScreenNumber),
-      [isNoAnimation, activeScreenNumber]
-    )
-
-    const isShow = useMemo(
-      () => screenNumber === activeScreenNumber || inView || noAnimation,
-      [screenNumber, activeScreenNumber, inView, noAnimation]
+    const isViewed = useMemo(
+      () => viewedScreens.has(targetScreenNumber || ''),
+      [viewedScreens, targetScreenNumber]
     )
 
     const isActive = useMemo(
-      () => screenNumber === activeScreenNumber,
-      [screenNumber, activeScreenNumber]
+      () => screenNumber === targetScreenNumber,
+      [screenNumber, targetScreenNumber]
     )
 
     // Рендерить видео только если экран был показан хотя бы раз
-    const shouldRenderVideo = useMemo(() => isShow || inView, [isShow, inView])
+    const shouldRenderVideo = useMemo(
+      () => inView || isViewed,
+      [inView, isViewed]
+    )
 
     const videoRef = useRef<HTMLVideoElement>(null)
     const playTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -133,7 +105,7 @@ const FeaturesPreview = memo(
       }
 
       // На мобильных устройствах запускаем видео, если экран виден
-      const shouldPlay = isActive || (isMobile && (isShow || inView))
+      const shouldPlay = isMobile ? inView : isActive
 
       if (shouldPlay) {
         // Небольшая задержка для плавного перехода
@@ -156,7 +128,7 @@ const FeaturesPreview = memo(
           clearTimeout(pauseTimeoutRef.current)
         }
       }
-    }, [isActive, shouldRenderVideo, isMobile, isShow, inView, playVideo])
+    }, [isActive, shouldRenderVideo, isMobile, inView, playVideo])
 
     // Мемоизация классов для оптимизации
     const mobilePlanetClassName = useMemo(
@@ -165,18 +137,13 @@ const FeaturesPreview = memo(
     )
 
     const containerClassName = useMemo(
-      () =>
-        clsx(
-          styles.container,
-          !isMobile && screenNumber !== activeScreenNumber && styles.hide,
-          reverseLayout && styles.reverseLayout
-        ),
-      [isMobile, screenNumber, activeScreenNumber, reverseLayout]
+      () => clsx(styles.container, reverseLayout && styles.reverseLayout),
+      [reverseLayout]
     )
 
     return (
       <div
-        className={clsx(styles.contentBox, isShow && styles.active)}
+        className={clsx(styles.contentBox, isViewed && styles.active)}
         id={sectionId}
         ref={ref}
       >
@@ -202,7 +169,7 @@ const FeaturesPreview = memo(
                 loop
                 muted
                 playsInline
-                autoPlay={isMobile && (isShow || inView)}
+                autoPlay={isMobile && inView}
                 poster={videoPoster}
                 width={278}
                 height={601}
@@ -220,8 +187,7 @@ const FeaturesPreview = memo(
         </div>
       </div>
     )
-  },
-  areEqual
+  }
 )
 
 FeaturesPreview.displayName = 'FeaturesPreview'

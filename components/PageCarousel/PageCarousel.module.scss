@@ -2,45 +2,5 @@
 
 .globalBox {
   position: relative;
-  z-index: 99;
-  height: 100%;
-  transform: translate3d(0, 0, 0);
-  transition: transform 1.3s ease-in-out;
-  contain: layout;
-
-  &.screen1 {
-    transform: translate3d(0, calc(-100vh - 0px), 0);
-  }
-
-  &.screen2 {
-    transform: translate3d(0, calc(-200vh + 0px), 0);
-  }
-
-  &.screen3 {
-    transform: translate3d(0, calc(-300vh + 0px), 0);
-  }
-
-  &.screen4 {
-    transform: translate3d(0, calc(-400vh - 0px), 0);
-  }
-
-  &.screen5 {
-    transform: translate3d(0, calc(-500vh - 0px), 0);
-  }
-
-  &.screen6 {
-    transform: translate3d(0, calc(-600vh + 0px), 0);
-  }
-
-  &.screen7 {
-    transform: translate3d(0, calc(-700vh), 0);
-  }
-
-  &.screen8 {
-    transform: translate3d(0, calc(-800vh), 0);
-  }
-
-  &.screen9 {
-    transform: translate3d(0, calc(-900vh), 0);
-  }
+  overflow: hidden;
 }
