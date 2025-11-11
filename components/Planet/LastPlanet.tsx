@@ -5,9 +5,10 @@ import styles from './Planet.module.scss'
 
 interface PlanetProps {
   viewedScreens: Set<string>
+  screenNumber: string
 }
 
-const LastPlanet = ({ viewedScreens }: PlanetProps) => {
+const LastPlanet = ({ viewedScreens, screenNumber }: PlanetProps) => {
   const isLastScreen = useMemo(() => viewedScreens.has('9'), [viewedScreens])
 
   const containerClassName = useMemo(
@@ -23,7 +24,7 @@ const LastPlanet = ({ viewedScreens }: PlanetProps) => {
     <LottieAnimation
       animationPath='/slow-spinner.json'
       className={containerClassName}
-      pause={!isLastScreen}
+      pause={screenNumber !== '9'}
     />
   )
 }
