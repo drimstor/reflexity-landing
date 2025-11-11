@@ -1,50 +1,30 @@
 import clsx from 'clsx'
 import { LottieAnimation } from 'components/UI-kit/LottieAnimation/LottieAnimation'
-import { memo, useEffect, useMemo, useState } from 'react'
+import { memo, useMemo } from 'react'
 import styles from './Planet.module.scss'
 
 interface PlanetProps {
-  screenNumber: string
-  isPause?: boolean
+  viewedScreens: Set<string>
 }
 
-const LastPlanet = ({ screenNumber, isPause }: PlanetProps) => {
-  const [lastAnimantion, setLastAnimantion] = useState(false)
-  const [transitionOn, setTransitionOn] = useState(false)
-
-  useEffect(() => {
-    if (screenNumber === '9') {
-      setTimeout(() => setLastAnimantion(true), 1300)
-    } else {
-      setLastAnimantion(false)
-    }
-
-    if (!transitionOn) {
-      setTimeout(() => setTransitionOn(true), 300)
-    }
-  }, [screenNumber, transitionOn])
+const LastPlanet = ({ viewedScreens }: PlanetProps) => {
+  const isLastScreen = useMemo(() => viewedScreens.has('9'), [viewedScreens])
 
   const containerClassName = useMemo(
     () =>
       clsx(
-        styles.lastScreen,
-        screenNumber === '9' && styles.lastScreenActive,
-        lastAnimantion && styles.lastAnimantionActive,
-        transitionOn && styles.transition
+        styles.lastScreenLottieAnimation,
+        isLastScreen && styles.lastScreenActive
       ),
-    [screenNumber, lastAnimantion, transitionOn]
+    [isLastScreen]
   )
 
   return (
-    <div className={styles.circleBox} id='lastPlanet'>
-      <div className={containerClassName}>
-        <LottieAnimation
-          animationPath='/slow-spinner.json'
-          className={styles.lottieAnimation}
-          pause={isPause || screenNumber !== '9'}
-        />
-      </div>
-    </div>
+    <LottieAnimation
+      animationPath='/slow-spinner.json'
+      className={containerClassName}
+      pause={!isLastScreen}
+    />
   )
 }
 

@@ -83,8 +83,8 @@ $mainMono: var(--mainMono);
 //-------------- Extends ---------------//
 
 %fullScreenView {
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 90vh;
+  height: 90vh;
   max-height: -moz-available;
   max-height: -webkit-stretch;
   max-height: stretch;
@@ -121,29 +121,23 @@ $mainMono: var(--mainMono);
   }
 }
 
+@mixin customScroll($color: $accent-blue-main, $trackColor: $background) {
+  &::-webkit-scrollbar-track {
+    background-color: $trackColor;
+    border-radius: 0.7rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 0.7rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+}
+
 //-------------- Animations ---------------//
-
-@keyframes showBlur {
-  0% {
-    opacity: 0;
-    // filter: blur(3px);
-  }
-  100% {
-    opacity: 1;
-    // filter: blur(0px);
-  }
-}
-
-@keyframes hideBlur {
-  0% {
-    opacity: 1;
-    // filter: blur(0px);
-  }
-  100% {
-    opacity: 0;
-    // filter: blur(3px);
-  }
-}
 
 @keyframes show {
   0% {

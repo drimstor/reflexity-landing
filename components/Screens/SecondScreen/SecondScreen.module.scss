@@ -11,22 +11,23 @@
   align-items: center;
   justify-content: center;
   background: radial-gradient($background 50%, transparent 80%);
+  margin-bottom: 100px;
 
   @media screen and (min-width: 769px) {
-    animation: hideBlur 0.5s ease-in-out forwards;
+    animation: hide 0.5s ease-in-out forwards;
   }
 
   &.active {
-    animation: showBlur 0.5s ease-in-out 0.6s forwards;
+    animation: show 0.5s ease-in-out forwards;
   }
 
   &.noAnimation {
-    animation: showBlur ease-in-out forwards;
+    animation: show ease-in-out forwards;
   }
 
   &.mobileActive {
     @include tablet {
-      animation: showBlur 0.5s ease-in-out forwards;
+      animation: show 0.5s ease-in-out forwards;
     }
   }
 
@@ -127,7 +128,7 @@
   &.visible {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    animation: appearFromNowhere 1s ease-out forwards; // Увеличена длительность анимации
+    animation: appearCentralPhrase 0.3s ease-out forwards; // Увеличена длительность анимации
   }
 
   // Для мобилки: позиционирование по краям

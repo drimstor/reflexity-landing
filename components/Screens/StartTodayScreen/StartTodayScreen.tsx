@@ -1,17 +1,18 @@
 import clsx from 'clsx'
-import Footer from 'components/UI-kit/Footer/Footer'
 import Image from 'next/image'
 import logo from 'public/logo.png'
 import mobileCircle from 'public/mobilePlanet.svg'
+import { useMemo } from 'react'
 import { useInView } from 'react-intersection-observer'
 import styles from './StartTodayScreen.module.scss'
 
 interface StartTodayScreenProps {
-  screenNumber: string
+  viewedScreens: Set<string>
 }
 
-const StartTodayScreen = ({ screenNumber }: StartTodayScreenProps) => {
+const StartTodayScreen = ({ viewedScreens }: StartTodayScreenProps) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const isViewed = useMemo(() => viewedScreens.has('9'), [viewedScreens])
 
   return (
     <div
@@ -19,7 +20,7 @@ const StartTodayScreen = ({ screenNumber }: StartTodayScreenProps) => {
       ref={ref}
       className={clsx(
         styles.contentBox,
-        screenNumber === '9' && styles.active,
+        isViewed && styles.active,
         inView && styles.mobileActive
       )}
     >
@@ -62,7 +63,6 @@ const StartTodayScreen = ({ screenNumber }: StartTodayScreenProps) => {
           </a>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
