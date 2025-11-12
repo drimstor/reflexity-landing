@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import useMediaQuery from '../../../hooks/useMediaQuery'
+import { highlightReflexity } from '../../../utils/textHighlight'
 import { centralPhrases, painElements } from './constants'
 import styles from './SecondScreen.module.scss'
 
@@ -46,32 +47,20 @@ const calculatePositions = (
     return positions
   }
 
-  // Десктоп: распределение по овалу с небольшим случайным смещением
+  // Десктоп: распределение по ровному овалу
   const centerX = containerWidth / 2
   const centerY = containerHeight / 2
-  const radiusX = Math.max(containerWidth * 0.6, 400)
+  const radiusX = Math.max(containerWidth * 0.8, 400)
   const radiusY = Math.max(containerHeight * 0.3, 200)
   const angleStep = (2 * Math.PI) / count
   const positions: ElementPosition[] = []
 
-  // Параметры для хаотичности (можно настроить)
-  const radialChaos = 0.15 // Смещение по радиусу (15% от радиуса)
-  const angleChaos = 0.2 // Смещение по углу (20% от шага угла)
-
   for (let i = 0; i < count; i++) {
-    const baseAngle = i * angleStep - Math.PI / 2
-
-    // Добавляем небольшое случайное смещение угла
-    const angleOffset = (Math.random() - 0.9) * angleStep * angleChaos
-    const angle = baseAngle + angleOffset
-
-    // Добавляем небольшое случайное смещение радиуса
-    const radialOffsetX = (Math.random() - 0.3) * radiusX * radialChaos
-    const radialOffsetY = (Math.random() - 0.3) * radiusY * radialChaos
+    const angle = i * angleStep - Math.PI / 2
 
     positions.push({
-      x: centerX + radiusX * Math.cos(angle) + radialOffsetX,
-      y: centerY + radiusY * Math.sin(angle) + radialOffsetY,
+      x: centerX + radiusX * Math.cos(angle),
+      y: centerY + radiusY * Math.sin(angle),
     })
   }
 
@@ -236,7 +225,7 @@ const SecondScreen = ({
                   isVisible && styles.visible
                 )}
               >
-                {phrase.text}
+                {highlightReflexity(phrase.text, styles.highlight)}
               </div>
             )
           })}

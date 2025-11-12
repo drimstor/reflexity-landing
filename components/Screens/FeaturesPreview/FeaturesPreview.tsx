@@ -4,6 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import useMediaQuery from '../../../hooks/useMediaQuery'
 import mobileCircle from '../../../public/mobilePlanet.svg'
+import { highlightReflexity } from '../../../utils/textHighlight'
 import styles from './FeaturesPreview.module.scss'
 
 interface FeaturesPreviewProps {
@@ -181,8 +182,8 @@ const FeaturesPreview = memo(
             )}
           </div>
           <div className={styles.textBox}>
-            <h3>{title}</h3>
-            <p>{text}</p>
+            <h3>{highlightReflexity(title, styles.highlight)}</h3>
+            <p>{highlightReflexity(text, styles.highlight)}</p>
           </div>
         </div>
       </div>
