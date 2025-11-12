@@ -125,7 +125,7 @@ const PageCarousel = () => {
       targetScreenNumber: '3',
       videoSrc: '/assets/SimulatorOverview.webm',
       videoPoster: '/assets/SimulatorOverviewPoster.png',
-      title: 'Визуализация сфер жизни',
+      title: 'Визуализируй сферы своей жизни',
       reverseLayout: true,
       text: 'Каждая запись, цель или эмоция становится частью твоей когнитивной карты — живой модели твоей личности. Чем больше пишете — тем точнее Reflexity понимает вас.',
     },
