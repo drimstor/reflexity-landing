@@ -196,7 +196,7 @@ const SecondScreen = ({
               className={clsx(
                 styles.painElement,
                 styles[element.type],
-                isVisible && styles.visible
+                styles.visible
               )}
               style={{
                 left: `${position.x}px`,
@@ -220,10 +220,7 @@ const SecondScreen = ({
             return (
               <div
                 key={index}
-                className={clsx(
-                  styles.centralPhrase,
-                  isVisible && styles.visible
-                )}
+                className={clsx(styles.centralPhrase, styles.visible)}
               >
                 {highlightReflexity(phrase.text, styles.highlight)}
               </div>
