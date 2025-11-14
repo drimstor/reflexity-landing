@@ -20,7 +20,7 @@ const LastPlanet = dynamic(() => import('components/Planet/LastPlanet'), {
 
 const PageCarousel = () => {
   const [viewedScreens, setViewedScreens] = useState<Set<string>>(
-    new Set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    new Set(['0'])
   )
   const isMobile = useMediaQuery('(max-width: 768px)')
   const lenisRef = useRef<Lenis | null>(null)
